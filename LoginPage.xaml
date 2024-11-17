@@ -43,18 +43,21 @@
                 />
 
             <Entry
+                x:Name="userEntry"
                 Grid.Column="1"
                 Grid.Row="3">
 
             </Entry>
 
             <Label
+                
                 Grid.Column="1"
                 Grid.Row="4"
                 Text="Password:"
                  />
 
             <Entry
+                x:Name="userPass"
                 Grid.Column="1"
                 Grid.Row="5"
                 IsPassword="True">
