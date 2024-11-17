@@ -2,54 +2,56 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.StudentDashboard"
-              BackgroundColor="Azure"
              Title="StudentDashboard"
            
             >
-    
-    <VerticalStackLayout>
-        
+    <ScrollView>
+        <VerticalStackLayout>
+
             <Label 
-              Text="ReClaimIt!" 
-               FontSize="Header" 
-               FontAttributes="Bold"
-               Style="{StaticResource Headline}"
-               Margin="15"
-               />
+        Text="ReClaimIt!" 
+        FontSize="Header" 
+        FontAttributes="100"
+        Style="{StaticResource Headline}"
+        Margin="15"
 
-        <Button  
-          BackgroundColor="Black"
-            WidthRequest="80" 
-            HeightRequest="80"
-            CornerRadius="70"  
-            x:Name="ReportBtn"
-            SemanticProperties.Hint="Counts the number you clicked"
-            Margin="15" 
-            HorizontalOptions="Start"
-            Clicked="ReportBtn_Clicked"
-            />
+        />
 
-        <Button 
-            BackgroundColor="Black"
-            WidthRequest="80"
-            HeightRequest="80"
-            CornerRadius="70"
-            x:Name="ClaimBtn"
-            SemanticProperties.Hint="Counts the number you clicked"
-            Margin=" 15"
-            HorizontalOptions="Start"
-            Clicked="ClaimBtn_Clicked"
-            />
-        <Button
-            BackgroundColor="Black"
-            WidthRequest="80"
-            HeightRequest="80"
-            CornerRadius="70"
-            x:Name="NotificationBtn"
-            SemanticProperties.Hint="Count the number you clicked"
-            Margin="15"
-            HorizontalOptions="Start"
-            Clicked="NotificationBtn_Clicked" 
-            />
-    </VerticalStackLayout>
+            <Button  
+
+        WidthRequest="80" 
+        HeightRequest="80"
+        CornerRadius="70"  
+        x:Name="ReportBtn"
+        SemanticProperties.Hint="Counts the number you clicked"
+        Margin="15" 
+        HorizontalOptions="Start"
+        Clicked="ReportBtn_Clicked"
+        />
+
+            <Button 
+
+        WidthRequest="80"
+        HeightRequest="80"
+        CornerRadius="70"
+        x:Name="ClaimBtn"
+        SemanticProperties.Hint="Counts the number you clicked"
+        Margin=" 15"
+        HorizontalOptions="Start"
+        Clicked="ClaimBtn_Clicked"
+        />
+            <Button
+
+        WidthRequest="80"
+        HeightRequest="80"
+        CornerRadius="70"
+        x:Name="NotificationBtn"
+        SemanticProperties.Hint="Count the number you clicked"
+        Margin="15"
+        HorizontalOptions="Start"
+        Clicked="NotificationBtn_Clicked" 
+        />
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentPage>
