@@ -27,6 +27,9 @@ namespace test
             enteredEmail = userEntry.Text;
             enteredPassword = userPass.Text;
 
+            string adacorrecttemp = "adcred";
+            string stcorrecttemp = "stcred";
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -44,11 +47,12 @@ namespace test
 
             }
 
-            if (CheckAdminAccount(enteredEmail, enteredPassword))
+            //TEMPORARY HARD CODE FOR TESTING!!
+            if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
             {
                 Navigation.PushAsync(new AdminDashboard());
             }
-            else if (CheckRegisteredAccount(enteredEmail, enteredPassword))
+            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
             {
                 Navigation.PushAsync(new StudentDashboard());
             }
@@ -56,33 +60,24 @@ namespace test
             {
                 this.ShowPopup(new NewPage1());
             }
+            //
 
+            //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
+            //NOTE NEED TO IMPORT DATABASE FROM THE FILES
+            //PROPER CREDENTIALS ARE user id= recadm; password = pass
 
-
-            //if (enteredEmail == AdminContactNumber && enteredPassword == AdminPassword)
-            //{
-            //    Navigation.PushAsync(new StudentDashboard());
-            //}
-            //else if (enteredEmail == NormalUser && enteredPassword == AdminPassword)
+            //if (CheckAdminAccount(enteredEmail, enteredPassword)) 
             //{
             //    Navigation.PushAsync(new AdminDashboard());
             //}
-
+            //else if (CheckRegisteredAccount(enteredEmail, enteredPassword))
+            //{
+            //    Navigation.PushAsync(new StudentDashboard());
+            //}
             //else
             //{
-            //    if (CheckRegisteredAccount(enteredEmail, enteredPassword))
-            //    {
-            //        //Insert Student Page Method Here
-            //    }
-            //    else
-            //    {
-            //        // MessageBox.Show("Invalid credentials.");
-            //    }
+            //    this.ShowPopup(new NewPage1());
             //}
-
-
-
-
         }
         private bool CheckRegisteredAccount(string enteredEmail, string enteredPassword)
         {
