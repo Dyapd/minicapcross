@@ -1,7 +1,10 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Data.SqlClient;
-using Android.Provider;
+using CommunityToolkit.Maui.Views;
 
+#if ANDROID
+using Android.Provider;
+#endif
 namespace test
 {
     public partial class MainPage : ContentPage
@@ -10,7 +13,7 @@ namespace test
         private const string AdminPassword = "pass";
         private const string NormalUser = "normal";
 
-        string connectionString = "Data Source=localhost;Initial Catalog=Register;Integrated Security=True";
+        string connectionString = "Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
 
         public MainPage()
         {
@@ -24,6 +27,23 @@ namespace test
             enteredEmail = userEntry.Text;
             enteredPassword = userPass.Text;
 
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    var command = connection.CreateCommand();
+                    command.CommandText = "SELECT * FROM StudentUsers";
+                    command.ExecuteReader();
+                }
+            }
+            catch (Exception ex)
+            {
+                lbl.Text = $"Error: {ex.Message}";
+                Console.WriteLine(ex.Message);
+
+            }
+
             if (CheckAdminAccount(enteredEmail, enteredPassword))
             {
                 Navigation.PushAsync(new AdminDashboard());
@@ -34,9 +54,9 @@ namespace test
             }
             else
             {
-                
+                this.ShowPopup(new NewPage1());
             }
-            
+
 
 
             //if (enteredEmail == AdminContactNumber && enteredPassword == AdminPassword)
