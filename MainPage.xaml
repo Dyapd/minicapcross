@@ -32,7 +32,7 @@
                 Grid.Row="1"
                 Text="Login!"
                 Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.HeadingLevel="Level1" Margin="10"
                 />
 
             <Label
