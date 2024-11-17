@@ -18,6 +18,8 @@ namespace test
             string enteredEmail = "Allen";
             string enteredPassword = "Payad";
 
+            Navigation.PushAsync(new StudentDashboard());
+
 
             if (enteredEmail == AdminContactNumber && enteredPassword == AdminPassword)
             {

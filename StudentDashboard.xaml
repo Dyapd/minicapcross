@@ -11,7 +11,7 @@
             <Label 
         Text="ReClaimIt!" 
         FontSize="Header" 
-        FontAttributes="100"
+        FontAttributes="Bold"
         Style="{StaticResource Headline}"
         Margin="15"
 
