@@ -25,14 +25,15 @@
             </Grid.ColumnDefinitions>
 
 
-         
+
 
             <Label
                 Grid.Column="1"
                 Grid.Row="1"
-                Text="Login!"
+                Text="LogIn!"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" Margin="10"
+                FontAttributes="Bold"
                 />
 
             <Label
@@ -44,7 +45,7 @@
             <Entry
                 Grid.Column="1"
                 Grid.Row="3">
-                
+
             </Entry>
 
             <Label
@@ -69,5 +70,5 @@
                 HorizontalOptions="Fill" />
         </Grid>
     </ScrollView>
-
+         
 </ContentPage>
