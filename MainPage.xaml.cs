@@ -2,16 +2,18 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnLoginClicked(object sender, EventArgs e)
+        private async void OnLoginClicked(object sender, EventArgs e)
         {
-            //lagay dito ung login backedn!
+            //lagay dito ung login backend!
+            //placeholder if else lng to para mapagana ko ung navigational page remove if lalagay na
+
+            await Navigation.PushAsync(new StudentDashboard());
         }
     }
 

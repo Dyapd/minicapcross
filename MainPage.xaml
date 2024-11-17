@@ -63,7 +63,7 @@
                 Grid.Column="1"
                 Grid.Row="6"
                 x:Name="LoginBtn"
-                Text="Click me" 
+                Text="Login" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnLoginClicked"
                 HorizontalOptions="Fill" />
