@@ -14,14 +14,15 @@
                FontSize="Header" 
                FontAttributes="Bold"
                Style="{StaticResource Headline}"
+                TextColor="Navy"
                Margin="15"
                />
 
         <Button  
           BackgroundColor="Black"
-            WidthRequest="80" 
-            HeightRequest="80"
-            CornerRadius="70"  
+            WidthRequest="50" 
+            HeightRequest="50"
+            CornerRadius="40"  
             x:Name="ReportBtn"
             SemanticProperties.Hint="Counts the number you clicked"
             Margin="15" 
@@ -31,9 +32,9 @@
 
         <Button 
             BackgroundColor="Black"
-            WidthRequest="80"
-            HeightRequest="80"
-            CornerRadius="70"
+            WidthRequest="50"
+            HeightRequest="50"
+            CornerRadius="40"
             x:Name="ClaimBtn"
             SemanticProperties.Hint="Counts the number you clicked"
             Margin=" 15"
@@ -42,9 +43,9 @@
             />
         <Button
             BackgroundColor="Black"
-            WidthRequest="80"
-            HeightRequest="80"
-            CornerRadius="70"
+            WidthRequest="50"
+            HeightRequest="50"
+            CornerRadius="40"
             x:Name="NotificationBtn"
             SemanticProperties.Hint="Count the number you clicked"
             Margin="15"
