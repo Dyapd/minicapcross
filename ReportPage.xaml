@@ -2,11 +2,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.ReportPage"
-             Title="ReportPage">
-    <VerticalStackLayout>
+             Title="Report Page">
+    <VerticalStackLayout
+        VerticalOptions="CenterAndExpand"
+        >
         <Label 
             Text="Report Lost Item"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Label 
+            Text="Category:"/>
+        <Entry
+            x:Name="CategoryInput"
+            Background="AntiqueWhite"/>
+
+        <Label
+            Text="Description:"/>
+        <Entry
+            x:Name="DescriptionInput"
+             Background="AntiqueWhite"/>
+
+        <Label
+            Text="Image (optional):"/>
+        <Button 
+            Text="Upload Image"
+            x:Name="ImageInput"
+            Clicked="OnClickedImageBtn"/>
+
+        <Label
+            Text="Location Lost:"/>
+        <Entry
+            x:Name="LocationInput"
+             Background="AntiqueWhite"/>
+
+        <Label
+            Text="Student Number:"/>
+
+        <Button
+            Text="Report Item"
+            Clicked="OnClickedReportBtn"
+            />
+
     </VerticalStackLayout>
 </ContentPage>

@@ -6,4 +6,14 @@ public partial class ReportPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void OnClickedImageBtn(object sender, EventArgs e)
+    {
+
+    }
+
+    private void OnClickedReportBtn(object sender, EventArgs e)
+    {
+
+    }
 }
