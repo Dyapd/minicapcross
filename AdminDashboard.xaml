@@ -3,10 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.AdminDashboard"
              Title="AdminDashboard">
-    <VerticalStackLayout>
-        <Label 
-            Text="Admin Dashboard!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        
+        <VerticalStackLayout>
+            <Label 
+                Text="Admin Dashboard!"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="Reports"
+                Margin="10"
+                Clicked="OnClickedReportsBtn"/>
+            <Button
+                Text="Claims"
+                Margin="10"
+                Clicked="OnClickedClaimsBtn"/>
+            <Button
+                Text="Items"
+                Margin="10"
+                Clicked="OnClickedItemsBtn"
+                />
+            <Button
+                Text="Submit Form"
+                Margin="10"
+                Clicked="OnClickedSubmitFormBtn"/>
+            <Button
+                Text="Logs"
+                Margin="10"
+                Clicked="OnClickedLogsBtn"/>
+            <Button
+                VerticalOptions="EndAndExpand"
+                Margin="10,20"
+                Text="Logout"
+                Clicked="OnClickedLogoutBtn"/>
+        </VerticalStackLayout>
+
+    </ScrollView>
+    
 </ContentPage>
