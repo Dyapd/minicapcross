@@ -3,11 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.ClaimPage"
              Title="ClaimPage">
+
+    <ScrollView>
+        
+        
     <VerticalStackLayout>
         
         <Label 
             Text="Claim a Lost Item"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        
+        
     </VerticalStackLayout>
+
+    </ScrollView>
 </ContentPage>

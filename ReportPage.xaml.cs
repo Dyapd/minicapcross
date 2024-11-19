@@ -16,4 +16,9 @@ public partial class ReportPage : ContentPage
     {
 
     }
+
+    private void OnClickedReportBtn(object sender, EventArgs e)
+    {
+
+    }
 }
