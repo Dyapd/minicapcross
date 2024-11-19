@@ -6,17 +6,18 @@
 
     <ScrollView>
         <Grid
+            VerticalOptions="Center"
             Padding="30,0"
             >
             <Grid.RowDefinitions>
-                <RowDefinition Height="30,*"/>
-                <RowDefinition Height="30,*"/>
-                <RowDefinition Height="30,*"/>
-                <RowDefinition Height="30,*"/>
-                <RowDefinition Height="30,*"/>
-                <RowDefinition Height="30,*"/>
-                <RowDefinition Height="30,*"/>
-                <RowDefinition Height="30,*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions >
@@ -30,8 +31,8 @@
 
             <Label
                 Grid.Column="1"
-                Grid.Row="1"
-                Text="LogIn!"
+                Grid.Row="0"
+                Text="Login"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" Margin="10"
                 FontAttributes="Bold"
@@ -40,31 +41,43 @@
             <Label
                 Grid.Column="1"
                 Grid.Row="2"
-                Text="Username"
+                Text="Username:"
+                FontSize="20"
                 />
 
             <Entry
+                Placeholder="Enter username"
+                PlaceholderColor="DimGray"
                 x:Name="userEntry"
                 Grid.Column="1"
-                Grid.Row="3">
-
+                Grid.Row="3"
+                BackgroundColor="LightGray"
+                Margin="0,5">
+                
             </Entry>
 
             <Label
                 x:Name="lbl"
                 Grid.Column="1"
                 Grid.Row="4"
+                FontSize="20"
                 Text="Password:"
                  />
 
             <Entry
+                Placeholder="Enter password"
+                PlaceholderColor="DimGray"
                 x:Name="userPass"
                 Grid.Column="1"
                 Grid.Row="5"
-                IsPassword="True">
+                IsPassword="True"
+                BackgroundColor="LightGray"
+                Margin="0,5">
             </Entry>
 
             <Button
+                Margin="0,30"
+                CornerRadius="0"
                 Grid.Column="1"
                 Grid.Row="6"
                 x:Name="LoginBtn"

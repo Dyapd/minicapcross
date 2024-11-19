@@ -3,19 +3,47 @@
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                x:Class="test.NewPage1"
+               Color="Transparent"
+HorizontalOptions="Center"
+    VerticalOptions="Center"
                >
+<!--popup page login styling-->
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15">
+        <Border
+        WidthRequest="190"
+        HeightRequest="190"
+        Padding="0"
+        Stroke="Transparent"
+        BackgroundColor="White">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10"/>
+        </Border.StrokeShape>
+            <VerticalStackLayout>
 
-    <VerticalStackLayout Background="Wheat">
-        <Label
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Text="Wrong Username or Password" />
-        <Button
-            Text="Close"
-            Clicked ="OnOkayClick"
-            />
-    </VerticalStackLayout>
+                <Label
+                    Margin="15"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"
+                    Text="Error!"/>
+                <Label
+                    Margin="15,10,15,15"
+                    FontSize="Body"
+                    Text="Wrong username or password." />
 
+
+
+                    <Button
+                    CornerRadius="0"
+                    VerticalOptions="End"
+                    Margin="10"
+                    BackgroundColor="Red"
+                    Text="Ok"
+                    Clicked ="OnOkayClick"
+                    />
+
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </toolkit:Popup>
 
 
