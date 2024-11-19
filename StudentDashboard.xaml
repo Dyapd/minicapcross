@@ -15,9 +15,8 @@
         FontAttributes="Bold"
         Style="{StaticResource Headline}"
         Margin="15"
-                TextColor="Black"
-
-        />
+                TextColor="Black"/>
+            
             <ImageButton
               Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\Log-out icon.png"         
                 x:Name="LogoutBtn"
@@ -69,9 +68,11 @@
                     WidthRequest="100"
                     TextTransform="Uppercase"
                     />
-            
 
-           
+
+                <Image 
+                    Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\images.png"/>
+
                 <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
                 <!--<Button
                     
@@ -103,13 +104,9 @@
                                     />
                             </HorizontalStackLayout>
                         </Frame>
-                        
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                
-                
-                
-
             </CollectionView>
 
             <Label Text=" ────────────────────────────────────────────────────────────────────────────────"
