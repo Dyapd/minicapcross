@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.StudentDashboard"
              Title="StudentDashboard"
-             BackgroundColor="LightBlue"
-            
-           
+             BackgroundColor="White"
             >
+ 
     <ScrollView>
         <VerticalStackLayout>
 
@@ -16,18 +15,37 @@
         FontAttributes="Bold"
         Style="{StaticResource Headline}"
         Margin="15"
-                TextColor="CornflowerBlue"
+                TextColor="Black"
 
         />
+            <ImageButton
+              Source="logout_icon.png"         
+                x:Name="LogoutBtn"
+                SemanticProperties.Hint="Counts the number you clicked"
+                Margin="15"
+                HorizontalOptions="End"
+                Clicked="LogoutBtn_Clicked"
+                Background="LightGray"
+                HeightRequest="40"
+                Opacity="11"
+                >
+                <ImageButton.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
+                                              PointerExited="OnLogoutBtnExited"
+                              />
+                </ImageButton.GestureRecognizers>
+            </ImageButton>
+         
+
 
             <HorizontalStackLayout
                 HorizontalOptions="Center"
                 Spacing="40"
                 Margin="100"
-                VerticalOptions="Center"
-                
-                
-                >
+                VerticalOptions="Center">
+
+
+
                 <Button  
                     Text="Report"  FontFamily="Arial"  
                     x:Name="ReportBtn"
@@ -35,28 +53,30 @@
                     Margin="15" 
                     HorizontalOptions="Start"
                     Clicked="ReportBtn_Clicked"
-                    Background="CornflowerBlue"
+                    Background="LightGray"
                     FontAttributes="Bold"
                     TextColor="Black"
                     HeightRequest="50"
                     WidthRequest="100"
                     TextTransform="Uppercase"
                     />
-
-                <Button 
+                   
+                    <Button 
                     Text="Claim"  FontFamily="Arial"
                     x:Name="ClaimBtn"
                     SemanticProperties.Hint="Counts the number you clicked"
                     Margin="15"
                     HorizontalOptions="Start"
                     Clicked="ClaimBtn_Clicked"
-                    BackgroundColor="CornflowerBlue"
+                    BackgroundColor="LightGray"
                     FontAttributes="Bold"
                     TextColor="Black"
                     HeightRequest="50"
                     WidthRequest="100"
                     TextTransform="Uppercase"
                     />
+            
+
            
                 <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
                 <!--<Button
@@ -72,7 +92,7 @@
                     />-->
 
             </HorizontalStackLayout>
-
+           
             <!-- THIS IS FOR NOTIFICATION LOG!!-->
             <CollectionView 
                 SelectionMode="Single"
@@ -100,13 +120,17 @@
 
             <Label Text=" ────────────────────────────────────────────────────────────────────────────────"
                    FontAttributes="Bold"
-                  TextColor="CornflowerBlue">
+                  TextColor="Black">
             </Label>
             <Label Text="Notifications" FontFamily="Arial"
-                   HorizontalOptions="Center">
-
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   TextColor="Black">
             </Label>
-
+            <Label Text="────────────────────────────────────────────────────────────────────────────────"
+                   FontAttributes="Bold"
+                   TextColor="Black">
+            </Label>
         </VerticalStackLayout>
     </ScrollView>
     
