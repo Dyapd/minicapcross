@@ -26,6 +26,7 @@ namespace test
             string adacorrecttemp = "adcred";
             string stcorrecttemp = "stcred";
 
+            //for testing the query if it works
             //try
             //{
             //    using (SqlConnection connection = new SqlConnection(connectionString))
@@ -59,7 +60,7 @@ namespace test
                 this.ShowPopup(new NewPage1());
                 
             }
-            //
+
 
             //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
             //NOTE NEED TO IMPORT DATABASE FROM THE FILES
@@ -138,10 +139,14 @@ namespace test
             }
         }
 
-
-        private void StudentDashboardLogin(string Student_Password, string Student_Email)
+        public void OnLoginBtnEntered(object sender, EventArgs e)
         {
-
+            LoginBtn.BackgroundColor = Colors.SteelBlue;
         }
+        public void OnLoginBtnExited(object sender, EventArgs e)
+        {
+            LoginBtn.BackgroundColor = Colors.SlateBlue;
+        }
+
     }
 }

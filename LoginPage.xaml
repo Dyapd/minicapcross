@@ -22,7 +22,7 @@
 
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
@@ -83,7 +83,14 @@
                 x:Name="LoginBtn"
                 Text="Login" 
                 Clicked="OnLoginClicked"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill"
+                BackgroundColor="SlateBlue">
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnLoginBtnEntered"
+                                              PointerExited="OnLoginBtnExited"
+                                              />
+                </Button.GestureRecognizers>
+            </Button>
         </Grid>
     </ScrollView>
 

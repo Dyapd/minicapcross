@@ -5,17 +5,87 @@
              Title="ClaimPage">
 
     <ScrollView>
-        
-        
-    <VerticalStackLayout>
-        
-        <Label 
-            Text="Claim a Lost Item"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        
-    </VerticalStackLayout>
+
+
+        <VerticalStackLayout
+    VerticalOptions="CenterAndExpand"
+    >
+            <Label 
+        Text="Claim a Lost Item"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+
+            <!--layout for the comparison of the pictures-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label
+                    Text="Lost Item Picture"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+                <Image
+                    Source="dotnet_bot.png"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+
+                <HorizontalStackLayout 
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    <Label
+                        Text="Reported Item Picture"
+                        Margin="10, 0"
+                        />
+                    <Picker x:Name="comboBox"
+                        Title="Select an option"
+                        SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                        <Picker.Items>
+                            <x:String>BAG</x:String>
+                            <x:String>CAR</x:String>
+                            <x:String>DOG</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    
+                </HorizontalStackLayout>
+                
+                <Image
+                    Source="dotnet_bot.png"
+                    Grid.Row="1"
+                    Grid.Column="1"/>
+            </Grid>
+
+            <Label 
+        Text="Category:"
+                x:Name="test"/>
+            <Entry
+        x:Name="CategoryInput"
+        Background="AntiqueWhite"/>
+
+            <Label
+        Text="Description:"/>
+            <Entry
+        x:Name="DescriptionInput"
+         Background="AntiqueWhite"/>
+
+            <Label
+        Text="Student Number:"/>
+            <Entry
+        x:Name="StudentNumberInput"
+         Background="AntiqueWhite"/>
+
+            <Button
+        Text="Claim"
+        Clicked="OnClickedClaimBtn"
+        />
+
+        </VerticalStackLayout>
 
     </ScrollView>
 </ContentPage>
