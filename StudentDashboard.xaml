@@ -19,13 +19,13 @@
 
         />
             <ImageButton
-              Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\Log-out icon.png"         
+              Source="logout_icon.png"         
                 x:Name="LogoutBtn"
                 SemanticProperties.Hint="Counts the number you clicked"
                 Margin="15"
                 HorizontalOptions="End"
                 Clicked="LogoutBtn_Clicked"
-                Background="LightGrey"
+                Background="LightGray"
                 HeightRequest="40"
                 Opacity="11"
                 />
@@ -47,7 +47,7 @@
                     Margin="15" 
                     HorizontalOptions="Start"
                     Clicked="ReportBtn_Clicked"
-                    Background="LightGrey"
+                    Background="LightGray"
                     FontAttributes="Bold"
                     TextColor="Black"
                     HeightRequest="50"
@@ -62,7 +62,7 @@
                     Margin="15"
                     HorizontalOptions="Start"
                     Clicked="ClaimBtn_Clicked"
-                    BackgroundColor="LightGrey"
+                    BackgroundColor="LightGray"
                     FontAttributes="Bold"
                     TextColor="Black"
                     HeightRequest="50"
