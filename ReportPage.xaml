@@ -38,6 +38,9 @@
 
         <Label
             Text="Student Number:"/>
+        <Entry
+            x:Name="StudNumberInput"
+             Background="AntiqueWhite"/>    
 
         <Button
             Text="Report Item"

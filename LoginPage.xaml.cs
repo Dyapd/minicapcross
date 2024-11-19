@@ -46,16 +46,18 @@ namespace test
             //TEMPORARY HARD CODE FOR TESTING!!
             if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
             {
+                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
                 await Navigation.PushAsync(new AdminDashboard());
             }
             else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
             {
+                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
                 await Navigation.PushAsync(new StudentDashboard());
             }
             else
             {
                 this.ShowPopup(new NewPage1());
-                //await DisplayAlert("Error", "Invalid username or password", "Ok");
+                
             }
             //
 
@@ -65,10 +67,12 @@ namespace test
 
             //if (CheckAdminAccount(enteredEmail, enteredPassword)) 
             //{
+            //  Application.Current.MainPage = new NavigationPage(new AdminDashboard());
             //    Navigation.PushAsync(new AdminDashboard());
             //}
             //else if (CheckRegisteredAccount(enteredEmail, enteredPassword))
             //{
+            //      Application.Current.MainPage = new NavigationPage(new StudentDashboard());
             //    Navigation.PushAsync(new StudentDashboard());
             //}
             //else

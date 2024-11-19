@@ -36,10 +36,17 @@ HorizontalOptions="Center"
                     CornerRadius="0"
                     VerticalOptions="End"
                     Margin="10"
+                        
                     BackgroundColor="Red"
                     Text="Ok"
                     Clicked ="OnOkayClick"
                     />
+
+                <OnPlatform x:TypeArguments="View">
+                    <On Platform="Android"   />
+                    <!--stuff in the future here-->
+
+                </OnPlatform>
 
             </VerticalStackLayout>
         </Border>

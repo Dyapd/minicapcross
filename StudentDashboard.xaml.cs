@@ -70,13 +70,13 @@ public partial class StudentDashboard : ContentPage
         }
     }
 
-    public void ReportBtn_Clicked(object sender, EventArgs e)
+    public async void ReportBtn_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new ReportPage());
+        await Navigation.PushAsync(new ReportPage());
     }
-    public void ClaimBtn_Clicked(object sender, EventArgs e)
+    public async void ClaimBtn_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new ClaimPage());
+        await Navigation.PushAsync(new ClaimPage());
     }
 
 }
