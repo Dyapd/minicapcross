@@ -1,23 +1,82 @@
+using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using static test.DataHolders.DataholderNotificationLog;
+
+
 namespace test;
 
 public partial class StudentDashboard : ContentPage
 {
-	public StudentDashboard()
-	{
-		InitializeComponent();
-	}
+    public ObservableCollection<Items> Items { get; set; }
+    
+    private SqlConnection connection = new SqlConnection("Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;");
+    public StudentDashboard()
+    {
+        InitializeComponent();
+        Items = new ObservableCollection<Items>();
+        BindingContext = this;
+
+        LoadItems();
+
+
+    }
 
    
-    public  void ReportBtn_Clicked(object sender, EventArgs e)
+   
+
+
+    //uses the dataholdernotificationlog class from datahold folder!
+    public  List<Items> ReadDataNotificationLog()
     {
-		Navigation.PushAsync(new ReportPage());
+        List<Items> items = new List<Items>();
+
+        try
+        {
+            using (connection)
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT Item_Category FROM Items";
+                
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        items.Add(new Items
+                        {
+                            Category = reader.GetString(0)
+                        });
+                    }
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return items;
+
     }
-	public  void ClaimBtn_Clicked(object sender, EventArgs e) 
-	{
-		Navigation.PushAsync(new ClaimPage());	
-	}
-    private void NotificationBtn_Clicked(object sender, EventArgs e)
+
+    private void LoadItems()
     {
-		
+        List<Items> items= ReadDataNotificationLog();
+        Items.Clear(); 
+        foreach (Items item in items)
+        {
+            Items.Add(item);
+        }
     }
+
+    public void ReportBtn_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new ReportPage());
+    }
+    public void ClaimBtn_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new ClaimPage());
+    }
+
 }
