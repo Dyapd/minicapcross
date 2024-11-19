@@ -28,7 +28,13 @@
                 Background="LightGray"
                 HeightRequest="40"
                 Opacity="11"
-                />
+                >
+                <ImageButton.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
+                                              PointerExited="OnLogoutBtnExited"
+                              />
+                </ImageButton.GestureRecognizers>
+            </ImageButton>
          
 
 
