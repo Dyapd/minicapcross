@@ -9,17 +9,13 @@ namespace test
 {
     public partial class MainPage : ContentPage
     {
-        private const string AdminContactNumber = "admin";
-        private const string AdminPassword = "pass";
-        private const string NormalUser = "normal";
-
         string connectionString = "Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
 
         public MainPage()
         {
             InitializeComponent();
         }
-        private void OnLoginClicked(object sender, EventArgs e)
+        private async void OnLoginClicked(object sender, EventArgs e)
         {
             string enteredEmail;
             string enteredPassword;
@@ -30,35 +26,36 @@ namespace test
             string adacorrecttemp = "adcred";
             string stcorrecttemp = "stcred";
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    var command = connection.CreateCommand();
-                    command.CommandText = "SELECT * FROM StudentUsers";
-                    command.ExecuteReader();
-                }
-            }
-            catch (Exception ex)
-            {
-                lbl.Text = $"Error: {ex.Message}";
-                Console.WriteLine(ex.Message);
+            //try
+            //{
+            //    using (SqlConnection connection = new SqlConnection(connectionString))
+            //    {
+            //        connection.Open();
+            //        var command = connection.CreateCommand();
+            //        command.CommandText = "SELECT * FROM StudentUsers";
+            //        command.ExecuteReader();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lbl.Text = $"Error: {ex.Message}";
+            //    Console.WriteLine(ex.Message);
 
-            }
+            //}
 
             //TEMPORARY HARD CODE FOR TESTING!!
             if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
             {
-                Navigation.PushAsync(new AdminDashboard());
+                await Navigation.PushAsync(new AdminDashboard());
             }
             else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
             {
-                Navigation.PushAsync(new StudentDashboard());
+                await Navigation.PushAsync(new StudentDashboard());
             }
             else
             {
                 this.ShowPopup(new NewPage1());
+                //await DisplayAlert("Error", "Invalid username or password", "Ok");
             }
             //
 

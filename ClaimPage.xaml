@@ -4,6 +4,7 @@
              x:Class="test.ClaimPage"
              Title="ClaimPage">
     <VerticalStackLayout>
+        
         <Label 
             Text="Claim a Lost Item"
             VerticalOptions="Center" 

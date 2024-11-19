@@ -72,37 +72,29 @@
                     />-->
 
             </HorizontalStackLayout>
-        
 
-        <!-- THIS IS FOR NOTIFICATION LOG!!-->
-            <CollectionView ItemsSource="{Binding Monkeys}">
+            <!-- THIS IS FOR NOTIFICATION LOG!!-->
+            <CollectionView 
+                SelectionMode="Single"
+                x:Name="NotificationLog"
+                ItemsSource="{Binding Items}">
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2"
-                       Source="{Binding ImageUrl}"
-                       Aspect="AspectFill"
-                       HeightRequest="60"
-                       WidthRequest="60" />
-                            <Label Grid.Column="1"
-                       Text="{Binding Name}"
-                       FontAttributes="Bold" />
-                            <Label Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding Location}"
-                       FontAttributes="Italic"
-                       VerticalOptions="End" />
-                        </Grid>
+                        <Frame Padding="10" Margin="5" BackgroundColor="SeaGreen">
+                            <HorizontalStackLayout>
+                                <Label
+                                    Text="{Binding Category}"/>
+                                <Image
+                                    />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                
+                
+                
 
             </CollectionView>
 
