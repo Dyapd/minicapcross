@@ -79,4 +79,8 @@ public partial class StudentDashboard : ContentPage
         await Navigation.PushAsync(new ClaimPage());
     }
 
+    private void LogoutBtn_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }
