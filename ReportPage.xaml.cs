@@ -7,7 +7,7 @@ public partial class ReportPage : ContentPage
         InitializeComponent();
     }
 
-    private async Task OnClickedImageBtn(object sender)
+    private void OnClickedImageBtn(object sender, EventArgs e)
     {
         try
         {
@@ -40,7 +40,7 @@ public partial class ReportPage : ContentPage
 
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Somethingr went wrong: {ex.Message}", "OK");
+            DisplayAlert("Error", $"Somethingr went wrong: {ex.Message}", "OK");
         }
     }
 
