@@ -15,9 +15,8 @@
         FontAttributes="Bold"
         Style="{StaticResource Headline}"
         Margin="15"
-                TextColor="Black"
-
-        />
+                TextColor="Black"/>
+            
             <ImageButton
               Source="logout_icon.png"         
                 x:Name="LogoutBtn"
@@ -46,19 +45,17 @@
 
 
 
-                <Button  
-                    Text="Report"  FontFamily="Arial"  
+                <ImageButton  
+                    Source="images.png" 
                     x:Name="ReportBtn"
                     SemanticProperties.Hint="Counts the number you clicked"
                     Margin="15" 
                     HorizontalOptions="Start"
-                    Clicked="ReportBtn_Clicked"
-                    Background="LightGray"
-                    FontAttributes="Bold"
-                    TextColor="Black"
+                    Clicked="ReportBtn_Clicked" 
                     HeightRequest="50"
                     WidthRequest="100"
-                    TextTransform="Uppercase"
+                    CornerRadius="40"
+           
                     />
                    
                     <Button 
@@ -75,9 +72,9 @@
                     WidthRequest="100"
                     TextTransform="Uppercase"
                     />
-            
 
-           
+
+
                 <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
                 <!--<Button
                     
@@ -109,13 +106,9 @@
                                     />
                             </HorizontalStackLayout>
                         </Frame>
-                        
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                
-                
-                
-
             </CollectionView>
 
             <Label Text=" ────────────────────────────────────────────────────────────────────────────────"
