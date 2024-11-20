@@ -79,8 +79,19 @@ public partial class StudentDashboard : ContentPage
         await Navigation.PushAsync(new ClaimPage());
     }
 
-    private void LogoutBtn_Clicked(object sender, EventArgs e)
+    private async void LogoutBtn_Clicked(object sender, EventArgs e)
     {
+        Application.Current.MainPage = new NavigationPage(new MainPage());
+        await Navigation.PopAsync();
+    }
 
+    private void OnLogoutBtnEntered(object sender, EventArgs e)
+    {
+        LogoutBtn.BackgroundColor = Colors.SlateGrey;
+    }
+
+    private void OnLogoutBtnExited(object sender, EventArgs e)
+    {
+        LogoutBtn.BackgroundColor = Colors.LightGray;
     }
 }
