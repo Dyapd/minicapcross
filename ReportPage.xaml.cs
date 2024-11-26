@@ -7,7 +7,7 @@ public partial class ReportPage : ContentPage
         InitializeComponent();
     }
 
-    private async Task OnClickedImageBtn(object sender)
+    private async void OnClickedImageBtn(object sender, EventArgs e)
     {
         try
         {
@@ -48,5 +48,6 @@ public partial class ReportPage : ContentPage
     {
 
     }
+
 }
  
