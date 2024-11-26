@@ -21,11 +21,6 @@ public partial class StudentDashboard : ContentPage
 
 
     }
-
-   
-   
-
-
     //uses the dataholdernotificationlog class from datahold folder!
     public  List<Items> ReadDataNotificationLog()
     {

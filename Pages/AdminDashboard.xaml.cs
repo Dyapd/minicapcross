@@ -1,3 +1,5 @@
+using test.Pages;
+
 namespace test;
 
 public partial class AdminDashboard : ContentPage
@@ -18,11 +20,7 @@ public partial class AdminDashboard : ContentPage
     }
     public async void OnClickedItemsBtn(object sender, EventArgs e)
     {
-        
-    }
-    public async void OnClickedSubmitFormBtn(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new AdminSubmittedPage());
+        await Navigation.PushAsync(new Items());
     }
     public async void OnClickedClaimsBtn(object sender, EventArgs e)
     {

@@ -45,17 +45,16 @@
 
 
 
-                <ImageButton  
-                    Source="images.png" 
+                <Button  
+                    ImageSource="images.png"
                     x:Name="ReportBtn"
+                    Text="Report"
                     SemanticProperties.Hint="Counts the number you clicked"
                     Margin="15" 
                     HorizontalOptions="Start"
                     Clicked="ReportBtn_Clicked" 
                     HeightRequest="50"
-                    WidthRequest="100"
-                    CornerRadius="40"
-           
+                    WidthRequest="120"
                     />
                    
                     <Button 

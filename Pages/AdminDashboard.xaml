@@ -25,10 +25,7 @@
                 Margin="10"
                 Clicked="OnClickedItemsBtn"
                 />
-            <Button
-                Text="Submit Form"
-                Margin="10"
-                Clicked="OnClickedSubmitFormBtn"/>
+
             <Button
                 Text="Logs"
                 Margin="10"

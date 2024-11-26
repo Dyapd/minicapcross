@@ -10,11 +10,12 @@ public partial class ReportPage : ContentPage
         InitializeComponent();
     }
 
+    public byte[] imageData;
+
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
         try
         {
-
             var result = await FilePicker.PickAsync(new PickOptions
             {
                 //Do we need this?
@@ -26,32 +27,20 @@ public partial class ReportPage : ContentPage
             {
                 using (var stream = await result.OpenReadAsync())
                 {
-                    byte[] imageData = new byte[stream.Length];
+                    imageData = new byte[stream.Length];
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
 
                     //Di ko alam kung ano yung sa itemCategory
                     //string itemCategory = CategoryInput.Text;
                     string imagePath = result.FullPath;
-
-                    //var item = new Items
-                    //{
-                    //    ItemCategory = itemCategory,
-                    //    Path = imagePath,
-                    //    Logo = imageData
-                    //};
-
-
-
                 }
             }
         }
 
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Somethingr went wrong: {ex.Message}", "OK");
+            await DisplayAlert("Error", $"Something went wrong: {ex.Message}", "OK");
         }
-
-
     }
 
     private async void OnClickedReportBtn(object sender, EventArgs e)
@@ -68,7 +57,7 @@ public partial class ReportPage : ContentPage
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_ID, Report_Decription, Report_Location) VALUES (@Description, @Location)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_ID, Report_Decription, Report_Location) VALUES (1, @Description, @Location)", connection))
                 {
                     command.Parameters.AddWithValue("@Description", reportDescription);
                     command.Parameters.AddWithValue("@Location", reportLocation);
