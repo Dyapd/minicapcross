@@ -32,6 +32,7 @@
                 Background="LightGray"
                 HeightRequest="40"
                 Opacity="11"
+                
                 >
                 <ImageButton.GestureRecognizers>
                     <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
@@ -49,7 +50,7 @@
 
 
 
-                <Image Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\REPORT.png" 
+                <Image Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\report.png" 
                        HeightRequest="70"
                        Margin="0"
                        />
@@ -59,7 +60,6 @@
                     Text="Report" FontFamily="Arial"
                     x:Name="ReportBtn"
                     SemanticProperties.Hint="Counts the number you clicked"
-                    Margin="25"
                     BackgroundColor="DarkViolet"
                     HorizontalOptions="Start"
                     Clicked="ReportBtn_Clicked" 
@@ -67,15 +67,19 @@
                     HeightRequest="80"
                     WidthRequest="100"
                     TextTransform="Uppercase"
+                    ImageSource="report.png"
+                    ContentLayout="Left, 20"
                    >
                     <Button.GestureRecognizers>
                         <PointerGestureRecognizer PointerEntered="OnReportBtnEntered"
                                                   PointerExited="OnReportBtnExited"
                                                   />
                     </Button.GestureRecognizers>
+
                     
-                    
-                    </Button>
+
+
+                </Button>
 
                 <Image Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\claim.png" 
                        HeightRequest="70"
@@ -119,6 +123,16 @@
             </HorizontalStackLayout>
            
             <!-- THIS IS FOR NOTIFICATION LOG!!-->
+
+            <BoxView
+                 HeightRequest="1"
+                 Color="Black"
+                 HorizontalOptions="FillAndExpand"/>    
+
+            <Label Text="Notifications" FontFamily="Arial"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   TextColor="Black"/>  
             <CollectionView 
                 SelectionMode="Single"
                 x:Name="NotificationLog"
@@ -138,14 +152,8 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <BoxView
-                 HeightRequest="1"
-                 Color="Black"
-                 HorizontalOptions="FillAndExpand"/>
-            <Label Text="Notifications" FontFamily="Arial"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold"
-                   TextColor="Black"/>
+            
+            
             <BoxView
                HeightRequest="1"
                Color="Black"
