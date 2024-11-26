@@ -14,27 +14,22 @@ public partial class AdminDashboard : ContentPage
 	}
     public async void OnClickedReportsBtn(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new NavigationPage(new MainPage());
-        await Navigation.PopAsync();
+        
     }
     public async void OnClickedItemsBtn(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new NavigationPage(new MainPage());
-        await Navigation.PopAsync();
+        
     }
     public async void OnClickedSubmitFormBtn(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new NavigationPage(new MainPage());
-        await Navigation.PopAsync();
+        await Navigation.PushAsync(new AdminSubmittedPage());
     }
     public async void OnClickedClaimsBtn(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new NavigationPage(new MainPage());
-        await Navigation.PopAsync();
+        
     }
     public async void OnClickedLogsBtn(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new NavigationPage(new MainPage());
-        await Navigation.PopAsync();
+       
     }
 }

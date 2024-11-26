@@ -87,6 +87,9 @@
 	  <MauiXaml Update="AdminDashboard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="AdminSubmittedPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ClaimPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
