@@ -7,7 +7,7 @@ public partial class ReportPage : ContentPage
         InitializeComponent();
     }
 
-    private void OnClickedImageBtn(object sender, EventArgs e)
+    private async Task OnClickedImageBtn(object sender, EventArgs e)
     {
         try
         {
