@@ -50,7 +50,7 @@
 
 
 
-                <Image Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\report.png" 
+                <Image Source="claim.png" 
                        HeightRequest="70"
                        Margin="0"
                        />
@@ -94,7 +94,7 @@
                     FontAttributes="Bold"
                     HeightRequest="50"
                     WidthRequest="125"
-                    ImageSource="C:\Users\User\Source\Repos\minicapcross\Resources\Images\claim.png"
+                    ImageSource="claim.png"
                     Text="Claim"
                     >
                     <Button.GestureRecognizers>
