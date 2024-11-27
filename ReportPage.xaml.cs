@@ -10,7 +10,7 @@ public partial class ReportPage : ContentPage
         InitializeComponent();
     }
 
-    public byte[] imageData;
+    public byte[] imageData; //byte array 
 
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
@@ -18,8 +18,6 @@ public partial class ReportPage : ContentPage
         {
             var result = await FilePicker.PickAsync(new PickOptions
             {
-                //Do we need this?
-                //PickerTitle = "SAVE UR PICTURE HERE BABY",
                 FileTypes = FilePickerFileType.Images
             });
 
@@ -30,9 +28,7 @@ public partial class ReportPage : ContentPage
                     imageData = new byte[stream.Length];
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
 
-                    //Di ko alam kung ano yung sa itemCategory
-                    //string itemCategory = CategoryInput.Text;
-                    string imagePath = result.FullPath;
+                    string imagePath = result.FullPath; //file path
                 }
             }
         }
@@ -48,7 +44,7 @@ public partial class ReportPage : ContentPage
         try
         {
             //add the rest in here!
-            string connectionString = "Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
+            string connectionString = "Data Source=LAPTOP-F6057TB5,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
             string reportDescription = DescriptionInput.Text;
             string reportLocation = LocationInput.Text;
             //int studentId = SelectedStudentId;
@@ -57,7 +53,7 @@ public partial class ReportPage : ContentPage
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_ID, Report_Decription, Report_Location) VALUES (1, @Description, @Location)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (CategoryTable, Report_ID, Report_Decription, Report_Location) VALUES (R, @Description, @Location)", connection))
                 {
                     command.Parameters.AddWithValue("@Description", reportDescription);
                     command.Parameters.AddWithValue("@Location", reportLocation);
