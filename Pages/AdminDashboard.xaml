@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.AdminDashboard"
              Title="AdminDashboard"
-             BackgroundImageSource="C:\Users\LENOVO\source\repos\minicapcross\Resources\Images\caloocan.jpg">
+             BackgroundImageSource="caloocan.jpg">
              
 
     <ScrollView>
