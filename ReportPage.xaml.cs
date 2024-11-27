@@ -11,7 +11,7 @@ public partial class ReportPage : ContentPage
     }
 
 
-    public byte[] imageData; //byte array 
+    public byte[] imageData; //byte array for image
 
 
     private async void OnClickedImageBtn(object sender, EventArgs e)
@@ -33,6 +33,10 @@ public partial class ReportPage : ContentPage
                     string imagePath = result.FullPath; //file path
                 }
             }
+            else
+            {
+                await DisplayAlert("ERROR", "Image failed to select", "OK");
+            }
         }
 
         catch (Exception ex)
@@ -45,48 +49,53 @@ public partial class ReportPage : ContentPage
     {
         try
         {
-            //add the rest in here!
             string connectionString = "Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
             
             string reportCategory = CategoryInput.Text;
             string reportDescription = DescriptionInput.Text;
+            string reportLocation = LocationInput.Text;
+            DateTime reportDateTime = SetDateTime();
 
 
             //image data is global instance
-            TimeSpan selectedTime = DateTimeInput.Time;
 
-            string reportLocation = LocationInput.Text;
-            
             //if image data is null then dont insert with image!
-            if (imageData == null)
-            {
+            
 
-            }
-            else
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_Date, Reports_Image, Report_Description, Report_Location, Student_Number) " +
+                                                                    "VALUES (@Category, @Date, @Image, @Description, @Location, @StudentNumber)", connection))
+
                 {
-                    await connection.OpenAsync();
-                    using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_Date, Claims_Image, Report_Description, Report_Location, Student_Number) " +
-                                                                        "VALUES (R, @Date, @Image, @Description, @Location, @StudentNumber)", connection))
-
+                    command.Parameters.AddWithValue("@Category", "R");
+                    command.Parameters.AddWithValue("@Date", reportDateTime);
+                    if (imageData == null)
                     {
-                        command.Parameters.AddWithValue("@Category", "R");
-                        command.Parameters.AddWithValue("@Date", DateTime.Now);
+                        command.Parameters.AddWithValue("@Image", DBNull.Value);
+                    }
+                    else
+                    {
                         command.Parameters.AddWithValue("@Image", imageData);
-                        command.Parameters.AddWithValue("@Description", reportDescription);
-
-                        //command.Parameters.AddWithValue("@Location", reportLocation);
-                        // command.Parameters.AddWithValue("@StudentNumber", studentId);
-
-
+                    }
+                    command.Parameters.AddWithValue("@Description", reportDescription);
+                    command.Parameters.AddWithValue("@Location", reportLocation);
+                    command.Parameters.AddWithValue("@StudentNumber", 12);
 
 
-                        await command.ExecuteNonQueryAsync();
-                        await connection.CloseAsync();
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    if (rowsAffected > 0)
+                    {
+                        await DisplayAlert("Success", "Report has been submitted successfully.", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Failure", "Report submission failed. No rows were inserted.", "OK");
                     }
                 }
             }
+            
 
 
             
@@ -98,6 +107,20 @@ public partial class ReportPage : ContentPage
 
         
 
+    }
+
+    private DateTime SetDateTime()
+    {
+        DateTime selectedDate = DateInput.Date;
+        TimeSpan selectedTime = TimeInput.Time;
+
+
+
+        DateTime combinedDateTime = selectedDate.Add(selectedTime);
+
+
+
+        return combinedDateTime;
     }
 
 }

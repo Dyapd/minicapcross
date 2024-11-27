@@ -100,6 +100,7 @@ public partial class StudentDashboard : ContentPage
    private void OnClaimBtnEntered(object sender, EventArgs e) 
     {
         ClaimBtn.BackgroundColor = Colors.SlateGray;
+        
     }
     private void OnClaimBtnExited(object sender, EventArgs e) 
     {
