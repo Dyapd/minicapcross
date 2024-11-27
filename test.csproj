@@ -90,6 +90,9 @@
 	  <MauiXaml Update="Pages\AdminDashboard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminReportPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\AdminSubmittedPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
