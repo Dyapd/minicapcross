@@ -2,40 +2,76 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.AdminDashboard"
-             Title="AdminDashboard">
+             Title="AdminDashboard"
+             BackgroundImageSource="C:\Users\LENOVO\source\repos\minicapcross\Resources\Images\caloocan.jpg">
+             
 
     <ScrollView>
-        
-        <VerticalStackLayout>
+
+        <VerticalStackLayout Margin="10" Spacing="15">
             <Label 
-                Text="Admin Dashboard!"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-                
+        Text="Admin Dashboard!"
+        FontSize="24"
+        FontAttributes="Bold"
+        TextColor="#4A4A4A"
+        HorizontalOptions="Center"
+        VerticalOptions="Start" />
 
             <Button
-                Text="Reports"
-                Margin="10"
-                Clicked="OnClickedReportsBtn"/>
+        Text="Reports"
+        Margin="0,5"
+        BackgroundColor="DarkBlue"
+        TextColor="White"
+        CornerRadius="20"
+        FontSize="16"
+        WidthRequest="250"
+        HeightRequest="40"
+        Clicked="OnClickedReportsBtn"
+              />
             <Button
-                Text="Claims"
-                Margin="10"
-                Clicked="OnClickedClaimsBtn"/>
-            <Button
-                Text="Items"
-                Margin="10"
-                Clicked="OnClickedItemsBtn"
-                />
+        Text="Claims"
+        Margin="0,5"
+        BackgroundColor="DarkBlue"
+        TextColor="White"
+        CornerRadius="20"
+        FontSize="16"
+        WidthRequest="250"
+        HeightRequest="40"
+        Clicked="OnClickedClaimsBtn"/>
 
             <Button
-                Text="Logs"
-                Margin="10"
-                Clicked="OnClickedLogsBtn"/>
+        Text="Items"
+        Margin="0,5"
+        BackgroundColor="DarkBlue"
+        TextColor="White"
+        CornerRadius="20"
+        FontSize="16"
+        WidthRequest="250"
+        HeightRequest="40"
+        Clicked="OnClickedItemsBtn"/>
+
             <Button
-                VerticalOptions="EndAndExpand"
-                Margin="10,50"
-                Text="Logout"
-                Clicked="OnClickedLogoutBtn"/>     
+        Text="Logs"
+        Margin="0,5"
+        BackgroundColor="DarkBlue"
+        TextColor="White"
+        CornerRadius="20"
+        FontSize="16"
+        WidthRequest="250"
+        HeightRequest="40"
+        Clicked="OnClickedLogsBtn"/>
+
+            <Button
+        VerticalOptions="EndAndExpand"
+        Margin="0,20,0,0"
+        BackgroundColor="#f54e42"
+        TextColor="White"
+        CornerRadius="20"
+        FontSize="16"
+        WidthRequest="250"
+        HeightRequest="40"
+        Text="Logout"
+        Clicked="OnClickedLogoutBtn"/>
         </VerticalStackLayout>
 
     </ScrollView>

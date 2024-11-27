@@ -24,10 +24,15 @@ public partial class AdminDashboard : ContentPage
     }
     public async void OnClickedClaimsBtn(object sender, EventArgs e)
     {
-        
+        await Navigation.PushAsync(new AdminClaimsPage());
     }
     public async void OnClickedLogsBtn(object sender, EventArgs e)
     {
-       
+        await Navigation.PushAsync(new AdminLogsPage());
+    }
+
+    private void PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
+    {
+
     }
 }
