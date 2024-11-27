@@ -57,7 +57,7 @@
 
 
                 <Button  
-                    Text="Report" FontFamily="Arial"
+                    
                     x:Name="ReportBtn"
                     SemanticProperties.Hint="Counts the number you clicked"
                     BackgroundColor="DarkViolet"
@@ -81,23 +81,21 @@
 
                 </Button>
 
-                <Image Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\claim.png" 
-                       HeightRequest="70"
-                       />
-
+            
 
                 <Button 
-                    Text="Claim"  FontFamily="Arial"
+                   
                     x:Name="ClaimBtn"
                     SemanticProperties.Hint="Counts the number you clicked"
-                    Margin="15"
+                    Margin="25"
                     BackgroundColor="DarkViolet"
                     HorizontalOptions="Start"
                     Clicked="ClaimBtn_Clicked"
                     FontAttributes="Bold"
-                    HeightRequest="80"
-                    WidthRequest="100"
-                    TextTransform="Uppercase"
+                    HeightRequest="50"
+                    WidthRequest="125"
+                    ImageSource="C:\Users\User\Source\Repos\minicapcross\Resources\Images\claim.png"
+                    Text="Claim"
                     >
                     <Button.GestureRecognizers>
                         <PointerGestureRecognizer PointerEntered="OnClaimBtnEntered"

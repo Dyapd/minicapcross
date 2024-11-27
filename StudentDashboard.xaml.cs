@@ -100,7 +100,7 @@ public partial class StudentDashboard : ContentPage
     }
     private void OnReportBtnExited(object sender, PointerEventArgs e)
     {
-        ReportBtn.BackgroundColor = Colors.LightGrey;
+        ReportBtn.BackgroundColor = Colors.DarkViolet;
     }
    private void OnClaimBtnEntered(object sender, EventArgs e) 
     {
@@ -108,6 +108,6 @@ public partial class StudentDashboard : ContentPage
     }
     private void OnClaimBtnExited(object sender, EventArgs e) 
     {
-        ClaimBtn.BackgroundColor = Colors.LightGray;
+        ClaimBtn.BackgroundColor = Colors.DarkViolet;
     }
 }
