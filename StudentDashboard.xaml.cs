@@ -89,4 +89,20 @@ public partial class StudentDashboard : ContentPage
     {
         LogoutBtn.BackgroundColor = Colors.LightGray;
     }
+    private void OnReportBtnEntered(object sender, PointerEventArgs e)
+    {
+        ReportBtn.BackgroundColor = Colors.SlateGrey;
+    }
+    private void OnReportBtnExited(object sender, PointerEventArgs e)
+    {
+        ReportBtn.BackgroundColor = Colors.DarkViolet;
+    }
+   private void OnClaimBtnEntered(object sender, EventArgs e) 
+    {
+        ClaimBtn.BackgroundColor = Colors.SlateGray;
+    }
+    private void OnClaimBtnExited(object sender, EventArgs e) 
+    {
+        ClaimBtn.BackgroundColor = Colors.DarkViolet;
+    }
 }

@@ -10,7 +10,9 @@ public partial class ReportPage : ContentPage
         InitializeComponent();
     }
 
+
     public byte[] imageData; //byte array 
+
 
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
