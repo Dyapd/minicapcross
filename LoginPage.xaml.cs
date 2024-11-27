@@ -9,7 +9,7 @@ namespace test
 {
     public partial class MainPage : ContentPage
     {
-        string connectionString = "Data Source=LAPTOP-F6057TB5,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
+        string connectionString = "Data Source=localhost,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
         //192.168.1.6
         public MainPage()
         {

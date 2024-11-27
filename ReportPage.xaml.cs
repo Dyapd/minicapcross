@@ -50,6 +50,8 @@ public partial class ReportPage : ContentPage
             
             string reportCategory = CategoryInput.Text;
             string reportDescription = DescriptionInput.Text;
+
+
             //image data is global instance
             //TimeSpan selectedTime = 
 
