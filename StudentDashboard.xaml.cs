@@ -10,7 +10,7 @@ public partial class StudentDashboard : ContentPage
 {
     public ObservableCollection<Items> Items { get; set; }
     
-    private SqlConnection connection = new SqlConnection("Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;");
+    private SqlConnection connection = new SqlConnection("Data Source=LAPTOP-F6057TB5,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;");
     public StudentDashboard()
     {
         InitializeComponent();
@@ -21,11 +21,6 @@ public partial class StudentDashboard : ContentPage
 
 
     }
-
-   
-   
-
-
     //uses the dataholdernotificationlog class from datahold folder!
     public  List<Items> ReadDataNotificationLog()
     {

@@ -50,6 +50,7 @@
 
 
 
+
                 <Image Source="claim.png" 
                        HeightRequest="70"
                        Margin="0"
@@ -58,12 +59,14 @@
 
                 <Button  
                     
+
                     x:Name="ReportBtn"
+                    Text="Report"
                     SemanticProperties.Hint="Counts the number you clicked"
                     BackgroundColor="DarkViolet"
                     HorizontalOptions="Start"
                     Clicked="ReportBtn_Clicked" 
-                    FontAttributes="Bold"
+          FontAttributes="Bold"
                     HeightRequest="80"
                     WidthRequest="100"
                     TextTransform="Uppercase"
@@ -84,7 +87,7 @@
             
 
                 <Button 
-                   
+  
                     x:Name="ClaimBtn"
                     SemanticProperties.Hint="Counts the number you clicked"
                     Margin="25"
