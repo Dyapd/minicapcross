@@ -14,8 +14,7 @@ public partial class AdminDashboard : ContentPage
 	}
     public async void OnClickedReportsBtn(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new NavigationPage(new MainPage());
-        await Navigation.PopAsync();
+        await Navigation.PushAsync(new ClaimPage());
     }
     public async void OnClickedItemsBtn(object sender, EventArgs e)
     {

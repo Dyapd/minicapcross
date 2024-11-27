@@ -11,6 +11,7 @@
                 Text="Admin Dashboard!"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
+                
 
             <Button
                 Text="Reports"
@@ -35,9 +36,9 @@
                 Clicked="OnClickedLogsBtn"/>
             <Button
                 VerticalOptions="EndAndExpand"
-                Margin="10,20"
+                Margin="10,50"
                 Text="Logout"
-                Clicked="OnClickedLogoutBtn"/>
+                Clicked="OnClickedLogoutBtn"/>     
         </VerticalStackLayout>
 
     </ScrollView>
