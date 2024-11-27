@@ -16,7 +16,7 @@ public partial class AdminDashboard : ContentPage
 	}
     public async void OnClickedReportsBtn(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new  ());
+        await Navigation.PushAsync(new  AdminReportPage());
     }
     public async void OnClickedItemsBtn(object sender, EventArgs e)
     {
