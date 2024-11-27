@@ -32,6 +32,12 @@
 
         <Label
             Text="Location Lost:"/>
+
+        <Label
+            Text="Date and Time Lost:"/>
+        <TimePicker
+            
+            x:Name="DateTimeInput"/>  
         <Entry
             x:Name="LocationInput"
              Background="AntiqueWhite"/>
