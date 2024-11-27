@@ -4,11 +4,51 @@
              x:Class="test.Pages.AdminReportPage"
              Title="AdminReportPage"
              BackgroundImageSource="caloocan_2.jpg">
-            
-    <VerticalStackLayout>
+
+    <VerticalStackLayout Spacing="20" Margin="10">
+        
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Student Report"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            FontSize="24"
+            FontAttributes="Bold" 
+            TextColor="White"/>
+
+        
+        <CollectionView ItemsSource="{Binding Students}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BackgroundColor="LightBlue" CornerRadius="10">
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            
+                            <Label Text="{Binding Name}" 
+                                   FontSize="18" 
+                                   HorizontalOptions="Start" 
+                                   VerticalOptions="Center" 
+                                   TextColor="DarkBlue"/>
+
+                            
+                            <Label Text="{Binding StudentNo}" 
+                                   FontSize="16" 
+                                   HorizontalOptions="Start" 
+                                   VerticalOptions="Center" 
+                                   TextColor="DarkSlateGray"/>
+
+                            
+                            <Button Text="Details" 
+                                    HorizontalOptions="EndAndExpand" 
+                                    BackgroundColor="DarkBlue" 
+                                    TextColor="White"
+                                    CornerRadius="5" 
+                                    FontSize="14" 
+                                    WidthRequest="80" 
+                                    HeightRequest="35"
+                                    Clicked="OnStudentDetailsClicked"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
