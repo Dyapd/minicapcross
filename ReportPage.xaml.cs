@@ -46,40 +46,50 @@ public partial class ReportPage : ContentPage
         try
         {
             //add the rest in here!
-            string connectionString = "Data Source=LAPTOP-F6057TB5,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
+            string connectionString = "Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
             
             string reportCategory = CategoryInput.Text;
             string reportDescription = DescriptionInput.Text;
 
 
             //image data is global instance
-            //TimeSpan selectedTime = 
+            TimeSpan selectedTime = DateTimeInput.Time;
 
-            //string reportLocation = LocationInput.Text;
-            //int studentId = SelectedStudentId;
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            string reportLocation = LocationInput.Text;
+            
+            //if image data is null then dont insert with image!
+            if (imageData == null)
             {
-                await connection.OpenAsync();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_Date, Claims_Image, Report_Description, Report_Location, Student_Number) " +
-                                                                    "VALUES (R, @Date, @Image, @Description, @Location, @StudentNumber)", connection))
+
+            }
+            else
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_Date, Claims_Image, Report_Description, Report_Location, Student_Number) " +
+                                                                        "VALUES (R, @Date, @Image, @Description, @Location, @StudentNumber)", connection))
 
                     {
-                    command.Parameters.AddWithValue("@Category", "R");
-                    command.Parameters.AddWithValue("@Date", DateTime.Now);
-                    command.Parameters.AddWithValue("@Image", imageData);
-                    command.Parameters.AddWithValue("@Description", reportDescription);
-                    //command.Parameters.AddWithValue("@Location", reportLocation);
-                   // command.Parameters.AddWithValue("@StudentNumber", studentId);
+                        command.Parameters.AddWithValue("@Category", "R");
+                        command.Parameters.AddWithValue("@Date", DateTime.Now);
+                        command.Parameters.AddWithValue("@Image", imageData);
+                        command.Parameters.AddWithValue("@Description", reportDescription);
+
+                        //command.Parameters.AddWithValue("@Location", reportLocation);
+                        // command.Parameters.AddWithValue("@StudentNumber", studentId);
 
 
 
 
-                    await command.ExecuteNonQueryAsync();
-                    await connection.CloseAsync();
+                        await command.ExecuteNonQueryAsync();
+                        await connection.CloseAsync();
+                    }
                 }
             }
+
+
+            
         }
         catch (Exception ec)
         {
