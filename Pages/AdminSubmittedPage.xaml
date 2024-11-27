@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test.AdminSubmittedPage"
+             Title="AdminSubmittedPage">
+    <VerticalStackLayout>
+
+        <CollectionView 
+    x:Name="NotificationLog"
+    ItemsSource="{Binding Items}"
+    SelectionMode="Single"
+            Footer="2019"
+    Header="Submitted Forms"
+            SelectionChanged="OnItemSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="50" Margin="10" x:Name="framesubmit">
+                        <Frame.GestureRecognizers>
+                            <PointerGestureRecognizer
+                                PointerEntered="OnPointerEntered"
+                                PointerExited="OnPointerExited"/>
+                        </Frame.GestureRecognizers>
+
+                        <HorizontalStackLayout>
+                            <Label
+                        Text="{Binding Category}"/>
+                            <Image
+                        />
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
