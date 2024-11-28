@@ -102,10 +102,10 @@
 	  <MauiXaml Update="AdminPages\AdminSubmittedPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="AdminDynamic.xaml">
+	  <MauiXaml Update="AdminPages\AdminDynamic.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ClaimPage.xaml">
+	  <MauiXaml Update="UserPages\ClaimPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="AdminPages\AdminItems.xaml">
@@ -114,10 +114,10 @@
 	  <MauiXaml Update="PopupLoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ReportPage.xaml">
+	  <MauiXaml Update="UserPages\ReportPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="StudentDashboard.xaml">
+	  <MauiXaml Update="UserPages\StudentDashboard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
