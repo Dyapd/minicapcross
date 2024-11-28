@@ -45,6 +45,7 @@ public partial class ReportPage : ContentPage
         }
     }
 
+    //inserts the data inserted by user
     private async void OnClickedReportBtn(object sender, EventArgs e)
     {
         try
@@ -61,10 +62,7 @@ public partial class ReportPage : ContentPage
 
 
             //image data is global instance
-
             //if image data is null then dont insert with image!
-            
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
@@ -114,6 +112,7 @@ public partial class ReportPage : ContentPage
 
     }
 
+    //takes date and time then merge it for insertion
     private DateTime SetDateTime()
     {
         DateTime selectedDate = DateInput.Date;

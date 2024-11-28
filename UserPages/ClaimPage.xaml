@@ -48,7 +48,7 @@
                         SelectedIndexChanged="OnPickerSelectedIndexChanged">
                         <Picker.Items>
                             <x:String>BAG</x:String>
-                            <x:String>CAR</x:String>
+                            <x:String>CAR</x:String>    
                             <x:String>DOG</x:String>
                         </Picker.Items>
                     </Picker>
