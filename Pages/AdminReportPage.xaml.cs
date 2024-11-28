@@ -11,7 +11,7 @@ namespace test.Pages
         {
             InitializeComponent();
 
-            
+            // Initialize the Items collection
             Items = new ObservableCollection<string>
             {
                 "Item 1",
@@ -21,7 +21,7 @@ namespace test.Pages
                 "Item 5"
             };
 
-            
+            // Set the BindingContext to the current page
             BindingContext = this;
         }
     }
