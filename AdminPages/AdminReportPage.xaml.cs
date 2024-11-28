@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Microsoft.Maui.Controls;
 
 namespace test.Pages
@@ -6,12 +7,13 @@ namespace test.Pages
     public partial class AdminReportPage : ContentPage
     {
         public ObservableCollection<string> Items { get; set; }
+        public ICommand ButtonCommand { get; set; }
 
         public AdminReportPage()
         {
             InitializeComponent();
 
-            // Initialize the Items collection
+            
             Items = new ObservableCollection<string>
             {
                 "Item 1",
@@ -21,8 +23,17 @@ namespace test.Pages
                 "Item 5"
             };
 
-            // Set the BindingContext to the current page
+            
+            ButtonCommand = new Command<string>(OnButtonClicked);
+
+            
             BindingContext = this;
+        }
+
+        private void OnButtonClicked(string item)
+        {
+            
+            DisplayAlert("Button Clicked", $"You clicked on {item}", "OK");
         }
     }
 }
