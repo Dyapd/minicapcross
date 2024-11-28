@@ -53,11 +53,15 @@ public partial class AdminSubmittedPage : ContentPage
     {
         try
         {
+            //
+
+            //takes the ip from the iplocator class
+            
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
 
 
-            string reportCategory = CategoryInput.Text;
+            string reportCategory = CategoryInput.SelectedItem.ToString();
             string reportDescription = DescriptionInput.Text;
             string reportLocation = LocationInput.Text;
             DateTime reportDateTime = SetDateTime();
@@ -71,26 +75,33 @@ public partial class AdminSubmittedPage : ContentPage
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Claims (Item_Category, Item_ICategory, Item_Date, Item_Image, Item_Description, Item_Location, Item_Status) " +
+                using (SqlCommand command = new SqlCommand("INSERT INTO Items (Item_Category, Item_ICategory, Item_Date, Item_Image, Item_Description, Item_Location, Item_Status) " +
                                                                     "VALUES (@Category, @ICategory, @Date, @Image, @Description, @Location, @Status)", connection))
 
                 {
                     command.Parameters.AddWithValue("@Category", "I");
+                    command.Parameters.AddWithValue("@ICategory", reportCategory);
                     command.Parameters.AddWithValue("@Date", reportDateTime);
                     command.Parameters.AddWithValue("@Image", imageData);
                     command.Parameters.AddWithValue("@Description", reportDescription);
                     command.Parameters.AddWithValue("@Location", reportLocation);
-                    command.Parameters.AddWithValue("@StudentNumber", 12);
+                    command.Parameters.AddWithValue("@Status", false);
 
 
+
+                    //this checks if rows have been inserted
+                    //if so, then it goes to if for succesful
+                    
                     int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    
                     if (rowsAffected > 0)
                     {
-                        await DisplayAlert("Success", "Report has been submitted successfully.", "OK");
+                        await DisplayAlert("Success", "Item has been recorded successfully.", "OK");
                     }
                     else
                     {
-                        await DisplayAlert("Failure", "Report submission failed. No rows were inserted.", "OK");
+                        await DisplayAlert("Failure", "Item recorded failed.", "OK");
                     }
                 }
             }

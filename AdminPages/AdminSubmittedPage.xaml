@@ -13,9 +13,19 @@
 
         <Label 
     Text="Category:"/>
-        <Entry
-    x:Name="CategoryInput"
-    Background="AntiqueWhite"/>
+
+        <Picker
+        x:Name="CategoryInput"
+        Background="AntiqueWhite" >
+
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Personal Item</x:String>
+                    <x:String>Valuable Item </x:String>
+                    <x:String>Electronic Item</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
 
         <Label
     Text="Description:"/>
@@ -31,9 +41,26 @@
             Clicked="OnClickedImageBtn"
    />
 
+        
         <Label
     Text="Location Lost:"/>
-        <Entry/>
+        <Picker
+        x:Name="LocationInput"
+         Background="AntiqueWhite">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Ground Floor</x:String>
+                    <x:String>1st Floor</x:String>
+                    <x:String>2nd Floor</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Entry IsReadOnly="True" >
+            <Entry.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/> // Open your Popup Page in TapGestureRecognizer_Tapped method.
+            </Entry.GestureRecognizers>
+        </Entry>
 
         <Label
     Text="Date and Time Lost:"/>
@@ -41,9 +68,7 @@
     x:Name="DateInput"/>
         <TimePicker
     x:Name="TimeInput"/>
-        <Entry
-    x:Name="LocationInput"
-     Background="AntiqueWhite"/>
+
 
         <Label
     Text="Student Number:"/>
