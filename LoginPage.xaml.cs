@@ -34,44 +34,44 @@ namespace test
 
 
 
-           //TEMPORARY HARD CODE FOR TESTING!!
-           // if (enteredemail == adacorrecttemp && enteredpassword == adacorrecttemp)
-           // {
-           //    application.current.mainpage = new navigationpage(new admindashboard());
-           //    await navigation.pushasync(new admindashboard());
-           // }
-           // else if (enteredemail == stcorrecttemp && enteredpassword == stcorrecttemp)
-           // {
-           //    application.current.mainpage = new navigationpage(new studentdashboard());
-           //    await navigation.pushasync(new studentdashboard());
-           // }
-           //  else
-           //     {
-           //      this.showpopup(new newpage1());
-           //      }
+            //TEMPORARY HARD CODE FOR TESTING!!
+            if (enteredemail == adacorrecttemp && enteredpassword == adacorrecttemp)
+            {
+                application.current.mainpage = new navigationpage(new admindashboard());
+                await navigation.pushasync(new admindashboard());
+            }
+            else if (enteredemail == stcorrecttemp && enteredpassword == stcorrecttemp)
+            {
+                application.current.mainpage = new navigationpage(new studentdashboard());
+                await navigation.pushasync(new studentdashboard());
+            }
+            else
+            {
+                this.showpopup(new newpage1());
+            }
 
 
             //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
             //NOTE NEED TO IMPORT DATABASE FROM THE FILES
             //PROPER CREDENTIALS ARE user id= recadm; password = pass
 
-            if (CheckAdminAccount(enteredEmail, enteredPassword))
-            {
-                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-                await Navigation.PushAsync(new AdminDashboard());
-            }
-            else if (CheckRegisteredAccount(enteredEmail, enteredPassword))
-            {
-                SessionVars.SetSessionId(enteredEmail, enteredPassword);
-                await DisplayAlert(SessionVars.SessionId, "", "OK!");
-                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+            //if (CheckAdminAccount(enteredEmail, enteredPassword))
+            //{
+            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+            //    await Navigation.PushAsync(new AdminDashboard());
+            //}
+            //else if (CheckRegisteredAccount(enteredEmail, enteredPassword))
+            //{
+            //    SessionVars.SetSessionId(enteredEmail, enteredPassword);
+            //    await DisplayAlert(SessionVars.SessionId, "", "OK!");
+            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
              
-                await Navigation.PushAsync(new StudentDashboard());
-            }
-            else if (!(CheckRegisteredAccount(enteredEmail, enteredPassword) && (CheckAdminAccount(enteredEmail, enteredPassword))))
-            {
-                this.ShowPopup(new NewPage1());
-            }
+            //    await Navigation.PushAsync(new StudentDashboard());
+            //}
+            //else if (!(CheckRegisteredAccount(enteredEmail, enteredPassword) && (CheckAdminAccount(enteredEmail, enteredPassword))))
+            //{
+            //    this.ShowPopup(new NewPage1());
+            //}
         }
         private bool CheckRegisteredAccount(string enteredEmail, string enteredPassword)
         {
