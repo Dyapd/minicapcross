@@ -2,50 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.Pages.AdminReportPage"
-             Title="AdminReportPage"
+             Title="Admin Report"
              BackgroundImageSource="caloocan_2.jpg">
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <Label Text="Admin Report"
+               FontSize="24"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
 
-    <VerticalStackLayout Spacing="20" Margin="10">
-        
-        <Label 
-            Text="Student Report"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            FontSize="24"
-            FontAttributes="Bold" 
-            TextColor="White"/>
-
-        
-        <CollectionView ItemsSource="{Binding Students}">
+        <CollectionView ItemsSource="{Binding Items}"
+                        SelectionMode="None"
+                        BackgroundColor="White">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10" Margin="5" BackgroundColor="LightBlue" CornerRadius="10">
-                        <StackLayout Orientation="Horizontal" Spacing="15">
-                            
-                            <Label Text="{Binding Name}" 
-                                   FontSize="18" 
-                                   HorizontalOptions="Start" 
-                                   VerticalOptions="Center" 
-                                   TextColor="DarkBlue"/>
-
-                            
-                            <Label Text="{Binding StudentNo}" 
-                                   FontSize="16" 
-                                   HorizontalOptions="Start" 
-                                   VerticalOptions="Center" 
-                                   TextColor="DarkSlateGray"/>
-
-                            
-                            <Button Text="Details" 
-                                    HorizontalOptions="EndAndExpand" 
-                                    BackgroundColor="DarkBlue" 
-                                    TextColor="White"
-                                    CornerRadius="5" 
-                                    FontSize="14" 
-                                    WidthRequest="80" 
-                                    HeightRequest="35"
-                                    Clicked="OnStudentDetailsClicked"/>
-                        </StackLayout>
+                    <Frame Margin="5"
+                           Padding="10"
+                           BackgroundColor="LightGray"
+                           CornerRadius="5">
+                        <Label Text="{Binding .}"
+                               FontSize="18"
+                               TextColor="Black" />
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

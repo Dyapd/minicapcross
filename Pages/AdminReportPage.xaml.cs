@@ -1,9 +1,28 @@
-namespace test.Pages;
+using System.Collections.ObjectModel;
+using Microsoft.Maui.Controls;
 
-public partial class AdminReportPage : ContentPage
+namespace test.Pages
 {
-	public AdminReportPage()
-	{
-		InitializeComponent();
-	}
+    public partial class AdminReportPage : ContentPage
+    {
+        public ObservableCollection<string> Items { get; set; }
+
+        public AdminReportPage()
+        {
+            InitializeComponent();
+
+            
+            Items = new ObservableCollection<string>
+            {
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 5"
+            };
+
+            
+            BindingContext = this;
+        }
+    }
 }
