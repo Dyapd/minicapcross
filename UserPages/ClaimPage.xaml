@@ -32,9 +32,11 @@
                     Grid.Row="0"
                     Grid.Column="0"/>
                 <Image
+                    x:Name="leftImage"
                     Source="dotnet_bot.png"
                     Grid.Row="1"
                     Grid.Column="0"/>
+               <!--image is for the left side-->
 
                 <HorizontalStackLayout 
                     Grid.Row="0"
@@ -56,9 +58,11 @@
                 </HorizontalStackLayout>
                 
                 <Image
+                    x:Name="rightImage"
                     Source="dotnet_bot.png"
                     Grid.Row="1"
                     Grid.Column="1"/>
+                <!--image is for the right side-->
             </Grid>
 
             <Label 
