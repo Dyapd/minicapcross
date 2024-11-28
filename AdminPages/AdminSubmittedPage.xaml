@@ -58,7 +58,7 @@
 
         <Entry IsReadOnly="True" >
             <Entry.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/> // Open your Popup Page in TapGestureRecognizer_Tapped method.
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/> 
             </Entry.GestureRecognizers>
         </Entry>
 

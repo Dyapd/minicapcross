@@ -63,7 +63,7 @@ public partial class AdminSubmittedPage : ContentPage
 
             string reportCategory = CategoryInput.SelectedItem.ToString();
             string reportDescription = DescriptionInput.Text;
-            string reportLocation = LocationInput.Text;
+            string reportLocation = LocationInput.SelectedItem.ToString();
             DateTime reportDateTime = SetDateTime();
 
 
