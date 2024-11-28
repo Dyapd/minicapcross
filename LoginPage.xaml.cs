@@ -32,24 +32,23 @@ namespace test
             string adacorrecttemp = "adcred";
             string stcorrecttemp = "stcred";
 
-            
 
-            //TEMPORARY HARD CODE FOR TESTING!!
-            //if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
-            //{
-            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-            //    await Navigation.PushAsync(new AdminDashboard());
-            //}
-            //else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
-            //{
-            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-            //    await Navigation.PushAsync(new StudentDashboard());
-            //}
-            //else
-            //{
-            //    this.ShowPopup(new NewPage1());
-                
-            //}
+
+           //TEMPORARY HARD CODE FOR TESTING!!
+           // if (enteredemail == adacorrecttemp && enteredpassword == adacorrecttemp)
+           // {
+           //    application.current.mainpage = new navigationpage(new admindashboard());
+           //    await navigation.pushasync(new admindashboard());
+           // }
+           // else if (enteredemail == stcorrecttemp && enteredpassword == stcorrecttemp)
+           // {
+           //    application.current.mainpage = new navigationpage(new studentdashboard());
+           //    await navigation.pushasync(new studentdashboard());
+           // }
+           //  else
+           //     {
+           //      this.showpopup(new newpage1());
+           //      }
 
 
             //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!

@@ -49,6 +49,7 @@
                     Text="Report"
                     BackgroundColor="DarkViolet"
                     HorizontalOptions="Start"
+                    CornerRadius="20"
                     Clicked="ReportBtn_Clicked" 
                     FontAttributes="Bold"
                     HeightRequest="50"
@@ -66,6 +67,7 @@
                     Margin="25"
                     BackgroundColor="DarkViolet"
                     HorizontalOptions="Start"
+                    CornerRadius="20"
                     Clicked="ClaimBtn_Clicked"
                     FontAttributes="Bold"
                     HeightRequest="50"
@@ -104,6 +106,7 @@
          Text="Notifications" 
          FontSize="Small" 
          FontAttributes="Bold"
+                    
          HorizontalOptions="Center" 
          TextColor="Black" />
             </Frame>
