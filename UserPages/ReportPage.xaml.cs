@@ -2,6 +2,7 @@ namespace test;
 using Microsoft.Maui.Controls;
 using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
+using System.Security.AccessControl;
 
 public partial class ReportPage : ContentPage
 {
@@ -122,5 +123,27 @@ public partial class ReportPage : ContentPage
         return combinedDateTime;
     }
 
+    private void OnImageInputBtnEntered(object sender, PointerEventArgs e) 
+    {
+        ImageInput.BackgroundColor = Colors.SlateGrey;    
+    }
+    private void OnImageInputBtnExited(object sender, PointerEventArgs e) 
+    {
+        ImageInput.BackgroundColor = Colors.DarkViolet;
+    }
+
+    private void OnReportItemBtnEntered(object sender, PointerEventArgs e)
+    {
+       ReportItemBtn.BackgroundColor = Colors.SlateGrey;
+    }
+
+    private void OnReportItemBtnExited(object sender, PointerEventArgs e)
+    {
+        ReportItemBtn.BackgroundColor = Colors.Red;
+
+    }
+
 }
+
+
 

@@ -7,20 +7,21 @@
             >
  
     <ScrollView>
-        <VerticalStackLayout>
-            <BoxView HeightRequest="1"
-                    Color="Black"
-                    HorizontalOptions="FillAndExpand"/>
-            <Label 
-        Text="ReClaimIt!" FontFamily="Impact" 
-        FontSize="Header" 
-        FontAttributes="Bold"
-        Style="{StaticResource Headline}"
-        Margin="1"
-                TextColor="Black"/>
-            <BoxView HeightRequest="1" 
-                     Color="Black"
-                     HorizontalOptions="FillAndExpand"/>
+        <VerticalStackLayout
+            Spacing="1"
+            Padding="1"
+            >
+       <Frame 
+        BackgroundColor="White" 
+        CornerRadius="10" 
+        Padding="15">
+                <Label 
+         Text="ReClaimIt!"  FontFamily="Opensans"
+         FontSize="Large" 
+         FontAttributes="Bold"
+         HorizontalOptions="Center" 
+         TextColor="Black" />
+            </Frame>
 
             <ImageButton
               Source="logout_icon.png"         
@@ -36,26 +37,14 @@
                 >
                 <ImageButton.GestureRecognizers>
                     <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
-                                              PointerExited="OnLogoutBtnExited"
-                              />
+                                              PointerExited="OnLogoutBtnExited"                              />
                 </ImageButton.GestureRecognizers>
             </ImageButton>
-         
-
-
             <HorizontalStackLayout
                 HorizontalOptions="Center"
                 Margin="70"
                 VerticalOptions="Center">
-
-
-
-
-
-
-                <Button  
-                    
-                    
+                <Button                     
                     x:Name="ReportBtn"
                     Text="Report"
                     BackgroundColor="DarkViolet"
@@ -64,25 +53,15 @@
                     FontAttributes="Bold"
                     HeightRequest="50"
                     WidthRequest="125"
-                    TextTransform="Uppercase"
                     ImageSource="report.png"
                     ContentLayout="Left, 20"
                    >
                     <Button.GestureRecognizers>
                         <PointerGestureRecognizer PointerEntered="OnReportBtnEntered"
-                                                  PointerExited="OnReportBtnExited"
-                                                  />
+                                                  PointerExited="OnReportBtnExited"                                              />
                     </Button.GestureRecognizers>
-
-                    
-
-
                 </Button>
-
-            
-
-                <Button 
-  
+                <Button  
                     x:Name="ClaimBtn"
                     Margin="25"
                     BackgroundColor="DarkViolet"
@@ -96,12 +75,9 @@
                     >
                     <Button.GestureRecognizers>
                         <PointerGestureRecognizer PointerEntered="OnClaimBtnEntered"
-                                                  PointerExited="OnClaimBtnExited"
-                                                  />
+                                                  PointerExited="OnClaimBtnExited"                                             />
                     </Button.GestureRecognizers>
-                 </Button>
-
-
+                </Button>
                 <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
                 <!--<Button
                     
@@ -119,15 +95,18 @@
            
             <!-- THIS IS FOR NOTIFICATION LOG!!-->
 
-            <BoxView
-                 HeightRequest="1"
-                 Color="Black"
-                 HorizontalOptions="FillAndExpand"/>    
 
-            <Label Text="Notifications" FontFamily="Arial"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold"
-                   TextColor="Black"/>  
+
+            <Frame BackgroundColor="#FFFFFF" 
+        CornerRadius="10" 
+        Padding="15">
+                <Label 
+         Text="Notifications" 
+         FontSize="Small" 
+         FontAttributes="Bold"
+         HorizontalOptions="Center" 
+         TextColor="Black" />
+            </Frame>
             <CollectionView 
                 SelectionMode="Single"
                 x:Name="NotificationLog"
@@ -147,12 +126,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
-            
-            <BoxView
-               HeightRequest="1"
-               Color="Black"
-               HorizontalOptions="FillAndExpand"/>
+         
         </VerticalStackLayout>
     </ScrollView>
     
