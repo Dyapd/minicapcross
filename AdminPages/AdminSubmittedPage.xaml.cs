@@ -127,4 +127,8 @@ public partial class AdminSubmittedPage : ContentPage
         return combinedDateTime;
     }
 
+    private void TapGestureRecognizer_Tapped(object events, EventArgs e)
+    {
+
+    }
 }
