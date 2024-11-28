@@ -30,8 +30,7 @@
             x:Name="ImageInput"
             Clicked="OnClickedImageBtn"/>
 
-        <Label
-            Text="Location Lost:"/>
+        
 
         <Label
             Text="Date and Time Lost:"/>
@@ -40,6 +39,9 @@
             x:Name="DateInput"/>
         <TimePicker
             x:Name="TimeInput"/>
+        
+        <Label
+            Text="Location Lost:"/>
         <Entry
             x:Name="LocationInput"
              Background="AntiqueWhite"/>

@@ -13,7 +13,7 @@ public partial class ReportPage : ContentPage
 
     public byte[] imageData; //byte array for image
 
-
+    //this selects and stores the image in above byte array
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
         try
@@ -113,13 +113,7 @@ public partial class ReportPage : ContentPage
     {
         DateTime selectedDate = DateInput.Date;
         TimeSpan selectedTime = TimeInput.Time;
-
-
-
         DateTime combinedDateTime = selectedDate.Add(selectedTime);
-
-
-
         return combinedDateTime;
     }
 

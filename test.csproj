@@ -78,7 +78,7 @@
 	  <Compile Update="LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\AdminItems.xaml.cs">
+	  <Compile Update="AdminPages\AdminItems.xaml.cs">
 	    <DependentUpon>AdminItems.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="PopupLoginPage.xaml.cs">
@@ -87,19 +87,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AdminClaimsPage.xaml">
+	  <MauiXaml Update="AdminPages\AdminClaimsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AdminDashboard.xaml">
+	  <MauiXaml Update="AdminPages\AdminDashboard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AdminLogsPage.xaml">
+	  <MauiXaml Update="AdminPages\AdminLogsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AdminReportPage.xaml">
+	  <MauiXaml Update="AdminPages\AdminReportPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AdminSubmittedPage.xaml">
+	  <MauiXaml Update="AdminPages\AdminSubmittedPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="AdminDynamic.xaml">
@@ -108,7 +108,7 @@
 	  <MauiXaml Update="ClaimPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AdminItems.xaml">
+	  <MauiXaml Update="AdminPages\AdminItems.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PopupLoginPage.xaml">
