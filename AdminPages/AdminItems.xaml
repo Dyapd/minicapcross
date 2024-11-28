@@ -6,12 +6,14 @@
              BackgroundImageSource="caloocan_4.jpg">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="List of Items!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <!-- add collection view here later charles-->
 
         <Button
             Text="Add Lost Item"
             Clicked="OnAddItemBtnClicked"/>
+        
     </VerticalStackLayout>
 </ContentPage>

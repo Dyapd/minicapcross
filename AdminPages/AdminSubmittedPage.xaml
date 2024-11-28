@@ -28,6 +28,7 @@
         <Button 
     Text="Upload Image"
     x:Name="ImageInput"
+            Clicked="OnClickedImageBtn"
    />
 
         <Label
@@ -36,9 +37,10 @@
 
         <Label
     Text="Date and Time Lost:"/>
+        <DatePicker
+    x:Name="DateInput"/>
         <TimePicker
-    
-    x:Name="DateTimeInput"/>
+    x:Name="TimeInput"/>
         <Entry
     x:Name="LocationInput"
      Background="AntiqueWhite"/>
@@ -51,6 +53,7 @@
 
         <Button
     Text="Report Item"
+            Clicked="OnClickedReportBtn"
     />
 
 

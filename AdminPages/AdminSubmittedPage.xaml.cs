@@ -8,91 +8,112 @@ using static test.DataHolders.DataholderNotificationLog;
 public partial class AdminSubmittedPage : ContentPage
 {
 
-
+    //this page is for displaying the submission of lost item form
+    // templateis the same as from the report item page, albeit with modifications
     public AdminSubmittedPage()
     {
         InitializeComponent();
-        Items = new ObservableCollection<Items>();
-        BindingContext = this;
-
-        LoadItems();
-
-
     }
-    public ObservableCollection<Items> Items { get; set; }
-
-    private SqlConnection connection = new SqlConnection("Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;");
     
+    public byte[] imageData; //byte array for image
 
-
-
-
-
-    //uses the dataholdernotificationlog class from datahold folder!
-    public List<Items> ReadDataNotificationLog()
+    //this selects and stores the image in above byte array
+    private async void OnClickedImageBtn(object sender, EventArgs e)
     {
-        List<Items> items = new List<Items>();
-
         try
         {
-            using (connection)
+            var result = await FilePicker.PickAsync(new PickOptions
             {
-                connection.Open();
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT Item_Category FROM Items";
+                FileTypes = FilePickerFileType.Images
+            });
 
-                using (SqlDataReader reader = command.ExecuteReader())
+            if (result != null)
+            {
+                using (var stream = await result.OpenReadAsync())
                 {
-                    while (reader.Read())
-                    {
-                        items.Add(new Items
-                        {
-                            Category = reader.GetString(0)
-                        });
-                    }
-                }
+                    imageData = new byte[stream.Length];
+                    await stream.ReadAsync(imageData, 0, (int)stream.Length);
 
+                    string imagePath = result.FullPath; //file path
+                }
+            }
+            else
+            {
+                await DisplayAlert("ERROR", "Image failed to select", "OK");
             }
         }
+
         catch (Exception ex)
         {
-
+            await DisplayAlert("Error", $"Something went wrong: {ex.Message}", "OK");
         }
-        return items;
-
     }
 
-    private void LoadItems()
+    private async void OnClickedReportBtn(object sender, EventArgs e)
     {
-        List<Items> items = ReadDataNotificationLog();
-        Items.Clear();
-        foreach (Items item in items)
+        try
         {
-            Items.Add(item);
+            IPLocator ip = new IPLocator();
+            string connectionString = ip.ConnectionString();
+
+
+            string reportCategory = CategoryInput.Text;
+            string reportDescription = DescriptionInput.Text;
+            string reportLocation = LocationInput.Text;
+            DateTime reportDateTime = SetDateTime();
+
+
+            //image data is global instance
+
+            //if image data is null then dont insert with image!
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand("INSERT INTO Claims (Item_Category, Item_ICategory, Item_Date, Item_Image, Item_Description, Item_Location, Item_Status) " +
+                                                                    "VALUES (@Category, @ICategory, @Date, @Image, @Description, @Location, @Status)", connection))
+
+                {
+                    command.Parameters.AddWithValue("@Category", "I");
+                    command.Parameters.AddWithValue("@Date", reportDateTime);
+                    command.Parameters.AddWithValue("@Image", imageData);
+                    command.Parameters.AddWithValue("@Description", reportDescription);
+                    command.Parameters.AddWithValue("@Location", reportLocation);
+                    command.Parameters.AddWithValue("@StudentNumber", 12);
+
+
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    if (rowsAffected > 0)
+                    {
+                        await DisplayAlert("Success", "Report has been submitted successfully.", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Failure", "Report submission failed. No rows were inserted.", "OK");
+                    }
+                }
+            }
+
+
+
+
         }
-    }
-
-    private async void OnItemSelected(object sender, EventArgs e)
-    {
-        Application.Current.MainPage = new NavigationPage(new MainPage());
-        await Navigation.PopAsync();
-    }
-
-    private async void OnPointerEntered(object sender, EventArgs e)
-    {
-        var frame = sender as Frame;
-        if (frame != null)
+        catch (Exception ec)
         {
-            frame.BackgroundColor = Colors.LightGray; // Change color on hover
+            await DisplayAlert("ERROR", ec.Message, "OK");
         }
+
+
+
     }
 
-    private async void OnPointerExited(object sender, EventArgs e)
+    private DateTime SetDateTime()
     {
-        var frame = sender as Frame;
-        if (frame != null)
-        {
-            frame.BackgroundColor = Colors.Purple; // Change color on hover
-        }
+        DateTime selectedDate = DateInput.Date;
+        TimeSpan selectedTime = TimeInput.Time;
+        DateTime combinedDateTime = selectedDate.Add(selectedTime);
+        return combinedDateTime;
     }
+
 }

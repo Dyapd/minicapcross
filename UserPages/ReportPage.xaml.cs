@@ -49,12 +49,15 @@ public partial class ReportPage : ContentPage
     {
         try
         {
-            string connectionString = "Data Source=192.168.1.6,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
+            IPLocator ip = new IPLocator();
+            string connectionString = ip.ConnectionString();
             
-            string reportCategory = CategoryInput.Text;
+            
+            string reportICategory = CategoryInput.Text;
             string reportDescription = DescriptionInput.Text;
             string reportLocation = LocationInput.Text;
             DateTime reportDateTime = SetDateTime();
+            
 
 
             //image data is global instance
@@ -65,11 +68,13 @@ public partial class ReportPage : ContentPage
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_Date, Reports_Image, Report_Description, Report_Location, Student_Number) " +
-                                                                    "VALUES (@Category, @Date, @Image, @Description, @Location, @StudentNumber)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_ICategory, Report_Date, Report_Image, Report_Description, Report_Location, Student_Number, Report_Status) " +
+                                                                    "VALUES (@Category, @ICategory, @Date, @Image, @Description, @Location, @StudentNumber, @Status)", connection))
 
                 {
                     command.Parameters.AddWithValue("@Category", "R");
+                    command.Parameters.AddWithValue("@ICategory", reportICategory);
+                    command.Parameters.AddWithValue("@Status", false);
                     command.Parameters.AddWithValue("@Date", reportDateTime);
                     if (imageData == null)
                     {
