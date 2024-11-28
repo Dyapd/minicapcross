@@ -35,9 +35,11 @@
 
         <Label
             Text="Date and Time Lost:"/>
+
+        <DatePicker
+            x:Name="DateInput"/>
         <TimePicker
-            
-            x:Name="DateTimeInput"/>  
+            x:Name="TimeInput"/>
         <Entry
             x:Name="LocationInput"
              Background="AntiqueWhite"/>
