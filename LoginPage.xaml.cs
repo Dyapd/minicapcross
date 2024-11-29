@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
 
+
 #if ANDROID
 using Android.Provider;
 #endif
@@ -16,7 +17,23 @@ namespace test
         public MainPage()
         {
             InitializeComponent();
-            
+
+            if (DeviceInfo.Platform != DevicePlatform.Android || DeviceInfo.Platform != DevicePlatform.iOS)
+            {
+                PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+                pointerGestureRecognizer.PointerEntered += (s, e) =>
+                {
+                    //mageenter 
+                    LoginBtn.BackgroundColor = Colors.SteelBlue;
+                };
+                pointerGestureRecognizer.PointerExited += (s, e) =>
+                {
+                    //mageexit
+                    LoginBtn.BackgroundColor = Colors.SlateBlue;
+                };
+
+                LoginBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+            }
         }
         private async void OnLoginClicked(object sender, EventArgs e)
         {
@@ -57,6 +74,16 @@ namespace test
                 //PROPER CREDENTIALS ARE user id= recadm; password = pass
 
             //    if (CheckAdminAccount(enteredEmail, enteredPassword))
+
+            }
+
+
+            //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
+            //NOTE NEED TO IMPORT DATABASE FROM THE FILES
+            //PROPER CREDENTIALS ARE user id= recadm; password = pass
+
+            //if (CheckAdminAccount(enteredEmail, enteredPassword))
+
             //{
             //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
             //    await Navigation.PushAsync(new AdminDashboard());
