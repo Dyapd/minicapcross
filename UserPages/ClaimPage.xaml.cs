@@ -98,7 +98,7 @@ public partial class ClaimPage : ContentPage
             command.Parameters.AddWithValue("@Category", category);
             command.Parameters.AddWithValue("@Description", description);
             command.Parameters.AddWithValue("@StudentNumber", studentNumber);
-            command.Parameters.AddWithValue("@Image", imageBytes);
+            //command.Parameters.AddWithValue("@Image", imageBytes);
 
             connection.Open();
             command.ExecuteNonQuery();
