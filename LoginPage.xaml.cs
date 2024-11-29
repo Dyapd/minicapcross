@@ -65,17 +65,7 @@ namespace test
             else
             {
                 this.ShowPopup(new NewPage1());
-
                 }
-
-
-                //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
-                //NOTE NEED TO IMPORT DATABASE FROM THE FILES
-                //PROPER CREDENTIALS ARE user id= recadm; password = pass
-
-            //    if (CheckAdminAccount(enteredEmail, enteredPassword))
-
-            }
 
 
             //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
@@ -83,7 +73,6 @@ namespace test
             //PROPER CREDENTIALS ARE user id= recadm; password = pass
 
             //if (CheckAdminAccount(enteredEmail, enteredPassword))
-
             //{
             //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
             //    await Navigation.PushAsync(new AdminDashboard());
