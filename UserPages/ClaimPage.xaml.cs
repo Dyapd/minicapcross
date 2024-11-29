@@ -10,12 +10,12 @@ public partial class ClaimPage : ContentPage
     {
         InitializeComponent();
     }
-
-    private void OnClickedClaimBtn(object sender, EventArgs e)
+    private void OnSaveButtonClicked(object sender, EventArgs e)
     {
-
+        SaveToDatabase();
     }
 
+    //this changes the picture on the right depending on the selection
     private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
     {
         IPLocator ip = new IPLocator();
@@ -75,7 +75,7 @@ public partial class ClaimPage : ContentPage
             return;
         }
 
-        /*byte[] imageBytes;
+        byte[] imageBytes;
         using (var memoryStream = new MemoryStream())
         {
             if (leftImage.Source != null)
@@ -89,7 +89,7 @@ public partial class ClaimPage : ContentPage
                 return;
             }
         }
-        */
+
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
@@ -98,7 +98,7 @@ public partial class ClaimPage : ContentPage
             command.Parameters.AddWithValue("@Category", category);
             command.Parameters.AddWithValue("@Description", description);
             command.Parameters.AddWithValue("@StudentNumber", studentNumber);
-            //command.Parameters.AddWithValue("@Image", imageBytes);
+            command.Parameters.AddWithValue("@Image", imageBytes);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -107,8 +107,5 @@ public partial class ClaimPage : ContentPage
         test.Text = "NASEND NA PUTANGINAMO.";
     }
 
-    private void OnSaveButtonClicked(object sender, EventArgs e)
-    {
-        SaveToDatabase();
-    }
+    
 }

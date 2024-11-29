@@ -86,7 +86,7 @@
 
             <Button
         Text="Claim"
-        Clicked="OnClickedClaimBtn"
+        Clicked="OnSaveButtonClicked"
         />
 
         </VerticalStackLayout>
