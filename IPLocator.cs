@@ -10,40 +10,40 @@ namespace test
 {
     internal class IPLocator
     {
-        public static string GetLocalIpAddress()
-        {
-            string localIp = string.Empty;
+        //public static string GetLocalIpAddress()
+        //{
+        //    string localIp = string.Empty;
 
 
-            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-            {
+        //    foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+        //    {
 
-                if (ni.OperationalStatus == OperationalStatus.Up)
-                {
+        //        if (ni.OperationalStatus == OperationalStatus.Up)
+        //        {
 
-                    IPInterfaceProperties ipProperties = ni.GetIPProperties();
+        //            IPInterfaceProperties ipProperties = ni.GetIPProperties();
 
 
-                    foreach (UnicastIPAddressInformation ip in ipProperties.UnicastAddresses)
-                    {
+        //            foreach (UnicastIPAddressInformation ip in ipProperties.UnicastAddresses)
+        //            {
 
-                        if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                        {
-                            localIp = ip.Address.ToString();
-                            break;
-                        }
-                    }
-                }
-            }
+        //                if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+        //                {
+        //                    localIp = ip.Address.ToString();
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //    }
 
-            return localIp;
-        }
+        //    return localIp;
+        //}
 
         public string ConnectionString()
         {
-            string localIp = GetLocalIpAddress();
+            //string localIp = GetLocalIpAddress();
             //string connectionString = $"Data Source=192.168.45.145,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
-            string connectionString = $"Data Source={localIp},1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
+            string connectionString = $"Data Source=192.168.45.145,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
             return connectionString;
         }
     }

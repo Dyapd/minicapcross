@@ -10,7 +10,6 @@ public partial class StudentDashboard : ContentPage
 {
     public ObservableCollection<Items> Items { get; set; }
     
-    private SqlConnection connection = new SqlConnection("Data Source=localhost,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;");
     public StudentDashboard()
     {
         InitializeComponent();
@@ -25,7 +24,10 @@ public partial class StudentDashboard : ContentPage
     public  List<Items> ReadDataNotificationLog()
     {
         List<Items> items = new List<Items>();
+        IPLocator ip = new IPLocator();
+        string connectionString = ip.ConnectionString();
 
+        SqlConnection connection = new SqlConnection(connectionString);
         try
         {
             using (connection)
@@ -44,7 +46,7 @@ public partial class StudentDashboard : ContentPage
                         });
                     }
                 }
-
+               
             }
         }
         catch (Exception ex)

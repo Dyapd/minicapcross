@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
 
+
 #if ANDROID
 using Android.Provider;
 #endif
@@ -16,7 +17,20 @@ namespace test
         public MainPage()
         {
             InitializeComponent();
-            
+            if (DeviceInfo.Platform != DevicePlatform.Android || DeviceInfo.Platform != DevicePlatform.iOS)
+            {
+                PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+                pointerGestureRecognizer.PointerEntered += (s, e) =>
+                {
+                    LoginBtn.BackgroundColor = Colors.SteelBlue;
+                };
+                pointerGestureRecognizer.PointerExited += (s, e) =>
+                {
+                    LoginBtn.BackgroundColor = Colors.SlateBlue;
+                };
+
+                LoginBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+            }
         }
         private async void OnLoginClicked(object sender, EventArgs e)
         {
@@ -35,19 +49,19 @@ namespace test
 
 
             //TEMPORARY HARD CODE FOR TESTING!!
-            if (enteredemail == adacorrecttemp && enteredpassword == adacorrecttemp)
+            if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
             {
-                application.current.mainpage = new navigationpage(new admindashboard());
-                await navigation.pushasync(new admindashboard());
+                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+                await Navigation.PushAsync(new AdminDashboard());
             }
-            else if (enteredemail == stcorrecttemp && enteredpassword == stcorrecttemp)
+            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
             {
-                application.current.mainpage = new navigationpage(new studentdashboard());
-                await navigation.pushasync(new studentdashboard());
+                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+                await Navigation.PushAsync(new StudentDashboard());
             }
             else
             {
-                this.showpopup(new newpage1());
+                this.ShowPopup(new NewPage1());
             }
 
 
