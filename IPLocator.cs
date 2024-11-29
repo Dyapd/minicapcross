@@ -43,7 +43,7 @@ namespace test
         {
             //string localIp = GetLocalIpAddress();
             //string connectionString = $"Data Source=192.168.45.145,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
-            string connectionString = $"Data Source=192.168.45.145,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
+            string connectionString = $"Data Source=localhost,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
             return connectionString;
         }
     }

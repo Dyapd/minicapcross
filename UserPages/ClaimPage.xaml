@@ -38,6 +38,7 @@
                     Grid.Column="0"/>
                <!--image is for the left side-->
 
+                
                 <HorizontalStackLayout 
                     Grid.Row="0"
                     Grid.Column="1">
@@ -49,9 +50,9 @@
                         Title="Select an option"
                         SelectedIndexChanged="OnPickerSelectedIndexChanged">
                         <Picker.Items>
-                            <x:String>BAG</x:String>
-                            <x:String>CAR</x:String>    
-                            <x:String>DOG</x:String>
+                            <x:String>1</x:String>
+                            <x:String>2</x:String>    
+                            <x:String>3</x:String>
                         </Picker.Items>
                     </Picker>
                     

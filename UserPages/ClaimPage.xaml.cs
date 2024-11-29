@@ -18,10 +18,15 @@ public partial class ClaimPage : ContentPage
     //this changes the picture on the right depending on the selection
     private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
     {
+        byte[] imageBytes = null;
+        try
+        {
+
+       
         IPLocator ip = new IPLocator();
         connectionString = ip.ConnectionString();
 
-        var selectedOption = comboBox.SelectedItem as string;
+        var selectedOption = comboBox.SelectedItem.ToString();
 
         if (string.IsNullOrEmpty(selectedOption))
         {
@@ -31,7 +36,7 @@ public partial class ClaimPage : ContentPage
 
         test.Text = $"You selected: {selectedOption}";
 
-        byte[] imageBytes = null;
+        
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
@@ -48,7 +53,7 @@ public partial class ClaimPage : ContentPage
             }
         }
 
-        if (imageBytes != null)
+        if (imageBytes  != null)
         {
             var imageSource = ImageSource.FromStream(() => new MemoryStream(imageBytes));
             rightImage.Source = imageSource;
@@ -57,6 +62,11 @@ public partial class ClaimPage : ContentPage
         {
             test.Text = "No image found for the selected option.";
             rightImage.Source = null;
+        }
+        }
+        catch (Exception ev)
+        {
+            DisplayAlert("Error!", ev.Message, "OK!");
         }
     }
 
@@ -75,20 +85,20 @@ public partial class ClaimPage : ContentPage
             return;
         }
 
-        byte[] imageBytes;
-        using (var memoryStream = new MemoryStream())
-        {
-            if (leftImage.Source != null)
-            {
-                leftImage.Source.ToStream().CopyTo(memoryStream);
-                imageBytes = memoryStream.ToArray();
-            }
-            else
-            {
-                test.Text = "No image selected for upload.";
-                return;
-            }
-        }
+        //byte[] imageBytes;
+        //using (var memoryStream = new MemoryStream())
+        //{
+        //    if (leftImage.Source != null)
+        //    {
+        //        leftImage.Source.ToStream().CopyTo(memoryStream);
+        //        imageBytes = memoryStream.ToArray();
+        //    }
+        //    else
+        //    {
+        //        test.Text = "No image selected for upload.";
+        //        return;
+        //    }
+        //}
 
 
         using (SqlConnection connection = new SqlConnection(connectionString))
@@ -98,7 +108,7 @@ public partial class ClaimPage : ContentPage
             command.Parameters.AddWithValue("@Category", category);
             command.Parameters.AddWithValue("@Description", description);
             command.Parameters.AddWithValue("@StudentNumber", studentNumber);
-            command.Parameters.AddWithValue("@Image", imageBytes);
+            //command.Parameters.AddWithValue("@Image", imageBytes);
 
             connection.Open();
             command.ExecuteNonQuery();
