@@ -17,15 +17,18 @@ namespace test
         public MainPage()
         {
             InitializeComponent();
+
             if (DeviceInfo.Platform != DevicePlatform.Android || DeviceInfo.Platform != DevicePlatform.iOS)
             {
                 PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
                 pointerGestureRecognizer.PointerEntered += (s, e) =>
                 {
+                    //mageenter 
                     LoginBtn.BackgroundColor = Colors.SteelBlue;
                 };
                 pointerGestureRecognizer.PointerExited += (s, e) =>
                 {
+                    //mageexit
                     LoginBtn.BackgroundColor = Colors.SlateBlue;
                 };
 
