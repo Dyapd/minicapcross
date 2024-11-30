@@ -160,7 +160,7 @@ public partial class ReportPage : ContentPage
     }
     private void OnImageInputBtnExited(object sender, PointerEventArgs e) 
     {
-        ImageInput.BackgroundColor = Colors.DarkViolet;
+        ImageInput.BackgroundColor = Colors.Orange; 
     }
 
     private void OnReportItemBtnEntered(object sender, PointerEventArgs e)
@@ -170,7 +170,7 @@ public partial class ReportPage : ContentPage
 
     private void OnReportItemBtnExited(object sender, PointerEventArgs e)
     {
-        ReportItemBtn.BackgroundColor = Colors.Red;
+        ReportItemBtn.BackgroundColor = Colors.Orange;
 
     }
 

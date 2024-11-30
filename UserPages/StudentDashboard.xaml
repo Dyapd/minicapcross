@@ -7,46 +7,78 @@
             >
  
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="1"
-            Padding="1"
+        <Frame
+            BackgroundColor="LightBlue">
+            <VerticalStackLayout 
+                VerticalOptions="End"
+                 HorizontalOptions="End"
             >
-            <Frame 
-                BackgroundColor="White" 
+
+                <Frame 
+                BackgroundColor="DarkBlue" 
                 CornerRadius="10" 
-                Padding="15">
-                <Label 
+                Padding="10"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    WidthRequest="223"
+                   >
+
+                    <Label 
                     Text="ReClaimIt!"  FontFamily="Opensans"
                     FontSize="Large" 
                     FontAttributes="Bold"
-                    HorizontalOptions="Center" 
-                    TextColor="Black" />
-            </Frame>
+                    HorizontalOptions="Start"
+           
+                    VerticalOptions="Start"
+                    TextColor="White" />
 
+                </Frame>
                 <ImageButton
-                    Source="logout_icon.png"         
+            
+                    Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\logout.png"         
                     x:Name="LogoutBtn"
                     Margin="15"
                     HorizontalOptions="End"
                     Clicked="LogoutBtn_Clicked"
                     Background="Transparent"
+                    BackgroundColor="Transparent"
+                    BorderColor="LightBlue"
                     HeightRequest="40"
-                    Opacity="11">
-                    
-                    <ImageButton.GestureRecognizers>
-                        <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
+                    Opacity="23">
+
+
+                <ImageButton.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
                                                   PointerExited="OnLogoutBtnExited"                              />
-                    </ImageButton.GestureRecognizers>
-                </ImageButton>
-            
-                <HorizontalStackLayout
+                </ImageButton.GestureRecognizers>
+            </ImageButton>
+
+
+            <ImageButton
+                    Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\notification.png"
+                    HeightRequest="40"
+                    x:Name="NotificationiconBtn"
+                    Margin="15"
+                    HorizontalOptions="End"
+                    BackgroundColor="LightBlue"
+                    Clicked="NotificationiconBtn_Clicked"
+                   Background="Transparent"
+                   BorderColor="LightBlue"  Opacity="23"
+                    >
+
+            </ImageButton>
+
+
+
+
+            <HorizontalStackLayout
                     HorizontalOptions="Center"
                     Margin="70"
                     VerticalOptions="Center">
-                    <Button                     
+                <Button                     
                         x:Name="ReportBtn"
                         Text="Report"
-                        BackgroundColor="DarkViolet"
+                        BackgroundColor="#f54e42"
                         HorizontalOptions="Start"
                         CornerRadius="20"
                         Clicked="ReportBtn_Clicked" 
@@ -57,11 +89,11 @@
                         ContentLayout="Left, 20"
                        >
 
-                    </Button>
+                </Button>
                 <Button  
                         x:Name="ClaimBtn"
                         Margin="25, 0"
-                        BackgroundColor="DarkViolet"
+                        BackgroundColor="#f54e42"
                         HorizontalOptions="Start"
                         CornerRadius="20"
                         Clicked="ClaimBtn_Clicked"
@@ -72,8 +104,9 @@
                         Text="Claim"
                         >
                 </Button>
-                    <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
-                    <!--<Button
+
+                <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
+                <!--<Button
                     
                         WidthRequest="80"
                         HeightRequest="80"
@@ -85,41 +118,42 @@
                         Clicked="NotificationBtn_Clicked" 
                         />-->
 
-                </HorizontalStackLayout>
-           
-                <!-- THIS IS FOR NOTIFICATION LOG!!-->
-            <Frame BackgroundColor="#FFFFFF" 
+            </HorizontalStackLayout>
+
+            <!-- THIS IS FOR NOTIFICATION LOG!!-->
+
+            <Frame BackgroundColor="DarkBlue" 
                     CornerRadius="10" 
                     Padding="15">
-            <Label 
+                <Label 
                  Text="Notifications" 
                  FontSize="Small" 
                  FontAttributes="Bold"
                  HorizontalOptions="Center" 
-                 TextColor="Black" />
+                 TextColor="white" />
             </Frame>
-                
-                <CollectionView 
+
+            <CollectionView 
                     SelectionMode="Single"
                     x:Name="NotificationLog"
                     ItemsSource="{Binding Items}"
                     >
-                    
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame Padding="10" Margin="5" BackgroundColor="SeaGreen">
-                                <HorizontalStackLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BackgroundColor="SeaGreen">
+                            <HorizontalStackLayout>
                                 <Label Text="{Binding CategoryAndID}"/>
                                 <Image
                                         />
-                                </HorizontalStackLayout>
-                            </Frame>
+                            </HorizontalStackLayout>
+                        </Frame>
 
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-         
-        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            </VerticalStackLayout>
+        </Frame>
     </ScrollView>
     
 </ContentPage>
