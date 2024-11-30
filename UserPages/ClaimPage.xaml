@@ -5,117 +5,105 @@
              Title="ClaimPage">
 
     <ScrollView>
+        <Frame BackgroundColor="#FFFFFF" CornerRadius="0" Margin="10">
+            <VerticalStackLayout Spacing="16" Padding="16">
 
+                <Frame BackgroundColor="DarkBlue" CornerRadius="0" Padding="16">
+                    <Label 
+                    Text="Claim a Lost Item" 
+                    FontFamily="Roboto"
+                    FontSize="Large" 
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"
+                    TextColor="White" />
+                </Frame>
 
-        <VerticalStackLayout
-    VerticalOptions="CenterAndExpand"
-    >
-            <Label 
-        Text="Claim a Lost Item"
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" />
+                <Grid RowSpacing="16" ColumnSpacing="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            <!--layout for the comparison of the pictures-->
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                
-                <!--This is for the left image picker-->
-                <HorizontalStackLayout 
-                     Grid.Row="0"
-                     Grid.Column="0">   
-                    
-                    <Label
-                     Text="Reported Item Picture"
-                     Margin="10, 0"
-                     />
-
-                    <Picker x:Name="comboBoxLeft"
-                     Title="Select an option"
-                     SelectedIndexChanged="OnPickerSelectedIndexChangedLeft"
-                     ItemsSource="{Binding Items}"
-                            ItemDisplayBinding="{Binding CategoryAndID}">
-                    </Picker>
-
-                </HorizontalStackLayout>
-
-                <Label
-                    Text="Lost Item Picture"
-                    Grid.Row="1"
-                    Grid.Column="0"/>
-                <Image
-                    x:Name="leftImage"
-                    Source="dotnet_bot.png"
-                    MaximumHeightRequest="200"
-                    MaximumWidthRequest="200"
-                    Grid.Row="1"
-                    Grid.Column="0"/>
-               <!--image is for the left side-->
-
-                
-                <HorizontalStackLayout 
-                    Grid.Row="0"
-                    Grid.Column="1">
-                    <Label
-                        Text="Reported Item Picture"
-                        Margin="10, 0"
-                        />
-                    <Picker x:Name="comboBox"
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                        <Label Text="Reported Item Picture" FontSize="Medium" />
+                        <Picker 
+                        x:Name="comboBoxLeft"
                         Title="Select an option"
+                        BackgroundColor="#EEEEEE"
+                        TextColor="Black"
+                        SelectedIndexChanged="OnPickerSelectedIndexChangedLeft"
+                        ItemsSource="{Binding Items}"
+                        ItemDisplayBinding="{Binding CategoryAndID}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                        <Label Text="Lost Item Picture" FontSize="Medium" />
+                        <Picker 
+                        x:Name="comboBox"
+                        Title="Select an option"
+                        BackgroundColor="#EEEEEE"
+                        TextColor="Black"
                         SelectedIndexChanged="OnPickerSelectedIndexChanged">
-                        <Picker.Items>
-                            <x:String>1</x:String>
-                            <x:String>2</x:String>    
-                            <x:String>3</x:String>
-                        </Picker.Items>
-                    </Picker>
-                    
-                </HorizontalStackLayout>
-                
-                <Image
-                    x:Name="rightImage"
-                    Source="dotnet_bot.png"
+                            <Picker.Items>
+                                <x:String>1</x:String>
+                                <x:String>2</x:String>
+                                <x:String>3</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </VerticalStackLayout>
+
+                    <Image 
+                    x:Name="leftImage"
+                    Source="dotnet_bot.png" 
                     MaximumHeightRequest="200"
                     MaximumWidthRequest="200"
-                    Grid.Row="1"
-                    Grid.Column="1"/>
-                <!--image is for the right side-->
-            </Grid>
+                    Grid.Row="1" 
+                    Grid.Column="0"
+                    Aspect="AspectFit" />
 
-            <Label
-                Text="Type of Item:"/>
-            <Picker
-            x:Name="CategoryInput"
-            Background="AntiqueWhite" >
+                    <Image 
+                    x:Name="rightImage"
+                    Source="dotnet_bot.png" 
+                    MaximumHeightRequest="200"
+                    MaximumWidthRequest="200"
+                    Grid.Row="1" 
+                    Grid.Column="1"
+                    Aspect="AspectFit" />
+                </Grid>
 
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Personal Item</x:String>
-                        <x:String>Valuable Item</x:String>
-                        <x:String>Electronic Item</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+                <Label Text="Type of Item:" FontSize="Medium" />
+                <Picker 
+                x:Name="CategoryInput"
+                BackgroundColor="#EEEEEE"
+                TextColor="Black">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Personal Item</x:String>
+                            <x:String>Valuable Item</x:String>
+                            <x:String>Electronic Item</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
 
-            <Label
-        Text="Description:"/>
-            <Entry
-        x:Name="DescriptionInput"
-         Background="AntiqueWhite"/>
+                <Label Text="Description:" FontSize="Medium" />
+                <Entry x:Name="DescriptionInput" BackgroundColor="#EEEEEE" TextColor="Black" />
 
-            <Button
-        Text="Claim"
-        Clicked="OnSaveButtonClicked"
-        />
+                <Button 
+                Text="Claim"
+                BackgroundColor="Red"
+                TextColor="White"
+                CornerRadius="8"
+                Clicked="OnSaveButtonClicked">
+                    <Button.Shadow>
+                        <Shadow Brush="#000000" Opacity="0.2" Radius="4" Offset="2,2"/>
+                    </Button.Shadow>
+                </Button>
 
-        </VerticalStackLayout>
-
+            </VerticalStackLayout>
+        </Frame>
     </ScrollView>
 </ContentPage>
