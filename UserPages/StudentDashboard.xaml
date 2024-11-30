@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.StudentDashboard"
-             Title="StudentDashboard"
              BackgroundColor="White"
             >
  
@@ -99,7 +98,7 @@
                  TextColor="Black" />
             </Frame>
                 
-                <CollectionView 
+                <!--<CollectionView 
                     SelectionMode="Single"
                     x:Name="NotificationLog"
                     ItemsSource="{Binding Items}"
@@ -117,8 +116,41 @@
 
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                </CollectionView>
-         
+                </CollectionView>-->
+
+            <CollectionView ItemsSource="{Binding Items}"
+                BackgroundColor="Transparent"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                   Padding="10"
+                   BackgroundColor="White"
+                   Margin="5"
+                   HasShadow="True">
+                            <Grid ColumnDefinitions="*, Auto"
+                      Padding="5">
+
+
+                                <Label Text="{Binding CategoryAndID}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           VerticalOptions="Center" />
+
+
+                                <Button Text="Details"
+                            Grid.Column="1"
+                            BackgroundColor="#E53935"
+                            TextColor="White"
+                            CornerRadius="5"
+                            Clicked="OnDetailsButtonClicked" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </VerticalStackLayout>
     </ScrollView>
     

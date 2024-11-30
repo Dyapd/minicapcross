@@ -98,13 +98,13 @@ namespace test
             {
                 try
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Email", enteredEmail);
                         command.Parameters.AddWithValue("@Password", enteredPassword);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
                             return reader.HasRows;
                         }
@@ -127,13 +127,13 @@ namespace test
             {
                 try
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Email", enteredEmail);
                         command.Parameters.AddWithValue("@Password", enteredPassword);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
                             return reader.HasRows;
                         }

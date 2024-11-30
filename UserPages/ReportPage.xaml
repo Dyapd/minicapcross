@@ -66,6 +66,7 @@
 
             <Label
             Text="Location Lost:"/>
+            
             <Picker
             x:Name="LocationInput"
             Background="AntiqueWhite">

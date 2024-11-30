@@ -55,6 +55,8 @@ public partial class StudentDashboard : ContentPage
 
 
 
+
+
     }
     //uses the dataholdernotificationlog class from datahold folder!
     public  async Task<List<Items>> ReadDataNotificationLog()
@@ -70,16 +72,17 @@ public partial class StudentDashboard : ContentPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT Item_Category, Item_ID FROM Items";
-                
+                command.CommandText = "SELECT i.Item_ID, i.Item_Category FROM Items i JOIN Reports r ON i.Item_ICategory = r.Report_ICategory AND i.Item_Location = r.Report_Location WHERE r.Student_Number = @SessionVars";
+                command.Parameters.AddWithValue("@SessionVars", SessionVars.SessionId);
+
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         items.Add(new Items
                         {
-                            ID = reader.GetInt32(1).ToString(),
-                            Category = reader.GetString(0)
+                            ID = reader.GetInt32(0).ToString(),
+                            Category = reader.GetString(1)
                         });
                     }
                 }
@@ -119,6 +122,11 @@ public partial class StudentDashboard : ContentPage
         await Navigation.PopAsync();
     }
 
+    private async void OnDetailsButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ClaimPage());
+    }
+
     private void OnLogoutBtnEntered(object sender, EventArgs e)
     {
         LogoutBtn.BackgroundColor = Colors.SlateGrey;
@@ -145,4 +153,6 @@ public partial class StudentDashboard : ContentPage
     {
         ClaimBtn.BackgroundColor = Colors.DarkViolet;
     }
+
+    
 }
