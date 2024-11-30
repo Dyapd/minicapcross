@@ -52,43 +52,43 @@ namespace test
 
 
             //TEMPORARY HARD CODE FOR TESTING!!
-            if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-                await Navigation.PushAsync(new AdminDashboard());
-            }
-            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-                await Navigation.PushAsync(new StudentDashboard());
-            }
-            else
-            {
-                this.ShowPopup(new NewPage1());
-            }
+            //if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
+            //{
+            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+            //    await Navigation.PushAsync(new AdminDashboard());
+            //}
+            //else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
+            //{
+            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+            //    await Navigation.PushAsync(new StudentDashboard());
+            //}
+            //else
+            //{
+            //    this.ShowPopup(new NewPage1());
+            //    }
 
 
             //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
             //NOTE NEED TO IMPORT DATABASE FROM THE FILES
             //PROPER CREDENTIALS look in the database adminusers and studusers!!!
 
-            //if (await CheckAdminAccount(enteredEmail, enteredPassword))
-            //{
-            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-            //    await Navigation.PushAsync(new AdminDashboard());
-            //}
-            //else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
-            //{
-            //    SessionVars.SetSessionId(enteredEmail, enteredPassword);
-            //    await DisplayAlert(SessionVars.SessionId, "", "OK!");
-            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+            if (await CheckAdminAccount(enteredEmail, enteredPassword))
+            {
+                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+                await Navigation.PushAsync(new AdminDashboard());
+            }
+            else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
+            {
+                SessionVars.SetSessionId(enteredEmail, enteredPassword);
+                await DisplayAlert(SessionVars.SessionId, "", "OK!");
+                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
 
-            //    await Navigation.PushAsync(new StudentDashboard());
-            //}
-            //else
-            //{
-            //    this.ShowPopup(new NewPage1());
-            //}
+                await Navigation.PushAsync(new StudentDashboard());
+            }
+            else
+            {
+                this.ShowPopup(new NewPage1());
+            }
         }
         private async Task<bool> CheckRegisteredAccount(string enteredEmail, string enteredPassword)
         {
