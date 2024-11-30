@@ -4,30 +4,30 @@
              x:Class="test.Pages.AdminReportPage"
              Title="Admin Report"
              BackgroundColor="#E3F2FD">
-
-    <VerticalStackLayout Padding="20" Spacing="20">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
 
         
-        <Frame BackgroundColor="#1565C0"
+            <Frame BackgroundColor="#1565C0"
                CornerRadius="10"
                Padding="10"
                HasShadow="True">
-            <Label Text="Admin Report"
+                <Label Text="Admin Report"
                    FontSize="24"
                    TextColor="White"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
                    VerticalOptions="Center" />
-        </Frame>
+            </Frame>
 
         
-        <Frame BackgroundColor="#1565C0"
+            <Frame BackgroundColor="#1565C0"
                CornerRadius="10"
                Padding="10"
                HasShadow="True">
-            <Grid ColumnDefinitions="*,*,*,*" Padding="5" RowDefinitions="Auto">
+                <Grid ColumnDefinitions="*,*,*,*" Padding="5" RowDefinitions="Auto">
                 
-                <Label Text="ReportID"
+                    <Label Text="ReportID"
                        TextColor="White"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
@@ -35,7 +35,7 @@
                        Grid.Column="0" />
 
                 
-                <Label Text="Report Image"
+                    <Label Text="Report Image"
                        TextColor="White"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
@@ -43,7 +43,7 @@
                        Grid.Column="1" />
 
                 
-                <Label Text="Category"
+                    <Label Text="Category"
                        TextColor="White"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
@@ -51,55 +51,56 @@
                        Grid.Column="2" />
 
                 
-                <Label Text="Status"
+                    <Label Text="Status"
                        TextColor="White"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
                        VerticalOptions="Center" 
                        Grid.Column="3" />
-            </Grid>
-        </Frame>
+                </Grid>
+            </Frame>
 
         
-        <CollectionView ItemsSource="{Binding Items}"
+            <CollectionView ItemsSource="{Binding Items}"
                         BackgroundColor="Transparent"
                         SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame CornerRadius="10"
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
                            Padding="10"
                            BackgroundColor="White"
                            Margin="5"
                            HasShadow="True">
-                        <Grid ColumnDefinitions="*, Auto"
+                            <Grid ColumnDefinitions="*, Auto"
                               Padding="5">
                             
-                            <Label Text="{Binding .}"
+                                <Label Text="{Binding .}"
                                    FontSize="18"
                                    FontAttributes="Bold"
                                    TextColor="#1565C0"
                                    VerticalOptions="Center" />
 
                             
-                            <Button Text="Details"
+                                <Button Text="Details"
                                     Grid.Column="1"
                                     BackgroundColor="#E53935"
                                     TextColor="White"
                                     CornerRadius="5"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ButtonCommand}"
                                     CommandParameter="{Binding .}" />
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         
-        <Label Text="© 2024 Admin Dashboard"
+            <Label Text="© 2024 Admin Dashboard"
                FontSize="14"
                TextColor="#9E9E9E"
                HorizontalOptions="Center"
                VerticalOptions="EndAndExpand" />
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
