@@ -133,7 +133,7 @@ public partial class ClaimPage : ContentPage
 
         var category = CategoryInput.Text;
         var description = DescriptionInput.Text;
-        var studentNumber = StudentNumberInput.Text;
+        var studentNumber = SessionVars.SessionId;
 
         if (string.IsNullOrWhiteSpace(category) || string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(studentNumber))
         {
@@ -146,7 +146,7 @@ public partial class ClaimPage : ContentPage
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            string query = @"INSERT INTO Reports (Report_Category, Report_Description, Student_Number, Reports_Image) VALUES (@Category, @Description, @StudentNumber, @Image)";
+            string query = @"INSERT INTO Reports (Report_Category, Report_Description, Student_Number, Report_Image) VALUES (@Category, @Description, @StudentNumber, @Image)";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Category", category);
             command.Parameters.AddWithValue("@Description", description);
