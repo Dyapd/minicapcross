@@ -21,7 +21,7 @@ public partial class AdminDashboard : ContentPage
     }
     public async void OnClickedItemsBtn(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Items());
+        await Navigation.PushAsync(new AdminItems());
     }
     public async void OnClickedClaimsBtn(object sender, EventArgs e)
     {

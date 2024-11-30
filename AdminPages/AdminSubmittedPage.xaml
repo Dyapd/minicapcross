@@ -2,85 +2,112 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.AdminSubmittedPage"
-             Title="AdminSubmittedPage">
+             Title="AdminSubmittedPage"
+             BackgroundColor="#F5F5F5">
 
-    <ScrollView>
-        
-   
-    <VerticalStackLayout
-        VerticalOptions="CenterAndExpand"
->
-        <Label 
-        Text="Submitted Lost Item"
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" />
+    <ScrollView Padding="20">
 
-        <Label 
-        Text="Category:"/>
+        <VerticalStackLayout VerticalOptions="CenterAndExpand" Spacing="20">
 
-        <Picker
-        x:Name="CategoryInput"
-        Background="AntiqueWhite" >
+            
+            <Label Text="Submitted Lost Item"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   HorizontalOptions="Center" />
 
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Personal Item</x:String>
-                    <x:String>Valuable Item </x:String>
-                    <x:String>Electronic Item</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+            
+            <Label Text="Category:"
+                   FontSize="14"
+                   TextColor="#555555"
+                   VerticalOptions="Start" />
+            <Picker x:Name="CategoryInput"
+                    BackgroundColor="#FFFFFF"
+                    TextColor="#333333"
+                    SelectedIndex="0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Personal Item</x:String>
+                        <x:String>Valuable Item</x:String>
+                        <x:String>Electronic Item</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
-        <Label
-        Text="Description:"/>
-        <Entry
-        x:Name="DescriptionInput"
-        Background="AntiqueWhite"/>
+            
+            <Label Text="Description:"
+                   FontSize="14"
+                   TextColor="#555555" />
+            <Frame BackgroundColor="#FFFFFF"
+                   BorderColor="#E0E0E0"
+                   CornerRadius="8"
+                   Padding="5">
+                <Entry x:Name="DescriptionInput"
+                       Placeholder="Enter a description"
+                       TextColor="#333333"
+                       HeightRequest="40"/>
+            </Frame>
 
-        <Label
-        Text="Image (optional):"/>
-        <Button 
-        Text="Upload Image"
-        x:Name="ImageInput"
-            Clicked="OnClickedImageBtn"
-        />
+            
+            <Label Text="Image (optional):"
+                   FontSize="14"
+                   TextColor="#555555" />
+            <Button Text="Upload Image"
+                    BackgroundColor="#1565C0"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Padding="10"
+                    Clicked="OnClickedImageBtn" />
 
-        
-        <Label
-        Text="Location Lost:"/>
-        <Picker
-        x:Name="LocationInput"
-         Background="AntiqueWhite">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Ground Floor</x:String>
-                    <x:String>1st Floor</x:String>
-                    <x:String>2nd Floor</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+            
+            <Label Text="Location Lost:"
+                   FontSize="14"
+                   TextColor="#555555" />
+            <Picker x:Name="LocationInput"
+                    BackgroundColor="#FFFFFF"
+                    TextColor="#333333">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Ground Floor</x:String>
+                        <x:String>1st Floor</x:String>
+                        <x:String>2nd Floor</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
-        <!-- THIS IS TEMPORARY CODE pls wag buharin might use someday!-->
-        <!--<Entry IsReadOnly="True" >
-            <Entry.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/> 
-            </Entry.GestureRecognizers>
-        </Entry>-->
+            
+            <Frame BackgroundColor="#E0E0E0"
+                   BorderColor="#BDBDBD"
+                   CornerRadius="8"
+                   Padding="5">
+                <Entry IsReadOnly="True" 
+                       TextColor="#333333"
+                       Placeholder="sheesh">
+                    <Entry.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Entry.GestureRecognizers>
+                </Entry>
+            </Frame>
 
-        <Label
-            Text="Date and Time Lost:"/>
-        <DatePicker
-            x:Name="DateInput"/>
-        <TimePicker
-             x:Name="TimeInput"/>
+            
+            <Label Text="Date and Time Lost:"
+                   FontSize="14"
+                   TextColor="#555555" />
+            <StackLayout Orientation="Horizontal" Spacing="15">
+                <DatePicker x:Name="DateInput" />
+                <TimePicker x:Name="TimeInput" />
+            </StackLayout>
 
+            
+            <Button Text="Report Item"
+                    BackgroundColor="#E53935"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Padding="15"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnClickedReportBtn" />
 
-        <Button
-            Text="Report Item"
-            Clicked="OnClickedReportBtn"
-        />
-
-
-    </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>
