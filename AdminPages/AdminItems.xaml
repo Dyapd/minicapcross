@@ -1,19 +1,131 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="test.Pages.Items"
-             Title="Items"
-             BackgroundImageSource="caloocan_4.jpg">
-    <VerticalStackLayout>
-        <Label 
-            Text="List of Items!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <!-- add collection view here later charles-->
+             x:Class="test.Pages.AdminItems"
+             Title="Admin Items"
+             BackgroundColor="#E3F2FD">
 
-        <Button
-            Text="Add Lost Item"
-            Clicked="OnAddItemBtnClicked"/>
-        
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            
+            <Frame BackgroundColor="#1565C0"
+                   CornerRadius="10"
+                   Padding="10"
+                   HasShadow="True">
+                <Label Text="Admin Items"
+                       FontSize="24"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Frame>
+
+            
+            <Frame BackgroundColor="#1565C0"
+                   CornerRadius="10"
+                   Padding="10"
+                   HasShadow="True">
+                <Grid ColumnDefinitions="*,*,*,*" Padding="5" RowDefinitions="Auto">
+                    <Label Text="ItemID"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="0" />
+                    <Label Text="Item Image"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="1" />
+                    <Label Text="Category"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="2" />
+                    <Label Text="Status"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="3" />
+                </Grid>
+            </Frame>
+
+            
+            <CollectionView ItemsSource="{Binding ItemList}"
+                            BackgroundColor="Transparent"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                               Padding="10"
+                               BackgroundColor="White"
+                               Margin="5"
+                               HasShadow="True">
+                            <Grid ColumnDefinitions="*, Auto"
+                                  Padding="5">
+                                
+                                <Label Text="{Binding ItemID}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#1565C0"
+                                       VerticalOptions="Center" />
+
+                                
+                                <Image Source="{Binding ItemImage}"
+                                       Grid.Column="1"
+                                       Aspect="AspectFill"
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       VerticalOptions="Center" />
+
+                                
+                                <Label Text="{Binding Category}"
+                                       Grid.Column="2"
+                                       FontSize="18"
+                                       TextColor="Black"
+                                       VerticalOptions="Center" />
+
+                                
+                                <Label Text="{Binding Status}"
+                                       Grid.Column="3"
+                                       FontSize="18"
+                                       TextColor="Black"
+                                       VerticalOptions="Center" />
+
+                                
+                                <Button Text="Details"
+                                        Grid.Column="1"
+                                        BackgroundColor="#E53935"
+                                        TextColor="White"
+                                        CornerRadius="5"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ButtonCommand}"
+                                        CommandParameter="{Binding .}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            
+            <Button Text="Add Lost Item"
+                    BackgroundColor="#1565C0"
+                    TextColor="White"
+                    CornerRadius="5"
+                    HorizontalOptions="Center"
+                    Padding="10"
+                    Clicked="OnAddItemBtnClicked"/>
+
+            
+            <Label Text="© 2024 Admin Dashboard"
+                   FontSize="14"
+                   TextColor="#9E9E9E"
+                   HorizontalOptions="Center"
+                   VerticalOptions="EndAndExpand" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
