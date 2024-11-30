@@ -1,10 +1,11 @@
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace test;
 
 public partial class ClaimPage : ContentPage
 {
     string connectionString;
+    byte[] leftImageBytes;
 
     public ClaimPage()
     {
@@ -15,7 +16,62 @@ public partial class ClaimPage : ContentPage
         SaveToDatabase();
     }
 
+    //this changes the picture on the left depending on the selection
+
+    private async void OnPickerSelectedIndexChangedLeft(object sender, EventArgs e)
+    {
+        
+        try
+        {
+            IPLocator ip = new IPLocator();
+            connectionString = ip.ConnectionString();
+
+            var selectedOption = comboBoxLeft.SelectedItem.ToString();
+
+            if (string.IsNullOrEmpty(selectedOption))
+            {
+                test.Text = "No option selected.";
+                return;
+            }
+
+            test.Text = $"You selected: {selectedOption}";
+
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT Report_Image FROM Reports WHERE Report_ID = @SelectedID";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@SelectedID", selectedOption);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    leftImageBytes = reader["Report_Image"] as byte[];
+                }
+            }
+
+            if (leftImageBytes != null)
+            {
+                var imageSource = ImageSource.FromStream(() => new MemoryStream(leftImageBytes));
+                leftImage.Source = imageSource;
+            }
+            else
+            {
+                test.Text = "No image found for the selected option.";
+                leftImage.Source = null;
+            }
+        }
+        catch (Exception ev)
+        {
+            DisplayAlert("Error!", ev.Message, "OK!");
+        }
+    }
+
     //this changes the picture on the right depending on the selection
+
     private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
     {
         byte[] imageBytes = null;
@@ -85,20 +141,7 @@ public partial class ClaimPage : ContentPage
             return;
         }
 
-        //byte[] imageBytes;
-        //using (var memoryStream = new MemoryStream())
-        //{
-        //    if (leftImage.Source != null)
-        //    {
-        //        leftImage.Source.ToStream().CopyTo(memoryStream);
-        //        imageBytes = memoryStream.ToArray();
-        //    }
-        //    else
-        //    {
-        //        test.Text = "No image selected for upload.";
-        //        return;
-        //    }
-        //}
+        
 
 
         using (SqlConnection connection = new SqlConnection(connectionString))
@@ -108,7 +151,7 @@ public partial class ClaimPage : ContentPage
             command.Parameters.AddWithValue("@Category", category);
             command.Parameters.AddWithValue("@Description", description);
             command.Parameters.AddWithValue("@StudentNumber", studentNumber);
-            //command.Parameters.AddWithValue("@Image", imageBytes);
+            command.Parameters.AddWithValue("@Image", leftImageBytes);
 
             connection.Open();
             command.ExecuteNonQuery();

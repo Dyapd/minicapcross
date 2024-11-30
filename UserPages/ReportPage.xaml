@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.ReportPage"
              Title="Report Page">
+    
     <ScrollView>
         <VerticalStackLayout
         Spacing="20"
@@ -60,9 +61,11 @@
 
             <Label
             Text="Location Lost:"/>
+            
             <Entry
             x:Name="LocationInput"
              Background="AntiqueWhite"/>
+
 
             <Label
             Text="Student Number:"/>
