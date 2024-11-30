@@ -89,7 +89,7 @@ public partial class ReportPage : ContentPage
 
             string reportICategory = CategoryInput.SelectedItem.ToString();
             string reportDescription = DescriptionInput.Text;
-            string reportLocation = LocationInput.Text;
+            string reportLocation = LocationInput.SelectedItem.ToString();
             DateTime reportDateTime = SetDateTime();
             
 

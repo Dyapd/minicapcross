@@ -109,9 +109,8 @@
                         <DataTemplate>
                             <Frame Padding="10" Margin="5" BackgroundColor="SeaGreen">
                                 <HorizontalStackLayout>
-                                    <Label
-                                        Text="{Binding Category}"/>
-                                    <Image
+                                <Label Text="{Binding CategoryAndID}"/>
+                                <Image
                                         />
                                 </HorizontalStackLayout>
                             </Frame>

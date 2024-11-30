@@ -66,10 +66,17 @@
 
             <Label
             Text="Location Lost:"/>
-
-            <Entry
+            <Picker
             x:Name="LocationInput"
-             Background="AntiqueWhite"/>
+            Background="AntiqueWhite">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Ground Floor</x:String>
+                        <x:String>1st Floor</x:String>
+                        <x:String>2nd Floor</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
             <Button
             x:Name="ReportItemBtn"
