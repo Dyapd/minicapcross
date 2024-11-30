@@ -1,4 +1,7 @@
 using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
+using static test.DataHolders.DataholderNotificationLog;
+
 
 namespace test;
 
@@ -6,10 +9,14 @@ public partial class ClaimPage : ContentPage
 {
     string connectionString;
     byte[] leftImageBytes;
+    public ObservableCollection<Items> Items { get; set; }
+
 
     public ClaimPage()
     {
         InitializeComponent();
+        Items = new ObservableCollection<Items>();
+        BindingContext = this;
     }
     private void OnSaveButtonClicked(object sender, EventArgs e)
     {
@@ -188,5 +195,51 @@ public partial class ClaimPage : ContentPage
         }
     }
 
-    
+    public async Task<List<Items>> ReadDataNotificationLog()
+    {
+        List<Items> items = new List<Items>();
+        IPLocator ip = new IPLocator();
+        string connectionString = ip.ConnectionString();
+
+        SqlConnection connection = new SqlConnection(connectionString);
+        try
+        {
+            using (connection)
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT i.Item_ID, i.Item_Category FROM Items i JOIN Reports r ON i.Item_ICategory = r.Report_ICategory AND i.Item_Location = r.Report_Location WHERE r.Student_Number = @SessionVars";
+                command.Parameters.AddWithValue("@SessionVars", SessionVars.SessionId);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        items.Add(new Items
+                        {
+                            ID = reader.GetInt32(0).ToString(),
+                            Category = reader.GetString(1)
+                        });
+                    }
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return items;
+
+    }
+
+    private async void LoadItems()
+    {
+        List<Items> items = await ReadDataNotificationLog();
+        Items.Clear();
+        foreach (Items item in items)
+        {
+            Items.Add(item);
+        }
+    } 
 }

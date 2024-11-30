@@ -36,15 +36,12 @@
                      Text="Reported Item Picture"
                      Margin="10, 0"
                      />
-                    
+
                     <Picker x:Name="comboBoxLeft"
                      Title="Select an option"
-                     SelectedIndexChanged="OnPickerSelectedIndexChangedLeft">
-                        <Picker.Items>
-                            <x:String>1</x:String>
-                            <x:String>2</x:String>
-                            <x:String>3</x:String>
-                        </Picker.Items>
+                     SelectedIndexChanged="OnPickerSelectedIndexChangedLeft"
+                     ItemsSource="{Binding Items}"
+                            ItemDisplayBinding="{Binding CategoryAndID}">
                     </Picker>
 
                 </HorizontalStackLayout>

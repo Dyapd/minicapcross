@@ -13,7 +13,11 @@ namespace test.DataHolders
             public string Category { get; set; }
             public string ID {  get; set; }
 
+
+
             public string CategoryAndID => $"{Category}{ID}";
         }
+
+        
     }
 }
