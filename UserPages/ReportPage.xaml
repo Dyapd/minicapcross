@@ -8,15 +8,17 @@
         <VerticalStackLayout
         Spacing="20"
         Padding="20"
+
         >
-            <Frame BackgroundColor="White"
-                    CornerRadius="20"
+            <Frame BackgroundColor="DarkBlue"
+                    CornerRadius="2"
                     Padding="15">
                 <Label 
             Text="Report Lost Item" FontFamily="OpenSans"
             FontAttributes="Bold"
             HeightRequest="50"
             FontSize="Medium"
+                    TextColor="White"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
             </Frame>
@@ -27,8 +29,7 @@
             />
             <Picker
             x:Name="CategoryInput"
-            Background="AntiqueWhite" >
-
+            Background="AntiqueWhite">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Personal Item</x:String>
@@ -49,6 +50,7 @@
 
             <Button 
             Text="Upload Image"
+            BackgroundColor="#f54e42"
             x:Name="ImageInput"
             Clicked="OnClickedImageBtn"
             >
@@ -83,7 +85,7 @@
             x:Name="ReportItemBtn"
             Text="Report Item"
             Clicked="OnClickedReportBtn"
-                BackgroundColor="Red"
+                BackgroundColor="#f54e42"
             >
             </Button>
         </VerticalStackLayout>

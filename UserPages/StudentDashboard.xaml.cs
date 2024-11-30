@@ -2,6 +2,7 @@ using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Runtime.CompilerServices;
 using static test.DataHolders.DataholderNotificationLog;
 
 
@@ -129,29 +130,33 @@ public partial class StudentDashboard : ContentPage
 
     private void OnLogoutBtnEntered(object sender, EventArgs e)
     {
-        LogoutBtn.BackgroundColor = Colors.SlateGrey;
+        LogoutBtn.BackgroundColor = Colors.DarkOrange;
     }
 
     private void OnLogoutBtnExited(object sender, EventArgs e)
     {
-        LogoutBtn.BackgroundColor = Colors.LightGray;
+        LogoutBtn.BackgroundColor = Colors.Orange;
     }
     private void OnReportBtnEntered(object sender, PointerEventArgs e)
     {
-        ReportBtn.BackgroundColor = Colors.SlateGrey;
+        ReportBtn.BackgroundColor = Colors.DarkOrange;
     }
     private void OnReportBtnExited(object sender, PointerEventArgs e)
     {
-        ReportBtn.BackgroundColor = Colors.DarkViolet;
+        ReportBtn.BackgroundColor = Colors.Orange;
     }
    private void OnClaimBtnEntered(object sender, EventArgs e) 
     {
-        ClaimBtn.BackgroundColor = Colors.SlateGray;
+        ClaimBtn.BackgroundColor = Colors.DarkOrange;
         
     }
     private void OnClaimBtnExited(object sender, EventArgs e) 
     {
-        ClaimBtn.BackgroundColor = Colors.DarkViolet;
+        ClaimBtn.BackgroundColor = Colors.Orange;
+    }
+    private void  NotificationiconBtn_Clicked(object sender, EventArgs e)
+    {
+
     }
 
     
