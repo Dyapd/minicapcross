@@ -8,6 +8,7 @@ namespace test;
 public partial class ClaimPage : ContentPage
 {
     string connectionString;
+    string reportID;
     byte[] leftImageBytes;
     public ObservableCollection<Items> Items { get; set; }
     public ObservableCollection<Items> Items2 { get; set; }
@@ -17,6 +18,7 @@ public partial class ClaimPage : ContentPage
     {
         InitializeComponent();
         Items = new ObservableCollection<Items>();
+        Items2 = new ObservableCollection<Items2>();
         BindingContext = this;
         LoadItems();
     }
@@ -36,6 +38,7 @@ public partial class ClaimPage : ContentPage
             connectionString = ip.ConnectionString();
             
             var selectedOption = comboBoxLeft.SelectedItem as Items;
+            reportID = selectedOption.ID;
             if (string.IsNullOrEmpty(selectedOption.ID))
             {
                 DisplayAlert("Error", "No option selected!", "OK!");
@@ -210,7 +213,7 @@ public partial class ClaimPage : ContentPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT Report_ID, Report_Category FROM Reports WHERE Student_Number = @SessionVars";
+                command.CommandText = "SELECT Report_ID, Report_Category, Report_Location FROM Reports WHERE Student_Number = @SessionVars";
                 command.Parameters.AddWithValue("@SessionVars", SessionVars.SessionId);
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -220,7 +223,8 @@ public partial class ClaimPage : ContentPage
                         items.Add(new Items
                         {
                             ID = reader.GetInt32(0).ToString(),
-                            Category = reader.GetString(1)
+                            Category = reader.GetString(1),
+                            Location = reader.GetString(2)
                         });
                     }
                 }
@@ -243,5 +247,56 @@ public partial class ClaimPage : ContentPage
         {
             Items.Add(item);
         }
-    } 
+    }
+
+    public async Task<List<Items2>> ReadNotificationLog2()
+    {
+        List<Items2> items = new List<Items2>();
+
+        IPLocator ip = new IPLocator();
+        string connectionString = ip.ConnectionString();
+
+        SqlConnection connection = new SqlConnection(connectionString);
+        try
+        {
+            using (connection)
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT Item_ID, Item_Category FROM Items WHERE Item_Location = @ReportLocation";
+                command.Parameters.AddWithValue("@ReportLocation", reportID);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        items.Add(new Items2
+                        {
+                            ID = reader.GetInt32(0).ToString(),
+                            Category = reader.GetString(1),
+                            Location = reader.GetString(2)
+
+                        });;
+                    }
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return items;
+
+    }
+
+    private async void LoadItems2()
+    {
+        List<Items2> items = await ReadNotificationLog2();
+        Items2.Clear();
+        foreach (Items2 item in items)
+        {
+            Items2.Add(item);
+        }
+    }
 }
