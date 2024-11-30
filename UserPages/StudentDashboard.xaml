@@ -2,39 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.StudentDashboard"
-             BackgroundColor="White"
+             BackgroundColor="LightBlue"
             >
  
     <ScrollView>
-        <Frame
-            BackgroundColor="LightBlue">
+
             <VerticalStackLayout 
-                VerticalOptions="End"
-                 HorizontalOptions="End"
-            >
+                VerticalOptions="CenterAndExpand"
+                 HorizontalOptions="CenterAndExpand">
 
                 <Frame 
                 BackgroundColor="DarkBlue" 
                 CornerRadius="10" 
                 Padding="10"
-                    VerticalOptions="Start"
-                    HorizontalOptions="Start"
-                    WidthRequest="223"
-                   >
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="223"
+                >
 
                     <Label 
                     Text="ReClaimIt!"  FontFamily="Opensans"
                     FontSize="Large" 
                     FontAttributes="Bold"
-                    HorizontalOptions="Start"
+                    HorizontalOptions="Center"
            
-                    VerticalOptions="Start"
+                    VerticalOptions="Center"
                     TextColor="White" />
-
                 </Frame>
+                
                 <ImageButton
             
-                    Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\logout.png"         
+                    Source="logout.png"         
                     x:Name="LogoutBtn"
                     Margin="15"
                     HorizontalOptions="End"
@@ -46,15 +44,15 @@
                     Opacity="23">
 
 
-                <ImageButton.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
+                    <ImageButton.GestureRecognizers>
+                        <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
                                                   PointerExited="OnLogoutBtnExited"                              />
-                </ImageButton.GestureRecognizers>
-            </ImageButton>
+                    </ImageButton.GestureRecognizers>
+                </ImageButton>
 
 
-            <ImageButton
-                    Source="C:\Users\User\Source\Repos\minicapcross\Resources\Images\notification.png"
+                <ImageButton
+                    Source="notification.png"
                     HeightRequest="40"
                     x:Name="NotificationiconBtn"
                     Margin="15"
@@ -65,16 +63,13 @@
                    BorderColor="LightBlue"  Opacity="23"
                     >
 
-            </ImageButton>
-
-
-
-
-            <HorizontalStackLayout
+                </ImageButton>
+                
+                <HorizontalStackLayout
                     HorizontalOptions="Center"
                     Margin="70"
                     VerticalOptions="Center">
-                <Button                     
+                    <Button                     
                         x:Name="ReportBtn"
                         Text="Report"
                         BackgroundColor="#f54e42"
@@ -88,8 +83,8 @@
                         ContentLayout="Left, 20"
                        >
 
-                </Button>
-                <Button  
+                    </Button>
+                    <Button  
                         x:Name="ClaimBtn"
                         Margin="25, 0"
                         BackgroundColor="#f54e42"
@@ -102,10 +97,10 @@
                         ImageSource="claim.png"
                         Text="Claim"
                         >
-                </Button>
+                    </Button>
 
-                <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
-                <!--<Button
+                    <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
+                    <!--<Button
                     
                         WidthRequest="80"
                         HeightRequest="80"
@@ -117,75 +112,56 @@
                         Clicked="NotificationBtn_Clicked" 
                         />-->
 
-            </HorizontalStackLayout>
+                </HorizontalStackLayout>
 
-            <!-- THIS IS FOR NOTIFICATION LOG!!-->
+                <!-- THIS IS FOR NOTIFICATION LOG!!-->
 
-            <Frame BackgroundColor="DarkBlue" 
+                <Frame BackgroundColor="DarkBlue" 
                     CornerRadius="10" 
                     Padding="15">
-                <Label 
+                    <Label 
                  Text="Notifications" 
                  FontSize="Small" 
                  FontAttributes="Bold"
                  HorizontalOptions="Center" 
                  TextColor="white" />
-            </Frame>
+                </Frame>
 
-            <CollectionView 
-                    SelectionMode="Single"
-                    x:Name="NotificationLog"
-                    ItemsSource="{Binding Items}"
-                    >
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Padding="10" Margin="5" BackgroundColor="SeaGreen">
-                            <HorizontalStackLayout>
-                                <Label Text="{Binding CategoryAndID}"/>
-                                <Image
-                                        />
-                            </HorizontalStackLayout>
-                        </Frame>
-
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>-->
-
-            <CollectionView ItemsSource="{Binding Items}"
+                <CollectionView ItemsSource="{Binding Items}"
                 BackgroundColor="Transparent"
                 SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame CornerRadius="10"
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10"
                    Padding="10"
                    BackgroundColor="White"
                    Margin="5"
                    HasShadow="True">
-                            <Grid ColumnDefinitions="*, Auto"
+                                <Grid ColumnDefinitions="*, Auto"
                       Padding="5">
 
 
-                                <Label Text="{Binding CategoryAndID}"
+                                    <Label Text="{Binding CategoryAndID}"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#1565C0"
                            VerticalOptions="Center" />
 
 
-                                <Button Text="Details"
+                                    <Button Text="Details"
                             Grid.Column="1"
                             BackgroundColor="#E53935"
                             TextColor="White"
                             CornerRadius="5"
                             Clicked="OnDetailsButtonClicked" />
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-        </VerticalStackLayout>
+            </VerticalStackLayout>
+
     </ScrollView>
     
 </ContentPage>
