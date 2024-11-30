@@ -9,6 +9,38 @@ public partial class ReportPage : ContentPage
     public ReportPage()
     {
         InitializeComponent();
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ReportItemBtn.BackgroundColor = Colors.SteelBlue;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ReportItemBtn.BackgroundColor = Colors.SlateBlue;
+            };
+
+            ReportItemBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ImageInput.BackgroundColor = Colors.SteelBlue;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ImageInput.BackgroundColor = Colors.SlateBlue;
+            };
+
+            ImageInput.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
     }
 
 

@@ -52,10 +52,6 @@
             x:Name="ImageInput"
             Clicked="OnClickedImageBtn"
             >
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnImageInputBtnEntered"
-                                 PointerExited="OnImageInputBtnExited"/>
-                </Button.GestureRecognizers>
             </Button>
 
             <Label
@@ -81,10 +77,6 @@
             Clicked="OnClickedReportBtn"
                 BackgroundColor="Red"
             >
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnReportItemBtnEntered"
-                                 PointerExited="OnReportItemBtnExited"/>
-                </Button.GestureRecognizers>
             </Button>
         </VerticalStackLayout>
     </ScrollView>

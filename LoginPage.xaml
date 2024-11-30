@@ -86,11 +86,6 @@
                
                 HorizontalOptions="Fill"
                 BackgroundColor="SlateBlue">
-                <!--<Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnLoginBtnEntered"
-                                              PointerExited="OnLoginBtnExited"
-                                              />
-                </Button.GestureRecognizers>-->
             </Button>
         </Grid>
     </ScrollView>

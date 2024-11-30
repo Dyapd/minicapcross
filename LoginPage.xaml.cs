@@ -18,7 +18,7 @@ namespace test
         {
             InitializeComponent();
 
-            if (DeviceInfo.Platform != DevicePlatform.Android || DeviceInfo.Platform != DevicePlatform.iOS)
+            if (DeviceInfo.Platform != DevicePlatform.Android )
             {
                 PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
                 pointerGestureRecognizer.PointerEntered += (s, e) =>

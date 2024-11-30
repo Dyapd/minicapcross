@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using static test.DataHolders.DataholderNotificationLog;
 using CommunityToolkit.Maui.Views;
-using Microsoft.Data.SqlClient;
+
 
 public partial class AdminSubmittedPage : ContentPage
 {

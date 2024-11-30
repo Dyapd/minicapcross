@@ -18,10 +18,45 @@ public partial class StudentDashboard : ContentPage
 
         LoadItems();
 
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ReportBtn.BackgroundColor = Colors.SteelBlue;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ReportBtn.BackgroundColor = Colors.SlateBlue;
+            };
+
+            ReportBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ClaimBtn.BackgroundColor = Colors.SteelBlue;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ClaimBtn.BackgroundColor = Colors.SlateBlue;
+            };
+
+            ClaimBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+
+
 
     }
     //uses the dataholdernotificationlog class from datahold folder!
-    public  List<Items> ReadDataNotificationLog()
+    public  async Task<List<Items>> ReadDataNotificationLog()
     {
         List<Items> items = new List<Items>();
         IPLocator ip = new IPLocator();
@@ -57,9 +92,9 @@ public partial class StudentDashboard : ContentPage
 
     }
 
-    private void LoadItems()
+    private async void LoadItems()
     {
-        List<Items> items= ReadDataNotificationLog();
+        List<Items> items = await ReadDataNotificationLog();
         Items.Clear(); 
         foreach (Items item in items)
         {
