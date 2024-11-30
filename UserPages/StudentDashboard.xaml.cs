@@ -10,7 +10,6 @@ public partial class StudentDashboard : ContentPage
 {
     public ObservableCollection<Items> Items { get; set; }
     
-    private SqlConnection connection = new SqlConnection("Data Source=localhost,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;");
     public StudentDashboard()
     {
         InitializeComponent();
@@ -19,13 +18,51 @@ public partial class StudentDashboard : ContentPage
 
         LoadItems();
 
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ReportBtn.BackgroundColor = Colors.SteelBlue;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ReportBtn.BackgroundColor = Colors.SlateBlue;
+            };
+
+            ReportBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ClaimBtn.BackgroundColor = Colors.SteelBlue;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ClaimBtn.BackgroundColor = Colors.SlateBlue;
+            };
+
+            ClaimBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+
+
 
     }
     //uses the dataholdernotificationlog class from datahold folder!
-    public  List<Items> ReadDataNotificationLog()
+    public  async Task<List<Items>> ReadDataNotificationLog()
     {
         List<Items> items = new List<Items>();
+        IPLocator ip = new IPLocator();
+        string connectionString = ip.ConnectionString();
 
+        SqlConnection connection = new SqlConnection(connectionString);
         try
         {
             using (connection)
@@ -44,7 +81,7 @@ public partial class StudentDashboard : ContentPage
                         });
                     }
                 }
-
+               
             }
         }
         catch (Exception ex)
@@ -55,9 +92,9 @@ public partial class StudentDashboard : ContentPage
 
     }
 
-    private void LoadItems()
+    private async void LoadItems()
     {
-        List<Items> items= ReadDataNotificationLog();
+        List<Items> items = await ReadDataNotificationLog();
         Items.Clear(); 
         foreach (Items item in items)
         {

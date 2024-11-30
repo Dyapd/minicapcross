@@ -7,152 +7,119 @@
             >
  
     <ScrollView>
-        <VerticalStackLayout>
-            <BoxView HeightRequest="1"
-                    Color="Black"
-                    HorizontalOptions="FillAndExpand"/>
-            <Label 
-        Text="ReClaimIt!" FontFamily="Impact" 
-        FontSize="Header" 
-        FontAttributes="Bold"
-        Style="{StaticResource Headline}"
-        Margin="1"
-                TextColor="Black"/>
-            <BoxView HeightRequest="1" 
-                     Color="Black"
-                     HorizontalOptions="FillAndExpand"/>
-
-            <ImageButton
-              Source="logout_icon.png"         
-                x:Name="LogoutBtn"
-                SemanticProperties.Hint="Counts the number you clicked"
-                Margin="15"
-                HorizontalOptions="End"
-                Clicked="LogoutBtn_Clicked"
-                Background="LightGray"
-                HeightRequest="40"
-                Opacity="11"
-                
-                >
-                <ImageButton.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
-                                              PointerExited="OnLogoutBtnExited"
-                              />
-                </ImageButton.GestureRecognizers>
-            </ImageButton>
-         
-
-
-            <HorizontalStackLayout
-                HorizontalOptions="Center"
-                Margin="70"
-                VerticalOptions="Center">
-
-
-
-
-
-
-                <Button  
-                    
-                    
-                    x:Name="ReportBtn"
-                    Text="Report"
-                    BackgroundColor="DarkViolet"
-                    HorizontalOptions="Start"
-                    Clicked="ReportBtn_Clicked" 
+        <VerticalStackLayout
+            Spacing="1"
+            Padding="1"
+            >
+            <Frame 
+                BackgroundColor="White" 
+                CornerRadius="10" 
+                Padding="15">
+                <Label 
+                    Text="ReClaimIt!"  FontFamily="Opensans"
+                    FontSize="Large" 
                     FontAttributes="Bold"
-                    HeightRequest="50"
-                    WidthRequest="125"
-                    TextTransform="Uppercase"
-                    ImageSource="report.png"
-                    ContentLayout="Left, 20"
-                   >
-                    <Button.GestureRecognizers>
-                        <PointerGestureRecognizer PointerEntered="OnReportBtnEntered"
-                                                  PointerExited="OnReportBtnExited"
-                                                  />
-                    </Button.GestureRecognizers>
+                    HorizontalOptions="Center" 
+                    TextColor="Black" />
+            </Frame>
 
-                    
-
-
-                </Button>
-
-            
-
-                <Button 
-  
-                    x:Name="ClaimBtn"
-                    Margin="25"
-                    BackgroundColor="DarkViolet"
-                    HorizontalOptions="Start"
-                    Clicked="ClaimBtn_Clicked"
-                    FontAttributes="Bold"
-                    HeightRequest="50"
-                    WidthRequest="125"
-                    ImageSource="claim.png"
-                    Text="Claim"
-                    >
-                    <Button.GestureRecognizers>
-                        <PointerGestureRecognizer PointerEntered="OnClaimBtnEntered"
-                                                  PointerExited="OnClaimBtnExited"
-                                                  />
-                    </Button.GestureRecognizers>
-                 </Button>
-
-
-                <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
-                <!--<Button
-                    
-                    WidthRequest="80"
-                    HeightRequest="80"
-                    CornerRadius="70"
-                    x:Name="NotificationBtn"
-                    SemanticProperties.Hint="Count the number you clicked"
+                <ImageButton
+                    Source="logout_icon.png"         
+                    x:Name="LogoutBtn"
                     Margin="15"
-                    HorizontalOptions="Start"
-                    Clicked="NotificationBtn_Clicked" 
-                    />-->
+                    HorizontalOptions="End"
+                    Clicked="LogoutBtn_Clicked"
+                    Background="Transparent"
+                    HeightRequest="40"
+                    Opacity="11">
+                    
+                    <ImageButton.GestureRecognizers>
+                        <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
+                                                  PointerExited="OnLogoutBtnExited"                              />
+                    </ImageButton.GestureRecognizers>
+                </ImageButton>
+            
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    Margin="70"
+                    VerticalOptions="Center">
+                    <Button                     
+                        x:Name="ReportBtn"
+                        Text="Report"
+                        BackgroundColor="DarkViolet"
+                        HorizontalOptions="Start"
+                        CornerRadius="20"
+                        Clicked="ReportBtn_Clicked" 
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        WidthRequest="125"
+                        ImageSource="report.png"
+                        ContentLayout="Left, 20"
+                       >
 
-            </HorizontalStackLayout>
+                    </Button>
+                <Button  
+                        x:Name="ClaimBtn"
+                        Margin="25, 0"
+                        BackgroundColor="DarkViolet"
+                        HorizontalOptions="Start"
+                        CornerRadius="20"
+                        Clicked="ClaimBtn_Clicked"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        WidthRequest="125"
+                        ImageSource="claim.png"
+                        Text="Claim"
+                        >
+                </Button>
+                    <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
+                    <!--<Button
+                    
+                        WidthRequest="80"
+                        HeightRequest="80"
+                        CornerRadius="70"
+                        x:Name="NotificationBtn"
+                        SemanticProperties.Hint="Count the number you clicked"
+                        Margin="15"
+                        HorizontalOptions="Start"
+                        Clicked="NotificationBtn_Clicked" 
+                        />-->
+
+                </HorizontalStackLayout>
            
-            <!-- THIS IS FOR NOTIFICATION LOG!!-->
+                <!-- THIS IS FOR NOTIFICATION LOG!!-->
+            <Frame BackgroundColor="#FFFFFF" 
+                    CornerRadius="10" 
+                    Padding="15">
+            <Label 
+                 Text="Notifications" 
+                 FontSize="Small" 
+                 FontAttributes="Bold"
+                 HorizontalOptions="Center" 
+                 TextColor="Black" />
+            </Frame>
+                
+                <CollectionView 
+                    SelectionMode="Single"
+                    x:Name="NotificationLog"
+                    ItemsSource="{Binding Items}"
+                    >
+                    
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" Margin="5" BackgroundColor="SeaGreen">
+                                <HorizontalStackLayout>
+                                    <Label
+                                        Text="{Binding Category}"/>
+                                    <Image
+                                        />
+                                </HorizontalStackLayout>
+                            </Frame>
 
-            <BoxView
-                 HeightRequest="1"
-                 Color="Black"
-                 HorizontalOptions="FillAndExpand"/>    
-
-            <Label Text="Notifications" FontFamily="Arial"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold"
-                   TextColor="Black"/>  
-            <CollectionView 
-                SelectionMode="Single"
-                x:Name="NotificationLog"
-                ItemsSource="{Binding Items}">
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Padding="10" Margin="5" BackgroundColor="SeaGreen">
-                            <HorizontalStackLayout>
-                                <Label
-                                    Text="{Binding Category}"/>
-                                <Image
-                                    />
-                            </HorizontalStackLayout>
-                        </Frame>
-
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            
-            
-            <BoxView
-               HeightRequest="1"
-               Color="Black"
-               HorizontalOptions="FillAndExpand"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+         
         </VerticalStackLayout>
     </ScrollView>
     

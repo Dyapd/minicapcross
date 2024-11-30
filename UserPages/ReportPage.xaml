@@ -3,59 +3,81 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.ReportPage"
              Title="Report Page">
-    <VerticalStackLayout
-        VerticalOptions="CenterAndExpand"
+    
+    <ScrollView>
+        <VerticalStackLayout
+        Spacing="20"
+        Padding="20"
         >
-        <Label 
-            Text="Report Lost Item"
+            <Frame BackgroundColor="White"
+                    CornerRadius="20"
+                    Padding="15">
+                <Label 
+            Text="Report Lost Item" FontFamily="OpenSans"
+            FontAttributes="Bold"
+            HeightRequest="50"
+            FontSize="Medium"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+            </Frame>
 
-        <Label 
-            Text="Category:"/>
-        <Entry
+            <Label 
+            Text="Category:"
+            FontSize="Body"
+            />
+            <Picker
             x:Name="CategoryInput"
-            Background="AntiqueWhite"/>
+            Background="AntiqueWhite" >
 
-        <Label
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Personal Item</x:String>
+                        <x:String>Valuable Item</x:String>
+                        <x:String>Electronic Item</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label
             Text="Description:"/>
-        <Entry
+            <Entry
             x:Name="DescriptionInput"
              Background="AntiqueWhite"/>
 
-        <Label
+            <Label
             Text="Image (optional):"/>
-        <Button 
+
+            <Button 
             Text="Upload Image"
             x:Name="ImageInput"
-            Clicked="OnClickedImageBtn"/>
+            Clicked="OnClickedImageBtn"
+            >
+            </Button>
 
-        
-
-        <Label
+            <Label
             Text="Date and Time Lost:"/>
 
-        <DatePicker
+            <DatePicker
             x:Name="DateInput"/>
-        <TimePicker
-            x:Name="TimeInput"/>
-        
-        <Label
+
+            <TimePicker
+            x:Name="TimeInput"
+                Margin="10"/>
+
+            <Label
             Text="Location Lost:"/>
-        <Entry
+
+            <Entry
             x:Name="LocationInput"
              Background="AntiqueWhite"/>
 
-        <Label
-            Text="Student Number:"/>
-        <Entry
-            x:Name="StudNumberInput"
-             Background="AntiqueWhite"/>    
-
-        <Button
+            <Button
+            x:Name="ReportItemBtn"
             Text="Report Item"
             Clicked="OnClickedReportBtn"
-            />
-
-    </VerticalStackLayout>
+                BackgroundColor="Red"
+            >
+            </Button>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

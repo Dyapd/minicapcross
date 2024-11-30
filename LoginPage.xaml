@@ -53,7 +53,7 @@
                 Grid.Row="3"
                 BackgroundColor="LightGray"
                 Margin="0,5">
-                
+
             </Entry>
 
             <Label
@@ -83,13 +83,9 @@
                 x:Name="LoginBtn"
                 Text="Login" 
                 Clicked="OnLoginClicked"
+               
                 HorizontalOptions="Fill"
                 BackgroundColor="SlateBlue">
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnLoginBtnEntered"
-                                              PointerExited="OnLoginBtnExited"
-                                              />
-                </Button.GestureRecognizers>
             </Button>
         </Grid>
     </ScrollView>

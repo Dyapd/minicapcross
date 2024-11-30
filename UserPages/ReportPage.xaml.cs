@@ -2,12 +2,45 @@ namespace test;
 using Microsoft.Maui.Controls;
 using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
+using System.Security.AccessControl;
 
 public partial class ReportPage : ContentPage
 {
     public ReportPage()
     {
         InitializeComponent();
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ReportItemBtn.BackgroundColor = Colors.SteelBlue;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ReportItemBtn.BackgroundColor = Colors.SlateBlue;
+            };
+
+            ReportItemBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ImageInput.BackgroundColor = Colors.SteelBlue;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ImageInput.BackgroundColor = Colors.SlateBlue;
+            };
+
+            ImageInput.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
     }
 
 
@@ -45,15 +78,16 @@ public partial class ReportPage : ContentPage
         }
     }
 
+    //inserts the data inserted by user
     private async void OnClickedReportBtn(object sender, EventArgs e)
     {
         try
         {
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
-            
-            
-            string reportICategory = CategoryInput.Text;
+
+
+            string reportICategory = CategoryInput.SelectedItem.ToString();
             string reportDescription = DescriptionInput.Text;
             string reportLocation = LocationInput.Text;
             DateTime reportDateTime = SetDateTime();
@@ -61,10 +95,7 @@ public partial class ReportPage : ContentPage
 
 
             //image data is global instance
-
             //if image data is null then dont insert with image!
-            
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
@@ -86,7 +117,7 @@ public partial class ReportPage : ContentPage
                     }
                     command.Parameters.AddWithValue("@Description", reportDescription);
                     command.Parameters.AddWithValue("@Location", reportLocation);
-                    command.Parameters.AddWithValue("@StudentNumber", 12);
+                    command.Parameters.AddWithValue("@StudentNumber", SessionVars.SessionId);
 
 
                     int rowsAffected = await command.ExecuteNonQueryAsync();
@@ -114,6 +145,7 @@ public partial class ReportPage : ContentPage
 
     }
 
+    //takes date and time then merge it for insertion
     private DateTime SetDateTime()
     {
         DateTime selectedDate = DateInput.Date;
@@ -122,5 +154,27 @@ public partial class ReportPage : ContentPage
         return combinedDateTime;
     }
 
+    private void OnImageInputBtnEntered(object sender, PointerEventArgs e) 
+    {
+        ImageInput.BackgroundColor = Colors.SlateGrey;    
+    }
+    private void OnImageInputBtnExited(object sender, PointerEventArgs e) 
+    {
+        ImageInput.BackgroundColor = Colors.DarkViolet;
+    }
+
+    private void OnReportItemBtnEntered(object sender, PointerEventArgs e)
+    {
+       ReportItemBtn.BackgroundColor = Colors.SlateGrey;
+    }
+
+    private void OnReportItemBtnExited(object sender, PointerEventArgs e)
+    {
+        ReportItemBtn.BackgroundColor = Colors.Red;
+
+    }
+
 }
+
+
 

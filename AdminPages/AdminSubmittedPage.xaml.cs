@@ -4,6 +4,8 @@ using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using static test.DataHolders.DataholderNotificationLog;
+using CommunityToolkit.Maui.Views;
+
 
 public partial class AdminSubmittedPage : ContentPage
 {
@@ -129,6 +131,6 @@ public partial class AdminSubmittedPage : ContentPage
 
     private void TapGestureRecognizer_Tapped(object events, EventArgs e)
     {
-
+        this.ShowPopup(new PopupSearchLocations());
     }
 }

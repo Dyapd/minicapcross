@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
 
+
 #if ANDROID
 using Android.Provider;
 #endif
@@ -16,7 +17,23 @@ namespace test
         public MainPage()
         {
             InitializeComponent();
-            
+
+            if (DeviceInfo.Platform != DevicePlatform.Android )
+            {
+                PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+                pointerGestureRecognizer.PointerEntered += (s, e) =>
+                {
+                    //mageenter 
+                    LoginBtn.BackgroundColor = Colors.SteelBlue;
+                };
+                pointerGestureRecognizer.PointerExited += (s, e) =>
+                {
+                    //mageexit
+                    LoginBtn.BackgroundColor = Colors.SlateBlue;
+                };
+
+                LoginBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+            }
         }
         private async void OnLoginClicked(object sender, EventArgs e)
         {
@@ -32,60 +49,46 @@ namespace test
             string adacorrecttemp = "adcred";
             string stcorrecttemp = "stcred";
 
-            //for testing the query if it works
-            //try
-            //{
-            //    using (SqlConnection connection = new SqlConnection(connectionString))
-            //    {
-            //        connection.Open();
-            //        var command = connection.CreateCommand();
-            //        command.CommandText = "SELECT * FROM StudentUsers";
-            //        command.ExecuteReader();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lbl.Text = $"Error: {ex.Message}";
-            //    Console.WriteLine(ex.Message);
 
-            //}
 
             //TEMPORARY HARD CODE FOR TESTING!!
-            if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-                await Navigation.PushAsync(new AdminDashboard());
-            }
-            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-                await Navigation.PushAsync(new StudentDashboard());
-            }
-            else
-            {
-                this.ShowPopup(new NewPage1());
-                
-            }
-
-
-            //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
-            //NOTE NEED TO IMPORT DATABASE FROM THE FILES
-            //PROPER CREDENTIALS ARE user id= recadm; password = pass
-
-            //if (CheckAdminAccount(enteredEmail, enteredPassword)) 
+            //if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
             //{
-            //  Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-            //    Navigation.PushAsync(new AdminDashboard());
+            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+            //    await Navigation.PushAsync(new AdminDashboard());
             //}
-            //else if (CheckRegisteredAccount(enteredEmail, enteredPassword))
+            //else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
             //{
-            //      Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-            //    Navigation.PushAsync(new StudentDashboard());
+            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+            //    await Navigation.PushAsync(new StudentDashboard());
             //}
             //else
             //{
             //    this.ShowPopup(new NewPage1());
-            //}
+            //    }
+
+
+            //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
+            //NOTE NEED TO IMPORT DATABASE FROM THE FILES
+            //PROPER CREDENTIALS look in the database adminusers and studusers!!!
+
+            if (CheckAdminAccount(enteredEmail, enteredPassword))
+            {
+                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+                await Navigation.PushAsync(new AdminDashboard());
+            }
+            else if (CheckRegisteredAccount(enteredEmail, enteredPassword))
+            {
+                SessionVars.SetSessionId(enteredEmail, enteredPassword);
+                await DisplayAlert(SessionVars.SessionId, "", "OK!");
+                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+
+                await Navigation.PushAsync(new StudentDashboard());
+            }
+            else if (!(CheckRegisteredAccount(enteredEmail, enteredPassword) && (CheckAdminAccount(enteredEmail, enteredPassword))))
+            {
+                this.ShowPopup(new NewPage1());
+            }
         }
         private bool CheckRegisteredAccount(string enteredEmail, string enteredPassword)
         {
@@ -153,6 +156,7 @@ namespace test
         {
             LoginBtn.BackgroundColor = Colors.SlateBlue;
         }
+
 
     }
 }
