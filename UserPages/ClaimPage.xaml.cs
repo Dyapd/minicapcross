@@ -34,7 +34,6 @@ public partial class ClaimPage : ContentPage
                 return;
             }
 
-            test.Text = $"You selected: {selectedOption}";
 
 
 
@@ -90,8 +89,6 @@ public partial class ClaimPage : ContentPage
             return;
         }
 
-        test.Text = $"You selected: {selectedOption}";
-
         
 
         using (SqlConnection connection = new SqlConnection(connectionString))
@@ -126,38 +123,68 @@ public partial class ClaimPage : ContentPage
         }
     }
 
-    private void SaveToDatabase()
+    private async void SaveToDatabase()
     {
-        IPLocator ip = new IPLocator();
-        connectionString = ip.ConnectionString();
-
-        var category = CategoryInput.Text;
-        var description = DescriptionInput.Text;
-        var studentNumber = SessionVars.SessionId;
-
-        if (string.IsNullOrWhiteSpace(category) || string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(studentNumber))
+        try
         {
-            test.Text = "Please fill in all required fields.";
-            return;
+
+
+            IPLocator ip = new IPLocator();
+            connectionString = ip.ConnectionString();
+
+            var category = CategoryInput.Text;
+            var description = DescriptionInput.Text;
+            var studentNumber = SessionVars.SessionId;
+            var ReportID = comboBoxLeft.SelectedItem.ToString();
+            var ClaimID = comboBox.SelectedItem.ToString();
+
+            if (string.IsNullOrWhiteSpace(category) || string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(studentNumber))
+            {
+                test.Text = "Please fill in all required fields.";
+                return;
+            }
+
+
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"INSERT INTO Claims (Claim_Category, Claim_Status, Claim_ICategory, Claim_Description, Student_Number, Claim_Image, Report_Category, Report_ID, Item_Category, Item_ID)
+                                VALUES (@Category, @Status, @ICategory, @Description, @Student, @Image, @RCategory, @RID, @ITCategory, @IID)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Category", "C");
+                command.Parameters.AddWithValue("@Status", false);
+                command.Parameters.AddWithValue("@ICategory", category);
+                command.Parameters.AddWithValue("@Description", description);
+                command.Parameters.AddWithValue("@Student", SessionVars.SessionId);
+                command.Parameters.AddWithValue("@Image", leftImageBytes);
+                command.Parameters.AddWithValue("@RCategory", "R");
+                command.Parameters.AddWithValue("@RID", ReportID);
+                command.Parameters.AddWithValue("@ITCategory", "I");
+                command.Parameters.AddWithValue("@IID", ClaimID);
+
+                connection.Open();
+                
+
+
+                int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                if (rowsAffected > 0)
+                {
+                    await DisplayAlert("Success", "Claim has been recorded successfully.", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Failure", "Claim failed to insert.", "OK");
+                }
+
+            }
+
         }
-
-        
-
-
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        catch (Exception e)
         {
-            string query = @"INSERT INTO Reports (Report_Category, Report_Description, Student_Number, Report_Image) VALUES (@Category, @Description, @StudentNumber, @Image)";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Category", category);
-            command.Parameters.AddWithValue("@Description", description);
-            command.Parameters.AddWithValue("@StudentNumber", studentNumber);
-            command.Parameters.AddWithValue("@Image", leftImageBytes);
-
-            connection.Open();
-            command.ExecuteNonQuery();
+            await DisplayAlert("ERROR", e.Message, "OK");
         }
-
-        test.Text = "NASEND NA PUTANGINAMO.";
     }
 
     

@@ -25,9 +25,18 @@
             Text="Category:"
             FontSize="Body"
             />
-            <Entry
+            <Picker
             x:Name="CategoryInput"
-            Background="AntiqueWhite"/>
+            Background="AntiqueWhite" >
+
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Personal Item</x:String>
+                        <x:String>Valuable Item</x:String>
+                        <x:String>Electronic Item</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
             <Label
             Text="Description:"/>

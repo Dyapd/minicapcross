@@ -53,9 +53,9 @@ public partial class ReportPage : ContentPage
         {
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
-            
-            
-            string reportICategory = CategoryInput.Text;
+
+
+            string reportICategory = CategoryInput.SelectedItem.ToString();
             string reportDescription = DescriptionInput.Text;
             string reportLocation = LocationInput.Text;
             DateTime reportDateTime = SetDateTime();
@@ -85,7 +85,7 @@ public partial class ReportPage : ContentPage
                     }
                     command.Parameters.AddWithValue("@Description", reportDescription);
                     command.Parameters.AddWithValue("@Location", reportLocation);
-                    command.Parameters.AddWithValue("@StudentNumber", 12);
+                    command.Parameters.AddWithValue("@StudentNumber", SessionVars.SessionId);
 
 
                     int rowsAffected = await command.ExecuteNonQueryAsync();

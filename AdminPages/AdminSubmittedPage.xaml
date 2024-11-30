@@ -3,16 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.AdminSubmittedPage"
              Title="AdminSubmittedPage">
+
+    <ScrollView>
+        
+   
     <VerticalStackLayout
         VerticalOptions="CenterAndExpand"
 >
         <Label 
-    Text="Submitted Lost Item"
-    VerticalOptions="Center" 
-    HorizontalOptions="Center" />
+        Text="Submitted Lost Item"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
 
         <Label 
-    Text="Category:"/>
+        Text="Category:"/>
 
         <Picker
         x:Name="CategoryInput"
@@ -28,22 +32,22 @@
         </Picker>
 
         <Label
-    Text="Description:"/>
+        Text="Description:"/>
         <Entry
-    x:Name="DescriptionInput"
-     Background="AntiqueWhite"/>
+        x:Name="DescriptionInput"
+        Background="AntiqueWhite"/>
 
         <Label
-    Text="Image (optional):"/>
+        Text="Image (optional):"/>
         <Button 
-    Text="Upload Image"
-    x:Name="ImageInput"
+        Text="Upload Image"
+        x:Name="ImageInput"
             Clicked="OnClickedImageBtn"
-   />
+        />
 
         
         <Label
-    Text="Location Lost:"/>
+        Text="Location Lost:"/>
         <Picker
         x:Name="LocationInput"
          Background="AntiqueWhite">
@@ -63,24 +67,19 @@
         </Entry>
 
         <Label
-    Text="Date and Time Lost:"/>
+            Text="Date and Time Lost:"/>
         <DatePicker
-    x:Name="DateInput"/>
+            x:Name="DateInput"/>
         <TimePicker
-    x:Name="TimeInput"/>
+             x:Name="TimeInput"/>
 
-
-        <Label
-    Text="Student Number:"/>
-        <Entry
-    x:Name="StudNumberInput"
-     Background="AntiqueWhite"/>
 
         <Button
-    Text="Report Item"
+            Text="Report Item"
             Clicked="OnClickedReportBtn"
-    />
+        />
 
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
