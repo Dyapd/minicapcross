@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace test.DataHolders
 {
-    public class DataholderNotificationLog
+    internal class DataHolderPickerReports
     {
-        public class Items
-        { 
+        public class Reports()
+        {
             public string Category { get; set; }
-            public string ID {  get; set; }
-
+            public string ID { get; set; }
             public string CategoryAndID => $"{Category}{ID}";
         }
+
+        
     }
 }

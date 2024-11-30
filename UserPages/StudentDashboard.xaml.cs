@@ -1,6 +1,7 @@
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using static test.DataHolders.DataholderNotificationLog;
 
 
@@ -69,7 +70,7 @@ public partial class StudentDashboard : ContentPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT Item_Category FROM Items";
+                command.CommandText = "SELECT Item_Category, Item_ID FROM Items";
                 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -77,6 +78,7 @@ public partial class StudentDashboard : ContentPage
                     {
                         items.Add(new Items
                         {
+                            ID = reader.GetInt32(1).ToString(),
                             Category = reader.GetString(0)
                         });
                     }
