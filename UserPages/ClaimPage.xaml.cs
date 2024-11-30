@@ -30,7 +30,8 @@ public partial class ClaimPage : ContentPage
 
             if (string.IsNullOrEmpty(selectedOption))
             {
-                test.Text = "No option selected.";
+                DisplayAlert("Error", "No option selected!", "OK!");
+
                 return;
             }
 
@@ -59,7 +60,7 @@ public partial class ClaimPage : ContentPage
             }
             else
             {
-                test.Text = "No image found for the selected option.";
+                DisplayAlert("Error", "No image found for the selected option!", "OK!");
                 leftImage.Source = null;
             }
         }
@@ -85,7 +86,7 @@ public partial class ClaimPage : ContentPage
 
         if (string.IsNullOrEmpty(selectedOption))
         {
-            test.Text = "No option selected.";
+            DisplayAlert("Error", "No option selected!", "OK!");
             return;
         }
 
@@ -113,8 +114,8 @@ public partial class ClaimPage : ContentPage
         }
         else
         {
-            test.Text = "No image found for the selected option.";
-            rightImage.Source = null;
+                DisplayAlert("Error", "No image found for the selected option!", "OK!");
+                rightImage.Source = null;
         }
         }
         catch (Exception ev)
@@ -132,7 +133,7 @@ public partial class ClaimPage : ContentPage
             IPLocator ip = new IPLocator();
             connectionString = ip.ConnectionString();
 
-            var category = CategoryInput.Text;
+            var category = CategoryInput.SelectedItem.ToString();
             var description = DescriptionInput.Text;
             var studentNumber = SessionVars.SessionId;
             var ReportID = comboBoxLeft.SelectedItem.ToString();
@@ -140,7 +141,7 @@ public partial class ClaimPage : ContentPage
 
             if (string.IsNullOrWhiteSpace(category) || string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(studentNumber))
             {
-                test.Text = "Please fill in all required fields.";
+                DisplayAlert("Error", "All fields must have values!", "OK!");
                 return;
             }
 

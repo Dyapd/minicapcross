@@ -92,23 +92,25 @@
                 <!--image is for the right side-->
             </Grid>
 
-            <Label 
-        Text="Category:"
-                x:Name="test"/>
-            <Entry
-        x:Name="CategoryInput"
-        Background="AntiqueWhite"/>
+            <Label
+                Text="Type of Item:"/>
+            <Picker
+            x:Name="CategoryInput"
+            Background="AntiqueWhite" >
+
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Personal Item</x:String>
+                        <x:String>Valuable Item</x:String>
+                        <x:String>Electronic Item</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
             <Label
         Text="Description:"/>
             <Entry
         x:Name="DescriptionInput"
-         Background="AntiqueWhite"/>
-
-            <Label
-        Text="Student Number:"/>
-            <Entry
-        x:Name="StudentNumberInput"
          Background="AntiqueWhite"/>
 
             <Button

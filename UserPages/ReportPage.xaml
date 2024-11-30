@@ -70,17 +70,9 @@
 
             <Label
             Text="Location Lost:"/>
-            
+
             <Entry
             x:Name="LocationInput"
-             Background="AntiqueWhite"/>
-
-
-            <Label
-            Text="Student Number:"/>
- 
-            <Entry
-            x:Name="StudNumberInput"
              Background="AntiqueWhite"/>
 
             <Button
