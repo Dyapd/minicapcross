@@ -10,6 +10,7 @@ public partial class ClaimPage : ContentPage
     string connectionString;
     byte[] leftImageBytes;
     public ObservableCollection<Items> Items { get; set; }
+    public ObservableCollection<Items> Items2 { get; set; }
 
 
     public ClaimPage()
@@ -17,6 +18,7 @@ public partial class ClaimPage : ContentPage
         InitializeComponent();
         Items = new ObservableCollection<Items>();
         BindingContext = this;
+        LoadItems();
     }
     private void OnSaveButtonClicked(object sender, EventArgs e)
     {
@@ -32,10 +34,9 @@ public partial class ClaimPage : ContentPage
         {
             IPLocator ip = new IPLocator();
             connectionString = ip.ConnectionString();
-
-            var selectedOption = comboBoxLeft.SelectedItem.ToString();
-
-            if (string.IsNullOrEmpty(selectedOption))
+            
+            var selectedOption = comboBoxLeft.SelectedItem as Items;
+            if (string.IsNullOrEmpty(selectedOption.ID))
             {
                 DisplayAlert("Error", "No option selected!", "OK!");
 
@@ -49,7 +50,7 @@ public partial class ClaimPage : ContentPage
             {
                 string query = "SELECT Report_Image FROM Reports WHERE Report_ID = @SelectedID";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@SelectedID", selectedOption);
+                command.Parameters.AddWithValue("@SelectedID", selectedOption.ID);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -198,6 +199,7 @@ public partial class ClaimPage : ContentPage
     public async Task<List<Items>> ReadDataNotificationLog()
     {
         List<Items> items = new List<Items>();
+
         IPLocator ip = new IPLocator();
         string connectionString = ip.ConnectionString();
 
@@ -208,7 +210,7 @@ public partial class ClaimPage : ContentPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT i.Item_ID, i.Item_Category FROM Items i JOIN Reports r ON i.Item_ICategory = r.Report_ICategory AND i.Item_Location = r.Report_Location WHERE r.Student_Number = @SessionVars";
+                command.CommandText = "SELECT Report_ID, Report_Category FROM Reports WHERE Student_Number = @SessionVars";
                 command.Parameters.AddWithValue("@SessionVars", SessionVars.SessionId);
 
                 using (SqlDataReader reader = command.ExecuteReader())

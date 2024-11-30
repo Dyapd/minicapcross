@@ -41,7 +41,7 @@
                      Title="Select an option"
                      SelectedIndexChanged="OnPickerSelectedIndexChangedLeft"
                      ItemsSource="{Binding Items}"
-                            ItemDisplayBinding="{Binding CategoryAndID}">
+                     ItemDisplayBinding="{Binding ID}">
                     </Picker>
 
                 </HorizontalStackLayout>

@@ -13,8 +13,21 @@ namespace test.DataHolders
             public string Category { get; set; }
             public string ID {  get; set; }
 
+            public string CategoryAndID => $"{Category}{ID}";
+        }
 
+        public class LeftImagePicker
+        {
+            public string Category { get; set; }
+            public string ID { get; set; }
 
+            public string CategoryAndID => $"{Category}{ID}";
+        }
+
+        public class Items2
+        {
+            public string Category { get; set; }
+            public string ID { get; set; }
             public string CategoryAndID => $"{Category}{ID}";
         }
 
