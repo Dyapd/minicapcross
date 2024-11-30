@@ -60,11 +60,12 @@
             </Picker.ItemsSource>
         </Picker>
 
-        <Entry IsReadOnly="True" >
+        <!-- THIS IS TEMPORARY CODE pls wag buharin might use someday!-->
+        <!--<Entry IsReadOnly="True" >
             <Entry.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/> 
             </Entry.GestureRecognizers>
-        </Entry>
+        </Entry>-->
 
         <Label
             Text="Date and Time Lost:"/>
