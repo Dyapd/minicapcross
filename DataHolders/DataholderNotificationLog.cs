@@ -20,7 +20,7 @@ namespace test.DataHolders
             public string Location { get; set; }
             public string ICategory { get; set; }
 
-            public bool Status { get; set; }
+            public Boolean Status { get; set; }
 
             //combine strings
             public string CategoryAndID => $"{Category}{ID}";
@@ -41,13 +41,25 @@ namespace test.DataHolders
         {
             public string Category { get; set; }
             public string ID { get; set; }
-            public bool Status { get; set; }
+            public Boolean Status { get; set; }
             public string ICategory { get; set; }
             public string Description { get;  set; }
             public string StudentNumber { get; set; }
             public byte[] Image { get; set; }
             public string ReportId { get; set; }
             public string ItemId { get; set; }
+        }
+
+        public class DynamicReports
+        {
+            public string ID { get; set; }
+            public string Date { get; set; }
+            public string ICategory { get; set; }
+            public string Description { get; set; }
+            public string Location { get; set; }
+            public string StudentNumber { get; set; }
+            public byte[] Image { get; set; }
+            public Boolean Status { get; set; }
         }
     }
 }

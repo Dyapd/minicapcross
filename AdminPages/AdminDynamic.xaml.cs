@@ -10,25 +10,50 @@ public partial class AdminDynamic : TabbedPage
 {
 
     public ObservableCollection<DynamicClaims> DynamicClaims { get; set; }
+    public ObservableCollection<DynamicReports> DynamicReports { get; set; }
     public byte[] claimImage;
+    string reportID;
 
     public AdminDynamic()
 	{
         
         InitializeComponent();
         DynamicClaims = new ObservableCollection<DynamicClaims>();
+        DynamicReports = new ObservableCollection<DynamicReports>();
         BindingContext = this;
-        LoadItems();
-        //populateDynamicPage();
+        LoadItemsClaims();
+        
     }
 
-	private void populateDynamicPage()
+    //populate both contentpages
+	private async void populateDynamicPage()
 	{
-        ClaimCategoryText.Text = DynamicClaims[0].Category.ToString();
+        try
+        {
+            //for claim page
+            ClaimCategoryText.Text = DynamicClaims[0].ICategory.ToString();
+            ClaimStatusText.Text = DynamicClaims[0].Status.ToString();
+            ClaimDescriptionText.Text = DynamicClaims[0].Category.ToString();
+
+
+            // picture display
+            ClaimImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicClaims[0].Image));
+
+            //for item page
+
+            //for report page
+            ReportCategoryText.Text = DynamicReports[0].ICategory.ToString();
+        }
+        catch (Exception e)
+        {
+            DisplayAlert("PopulateTest", e.Message, "OK");
+        }
+        
 
     }
 
-	private async Task<List<DynamicClaims>> takeFromDatabase()
+    //claim report only
+	private async Task<List<DynamicClaims>> takeFromDatabaseClaim()
 	{
 		IPLocator ip = new IPLocator();
 		string connectionString = ip.ConnectionString();
@@ -53,26 +78,32 @@ public partial class AdminDynamic : TabbedPage
                 {
                     if (reader.HasRows)
                     {
+                        //await DisplayAlert("Test", "Reader is running!.", "OK");
                         while (reader.Read())
                         {
+                            //await DisplayAlert("Test2", reader.GetString(4), "OK");
+                            //ClaimCategoryText.Text = reader.GetString(4);
+                            reportID = reader.GetInt32(7).ToString();
                             claims.Add(new DynamicClaims
                             {
+                                
                                 ID = reader.GetInt32(1).ToString(),
                                 Category = reader.GetString(0),
                                 Status = reader.GetBoolean(2),
-                                ICategory = reader.GetInt32(3).ToString(),
+                                ICategory = reader.GetString(3),
                                 Description = reader.GetString(4),
                                 StudentNumber = reader.GetString(5),
-                                ReportId = reader.GetString(7),
-                                ItemId = reader.GetString(8),
+                                ReportId = reader.GetInt32(7).ToString(),
+                                ItemId = reader.GetInt32(8).ToString(),
                                 Image = reader.IsDBNull(6) ? null : reader["Claim_Image"] as byte[]
                         });
+                            
                         }
                         
                     }
                     else
                     {
-                        await DisplayAlert("No Data", "NoItems!.", "OK");
+                        await DisplayAlert("No Data Claim", "NoItems!.", "OK");
                     }
                     
 
@@ -83,21 +114,104 @@ public partial class AdminDynamic : TabbedPage
         }
         catch (Exception e)
         {
-            await DisplayAlert("ERROR", e.Message, "OK");
+            await DisplayAlert("ERROR CLaim", e.Message, "OK");
         }
+        LoadItemsReports();
         return claims;
 		
 	}
-
-	private async void LoadItems()
-	{
-        List<DynamicClaims> claims = await takeFromDatabase();
+    private async void LoadItemsClaims()
+    {
+        List<DynamicClaims> claims = await takeFromDatabaseClaim();
         DynamicClaims.Clear();
         foreach (DynamicClaims claim in claims)
         {
             DynamicClaims.Add(claim);
         }
 
-        await DisplayAlert("Items Added", $"{DynamicClaims.Count} items have been added.", "OK");
+        //await DisplayAlert("Items Added", $"{DynamicClaims.Count} items have been added.", "OK");
+        populateDynamicPage();
+
     }
+
+    private async Task<List<DynamicReports>> takeFromDatabaseReport()
+    {
+        IPLocator ip = new IPLocator();
+        string connectionString = ip.ConnectionString();
+        List<DynamicReports> reports = new List<DynamicReports>();
+        try
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            using (connection)
+            {
+                connection.Open();
+
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT " +
+                    "Report_ID, Report_Date, Report_ICategory, Report_Description, " +
+                    "Report_Location, Student_Number, Report_Image, Report_Status FROM Reports WHERE Report_ID = @ReportID";
+
+                command.Parameters.AddWithValue("@ReportID", reportID);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        //await DisplayAlert("Test", "Report reader is running!.", "OK");
+                        while (reader.Read())
+                        {
+                            //await DisplayAlert("Test2", reader.GetString(4), "OK");
+                            //ClaimCategoryText.Text = reader.GetString(4);
+                            DateTime reportDate = reader.GetDateTime(1);
+                            string date = reportDate.ToString("yyyy-MM-dd HH:mm");
+                            reports.Add(new DynamicReports
+                            {
+
+                                ID = reader.GetInt32(0).ToString(),
+                                Date = date,
+                                ICategory = reader.GetString(2),
+                                Location = reader.GetString(4),
+                                Description = reader.GetString(3),
+                                StudentNumber = reader.GetString(5),
+                                Image = reader.IsDBNull(6) ? null : reader["Report_Image"] as byte[],
+                                Status = reader.GetBoolean(7),
+                            });
+
+                        }
+
+                    }
+                    else
+                    {
+                        await DisplayAlert("No Data Reports", "NoItems!.", "OK");
+                    }
+
+
+                }
+
+
+            }
+        }
+        catch (Exception e)
+        {
+            await DisplayAlert("ERROR Reports", e.Message, "OK");
+        }
+        return reports;
+
+    }
+    private async void LoadItemsReports()
+    {
+        List<DynamicReports> reports = await takeFromDatabaseReport();
+        DynamicClaims.Clear();
+        foreach (DynamicReports report in reports)
+        {
+            DynamicReports.Add(report);
+        }
+
+        await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
+        populateDynamicPage();
+
+    }
+
 }
