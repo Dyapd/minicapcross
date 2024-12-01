@@ -37,7 +37,7 @@
                         TextColor="Black"
                         SelectedIndexChanged="OnPickerSelectedIndexChangedLeft"
                         ItemsSource="{Binding Items}"
-                        ItemDisplayBinding="{Binding CategoryAndID}" />
+                        ItemDisplayBinding="{Binding ID}" />
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="0" Grid.Column="1">
@@ -47,12 +47,9 @@
                         Title="Select an option"
                         BackgroundColor="#EEEEEE"
                         TextColor="Black"
-                        SelectedIndexChanged="OnPickerSelectedIndexChanged">
-                            <Picker.Items>
-                                <x:String>1</x:String>
-                                <x:String>2</x:String>
-                                <x:String>3</x:String>
-                            </Picker.Items>
+                        SelectedIndexChanged="OnPickerSelectedIndexChanged"
+                        ItemsSource="{Binding Items2}"
+                        ItemDisplayBinding="{Binding ID}">
                         </Picker>
                     </VerticalStackLayout>
 
@@ -79,7 +76,8 @@
                 <Picker 
                 x:Name="CategoryInput"
                 BackgroundColor="#EEEEEE"
-                TextColor="Black">
+                TextColor="Black"
+                >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Personal Item</x:String>
