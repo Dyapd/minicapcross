@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Windows.Input;
 using static test.DataHolders.DataholderNotificationLog;
 

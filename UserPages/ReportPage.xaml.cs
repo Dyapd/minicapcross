@@ -60,11 +60,14 @@ public partial class ReportPage : ContentPage
             {
                 using (var stream = await result.OpenReadAsync())
                 {
+                    //picture display
                     imageData = new byte[stream.Length];
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
 
-                    // Displays the picture
-                    uploadedImage.Source = ImageSource.FromStream(() => stream);
+                    //uploadedImage.Source = ImageSource.FromStream(() => stream);
+
+                    var imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
+                    uploadedImage.Source = imageSource;
                 }
             }
             else
