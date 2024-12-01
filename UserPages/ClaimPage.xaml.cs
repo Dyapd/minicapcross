@@ -8,10 +8,10 @@ namespace test;
 public partial class ClaimPage : ContentPage
 {
     string connectionString;
-    string reportID;
+    string reportCategory;
     byte[] leftImageBytes;
     public ObservableCollection<Items> Items { get; set; }
-    public ObservableCollection<Items> Items2 { get; set; }
+    public ObservableCollection<Items2> Items2 { get; set; }
 
 
     public ClaimPage()
@@ -21,6 +21,7 @@ public partial class ClaimPage : ContentPage
         Items2 = new ObservableCollection<Items2>();
         BindingContext = this;
         LoadItems();
+        
     }
     private void OnSaveButtonClicked(object sender, EventArgs e)
     {
@@ -38,7 +39,7 @@ public partial class ClaimPage : ContentPage
             connectionString = ip.ConnectionString();
             
             var selectedOption = comboBoxLeft.SelectedItem as Items;
-            reportID = selectedOption.ID;
+            reportCategory = selectedOption.ICategory;
             if (string.IsNullOrEmpty(selectedOption.ID))
             {
                 DisplayAlert("Error", "No option selected!", "OK!");
@@ -68,6 +69,7 @@ public partial class ClaimPage : ContentPage
             {
                 var imageSource = ImageSource.FromStream(() => new MemoryStream(leftImageBytes));
                 leftImage.Source = imageSource;
+                LoadItems2();
             }
             else
             {
@@ -79,6 +81,7 @@ public partial class ClaimPage : ContentPage
         {
             DisplayAlert("Error!", ev.Message, "OK!");
         }
+        
     }
 
     //this changes the picture on the right depending on the selection
@@ -90,44 +93,45 @@ public partial class ClaimPage : ContentPage
         {
 
        
-        IPLocator ip = new IPLocator();
-        connectionString = ip.ConnectionString();
+            IPLocator ip = new IPLocator();
+            connectionString = ip.ConnectionString();
 
-        var selectedOption = comboBox.SelectedItem.ToString();
+            var selectedItem2 = comboBox.SelectedItem as Items2;
+            var selectedOption = selectedItem2.ICategory;
 
-        if (string.IsNullOrEmpty(selectedOption))
-        {
-            DisplayAlert("Error", "No option selected!", "OK!");
-            return;
-        }
+                if (string.IsNullOrEmpty(selectedOption))
+            {
+                DisplayAlert("Error", "No option selected!", "OK!");
+                return;
+            }
 
         
 
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            string query = "SELECT Item_Image FROM Items WHERE Item_ID = @SelectedID";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@SelectedID", selectedOption);
-
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-
-            if (reader.Read())
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                imageBytes = reader["Item_Image"] as byte[];
-            }
-        }
+                string query = "SELECT Item_Image FROM Items WHERE Item_ID = @SelectedID";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@SelectedID", selectedItem2.ID);
 
-        if (imageBytes  != null)
-        {
-            var imageSource = ImageSource.FromStream(() => new MemoryStream(imageBytes));
-            rightImage.Source = imageSource;
-        }
-        else
-        {
-                DisplayAlert("Error", "No image found for the selected option!", "OK!");
-                rightImage.Source = null;
-        }
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    imageBytes = reader["Item_Image"] as byte[];
+                }
+            }
+
+            if (imageBytes  != null)
+            {
+                var imageSource = ImageSource.FromStream(() => new MemoryStream(imageBytes));
+                rightImage.Source = imageSource;
+            }
+            else
+            {
+                    DisplayAlert("Error", "No image found for the selected option!", "OK!");
+                    rightImage.Source = null;
+            }
         }
         catch (Exception ev)
         {
@@ -213,7 +217,7 @@ public partial class ClaimPage : ContentPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT Report_ID, Report_Category, Report_Location FROM Reports WHERE Student_Number = @SessionVars";
+                command.CommandText = "SELECT Report_ID, Report_Category, Report_Location, Report_ICategory FROM Reports WHERE Student_Number = @SessionVars";
                 command.Parameters.AddWithValue("@SessionVars", SessionVars.SessionId);
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -224,7 +228,8 @@ public partial class ClaimPage : ContentPage
                         {
                             ID = reader.GetInt32(0).ToString(),
                             Category = reader.GetString(1),
-                            Location = reader.GetString(2)
+                            Location = reader.GetString(2),
+                            ICategory = reader.GetString(3)
                         });
                     }
                 }
@@ -251,7 +256,7 @@ public partial class ClaimPage : ContentPage
 
     public async Task<List<Items2>> ReadNotificationLog2()
     {
-        List<Items2> items = new List<Items2>();
+        List<Items2> items2 = new List<Items2>();
 
         IPLocator ip = new IPLocator();
         string connectionString = ip.ConnectionString();
@@ -263,19 +268,21 @@ public partial class ClaimPage : ContentPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT Item_ID, Item_Category FROM Items WHERE Item_Location = @ReportLocation";
-                command.Parameters.AddWithValue("@ReportLocation", reportID);
+                command.CommandText = "SELECT i.Item_ID, i.Item_Category, i.Item_Location, i.Item_ICategory FROM Items i " +
+                    "JOIN Reports r ON i.Item_ICategory = r.Report_ICategory " +
+                    "WHERE i.Item_ICategory = @reportCategory";
+                command.Parameters.AddWithValue("@reportCategory", reportCategory);
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        items.Add(new Items2
+                        items2.Add(new Items2
                         {
                             ID = reader.GetInt32(0).ToString(),
                             Category = reader.GetString(1),
-                            Location = reader.GetString(2)
-
+                            Location = reader.GetString(2),
+                            ICategory = reader.GetString(3)
                         });;
                     }
                 }
@@ -284,9 +291,9 @@ public partial class ClaimPage : ContentPage
         }
         catch (Exception ex)
         {
-
+            await DisplayAlert("ERROR", ex.Message, "Ok");
         }
-        return items;
+        return items2;
 
     }
 
