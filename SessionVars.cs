@@ -10,6 +10,7 @@ namespace test
     internal class SessionVars
     {
         public static string SessionId = "";
+        public static string DynamicClaim = "", DynamicReport="", DynamicItem="";
 
         public static void SetSessionId(string Email, string Password)
         {

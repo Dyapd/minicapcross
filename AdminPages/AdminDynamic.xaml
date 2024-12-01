@@ -5,8 +5,51 @@
              Title="AdminDynamic">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Dynamic Page admin claim viewing"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Image/>
+
+        <Label
+            Text="Category"/>
+        <Label
+            Text="None"
+            x:Name="CategoryText"/>
+
+        <Label
+            Text="Location:"/>
+        <Label
+            Text="None"
+            x:Name="LocationText"/>
+
+        <Label
+            Text="Date and Time:"/>
+        <Label
+            Text="None"
+            x:Name="DateAndTimeText"/>
+
+        <Label
+            Text="Description:"/>
+        <Label
+            Text="None"
+            x:Name="DescriptionText"/>
+
+        <Label
+            Text="Status:"/>
+        <Label
+            Text="None"
+            x:Name="StatusText"/>
+
+        <Button
+            Text="Change Status"
+            />
+
+        <Button
+            Text="Save"
+            />
+
+
+
     </VerticalStackLayout>
 </ContentPage>

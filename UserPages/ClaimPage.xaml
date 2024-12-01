@@ -28,6 +28,8 @@
                             <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
+                    
+
                     <VerticalStackLayout Grid.Row="0" Grid.Column="0">
                         <Label Text="Reported Item Picture" FontSize="Medium" />
                         <Picker 
@@ -52,7 +54,7 @@
                         ItemDisplayBinding="{Binding ID}">
                         </Picker>
                     </VerticalStackLayout>
-
+                    <!--LEFT IMAGE PICTURE-->
                     <Image 
                     x:Name="leftImage"
                     Source="dotnet_bot.png" 
@@ -61,7 +63,7 @@
                     Grid.Row="1" 
                     Grid.Column="0"
                     Aspect="AspectFit" />
-
+                    <!--RIGHT IMAGE PICTURE-->
                     <Image 
                     x:Name="rightImage"
                     Source="dotnet_bot.png" 
