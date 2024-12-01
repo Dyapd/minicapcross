@@ -47,7 +47,8 @@
 
             <Label
             Text="Image (optional):"/>
-
+            <Image
+                x:Name="uploadedImage"/>
             <Button 
             Text="Upload Image"
             BackgroundColor="#f54e42"

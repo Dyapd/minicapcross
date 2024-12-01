@@ -1,55 +1,107 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="test.AdminDynamic"
-             Title="AdminDynamic">
-    <VerticalStackLayout>
-        <Label 
-            Text="Dynamic Page admin claim viewing"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             x:Class="test.AdminDynamic">
 
-        <Image/>
+    <ContentPage Title="Claim Form">
+        <VerticalStackLayout>
+            <Label 
+                Text="Dynamic Page admin claim viewing"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
 
-        <Label
-            Text="Category"/>
-        <Label
-            Text="None"
-            x:Name="CategoryText"/>
+            <Image/>
 
-        <Label
-            Text="Location:"/>
-        <Label
-            Text="None"
-            x:Name="LocationText"/>
+            <Label
+                Text="Category"/>
+            <Label
+                Text="None"
+                x:Name="ClaimCategoryText"/>
 
-        <Label
-            Text="Date and Time:"/>
-        <Label
-            Text="None"
-            x:Name="DateAndTimeText"/>
+            <Label
+                Text="Location:"/>
+            <Label
+                Text="None"
+                x:Name="ClaimLocationText"/>
 
-        <Label
-            Text="Description:"/>
-        <Label
-            Text="None"
-            x:Name="DescriptionText"/>
+            <Label
+                Text="Date and Time:"/>
+            <Label
+                Text="None"
+                x:Name="ClaimDateAndTimeText"/>
 
-        <Label
-            Text="Status:"/>
-        <Label
-            Text="None"
-            x:Name="StatusText"/>
+            <Label
+                Text="Description:"/>
+            <Label
+                Text="None"
+                x:Name="ClaimDescriptionText"/>
 
-        <Button
-            Text="Change Status"
-            />
+            <Label
+                Text="Status:"/>
+            <Label
+                Text="None"
+                x:Name="ClaimStatusText"/>
 
-        <Button
-            Text="Save"
-            />
+            <Button
+                Text="Change Status"
+                x:Name="ClaimChangeBtn"
+                />
 
+            <Button
+                Text="Save"
+                x:Name="ClaimSaveBtn"
+                />
+        </VerticalStackLayout>
+    </ContentPage>
 
+    <ContentPage Title="Report Form">
+        <VerticalStackLayout>
+            <Label 
+                Text="Dynamic Page Report Form viewing"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
 
-    </VerticalStackLayout>
-</ContentPage>
+            <Image/>
+
+            <Label
+                Text="Category"/>
+            <Label
+                Text="None"
+                x:Name="ReportCategoryText"/>
+
+            <Label
+                Text="Location:"/>
+            <Label
+                Text="None"
+                x:Name="ReportLocationText"/>
+
+            <Label
+                Text="Date and Time:"/>
+            <Label
+                Text="None"
+                x:Name="ReportDateAndTimeText"/>
+
+            <Label
+                Text="Description:"/>
+            <Label
+                Text="None"
+                x:Name="ReportDescriptionText"/>
+
+            <Label
+                Text="Status:"/>
+            <Label
+                Text="None"
+                x:Name="ReportStatusText"/>
+
+            <Button
+                Text="Change Status"
+                x:Name="ReportChangeBtn"
+                />
+
+            <Button
+                Text="Save"
+                x:Name="ReportSaveBtn"
+                />
+        </VerticalStackLayout>
+    </ContentPage>
+</TabbedPage>
