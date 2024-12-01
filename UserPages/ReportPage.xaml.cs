@@ -3,6 +3,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
 using System.Security.AccessControl;
+using System.Speech.Synthesis;
 
 public partial class ReportPage : ContentPage
 {
@@ -85,64 +86,24 @@ public partial class ReportPage : ContentPage
         {
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
-
-
             string reportICategory = CategoryInput.SelectedItem.ToString();
             string reportDescription = DescriptionInput.Text;
             string reportLocation = LocationInput.SelectedItem.ToString();
             DateTime reportDateTime = SetDateTime();
-            
 
-
-            //image data is global instance
-            //if image data is null then dont insert with image!
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (imageData == null)
             {
-                await connection.OpenAsync();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_ICategory, Report_Date, Report_Image, Report_Description, Report_Location, Student_Number, Report_Status) " +
-                                                                    "VALUES (@Category, @ICategory, @Date, @Image, @Description, @Location, @StudentNumber, @Status)", connection))
-
-                {
-                    command.Parameters.AddWithValue("@Category", "R");
-                    command.Parameters.AddWithValue("@ICategory", reportICategory);
-                    command.Parameters.AddWithValue("@Status", false);
-                    command.Parameters.AddWithValue("@Date", reportDateTime);
-                    if (imageData == null)
-                    {
-                        command.Parameters.AddWithValue("@Image", DBNull.Value);
-                    }
-                    else
-                    {
-                        command.Parameters.AddWithValue("@Image", imageData);
-                    }
-                    command.Parameters.AddWithValue("@Description", reportDescription);
-                    command.Parameters.AddWithValue("@Location", reportLocation);
-                    command.Parameters.AddWithValue("@StudentNumber", SessionVars.SessionId);
-
-
-                    int rowsAffected = await command.ExecuteNonQueryAsync();
-                    if (rowsAffected > 0)
-                    {
-                        await DisplayAlert("Success", "Report has been submitted successfully.", "OK");
-                    }
-                    else
-                    {
-                        await DisplayAlert("Failure", "Report submission failed. No rows were inserted.", "OK");
-                    }
-                }
+                insertWithoutImage(connectionString, reportICategory, reportDescription, reportLocation, reportDateTime);
             }
-            
-
-
-            
+            else
+            {
+                insertWithImage(connectionString, reportICategory, reportDescription, reportLocation, reportDateTime);
+            }
         }
         catch (Exception ec)
         {
             await DisplayAlert("ERROR", ec.Message, "OK");
         }
-
-        
-
     }
 
     //takes date and time then merge it for insertion
@@ -152,6 +113,72 @@ public partial class ReportPage : ContentPage
         TimeSpan selectedTime = TimeInput.Time;
         DateTime combinedDateTime = selectedDate.Add(selectedTime);
         return combinedDateTime;
+    }
+
+    private async void insertWithoutImage( string connectionString, string reportICategory, string reportDescription, string reportLocation, DateTime reportDateTime)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            await connection.OpenAsync();
+            using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_ICategory, Report_Date, Report_Description, Report_Location, Student_Number, Report_Status) " +
+                                                                "VALUES (@Category, @ICategory, @Date, @Description, @Location, @StudentNumber, @Status)", connection))
+
+            {
+                command.Parameters.AddWithValue("@Category", "R");
+                command.Parameters.AddWithValue("@ICategory", reportICategory);
+                command.Parameters.AddWithValue("@Status", false);
+                command.Parameters.AddWithValue("@Date", reportDateTime);
+                command.Parameters.AddWithValue("@Description", reportDescription);
+                command.Parameters.AddWithValue("@Location", reportLocation);
+                command.Parameters.AddWithValue("@StudentNumber", SessionVars.SessionId);
+
+
+                int rowsAffected = await command.ExecuteNonQueryAsync();
+                if (rowsAffected > 0)
+                {
+                    await DisplayAlert("Success", "Report has been submitted successfully without image.", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Failure", "Report submission failed. No rows were inserted.", "OK");
+                }
+            }
+        }
+    }
+
+
+    private async void insertWithImage(string connectionString, string reportICategory, string reportDescription, string reportLocation, DateTime reportDateTime)
+    {
+        //image data is global instance
+        //if image data is null then dont insert with image!
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            await connection.OpenAsync();
+            using (SqlCommand command = new SqlCommand("INSERT INTO Reports (Report_Category, Report_ICategory, Report_Date, Report_Image, Report_Description, Report_Location, Student_Number, Report_Status) " +
+                                                                "VALUES (@Category, @ICategory, @Date, @Image, @Description, @Location, @StudentNumber, @Status)", connection))
+
+            {
+                command.Parameters.AddWithValue("@Category", "R");
+                command.Parameters.AddWithValue("@ICategory", reportICategory);
+                command.Parameters.AddWithValue("@Status", false);
+                command.Parameters.AddWithValue("@Date", reportDateTime);
+                command.Parameters.AddWithValue("@Image", imageData);
+                command.Parameters.AddWithValue("@Description", reportDescription);
+                command.Parameters.AddWithValue("@Location", reportLocation);
+                command.Parameters.AddWithValue("@StudentNumber", SessionVars.SessionId);
+
+
+                int rowsAffected = await command.ExecuteNonQueryAsync();
+                if (rowsAffected > 0)
+                {
+                    await DisplayAlert("Success", "Report has been submitted successfully.", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Failure", "Report submission failed. No rows were inserted.", "OK");
+                }
+            }
+        }
     }
 
     private void OnImageInputBtnEntered(object sender, PointerEventArgs e) 

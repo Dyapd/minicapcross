@@ -147,16 +147,18 @@ public partial class ClaimPage : ContentPage
 
             IPLocator ip = new IPLocator();
             connectionString = ip.ConnectionString();
+            var selectedReport = comboBoxLeft.SelectedItem as Items;
+            var selectedImage = comboBox.SelectedItem as Items2;
 
             var category = CategoryInput.SelectedItem.ToString();
             var description = DescriptionInput.Text;
             var studentNumber = SessionVars.SessionId;
-            var ReportID = comboBoxLeft.SelectedItem.ToString();
-            var ClaimID = comboBox.SelectedItem.ToString();
+            var ReportID = selectedReport.ID;
+            var ClaimID = selectedImage.ID;
 
             if (string.IsNullOrWhiteSpace(category) || string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(studentNumber))
             {
-                DisplayAlert("Error", "All fields must have values!", "OK!");
+                await DisplayAlert("Error", "All fields must have values!", "OK!");
                 return;
             }
 
@@ -173,7 +175,7 @@ public partial class ClaimPage : ContentPage
                 command.Parameters.AddWithValue("@ICategory", category);
                 command.Parameters.AddWithValue("@Description", description);
                 command.Parameters.AddWithValue("@Student", SessionVars.SessionId);
-                command.Parameters.AddWithValue("@Image", leftImageBytes);
+                command.Parameters.AddWithValue("@Image", leftImageBytes); //add here later sample image of empty pic!
                 command.Parameters.AddWithValue("@RCategory", "R");
                 command.Parameters.AddWithValue("@RID", ReportID);
                 command.Parameters.AddWithValue("@ITCategory", "I");
@@ -202,7 +204,7 @@ public partial class ClaimPage : ContentPage
             await DisplayAlert("ERROR", e.Message, "OK");
         }
     }
-
+    //ahead methods are for the use of binding tables to the picker tags!!
     public async Task<List<Items>> ReadDataNotificationLog()
     {
         List<Items> items = new List<Items>();
