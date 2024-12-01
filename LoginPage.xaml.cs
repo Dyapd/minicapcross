@@ -52,6 +52,7 @@ namespace test
 
 
             //temporary hard code for testing!!
+
             //if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
             //{
             //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());

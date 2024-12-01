@@ -48,6 +48,9 @@
             <Label
             Text="Image (optional):"/>
             <Image
+                WidthRequest="100"
+                HeightRequest="100"
+                Background="Gray"
                 x:Name="uploadedImage"/>
             <Button 
             Text="Upload Image"
