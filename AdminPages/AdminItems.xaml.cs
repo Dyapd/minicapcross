@@ -1,6 +1,7 @@
 using Microsoft.Maui.Controls;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace test.Pages
 {
@@ -8,12 +9,13 @@ namespace test.Pages
     {
         
         public ObservableCollection<ItemModel> ItemList { get; set; }
-
+        ICommand ButtonCommand { get; }
         public AdminItems()
         {
             InitializeComponent();
+            ButtonCommand = new Command<string>(OnDetailsClicked);
 
-            
+
             ItemList = new ObservableCollection<ItemModel>
             {
                 new ItemModel { ItemID = "1", ItemImage = "item1.jpg", Category = "Electronics", Status = "Available" },
@@ -26,12 +28,18 @@ namespace test.Pages
             BindingContext = this;
         }
 
-        
-        public async void OnAddItemBtnClicked(object sender, EventArgs e)
+        private void OnDetailsClicked(string obj)
         {
+            //Navigation.PushAsync(new AdminDynamicPage());
             
-            await Navigation.PushAsync(new AdminSubmittedPage());
         }
+
+        public void OnAddItemBtnClicked(object args, EventArgs e)
+        {
+            Navigation.PushAsync(new AdminSubmittedPage());
+        }
+
+
     }
 
     

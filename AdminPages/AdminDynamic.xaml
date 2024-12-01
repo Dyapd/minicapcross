@@ -104,7 +104,8 @@
                 <Image Source="placeholder.png"
                        HeightRequest="150"
                        Aspect="AspectFit"
-                       Margin="0,10" />
+                       Margin="0,10" 
+                       x:Name="ReportImage"/>
 
                 
                 <Label Text="Category"
@@ -160,6 +161,88 @@
                         HeightRequest="45" />
                 <Button Text="Save"
                         x:Name="ReportSaveBtn"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="45" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage>
+
+    <ContentPage
+        Title="Items Page">
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
+
+
+                <Label Text="Dynamic Page Item Form viewing"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="#333333"
+                       HorizontalOptions="Center" />
+
+
+                <Image Source="placeholder.png"
+                       HeightRequest="150"
+                       Aspect="AspectFit"
+                       Margin="0,10" 
+                       x:Name="ItemImage"/>
+
+
+                <Label Text="Category"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ItemCategoryText"
+                       FontSize="16"
+                       TextColor="#333333" />
+
+
+                <Label Text="Location:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ItemLocationText"
+                       FontSize="16"
+                       TextColor="#333333" />
+
+
+                <Label Text="Date and Time:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ItemDateAndTimeText"
+                       FontSize="16"
+                       TextColor="#333333" />
+
+
+                <Label Text="Description:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ItemDescriptionText"
+                       FontSize="16"
+                       TextColor="#333333" />
+
+
+                <Label Text="Status:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ItemStatusText"
+                       FontSize="16"
+                       TextColor="#333333" />
+
+
+                <Button Text="Change Status"
+                        x:Name="ItemChangeBtn"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="45" />
+                <Button Text="Save"
+                        x:Name="ItemSaveBtn"
                         BackgroundColor="#4CAF50"
                         TextColor="White"
                         CornerRadius="8"

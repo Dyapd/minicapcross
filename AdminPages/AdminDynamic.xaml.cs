@@ -15,19 +15,19 @@ public partial class AdminDynamic : TabbedPage
     string reportID;
 
     public AdminDynamic()
-	{
-        
+    {
+
         InitializeComponent();
         DynamicClaims = new ObservableCollection<DynamicClaims>();
         DynamicReports = new ObservableCollection<DynamicReports>();
         BindingContext = this;
         LoadItemsClaims();
-        
+
     }
 
     //populate both contentpages
-	private async void populateDynamicPage()
-	{
+    private async void populateDynamicPage()
+    {
         try
         {
             //for claim page
@@ -42,36 +42,43 @@ public partial class AdminDynamic : TabbedPage
             //for item page
 
             //for report page
+            ReportImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicReports[0].Image));
             ReportCategoryText.Text = DynamicReports[0].ICategory.ToString();
+            ReportLocationText.Text = DynamicReports[0].Location.ToString();
+            ReportDateAndTimeText.Text = DynamicReports[0].Date.ToString();
+            ReportDescriptionText.Text = DynamicReports[0].Description.ToString();
+            ReportStatusText.Text = DynamicReports[0].Status.ToString();
+
+
         }
         catch (Exception e)
         {
             DisplayAlert("PopulateTest", e.Message, "OK");
         }
-        
+
 
     }
 
     //claim report only
-	private async Task<List<DynamicClaims>> takeFromDatabaseClaim()
-	{
-		IPLocator ip = new IPLocator();
-		string connectionString = ip.ConnectionString();
+    private async Task<List<DynamicClaims>> takeFromDatabaseClaim()
+    {
+        IPLocator ip = new IPLocator();
+        string connectionString = ip.ConnectionString();
         List<DynamicClaims> claims = new List<DynamicClaims>();
         try
-		{
+        {
             SqlConnection connection = new SqlConnection(connectionString);
 
             using (connection)
             {
                 connection.Open();
-                
+
 
                 SqlCommand command = connection.CreateCommand();
                 command.CommandText = "SELECT " +
                     "Claim_Category, Claims_ID, Claim_Status, Claim_ICategory, Claim_Description, " +
                     "Student_Number, Claim_Image, Report_ID, Item_ID  FROM Claims WHERE Claims_ID = @claimID";
-               
+
                 command.Parameters.AddWithValue("@claimID", Convert.ToInt32(SessionVars.DynamicClaim));
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -86,7 +93,7 @@ public partial class AdminDynamic : TabbedPage
                             reportID = reader.GetInt32(7).ToString();
                             claims.Add(new DynamicClaims
                             {
-                                
+
                                 ID = reader.GetInt32(1).ToString(),
                                 Category = reader.GetString(0),
                                 Status = reader.GetBoolean(2),
@@ -96,19 +103,19 @@ public partial class AdminDynamic : TabbedPage
                                 ReportId = reader.GetInt32(7).ToString(),
                                 ItemId = reader.GetInt32(8).ToString(),
                                 Image = reader.IsDBNull(6) ? null : reader["Claim_Image"] as byte[]
-                        });
-                            
+                            });
+
                         }
-                        
+
                     }
                     else
                     {
                         await DisplayAlert("No Data Claim", "NoItems!.", "OK");
                     }
-                    
+
 
                 }
-                
+
 
             }
         }
@@ -118,8 +125,8 @@ public partial class AdminDynamic : TabbedPage
         }
         LoadItemsReports();
         return claims;
-		
-	}
+
+    }
     private async void LoadItemsClaims()
     {
         List<DynamicClaims> claims = await takeFromDatabaseClaim();
@@ -213,5 +220,6 @@ public partial class AdminDynamic : TabbedPage
         populateDynamicPage();
 
     }
-
 }
+
+
