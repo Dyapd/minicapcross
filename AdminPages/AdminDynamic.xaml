@@ -1,107 +1,170 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="test.AdminDynamic">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="test.AdminDynamic"
+            BackgroundColor="#F5F5F5"
+            BarBackgroundColor="#6200EE"
+            BarTextColor="White">
 
+    
     <ContentPage Title="Claim Form">
-        <VerticalStackLayout>
-            <Label 
-                Text="Dynamic Page admin claim viewing"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
-            <Image/>
+                
+                <Label Text="Dynamic Page admin claim viewing"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="#333333"
+                       HorizontalOptions="Center" />
 
-            <Label
-                Text="Category"/>
-            <Label
-                Text="None"
-                x:Name="ClaimCategoryText"/>
+                
+                <Image Source="placeholder.png"
+                       HeightRequest="150"
+                       Aspect="AspectFit"
+                       Margin="0,10" />
 
-            <Label
-                Text="Location:"/>
-            <Label
-                Text="None"
-                x:Name="ClaimLocationText"/>
+                
+                <Label Text="Category"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ClaimCategoryText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Label
-                Text="Date and Time:"/>
-            <Label
-                Text="None"
-                x:Name="ClaimDateAndTimeText"/>
+                
+                <Label Text="Location:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ClaimLocationText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Label
-                Text="Description:"/>
-            <Label
-                Text="None"
-                x:Name="ClaimDescriptionText"/>
+                
+                <Label Text="Date and Time:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ClaimDateAndTimeText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Label
-                Text="Status:"/>
-            <Label
-                Text="None"
-                x:Name="ClaimStatusText"/>
+                
+                <Label Text="Description:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ClaimDescriptionText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Button
-                Text="Change Status"
-                x:Name="ClaimChangeBtn"
-                />
+                
+                <Label Text="Status:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ClaimStatusText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Button
-                Text="Save"
-                x:Name="ClaimSaveBtn"
-                />
-        </VerticalStackLayout>
+                
+                <Button Text="Change Status"
+                        x:Name="ClaimChangeBtn"
+                        BackgroundColor="#E53935"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="45" />
+                <Button Text="Save"
+                        x:Name="ClaimSaveBtn"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="45" />
+
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage>
 
+    
     <ContentPage Title="Report Form">
-        <VerticalStackLayout>
-            <Label 
-                Text="Dynamic Page Report Form viewing"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
-            <Image/>
+                
+                <Label Text="Dynamic Page Report Form viewing"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="#333333"
+                       HorizontalOptions="Center" />
 
-            <Label
-                Text="Category"/>
-            <Label
-                Text="None"
-                x:Name="ReportCategoryText"/>
+                
+                <Image Source="placeholder.png"
+                       HeightRequest="150"
+                       Aspect="AspectFit"
+                       Margin="0,10" />
 
-            <Label
-                Text="Location:"/>
-            <Label
-                Text="None"
-                x:Name="ReportLocationText"/>
+                
+                <Label Text="Category"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ReportCategoryText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Label
-                Text="Date and Time:"/>
-            <Label
-                Text="None"
-                x:Name="ReportDateAndTimeText"/>
+                
+                <Label Text="Location:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ReportLocationText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Label
-                Text="Description:"/>
-            <Label
-                Text="None"
-                x:Name="ReportDescriptionText"/>
+                
+                <Label Text="Date and Time:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ReportDateAndTimeText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Label
-                Text="Status:"/>
-            <Label
-                Text="None"
-                x:Name="ReportStatusText"/>
+                
+                <Label Text="Description:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ReportDescriptionText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Button
-                Text="Change Status"
-                x:Name="ReportChangeBtn"
-                />
+                
+                <Label Text="Status:"
+                       FontSize="14"
+                       TextColor="#555555" />
+                <Label Text="None"
+                       x:Name="ReportStatusText"
+                       FontSize="16"
+                       TextColor="#333333" />
 
-            <Button
-                Text="Save"
-                x:Name="ReportSaveBtn"
-                />
-        </VerticalStackLayout>
+                
+                <Button Text="Change Status"
+                        x:Name="ReportChangeBtn"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="45" />
+                <Button Text="Save"
+                        x:Name="ReportSaveBtn"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="45" />
+
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage>
 </TabbedPage>

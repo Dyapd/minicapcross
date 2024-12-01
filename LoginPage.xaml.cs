@@ -52,43 +52,43 @@ namespace test
 
 
             //temporary hard code for testing!!
-            //if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
-            //{
-            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-            //    await Navigation.PushAsync(new AdminDashboard());
-            //}
-            //else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
-            //{
-            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-            //    await Navigation.PushAsync(new StudentDashboard());
-            //}
-            //else
-            //{
-            //    this.ShowPopup(new NewPage1());
-            //}
-
-
-            //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
-            //NOTE NEED TO IMPORT DATABASE FROM THE FILES
-            //PROPER CREDENTIALS look in the database adminusers and studusers!!!
-
-            if (await CheckAdminAccount(enteredEmail, enteredPassword))
+            if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
             {
                 Application.Current.MainPage = new NavigationPage(new AdminDashboard());
                 await Navigation.PushAsync(new AdminDashboard());
             }
-            else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
+            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
             {
-                SessionVars.SetSessionId(enteredEmail, enteredPassword);
-                await DisplayAlert(SessionVars.SessionId, "", "OK!");
                 Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-
                 await Navigation.PushAsync(new StudentDashboard());
             }
             else
             {
                 this.ShowPopup(new NewPage1());
             }
+
+
+            //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
+            //NOTE NEED TO IMPORT DATABASE FROM THE FILES
+            //PROPER CREDENTIALS look in the database adminusers and studusers!!!
+
+            //if (await CheckAdminAccount(enteredEmail, enteredPassword))
+            //{
+                //Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+                //await Navigation.PushAsync(new AdminDashboard());
+            //}
+            //else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
+            //{
+                //SessionVars.SetSessionId(enteredEmail, enteredPassword);
+                //await DisplayAlert(SessionVars.SessionId, "", "OK!");
+                //Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+
+                //await Navigation.PushAsync(new StudentDashboard());
+            //}
+            //else
+            //{
+                //this.ShowPopup(new NewPage1());
+            //}
         }
         private async Task<bool> CheckRegisteredAccount(string enteredEmail, string enteredPassword)
         {
