@@ -47,7 +47,6 @@ public partial class ReportPage : ContentPage
 
     public byte[] imageData; //byte array for image
 
-    //this selects and stores the image in above byte array
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
         try
@@ -64,7 +63,8 @@ public partial class ReportPage : ContentPage
                     imageData = new byte[stream.Length];
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
 
-                    string imagePath = result.FullPath; //file path
+                    // Displays the picture
+                    uploadedImage.Source = ImageSource.FromStream(() => stream);
                 }
             }
             else
@@ -72,7 +72,6 @@ public partial class ReportPage : ContentPage
                 await DisplayAlert("ERROR", "Image failed to select", "OK");
             }
         }
-
         catch (Exception ex)
         {
             await DisplayAlert("Error", $"Something went wrong: {ex.Message}", "OK");
@@ -115,7 +114,7 @@ public partial class ReportPage : ContentPage
         return combinedDateTime;
     }
 
-    private async void insertWithoutImage( string connectionString, string reportICategory, string reportDescription, string reportLocation, DateTime reportDateTime)
+    private async void insertWithoutImage(string connectionString, string reportICategory, string reportDescription, string reportLocation, DateTime reportDateTime)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
@@ -181,18 +180,18 @@ public partial class ReportPage : ContentPage
         }
     }
 
-    private void OnImageInputBtnEntered(object sender, PointerEventArgs e) 
+    private void OnImageInputBtnEntered(object sender, PointerEventArgs e)
     {
-        ImageInput.BackgroundColor = Colors.SlateGrey;    
+        ImageInput.BackgroundColor = Colors.SlateGrey;
     }
-    private void OnImageInputBtnExited(object sender, PointerEventArgs e) 
+    private void OnImageInputBtnExited(object sender, PointerEventArgs e)
     {
-        ImageInput.BackgroundColor = Colors.Orange; 
+        ImageInput.BackgroundColor = Colors.Orange;
     }
 
     private void OnReportItemBtnEntered(object sender, PointerEventArgs e)
     {
-       ReportItemBtn.BackgroundColor = Colors.SlateGrey;
+        ReportItemBtn.BackgroundColor = Colors.SlateGrey;
     }
 
     private void OnReportItemBtnExited(object sender, PointerEventArgs e)
@@ -202,6 +201,3 @@ public partial class ReportPage : ContentPage
     }
 
 }
-
-
-

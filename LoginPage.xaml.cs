@@ -78,7 +78,7 @@ namespace test
                 Application.Current.MainPage = new NavigationPage(new AdminDashboard());
                 await Navigation.PushAsync(new AdminDashboard());
             }
-            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
+            else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
             {
                 Application.Current.MainPage = new NavigationPage(new StudentDashboard());
                 await Navigation.PushAsync(new StudentDashboard());
