@@ -12,7 +12,7 @@ namespace test.Pages
     {
         
         public ObservableCollection<DynamicItems> DynamicItems { get; set; }
-        ICommand ButtonCommand { get; }
+        public ICommand ButtonCommand { get; }
         public AdminItems()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace test.Pages
 
         private void OnDetailsClicked(string obj)
         {
-            //Navigation.PushAsync(new AdminDynamicPage());
+            Navigation.PushAsync(new AdminDynamic());
             
         }
 
@@ -49,12 +49,10 @@ namespace test.Pages
 
                     SqlCommand command = connection.CreateCommand();
                     command.CommandText = "SELECT " +
-                    "Item_Category, Item_ID, Item_Status, Item_ICategory, Item_Description, " +
-                    "Item_Image  FROM Items";
+                    "Item_ID, Item_Status, Item_ICategory, Item_Description, " +
+                    "Item_Image FROM Items";
 
-                    command.Parameters.AddWithValue("@claimID", Convert.ToInt32(SessionVars.DynamicClaim));
-
-                    using (SqlDataReader reader =  command.ExecuteReader())
+                    using (SqlDataReader reader =  await command.ExecuteReaderAsync())
                     {
                         if (reader.HasRows)
                         {
@@ -63,11 +61,11 @@ namespace test.Pages
                                 items.Add(new DynamicItems
                                 {
 
-                                    ID = reader.GetInt32(1).ToString(),
-                                    Status = reader.GetBoolean(2),
-                                    ICategory = reader.GetString(3),
-                                    Description = reader.GetString(4),
-                                    Image = reader.IsDBNull(6) ? null : reader["Item_Image"] as byte[]
+                                    ID = reader.GetInt32(0).ToString(),
+                                    Status = reader.GetBoolean(1),
+                                    ICategory = reader.GetString(2),
+                                    Description = reader.GetString(3),
+                                    Image = reader.IsDBNull(4) ? null : reader["Item_Image"] as byte[]
                                 });
                             }
                         }
@@ -89,6 +87,7 @@ namespace test.Pages
             {
                 DynamicItems.Add(item);
             }
+            
         }
     }
 

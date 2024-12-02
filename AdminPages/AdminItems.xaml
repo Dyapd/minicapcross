@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="test.Pages.AdminItems"
              Title="Admin Items"
              BackgroundColor="#E3F2FD">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
@@ -54,8 +60,8 @@
                 </Grid>
             </Frame>
 
-            
-            <CollectionView ItemsSource="{Binding Items}"
+
+            <CollectionView ItemsSource="{Binding DynamicItems}"
                             BackgroundColor="Transparent"
                             SelectionMode="None">
                 <CollectionView.ItemTemplate>
@@ -74,8 +80,8 @@
                                        TextColor="#1565C0"
                                        VerticalOptions="Center" />
 
-                                
-                                <Image Source="{Binding Image}"
+
+                                <Image Source="{Binding Image, Converter= {StaticResource ByteArrayToImageSourceConverter}}"
                                        Grid.Column="1"
                                        Aspect="AspectFill"
                                        HeightRequest="50"
@@ -83,7 +89,7 @@
                                        VerticalOptions="Center" />
 
                                 
-                                <Label Text="{Binding Category}"
+                                <Label Text="{Binding ICategory}"
                                        Grid.Column="2"
                                        FontSize="18"
                                        TextColor="Black"
