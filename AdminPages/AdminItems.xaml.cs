@@ -1,30 +1,23 @@
 using Microsoft.Maui.Controls;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Security.Claims;
 using System.Windows.Input;
+using static test.DataHolders.DataholderNotificationLog;
 
 namespace test.Pages
 {
     public partial class AdminItems : ContentPage
     {
         
-        public ObservableCollection<ItemModel> ItemList { get; set; }
+        public ObservableCollection<DynamicItems> DynamicItems { get; set; }
         ICommand ButtonCommand { get; }
         public AdminItems()
         {
             InitializeComponent();
+            DynamicItems = new ObservableCollection<DynamicItems>();
             ButtonCommand = new Command<string>(OnDetailsClicked);
-
-
-            ItemList = new ObservableCollection<ItemModel>
-            {
-                new ItemModel { ItemID = "1", ItemImage = "item1.jpg", Category = "Electronics", Status = "Available" },
-                new ItemModel { ItemID = "2", ItemImage = "item2.jpg", Category = "Clothing", Status = "Out of Stock" },
-                new ItemModel { ItemID = "3", ItemImage = "item3.jpg", Category = "Books", Status = "Available" },
-                new ItemModel { ItemID = "4", ItemImage = "item4.jpg", Category = "Accessories", Status = "Available" }
-            };
-
-            
             BindingContext = this;
         }
 
@@ -39,15 +32,54 @@ namespace test.Pages
             Navigation.PushAsync(new AdminSubmittedPage());
         }
 
+        private async Task<List<DynamicItems>> takeFromDatabaseItems()
+        {
+            List<DynamicItems> items = new List<DynamicItems>();
+            try
+            {
+                IPLocator ip = new IPLocator();
+                string connectionString = ip.ConnectionString();
 
+                SqlConnection connection = new SqlConnection(connectionString);
+
+                using (connection)
+                {
+                    connection.Open();
+
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandText = "SELECT " +
+                    "Claim_Category, Claims_ID, Claim_Status, Claim_ICategory, Claim_Description, " +
+                    "Student_Number, Claim_Image  FROM Items";
+
+                    command.Parameters.AddWithValue("@claimID", Convert.ToInt32(SessionVars.DynamicClaim));
+
+                    using (SqlDataReader reader =  command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while(reader.Read())
+                            {
+                                items.Add(new DynamicItems
+                                {
+
+                                    ID = reader.GetInt32(1).ToString(),
+                                    Status = reader.GetBoolean(2),
+                                    ICategory = reader.GetString(3),
+                                    Description = reader.GetString(4),
+                                    StudentNumber = reader.GetString(5),
+                                    Image = reader.IsDBNull(6) ? null : reader["Item_Image"] as byte[]
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                DisplayAlert("Error", e.Message, "OK");
+            }
+            return items;
+        }
     }
 
-    
-    public class ItemModel
-    {
-        public string ItemID { get; set; }
-        public string ItemImage { get; set; }  
-        public string Category { get; set; }
-        public string Status { get; set; }
-    }
 }

@@ -19,7 +19,7 @@ public partial class StudentDashboard : ContentPage
         BindingContext = this;
 
         LoadItems();
-        DisplayAlert("Test2 dashboard", SessionVars.SessionId, "OK");
+
 
         if (DeviceInfo.Platform != DevicePlatform.Android)
         {
@@ -107,7 +107,7 @@ public partial class StudentDashboard : ContentPage
         {
             StudentNotification.Add(notif);
         }
-        await DisplayAlert("Test", StudentNotification.Count.ToString(), "OK");
+        //await DisplayAlert("Test", StudentNotification.Count.ToString(), "OK");
     }
 
     public async void ReportBtn_Clicked(object sender, EventArgs e)

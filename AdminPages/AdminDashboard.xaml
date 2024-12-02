@@ -29,7 +29,7 @@
         Clicked="OnClickedReportsBtn"
               />
             <Button
-        Text="Claims"
+        Text="Approve Claims"
         Margin="0,5"
         BackgroundColor="DarkBlue"
         TextColor="White"

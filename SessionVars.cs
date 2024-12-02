@@ -29,7 +29,7 @@ namespace test
                         command.Parameters.AddWithValue("@Email", Email);
                         command.Parameters.AddWithValue("@Password", Password);
 
-                        SessionId = command.ExecuteNonQuery().ToString();
+                        SessionId = command.ExecuteScalar().ToString();
                     }
                 }
                 catch (Exception ex)

@@ -11,8 +11,10 @@ public partial class AdminDynamic : TabbedPage
 
     public ObservableCollection<DynamicClaims> DynamicClaims { get; set; }
     public ObservableCollection<DynamicReports> DynamicReports { get; set; }
+    public ObservableCollection<DynamicItems> DynamicItems { get; set; }
     public byte[] claimImage;
-    string reportID;
+    string reportID, itemID;
+
 
     public AdminDynamic()
     {
@@ -20,6 +22,7 @@ public partial class AdminDynamic : TabbedPage
         InitializeComponent();
         DynamicClaims = new ObservableCollection<DynamicClaims>();
         DynamicReports = new ObservableCollection<DynamicReports>();
+        DynamicItems = new ObservableCollection<DynamicItems>();
         BindingContext = this;
         LoadItemsClaims();
 
@@ -40,6 +43,12 @@ public partial class AdminDynamic : TabbedPage
             ClaimImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicClaims[0].Image));
 
             //for item page
+            ItemImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicReports[0].Image));
+            ItemCategoryText.Text = DynamicItems[0].ICategory.ToString();
+            ItemLocationText.Text = DynamicItems[0].Location.ToString();
+            ItemDateAndTimeText.Text = DynamicItems[0].Date.ToString();
+            ItemDescriptionText.Text = DynamicItems[0].Description.ToString();
+            ItemStatusText.Text = DynamicItems[0].Status.ToString();
 
             //for report page
             ReportImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicReports[0].Image));
@@ -53,7 +62,7 @@ public partial class AdminDynamic : TabbedPage
         }
         catch (Exception e)
         {
-            DisplayAlert("PopulateTest", e.Message, "OK");
+            //DisplayAlert("PopulateTest", e.Message, "OK");
         }
 
 
@@ -91,6 +100,7 @@ public partial class AdminDynamic : TabbedPage
                             //await DisplayAlert("Test2", reader.GetString(4), "OK");
                             //ClaimCategoryText.Text = reader.GetString(4);
                             reportID = reader.GetInt32(7).ToString();
+                            itemID = reader.GetInt32(8).ToString();
                             claims.Add(new DynamicClaims
                             {
 
@@ -124,6 +134,7 @@ public partial class AdminDynamic : TabbedPage
             await DisplayAlert("ERROR CLaim", e.Message, "OK");
         }
         LoadItemsReports();
+        LoadItemsItems();
         return claims;
 
     }
@@ -216,10 +227,79 @@ public partial class AdminDynamic : TabbedPage
             DynamicReports.Add(report);
         }
 
-        await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
+        //await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
         populateDynamicPage();
 
     }
+
+    private async Task<List<DynamicItems>> takeFromDatabaseItems()
+    {
+        List<DynamicItems> items = new List<DynamicItems>();
+        try
+        {
+
+            IPLocator ip = new IPLocator();
+            string connectionString = ip.ConnectionString();
+           
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            using (connection)
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT " +
+                    "Item_ID, Item_Image, Item_ICategory, Item_Date, Item_Description, Item_Location, Item_Status " +
+                    "FROM Items WHERE Item_ID = @itemID";
+                command.Parameters.AddWithValue("@itemID", itemID);
+
+                using(SqlDataReader reader = command.ExecuteReader())
+                {
+                    //check if there is a row
+                    if (reader.HasRows) 
+                    {
+                        //so more than oen row will be read
+                        while (reader.Read())
+                        {
+                            DateTime itemDate = reader.GetDateTime(3);
+                            string date = itemDate.ToString("yyyy-MM-dd HH:mm");
+                            items.Add(new DynamicItems
+                            {
+
+                                ID = reader.GetInt32(0).ToString(),
+                                Date = date,
+                                ICategory = reader.GetString(2),
+                                Location = reader.GetString(5),
+                                Description = reader.GetString(4),
+                                Image = reader.IsDBNull(1) ? null : reader["Item_Image"] as byte[],
+                                Status = reader.GetBoolean(6),
+                            });
+                        }
+                    }
+                }
+
+            }
+        }
+        catch (Exception e)
+        {
+            DisplayAlert("Error!", e.Message, "OK");
+        }
+        return items;
+    }
+    private async void LoadItemsItems()
+    {
+        List<DynamicItems> items = await takeFromDatabaseItems();
+        DynamicItems.Clear();
+        foreach (DynamicItems item in items)
+        {
+            DynamicItems.Add(item);
+        }
+
+        //await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
+        populateDynamicPage();
+
+    }
+
 }
 
 

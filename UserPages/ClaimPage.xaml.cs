@@ -86,7 +86,7 @@ public partial class ClaimPage : ContentPage
 
     //this changes the picture on the right depending on the selection
 
-    private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+    private async void OnPickerSelectedIndexChanged(object sender, EventArgs e)
     {
         byte[] imageBytes = null;
         try

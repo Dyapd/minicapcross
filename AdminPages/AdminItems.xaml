@@ -55,7 +55,7 @@
             </Frame>
 
             
-            <CollectionView ItemsSource="{Binding ItemList}"
+            <CollectionView ItemsSource="{Binding Items}"
                             BackgroundColor="Transparent"
                             SelectionMode="None">
                 <CollectionView.ItemTemplate>
@@ -68,14 +68,14 @@
                             <Grid ColumnDefinitions="*, Auto"
                                   Padding="5">
                                 
-                                <Label Text="{Binding ItemID}"
+                                <Label Text="{Binding ID}"
                                        FontSize="18"
                                        FontAttributes="Bold"
                                        TextColor="#1565C0"
                                        VerticalOptions="Center" />
 
                                 
-                                <Image Source="{Binding ItemImage}"
+                                <Image Source="{Binding Image}"
                                        Grid.Column="1"
                                        Aspect="AspectFill"
                                        HeightRequest="50"

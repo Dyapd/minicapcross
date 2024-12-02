@@ -127,7 +127,7 @@
                  TextColor="white" />
                 </Frame>
 
-                <CollectionView ItemsSource="{Binding Items}"
+            <CollectionView ItemsSource="{Binding StudentNotification}"
                 BackgroundColor="Transparent"
                 SelectionMode="None">
                     <CollectionView.ItemTemplate>

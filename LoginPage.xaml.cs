@@ -81,8 +81,8 @@ namespace test
             else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
             {
                 Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-                
-                await DisplayAlert("TestLogin", SessionVars.SessionId, "OK");
+                SessionVars.SetSessionId(enteredEmail, enteredPassword);
+
                 await Navigation.PushAsync(new StudentDashboard());
             }
             else
@@ -107,7 +107,7 @@ namespace test
 
                         using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
-                            //SessionVars.SetSessionId(enteredEmail, enteredPassword);
+                            
                             return reader.HasRows;
                         }
                     }
