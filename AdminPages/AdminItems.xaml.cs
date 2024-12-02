@@ -1,10 +1,11 @@
 using Microsoft.Maui.Controls;
 using System;
 using System.Collections.ObjectModel;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Security.Claims;
 using System.Windows.Input;
 using static test.DataHolders.DataholderNotificationLog;
+using test.AdminPages;
 
 namespace test.Pages
 {
@@ -24,7 +25,7 @@ namespace test.Pages
 
         private void OnDetailsClicked(string obj)
         {
-            Navigation.PushAsync(new AdminDynamic());
+            Navigation.PushAsync(new AdminItemDynamicPage());
             
         }
 
