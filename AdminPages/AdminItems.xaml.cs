@@ -19,6 +19,7 @@ namespace test.Pages
             DynamicItems = new ObservableCollection<DynamicItems>();
             ButtonCommand = new Command<string>(OnDetailsClicked);
             BindingContext = this;
+            LoadItems();
         }
 
         private void OnDetailsClicked(string obj)
@@ -48,8 +49,8 @@ namespace test.Pages
 
                     SqlCommand command = connection.CreateCommand();
                     command.CommandText = "SELECT " +
-                    "Claim_Category, Claims_ID, Claim_Status, Claim_ICategory, Claim_Description, " +
-                    "Student_Number, Claim_Image  FROM Items";
+                    "Item_Category, Item_ID, Item_Status, Item_ICategory, Item_Description, " +
+                    "Item_Image  FROM Items";
 
                     command.Parameters.AddWithValue("@claimID", Convert.ToInt32(SessionVars.DynamicClaim));
 
@@ -66,7 +67,6 @@ namespace test.Pages
                                     Status = reader.GetBoolean(2),
                                     ICategory = reader.GetString(3),
                                     Description = reader.GetString(4),
-                                    StudentNumber = reader.GetString(5),
                                     Image = reader.IsDBNull(6) ? null : reader["Item_Image"] as byte[]
                                 });
                             }
@@ -79,6 +79,16 @@ namespace test.Pages
                 DisplayAlert("Error", e.Message, "OK");
             }
             return items;
+        }
+
+        private async void LoadItems()
+        {
+            List<DynamicItems> items = await takeFromDatabaseItems();
+            DynamicItems.Clear();
+            foreach (DynamicItems item in items)
+            {
+                DynamicItems.Add(item);
+            }
         }
     }
 
