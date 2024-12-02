@@ -10,6 +10,13 @@ namespace test.DataHolders
     public class DataholderNotificationLog
     {
         //items is reused for both studentdashboard and for the claims page left picker!!
+
+        public class StudentNotification
+        {
+            public string ID { get; set; }
+            public string Category { get; set; }
+            public string CategoryAndId => $"{Category}{ID}";
+        }
         public class Items
         { 
             public string Category { get; set; }

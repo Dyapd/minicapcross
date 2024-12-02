@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Maui.Views;
 using Microsoft.Data.SqlClient;
 
 namespace test
 {
     internal class SessionVars
     {
-        public static string SessionId = "";
+        public static string SessionId = "12345678";
         public static string DynamicClaim = "", DynamicReport="", DynamicItem="";
 
         public static void SetSessionId(string Email, string Password)
@@ -28,14 +29,13 @@ namespace test
                         command.Parameters.AddWithValue("@Email", Email);
                         command.Parameters.AddWithValue("@Password", Password);
 
-                        SessionId = command.ExecuteScalar().ToString();
+                        SessionId = command.ExecuteNonQuery().ToString();
                     }
-
                 }
                 catch (Exception ex)
                 {
 
-                    
+              
                 }
             }
         }

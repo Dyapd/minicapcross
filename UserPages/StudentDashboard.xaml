@@ -137,18 +137,15 @@
                    BackgroundColor="White"
                    Margin="5"
                    HasShadow="True">
-                                <Grid ColumnDefinitions="*, Auto"
+                            <Grid ColumnDefinitions="*, Auto"
                       Padding="5">
-
-
-                                    <Label Text="{Binding CategoryAndID}"
+                                <Label Text="{Binding CategoryAndID}"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#1565C0"
                            VerticalOptions="Center" />
-
-
-                                    <Button Text="Details"
+                                
+                                <Button Text="Details"
                             Grid.Column="1"
                             BackgroundColor="#E53935"
                             TextColor="White"

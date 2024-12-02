@@ -10,15 +10,16 @@ namespace test;
 
 public partial class StudentDashboard : ContentPage
 {
-    public ObservableCollection<Items> Items { get; set; }
+    public ObservableCollection<StudentNotification> StudentNotification { get; set; }
     
     public StudentDashboard()
     {
         InitializeComponent();
-        Items = new ObservableCollection<Items>();
+        StudentNotification = new ObservableCollection<StudentNotification>();
         BindingContext = this;
 
         LoadItems();
+        DisplayAlert("Test2 dashboard", SessionVars.SessionId, "OK");
 
         if (DeviceInfo.Platform != DevicePlatform.Android)
         {
@@ -60,9 +61,9 @@ public partial class StudentDashboard : ContentPage
 
     }
     //uses the dataholdernotificationlog class from datahold folder!
-    public  async Task<List<Items>> ReadDataNotificationLog()
+    public  async Task<List<StudentNotification>> ReadDataNotificationLog()
     {
-        List<Items> items = new List<Items>();
+        List<StudentNotification> items = new List<StudentNotification>();
         IPLocator ip = new IPLocator();
         string connectionString = ip.ConnectionString();
 
@@ -80,7 +81,7 @@ public partial class StudentDashboard : ContentPage
                 {
                     while (reader.Read())
                     {
-                        items.Add(new Items
+                        items.Add(new StudentNotification
                         {
                             ID = reader.GetInt32(0).ToString(),
                             Category = reader.GetString(1)
@@ -100,12 +101,13 @@ public partial class StudentDashboard : ContentPage
 
     private async void LoadItems()
     {
-        List<Items> items = await ReadDataNotificationLog();
-        Items.Clear(); 
-        foreach (Items item in items)
+        List<StudentNotification> notifs = await ReadDataNotificationLog();
+        StudentNotification.Clear(); 
+        foreach (StudentNotification notif in notifs)
         {
-            Items.Add(item);
+            StudentNotification.Add(notif);
         }
+        await DisplayAlert("Test", StudentNotification.Count.ToString(), "OK");
     }
 
     public async void ReportBtn_Clicked(object sender, EventArgs e)
