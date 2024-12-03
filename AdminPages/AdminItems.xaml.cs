@@ -13,17 +13,17 @@ namespace test.Pages
     {
         
         public ObservableCollection<DynamicItems> DynamicItems { get; set; }
-        public ICommand ButtonCommand { get; }
+        public ICommand ButtonCommand { get; set; }
         public AdminItems()
         {
             InitializeComponent();
             DynamicItems = new ObservableCollection<DynamicItems>();
-            ButtonCommand = new Command<string>(OnDetailsClicked);
+            ButtonCommand = new Command<string>(OnButtonClicked);
             BindingContext = this;
             LoadItems();
         }
 
-        private void OnDetailsClicked(string obj)
+        private void OnButtonClicked(string obj)
         {
             Navigation.PushAsync(new AdminItemDynamicPage());
             
@@ -31,7 +31,7 @@ namespace test.Pages
 
         public void OnAddItemBtnClicked(object args, EventArgs e)
         {
-            Navigation.PushAsync(new AdminSubmittedPage());
+            Navigation.PushAsync(new AdminItemDynamicPage());
         }
 
         private async Task<List<DynamicItems>> takeFromDatabaseItems()
@@ -50,8 +50,8 @@ namespace test.Pages
 
                     SqlCommand command = connection.CreateCommand();
                     command.CommandText = "SELECT " +
-                    "Item_ID, Item_Status, Item_ICategory, Item_Description, " +
-                    "Item_Image FROM Items";
+                    "Item_ID, Item_Status, Item_ICategory, Item_Description" +
+                    " FROM Items";
 
                     using (SqlDataReader reader =  await command.ExecuteReaderAsync())
                     {
@@ -66,7 +66,6 @@ namespace test.Pages
                                     Status = reader.GetBoolean(1),
                                     ICategory = reader.GetString(2),
                                     Description = reader.GetString(3),
-                                    Image = reader.IsDBNull(4) ? null : reader["Item_Image"] as byte[]
                                 });
                             }
                         }

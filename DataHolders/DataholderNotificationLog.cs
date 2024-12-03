@@ -30,7 +30,7 @@ namespace test.DataHolders
             public Boolean Status { get; set; }
             public byte[] Image { get; set; }
             //combine strings
-            public string CategoryAndID => $"{Category}{ID}";
+            public string CategoryAndID => $"{Category}-{ID}";
 
 
         }
@@ -41,7 +41,7 @@ namespace test.DataHolders
             public string ID { get; set; }
             public string Location { get; set; }
             public string ICategory { get; set; }
-            public string CategoryAndID => $"{Category}{ID}";
+            public string CategoryAndID => $"{Category}-{ID}";
         }
 
         public class DynamicClaims
@@ -70,6 +70,19 @@ namespace test.DataHolders
         }
 
         public class DynamicItems
+        {
+            public string ID { get; set; }
+            public string Date { get; set; }
+            public string ICategory { get; set; }
+            public string Description { get; set; }
+            public string Location { get; set; }
+            public string StudentNumber { get; set; }
+            public byte[] Image { get; set; }
+            public Boolean Status { get; set; }
+            public string CategoryAndID => $"I-{ID}";
+        }
+
+        public class DynamicItemPage
         {
             public string ID { get; set; }
             public string Date { get; set; }

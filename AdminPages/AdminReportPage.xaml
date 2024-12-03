@@ -63,8 +63,8 @@
                 </Grid>
             </Frame>
 
-        
-            <CollectionView ItemsSource="{Binding Items}"
+
+            <CollectionView ItemsSource="{Binding DynamicReports}"
                             BackgroundColor="Transparent"
                             SelectionMode="None">
                 <CollectionView.ItemTemplate>
@@ -77,7 +77,7 @@
                             <Grid ColumnDefinitions="*, Auto"
                                   Padding="5">
                             
-                                <Label Text="{Binding .}"
+                                <Label Text="{Binding CategoryAndID}"
                                        FontSize="18"
                                        FontAttributes="Bold"
                                        TextColor="#1565C0"

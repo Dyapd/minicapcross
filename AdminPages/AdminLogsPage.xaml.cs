@@ -27,7 +27,6 @@ namespace test.Pages
 
             ButtonCommand = new Command<string>(OnButtonClicked);
 
-
             BindingContext = this;
         }
 
