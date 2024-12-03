@@ -67,6 +67,8 @@ namespace test.DataHolders
             public string StudentNumber { get; set; }
             public byte[] Image { get; set; }
             public Boolean Status { get; set; }
+            public string CategoryAndID => $"R-{ID}";
+
         }
 
         public class DynamicItems

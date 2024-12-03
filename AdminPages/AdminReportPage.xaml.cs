@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Microsoft.Data.SqlClient;
 using static test.DataHolders.DataholderNotificationLog;
+using test.AdminPages;
 
 namespace test.Pages
 {
@@ -17,11 +18,14 @@ namespace test.Pages
             DynamicReports = new ObservableCollection<DynamicReports>();
             ButtonCommand = new Command<string>(OnButtonClicked);
             BindingContext = this;
+            LoadItems();
         }
 
         private void OnButtonClicked(string item)
         {
-            DisplayAlert("Button Clicked", $"You clicked on {item}", "OK");
+            DisplayAlert("test", item, "ok");
+            Navigation.PushAsync(new AdminReportsDynamicPage());
+
         }
 
         private async Task<List<DynamicReports>> takeFromDatabase()
@@ -41,17 +45,42 @@ namespace test.Pages
 
                     SqlCommand command = connection.CreateCommand();
                     command.CommandText = "SELECT " +
-                    "Item_ID, Item_Status, Item_ICategory, Item_Description" +
-                    " FROM Items";
+                    "Report_ID, Report_Status, Report_ICategory, Report_Description" +
+                    " FROM Reports";
 
+                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                reports.Add(new DynamicReports {
+                                    ID = reader.GetInt32(0).ToString(),
+                                    Status = reader.GetBoolean(1),
+                                    ICategory = reader.GetString(2),
+                                    Description = reader.GetString(3),
+                                });
+                            }
+                        }
+                    }
                     
                 }
             }
-            catch
+            catch (Exception e)
             {
-
+                await DisplayAlert("Error Reports", e.Message, "OK");
             }
             return reports;
+        }
+
+        public async void LoadItems()
+        {
+            List<DynamicReports> reports = await takeFromDatabase();
+            DynamicReports.Clear();
+            foreach (DynamicReports report in reports)
+            {
+                DynamicReports.Add(report);
+            }
         }
     }
 }
