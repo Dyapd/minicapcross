@@ -117,7 +117,7 @@ public partial class AdminSubmittedPage : ContentPage
             await DisplayAlert("ERROR", ec.Message, "OK");
         }
 
-
+        await Navigation.PopAsync();
 
     }
 

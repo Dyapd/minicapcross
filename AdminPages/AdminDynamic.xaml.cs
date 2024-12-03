@@ -40,10 +40,14 @@ public partial class AdminDynamic : TabbedPage
 
 
             // picture display
-            ClaimImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicClaims[0].Image));
+            if (DynamicClaims[0].Image != null)
+            {
+                ClaimImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicClaims[0].Image));
+            }
+            
 
             //for item page
-            ItemImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicReports[0].Image));
+            ItemImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicItems[0].Image));
             ItemCategoryText.Text = DynamicItems[0].ICategory.ToString();
             ItemLocationText.Text = DynamicItems[0].Location.ToString();
             ItemDateAndTimeText.Text = DynamicItems[0].Date.ToString();
@@ -51,7 +55,12 @@ public partial class AdminDynamic : TabbedPage
             ItemStatusText.Text = DynamicItems[0].Status.ToString();
 
             //for report page
-            ReportImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicReports[0].Image));
+            if (DynamicClaims[0].Image != null)
+            {
+                ReportImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicReports[0].Image));
+            }
+                
+
             ReportCategoryText.Text = DynamicReports[0].ICategory.ToString();
             ReportLocationText.Text = DynamicReports[0].Location.ToString();
             ReportDateAndTimeText.Text = DynamicReports[0].Date.ToString();

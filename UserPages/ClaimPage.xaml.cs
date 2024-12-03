@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using System.Collections.ObjectModel;
+using System.Security.Claims;
 using static test.DataHolders.DataholderNotificationLog;
 
 
@@ -75,6 +76,7 @@ public partial class ClaimPage : ContentPage
             {
                 DisplayAlert("Error", "No image found for the selected option!", "OK!");
                 leftImage.Source = null;
+                LoadItems2();
             }
         }
         catch (Exception ev)
@@ -143,8 +145,6 @@ public partial class ClaimPage : ContentPage
     {
         try
         {
-
-
             IPLocator ip = new IPLocator();
             connectionString = ip.ConnectionString();
             var selectedReport = comboBoxLeft.SelectedItem as Items;
@@ -162,9 +162,104 @@ public partial class ClaimPage : ContentPage
                 return;
             }
 
+            if (leftImageBytes == null)
+            {
+                insertWithoutImage( category,  description,  ReportID,  ClaimID);
+            }
+            else
+            {
+                insertWithImage(category, description, ReportID, ClaimID);
+            }
 
 
 
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    string query = @"INSERT INTO Claims (Claim_Category, Claim_Status, Claim_ICategory, Claim_Description, Student_Number, Claim_Image, Report_Category, Report_ID, Item_Category, Item_ID)
+            //                    VALUES (@Category, @Status, @ICategory, @Description, @Student, @Image, @RCategory, @RID, @ITCategory, @IID)";
+            //    SqlCommand command = new SqlCommand(query, connection);
+            //    command.Parameters.AddWithValue("@Category", "C");
+            //    command.Parameters.AddWithValue("@Status", false);
+            //    command.Parameters.AddWithValue("@ICategory", category);
+            //    command.Parameters.AddWithValue("@Description", description);
+            //    command.Parameters.AddWithValue("@Student", SessionVars.SessionId);
+            //    command.Parameters.AddWithValue("@Image", leftImageBytes); //add here later sample image of empty pic!
+            //    command.Parameters.AddWithValue("@RCategory", "R");
+            //    command.Parameters.AddWithValue("@RID", ReportID);
+            //    command.Parameters.AddWithValue("@ITCategory", "I");
+            //    command.Parameters.AddWithValue("@IID", ClaimID);
+
+            //    connection.Open();
+                
+
+
+            //    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+            //    if (rowsAffected > 0)
+            //    {
+            //        await DisplayAlert("Success", "Claim has been recorded successfully.", "OK");
+            //    }
+            //    else
+            //    {
+            //        await DisplayAlert("Failure", "Claim failed to insert.", "OK");
+            //    }
+
+            //}
+
+        }
+        catch (Exception e)
+        {
+            await DisplayAlert("ERROR", e.Message, "OK");
+        }
+    }
+
+    private async void insertWithoutImage(string category, string description, string reportID, string claimID)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"INSERT INTO Claims (Claim_Category, Claim_Status, Claim_ICategory, Claim_Description, Student_Number, Report_Category, Report_ID, Item_Category, Item_ID)
+                                VALUES (@Category, @Status, @ICategory, @Description, @Student, @RCategory, @RID, @ITCategory, @IID)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Category", "C");
+                command.Parameters.AddWithValue("@Status", false);
+                command.Parameters.AddWithValue("@ICategory", category);
+                command.Parameters.AddWithValue("@Description", description);
+                command.Parameters.AddWithValue("@Student", SessionVars.SessionId);
+                command.Parameters.AddWithValue("@RCategory", "R");
+                command.Parameters.AddWithValue("@RID", reportID);
+                command.Parameters.AddWithValue("@ITCategory", "I");
+                command.Parameters.AddWithValue("@IID", claimID);
+
+                connection.Open();
+
+
+
+                int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                if (rowsAffected > 0)
+                {
+                    await DisplayAlert("Success", "Claim has been recorded successfully, without image.", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Failure", "Claim failed to insert.", "OK");
+                }
+
+            }
+        }
+        catch (Exception e)
+        {
+            DisplayAlert("Error without image insertion!", e.Message, "OK");
+        }
+    }
+
+    private async void insertWithImage(string category, string description, string reportID, string claimID)
+    {
+        try
+        {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO Claims (Claim_Category, Claim_Status, Claim_ICategory, Claim_Description, Student_Number, Claim_Image, Report_Category, Report_ID, Item_Category, Item_ID)
@@ -175,14 +270,14 @@ public partial class ClaimPage : ContentPage
                 command.Parameters.AddWithValue("@ICategory", category);
                 command.Parameters.AddWithValue("@Description", description);
                 command.Parameters.AddWithValue("@Student", SessionVars.SessionId);
-                command.Parameters.AddWithValue("@Image", leftImageBytes); //add here later sample image of empty pic!
+                command.Parameters.AddWithValue("@Image", leftImageBytes); 
                 command.Parameters.AddWithValue("@RCategory", "R");
-                command.Parameters.AddWithValue("@RID", ReportID);
+                command.Parameters.AddWithValue("@RID", reportID);
                 command.Parameters.AddWithValue("@ITCategory", "I");
-                command.Parameters.AddWithValue("@IID", ClaimID);
+                command.Parameters.AddWithValue("@IID", claimID);
 
                 connection.Open();
-                
+
 
 
                 int rowsAffected = await command.ExecuteNonQueryAsync();
@@ -197,11 +292,10 @@ public partial class ClaimPage : ContentPage
                 }
 
             }
-
         }
         catch (Exception e)
         {
-            await DisplayAlert("ERROR", e.Message, "OK");
+            DisplayAlert("Error without image insertion!", e.Message, "OK");
         }
     }
     //ahead methods are for the use of binding tables to the picker tags!!

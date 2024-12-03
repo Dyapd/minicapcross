@@ -23,6 +23,13 @@ namespace test.Pages
             LoadItems();
         }
 
+        //this one refreshes data once page is popped!!
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LoadItems();
+        }
+
         private void OnButtonClicked(string obj)
         {
             Navigation.PushAsync(new AdminItemDynamicPage());
@@ -31,7 +38,7 @@ namespace test.Pages
 
         public void OnAddItemBtnClicked(object args, EventArgs e)
         {
-            Navigation.PushAsync(new AdminItemDynamicPage());
+            Navigation.PushAsync(new AdminSubmittedPage());
         }
 
         private async Task<List<DynamicItems>> takeFromDatabaseItems()
