@@ -91,7 +91,7 @@
 
                 <Label Text="Description:" FontSize="Medium" />
                 <Entry x:Name="DescriptionInput" BackgroundColor="#EEEEEE" TextColor="Black" />
-
+<<!--SID ETO-->
                 <Button 
                 Text="Claim"
                 BackgroundColor="Red"
