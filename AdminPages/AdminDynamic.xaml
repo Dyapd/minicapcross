@@ -79,20 +79,26 @@
                         BackgroundColor="#E53935"
                         TextColor="White"
                         CornerRadius="8"
-                        HeightRequest="45" />
+                        HeightRequest="45"
+                        Command="{Binding StatusClaim}"
+                        />
                 <Button Text="Reject"
                         x:Name="RejectBtn"
                         BackgroundColor="DarkRed"
                         TextColor="White"
                         CornerRadius="8"
-                        HeightRequest="45" />
+                        HeightRequest="45"
+                        Command="{Binding RejectClaim}"
+                        />
                 <Button Text="Save"
                         x:Name="ClaimSaveBtn"
                         BackgroundColor="#4CAF50"
                         TextColor="White"
                         CornerRadius="8"
-                        HeightRequest="45" />
-
+                        HeightRequest="45" 
+                        
+                        Command="{Binding SaveClaim}"
+/>
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage>

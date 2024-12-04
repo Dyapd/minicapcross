@@ -3,6 +3,7 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Reflection.PortableExecutable;
 using static test.DataHolders.DataholderNotificationLog;
+using System.Windows.Input;
 
 namespace test;
 
@@ -12,6 +13,11 @@ public partial class AdminDynamic : TabbedPage
     public ObservableCollection<DynamicClaims> DynamicClaims { get; set; }
     public ObservableCollection<DynamicReports> DynamicReports { get; set; }
     public ObservableCollection<DynamicItems> DynamicItems { get; set; }
+
+    public ICommand StatusClaim { get; set; }
+    public ICommand RejectClaim { get; set; }
+    public ICommand SaveClaim { get; set; }
+
     public byte[] claimImage;
     string reportID, itemID;
 
@@ -20,11 +26,83 @@ public partial class AdminDynamic : TabbedPage
     {
 
         InitializeComponent();
+
         DynamicClaims = new ObservableCollection<DynamicClaims>();
         DynamicReports = new ObservableCollection<DynamicReports>();
         DynamicItems = new ObservableCollection<DynamicItems>();
+
+        StatusClaim = new Command(OnStatusClicked);
+        RejectClaim = new Command(OnRejectClicked);
+        SaveClaim = new Command(OnSaveClicked);
+
+
         BindingContext = this;
         LoadItemsClaims();
+
+    }
+
+
+    private void OnStatusClicked(object obj)
+    {
+        string stringConnection = new IPLocator().ConnectionString();
+        SqlConnection connection = new SqlConnection(stringConnection);
+        try
+        {
+            using (connection)
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "UPDATE Claims SET Claim_Status = 1 WHERE Claims_ID = @ClaimID";
+                command.Parameters.AddWithValue("@ClaimID", DynamicReports[0].ID.ToString());
+                command.ExecuteNonQuery();
+                DisplayAlert("Error status clicked", "Changed status of claim to true!", "OK");
+                LoadItemsClaims();
+
+            }
+        }
+        catch (Exception e)
+        {
+            DisplayAlert("Error status clicked", e.Message, "OK");
+        }
+
+    }
+    private async void OnRejectClicked(object obj)
+    {
+        string connectionString = new IPLocator().ConnectionString();
+        try
+        {
+            SqlConnection connection = new SqlConnection((string)connectionString);
+
+            bool answer = await DisplayAlert("Confirmation","Are you sure you want to reject this application?", "Yes", "No");
+
+            if (answer)
+            {
+                using (connection)
+                {
+                    connection.Open();
+
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandText = "DELETE FROM Claims WHERE Claims_ID = @ClaimID";
+                    command.Parameters.AddWithValue("@ClaimID", DynamicReports[0].ID.ToString());
+
+                    command.ExecuteNonQuery();
+                    DisplayAlert("Error status clicked", "Sucessfully deleted! Redirecting to claims page.", "OK");
+                    Navigation.PopAsync();
+
+                }
+            }
+            
+      
+        }
+        catch (Exception e)
+        {
+            DisplayAlert("Error rejection clicked", e.Message, "OK");
+        }
+
+    }
+
+    private void OnSaveClicked(object obj)
+    {
 
     }
 
