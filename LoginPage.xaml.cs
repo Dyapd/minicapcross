@@ -1,6 +1,10 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+
+
 
 
 #if ANDROID
@@ -75,8 +79,12 @@ namespace test
 
             if (await CheckAdminAccount(enteredEmail, enteredPassword))
             {
+                var toast = Toast.Make("Logging in as admin", ToastDuration.Short);
+                toast.Show();
                 Application.Current.MainPage = new NavigationPage(new AdminDashboard());
                 await Navigation.PushAsync(new AdminDashboard());
+
+                     
             }
             else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
             {
