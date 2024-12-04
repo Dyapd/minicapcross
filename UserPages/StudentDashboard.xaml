@@ -87,8 +87,9 @@
                         HorizontalOptions="Center"
                         CornerRadius="20"
                         Clicked="LogoutBtn_Clicked"
-                        HeightRequest="20"
-                        WidthRequest="250"/>
+                        HeightRequest="50"
+                        WidthRequest="250"
+                         Margin="15"/>
 
 
 
