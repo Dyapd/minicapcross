@@ -28,6 +28,10 @@ public partial class AdminDynamic : TabbedPage
 
     }
 
+
+
+
+
     //populate both contentpages
     private async void populateDynamicPage()
     {
@@ -255,7 +259,7 @@ public partial class AdminDynamic : TabbedPage
 
             using (connection)
             {
-                connection.Open();
+                await connection.OpenAsync();
                 SqlCommand command = connection.CreateCommand();
                 command.CommandText = "SELECT " +
                     "Item_ID, Item_Image, Item_ICategory, Item_Date, Item_Description, Item_Location, Item_Status " +
@@ -291,7 +295,7 @@ public partial class AdminDynamic : TabbedPage
         }
         catch (Exception e)
         {
-            DisplayAlert("Error!", e.Message, "OK");
+            await DisplayAlert("Error!", e.Message, "OK");
         }
         return items;
     }

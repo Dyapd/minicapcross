@@ -81,7 +81,7 @@ namespace test.Pages
             }
             catch (Exception e)
             {
-                DisplayAlert("Error", e.Message, "OK");
+                await DisplayAlert("Error", e.Message, "OK");
             }
             return items;
         }

@@ -17,7 +17,9 @@ public partial class ClaimPage : ContentPage
 
     public ClaimPage()
     {
+        
         InitializeComponent();
+        DisplayAlert("Test", SessionVars.SessionId, "OK");
         Items = new ObservableCollection<Items>();
         Items2 = new ObservableCollection<Items2>();
         BindingContext = this;
@@ -31,11 +33,15 @@ public partial class ClaimPage : ContentPage
 
     //this changes the picture on the left depending on the selection
 
-    private async void OnPickerSelectedIndexChangedLeft(object sender, EventArgs e)
+    private void OnPickerSelectedIndexChangedLeft(object sender, EventArgs e)
     {
         
         try
         {
+            rightImage.Source = null;
+            comboBox.SelectedItem = null;
+            leftImage.Source = null;
+            
             IPLocator ip = new IPLocator();
             connectionString = ip.ConnectionString();
             
@@ -78,7 +84,7 @@ public partial class ClaimPage : ContentPage
                 leftImage.Source = null;
                 LoadItems2();
             }
-        }
+        }   
         catch (Exception ev)
         {
             DisplayAlert("Error!", ev.Message, "OK!");
@@ -88,12 +94,12 @@ public partial class ClaimPage : ContentPage
 
     //this changes the picture on the right depending on the selection
 
-    private async void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+    private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
     {
         byte[] imageBytes = null;
         try
         {
-
+            rightImage.Source = null;
        
             IPLocator ip = new IPLocator();
             connectionString = ip.ConnectionString();
@@ -101,10 +107,10 @@ public partial class ClaimPage : ContentPage
             var selectedItem2 = comboBox.SelectedItem as Items2;
             var selectedOption = selectedItem2.ICategory;
 
-                if (string.IsNullOrEmpty(selectedOption))
+            if (string.IsNullOrEmpty(selectedOption))
             {
-                DisplayAlert("Error", "No option selected!", "OK!");
-                return;
+            DisplayAlert("Error", "No option selected!", "OK!");
+            return;
             }
 
         
@@ -141,7 +147,7 @@ public partial class ClaimPage : ContentPage
         }
     }
 
-    private async void SaveToDatabase()
+    private  void SaveToDatabase()
     {
         try
         {
@@ -158,7 +164,7 @@ public partial class ClaimPage : ContentPage
 
             if (string.IsNullOrWhiteSpace(category) || string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(studentNumber))
             {
-                await DisplayAlert("Error", "All fields must have values!", "OK!");
+                 DisplayAlert("Error", "All fields must have values!", "OK!");
                 return;
             }
 
@@ -210,11 +216,11 @@ public partial class ClaimPage : ContentPage
         }
         catch (Exception e)
         {
-            await DisplayAlert("ERROR", e.Message, "OK");
+            DisplayAlert("ERROR", e.Message, "OK");
         }
     }
 
-    private async void insertWithoutImage(string category, string description, string reportID, string claimID)
+    private void insertWithoutImage(string category, string description, string reportID, string claimID)
     {
         try
         {
@@ -237,15 +243,15 @@ public partial class ClaimPage : ContentPage
 
 
 
-                int rowsAffected = await command.ExecuteNonQueryAsync();
+                int rowsAffected = command.ExecuteNonQuery();
 
                 if (rowsAffected > 0)
                 {
-                    await DisplayAlert("Success", "Claim has been recorded successfully, without image.", "OK");
+                    DisplayAlert("Success", "Claim has been recorded successfully, without image.", "OK");
                 }
                 else
                 {
-                    await DisplayAlert("Failure", "Claim failed to insert.", "OK");
+                    DisplayAlert("Failure", "Claim failed to insert.", "OK");
                 }
 
             }
@@ -256,7 +262,7 @@ public partial class ClaimPage : ContentPage
         }
     }
 
-    private async void insertWithImage(string category, string description, string reportID, string claimID)
+    private void insertWithImage(string category, string description, string reportID, string claimID)
     {
         try
         {
@@ -280,15 +286,15 @@ public partial class ClaimPage : ContentPage
 
 
 
-                int rowsAffected = await command.ExecuteNonQueryAsync();
+                int rowsAffected =  command.ExecuteNonQuery();
 
                 if (rowsAffected > 0)
                 {
-                    await DisplayAlert("Success", "Claim has been recorded successfully.", "OK");
+                    DisplayAlert("Success", "Claim has been recorded successfully.", "OK");
                 }
                 else
                 {
-                    await DisplayAlert("Failure", "Claim failed to insert.", "OK");
+                    DisplayAlert("Failure", "Claim failed to insert.", "OK");
                 }
 
             }
@@ -299,7 +305,7 @@ public partial class ClaimPage : ContentPage
         }
     }
     //ahead methods are for the use of binding tables to the picker tags!!
-    public async Task<List<Items>> ReadDataNotificationLog()
+    public List<Items> ReadDataNotificationLog()
     {
         List<Items> items = new List<Items>();
 
@@ -340,9 +346,9 @@ public partial class ClaimPage : ContentPage
 
     }
 
-    private async void LoadItems()
+    private void LoadItems()
     {
-        List<Items> items = await ReadDataNotificationLog();
+        List<Items> items = ReadDataNotificationLog();
         Items.Clear();
         foreach (Items item in items)
         {
@@ -350,7 +356,7 @@ public partial class ClaimPage : ContentPage
         }
     }
 
-    public async Task<List<Items2>> ReadNotificationLog2()
+    public List<Items2> ReadNotificationLog2()
     {
         List<Items2> items2 = new List<Items2>();
 
@@ -387,15 +393,15 @@ public partial class ClaimPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("ERROR", ex.Message, "Ok");
+            DisplayAlert("ERROR", ex.Message, "Ok");
         }
         return items2;
 
     }
 
-    private async void LoadItems2()
+    private  void LoadItems2()
     {
-        List<Items2> items = await ReadNotificationLog2();
+        List<Items2> items =  ReadNotificationLog2();
         Items2.Clear();
         foreach (Items2 item in items)
         {

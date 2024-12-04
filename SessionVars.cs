@@ -24,6 +24,7 @@ namespace test
                 try
                 {
                     connection.Open();
+
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Email", Email);

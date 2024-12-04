@@ -81,7 +81,7 @@ namespace test
             else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
             {
                 Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-                SessionVars.SetSessionId(enteredEmail, enteredPassword);
+                 SessionVars.SetSessionId(enteredEmail, enteredPassword);
 
                 await Navigation.PushAsync(new StudentDashboard());
             }

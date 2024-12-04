@@ -21,7 +21,7 @@
                 >
 
                     <Label 
-                    Text="ReClaimIt!"  FontFamily="Opensans"
+                    Text="ReClaimIt!"  FontFamily=""
                     FontSize="Large" 
                     FontAttributes="Bold"
                     HorizontalOptions="CenterAndExpand"

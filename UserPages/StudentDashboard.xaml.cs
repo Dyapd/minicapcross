@@ -61,7 +61,7 @@ public partial class StudentDashboard : ContentPage
 
     }
     //uses the dataholdernotificationlog class from datahold folder!
-    public  async Task<List<StudentNotification>> ReadDataNotificationLog()
+    public  List<StudentNotification> ReadDataNotificationLog()
     {
         List<StudentNotification> items = new List<StudentNotification>();
         IPLocator ip = new IPLocator();
@@ -99,9 +99,9 @@ public partial class StudentDashboard : ContentPage
 
     }
 
-    private async void LoadItems()
+    private  void LoadItems()
     {
-        List<StudentNotification> notifs = await ReadDataNotificationLog();
+        List<StudentNotification> notifs =  ReadDataNotificationLog();
         StudentNotification.Clear(); 
         foreach (StudentNotification notif in notifs)
         {
@@ -112,22 +112,22 @@ public partial class StudentDashboard : ContentPage
 
     public async void ReportBtn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ReportPage());
+         Navigation.PushAsync(new ReportPage());
     }
     public async void ClaimBtn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ClaimPage());
+         Navigation.PushAsync(new ClaimPage());
     }
 
-    private async void LogoutBtn_Clicked(object sender, EventArgs e)
+    private  void LogoutBtn_Clicked(object sender, EventArgs e)
     {
         Application.Current.MainPage = new NavigationPage(new MainPage());
-        await Navigation.PopAsync();
+         Navigation.PopAsync();
     }
 
-    private async void OnDetailsButtonClicked(object sender, EventArgs e)
+    private  void OnDetailsButtonClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ClaimPage());
+         Navigation.PushAsync(new ClaimPage());
     }
 
     private void OnLogoutBtnEntered(object sender, EventArgs e)
