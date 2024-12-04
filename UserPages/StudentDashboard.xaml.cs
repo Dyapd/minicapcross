@@ -58,10 +58,7 @@ public partial class StudentDashboard : ContentPage
             ClaimBtn.GestureRecognizers.Add(pointerGestureRecognizer);
         }
 
-        if(DeviceInfo.Platform == DevicePlatform.Android)
-        {
-
-        }
+        
 
 
 

@@ -9,7 +9,7 @@ namespace test;
 
 public partial class AdminDynamic : TabbedPage
 {
-
+ 
     public ObservableCollection<DynamicClaims> DynamicClaims { get; set; }
     public ObservableCollection<DynamicReports> DynamicReports { get; set; }
     public ObservableCollection<DynamicItems> DynamicItems { get; set; }
@@ -53,10 +53,12 @@ public partial class AdminDynamic : TabbedPage
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
                 command.CommandText = "UPDATE Claims SET Claim_Status = 1 WHERE Claims_ID = @ClaimID";
-                command.Parameters.AddWithValue("@ClaimID", DynamicReports[0].ID.ToString());
+                command.Parameters.AddWithValue("@ClaimID", DynamicClaims[0].ID.ToString());
                 command.ExecuteNonQuery();
                 DisplayAlert("Error status clicked", "Changed status of claim to true!", "OK");
                 LoadItemsClaims();
+
+
 
             }
         }
@@ -83,7 +85,7 @@ public partial class AdminDynamic : TabbedPage
 
                     SqlCommand command = connection.CreateCommand();
                     command.CommandText = "DELETE FROM Claims WHERE Claims_ID = @ClaimID";
-                    command.Parameters.AddWithValue("@ClaimID", DynamicReports[0].ID.ToString());
+                    command.Parameters.AddWithValue("@ClaimID", DynamicClaims[0].ID.ToString());
 
                     command.ExecuteNonQuery();
                     DisplayAlert("Error status clicked", "Sucessfully deleted! Redirecting to claims page.", "OK");
@@ -101,9 +103,27 @@ public partial class AdminDynamic : TabbedPage
 
     }
 
-    private void OnSaveClicked(object obj)
+    private async void OnSaveClicked(object obj)
     {
+        var emailMessage = new EmailMessage
+        {
+            Subject = "Test Subject",
+            Body = "This is a test email.",
+            To = new List<string> { "allenpayad1@gmail.com" }
+        };
 
+        try
+        {
+            await Email.ComposeAsync(emailMessage);
+        }
+        catch (FeatureNotSupportedException fnsEx)
+        {
+            // Handle the exception when email is not supported on the device.
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions.
+        }
     }
 
 
