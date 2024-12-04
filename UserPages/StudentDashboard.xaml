@@ -3,15 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.StudentDashboard"
              BackgroundColor="LightBlue"
-             BackgroundImageSource="caloocan.jpg"
-            >
+             BackgroundImageSource="caloocan.jpg">
  
     <ScrollView>
 
         <VerticalStackLayout 
                  Spacing="20"
                  Padding="10">
-           
+
             <Frame 
                 BackgroundColor="DarkBlue" 
                 CornerRadius="10" 
@@ -20,86 +19,84 @@
                 HorizontalOptions="CenterAndExpand"
                 >
 
-                    <Label 
-                    Text="ReClaimIt!"  FontFamily=""
+                <Label 
+                    Text="ReClaimIt!"  FontFamily="Opensans"
                     FontSize="Large" 
                     FontAttributes="Bold"
                     HorizontalOptions="CenterAndExpand"
                    
                     VerticalOptions="CenterAndExpand"
                     TextColor="White" />
-                </Frame>
-                
-                <ImageButton
-            
-                    Source="logout.png"         
-                    x:Name="LogoutBtn"
-                    Margin="15"
-                    HorizontalOptions="End"
-                    Clicked="LogoutBtn_Clicked"
-                    Background="Transparent"
-                    BackgroundColor="Transparent"
-                    BorderColor="LightBlue"
-                    HeightRequest="40"
-                    Opacity="23">
-
-
-                    <ImageButton.GestureRecognizers>
-                        <PointerGestureRecognizer PointerEntered="OnLogoutBtnEntered"
-                                                  PointerExited="OnLogoutBtnExited"                              />
-                    </ImageButton.GestureRecognizers>
-                </ImageButton>
-
-
-                <ImageButton
-                    Source="notification.png"
-                    HeightRequest="40"
-                    x:Name="NotificationiconBtn"
-                    Margin="15"
-                    HorizontalOptions="End"
-                    BackgroundColor="LightBlue"
-                    Clicked="NotificationiconBtn_Clicked"
-                   Background="Transparent"
-                   BorderColor="LightBlue"  Opacity="23"
-                    >
-
-                </ImageButton>
-                
-                <HorizontalStackLayout
-                    HorizontalOptions="Center"
-                    Margin="70"
-                    VerticalOptions="Center">
-                    <Button                     
+            </Frame>
+            <Button                     
                         x:Name="ReportBtn"
                         Text="Report"
                         BackgroundColor="#f54e42"
-                        HorizontalOptions="Start"
+                        HorizontalOptions="Center"
                         CornerRadius="20"
                         Clicked="ReportBtn_Clicked" 
                         FontAttributes="Bold"
                         HeightRequest="50"
-                        WidthRequest="125"
-                        ImageSource="report.png"
-                        ContentLayout="Left, 20"
-                       >
-
-                    </Button>
-                    <Button  
+                        WidthRequest="250"  />
+            <Button  
                         x:Name="ClaimBtn"
-                        Margin="25, 0"
                         BackgroundColor="#f54e42"
-                        HorizontalOptions="Start"
+                        HorizontalOptions="Center"
                         CornerRadius="20"
                         Clicked="ClaimBtn_Clicked"
                         FontAttributes="Bold"
                         HeightRequest="50"
-                        WidthRequest="125"
-                        ImageSource="claim.png"
-                        Text="Claim"
-                        >
-                    </Button>
+                        WidthRequest="250" 
+                        Text="Claim"/>
 
-                    <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
+            <Button
+                        x:Name="ClaimsBtn"
+                        Text="Claims"
+                        BackgroundColor="#f54e42"
+                        HorizontalOptions="Center"
+                        CornerRadius="20"
+                        Clicked="ClaimsBtn_Clicked"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                         WidthRequest="250">
+            </Button>
+            <Button
+                        x:Name="ReportsBtn"
+                        Text="Reports"
+                        BackgroundColor="#f54e42"
+                        HorizontalOptions="Center"
+                        CornerRadius="20"
+                        Clicked="ReportsBtn_Clicked"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        WidthRequest="250"/>
+            <Button
+                        Text=" Notification"
+                        HeightRequest="50"
+                        x:Name="NotificationiconBtn"
+                        HorizontalOptions="Center"
+                        CornerRadius="20"
+                        BackgroundColor="#f54e42"
+                        Clicked="NotificationiconBtn_Clicked"
+                        WidthRequest="250"/>
+
+            <Button
+                        Text="Logout"
+                        BackgroundColor ="#f54e42"      
+                        x:Name="LogoutBtn"
+                        HorizontalOptions="Center"
+                        CornerRadius="20"
+                        Clicked="LogoutBtn_Clicked"
+                        HeightRequest="20"
+                        WidthRequest="250"/>
+
+
+
+
+
+
+
+            <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
                     <!--<Button
                     
                         WidthRequest="80"
@@ -112,7 +109,6 @@
                         Clicked="NotificationBtn_Clicked" 
                         />-->
 
-                </HorizontalStackLayout>
 
                 <!-- THIS IS FOR NOTIFICATION LOG!!-->
 
@@ -127,34 +123,37 @@
                  TextColor="white" />
                 </Frame>
 
-            <CollectionView ItemsSource="{Binding StudentNotification}"
+                <CollectionView ItemsSource="{Binding Items}"
                 BackgroundColor="Transparent"
                 SelectionMode="None">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame CornerRadius="10"
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
                    Padding="10"
                    BackgroundColor="White"
                    Margin="5"
                    HasShadow="True">
                             <Grid ColumnDefinitions="*, Auto"
                       Padding="5">
+
+
                                 <Label Text="{Binding CategoryAndID}"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#1565C0"
                            VerticalOptions="Center" />
-                                
+
+
                                 <Button Text="Details"
                             Grid.Column="1"
                             BackgroundColor="#E53935"
                             TextColor="White"
                             CornerRadius="5"
                             Clicked="OnDetailsButtonClicked" />
-                                </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
                 </CollectionView>
 
             </VerticalStackLayout>

@@ -160,6 +160,12 @@ public partial class StudentDashboard : ContentPage
     {
 
     }
+    private void ClaimsBtn_Clicked(object sender, EventArgs e) 
+    {
 
+    }
+    private void ReportsBtn_Clicked(object sender, EventArgs e) 
+    {
     
+    }
 }

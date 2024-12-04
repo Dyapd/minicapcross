@@ -89,7 +89,7 @@
             x:Name="ReportItemBtn"
             Text="Report Item"
             Clicked="OnClickedReportBtn"
-                BackgroundColor="#f54e42"
+                BackgroundColor="RED"
             >
             </Button>
         </VerticalStackLayout>
