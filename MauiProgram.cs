@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+
 using CommunityToolkit.Maui;
+using Plugin.LocalNotification;
 
 namespace test
 {
@@ -11,6 +13,7 @@ namespace test
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseLocalNotification()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

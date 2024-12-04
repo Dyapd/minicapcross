@@ -21,6 +21,7 @@ public partial class StudentDashboard : ContentPage
         LoadItems();
 
 
+
         if (DeviceInfo.Platform != DevicePlatform.Android)
         {
             PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
@@ -36,6 +37,8 @@ public partial class StudentDashboard : ContentPage
             };
 
             ReportBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+
+
         }
 
         if (DeviceInfo.Platform != DevicePlatform.Android)
@@ -53,6 +56,11 @@ public partial class StudentDashboard : ContentPage
             };
 
             ClaimBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+
+        if(DeviceInfo.Platform == DevicePlatform.Android)
+        {
+
         }
 
 
