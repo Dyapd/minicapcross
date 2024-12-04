@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.ClaimPage"
-             Title="ClaimPage">
+             Title="ClaimPage"
+              />
 
     <ScrollView>
         <Frame BackgroundColor="#FFFFFF" CornerRadius="0" Margin="10">
@@ -25,7 +26,6 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     
@@ -72,7 +72,7 @@
                     Grid.Row="1" 
                     Grid.Column="1"
                     Aspect="AspectFit" />
-                </Grid>
+           
 
                 <Label Text="Type of Item:" FontSize="Medium" />
                 <Picker 
