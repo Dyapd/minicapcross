@@ -17,7 +17,7 @@ public partial class StudentDashboard : ContentPage
         InitializeComponent();
         StudentNotification = new ObservableCollection<StudentNotification>();
         BindingContext = this;
-
+        DisplayAlert("TestStud", SessionVars.SessionId, "OK");
         LoadItems();
 
 

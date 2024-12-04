@@ -83,7 +83,7 @@ namespace test
                 Application.Current.MainPage = new NavigationPage(new StudentDashboard());
                 SessionVars.SetSessionId(enteredEmail, enteredPassword);
 
-                await Navigation.PushAsync(new StudentDashboard());
+                Navigation.PushAsync(new StudentDashboard());
             }
             else
             {
@@ -115,7 +115,7 @@ namespace test
                 }
                 catch (Exception ex)
                 {
-
+                    DisplayAlert("testerror", ex.Message, "OK");
                     return false;
                 }
             }
