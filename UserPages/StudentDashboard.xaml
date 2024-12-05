@@ -117,7 +117,7 @@
                     CornerRadius="10" 
                     Padding="15">
                     <Label 
-                 Text="Notifications" 
+                 Text="Items like yours" 
                  FontSize="Small" 
                  FontAttributes="Bold"
                  HorizontalOptions="Center" 

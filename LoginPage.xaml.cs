@@ -57,20 +57,20 @@ namespace test
 
             //temporary hard code for testing!!
 
-            if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-                await Navigation.PushAsync(new AdminDashboard());
-            }
-            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-                await Navigation.PushAsync(new StudentDashboard());
-            }
-            else
-            {
-                this.ShowPopup(new NewPage1());
-            }
+            //if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
+            //{
+            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+            //    await Navigation.PushAsync(new AdminDashboard());
+            //}
+            //else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
+            //{
+            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+            //    await Navigation.PushAsync(new StudentDashboard());
+            //}
+            //else
+            //{
+            //    this.ShowPopup(new NewPage1());
+            //}
 
 
             //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
@@ -88,8 +88,14 @@ namespace test
             }
             else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
             {
+
+                
+
+
                 Application.Current.MainPage = new NavigationPage(new StudentDashboard());
                 SessionVars.SetSessionId(enteredEmail, enteredPassword);
+                var toast = Toast.Make("Logging in as " + SessionVars.TakeStudentInfo() , ToastDuration.Short);
+                toast.Show();
 
                 Navigation.PushAsync(new StudentDashboard());
             }

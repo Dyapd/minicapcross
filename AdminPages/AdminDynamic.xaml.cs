@@ -42,6 +42,8 @@ public partial class AdminDynamic : TabbedPage
     }
 
 
+
+
     private void OnStatusClicked(object obj)
     {
         string stringConnection = new IPLocator().ConnectionString();

@@ -14,13 +14,12 @@
                     CornerRadius="2"
                     Padding="15">
                 <Label 
-            Text="Report Lost Item" FontFamily="OpenSans"
-            FontAttributes="Bold"
-            HeightRequest="50"
-            FontSize="Medium"
-                    TextColor="White"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+                Text="Report a lost item" 
+                FontFamily="Roboto"
+                FontSize="Large" 
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                TextColor="White" />
             </Frame>
 
             <Label 
@@ -29,7 +28,7 @@
             />
             <Picker
             x:Name="CategoryInput"
-            Background="AntiqueWhite">
+            Background="#EEEEEE">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Personal Item</x:String>
@@ -43,7 +42,7 @@
             Text="Description:"/>
             <Entry
             x:Name="DescriptionInput"
-             Background="AntiqueWhite"/>
+             Background="#EEEEEE"/>
 
             <Label
             Text="Image (optional):"/>
@@ -75,7 +74,7 @@
             
             <Picker
             x:Name="LocationInput"
-            Background="AntiqueWhite">
+            Background="#EEEEEE">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Ground Floor</x:String>

@@ -18,8 +18,9 @@ namespace test
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
             string query = "SELECT Student_ID FROM StudentUsers WHERE Student_Email = @Email AND Student_Password = @Password";
+            SqlConnection connection = new SqlConnection(connectionString);
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (connection)
             {
                 try
                 {
@@ -37,6 +38,36 @@ namespace test
                 {
 
               
+                }
+            }
+        }
+        public static string TakeStudentInfo()
+        {
+            string studName;
+            IPLocator ip = new IPLocator();
+            string connectionString = ip.ConnectionString();
+            string query = "SELECT Student_Name FROM StudentInfo WHERE Student_ID  = @Student_Number";
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            using (connection)
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Student_Number", SessionId);
+
+                        studName = command.ExecuteScalar().ToString();
+                        return studName;
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                   
+                    return null;
                 }
             }
         }

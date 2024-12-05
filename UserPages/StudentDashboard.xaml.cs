@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Runtime.CompilerServices;
+using test.UserPages;
 using static test.DataHolders.DataholderNotificationLog;
 
 
@@ -17,7 +18,7 @@ public partial class StudentDashboard : ContentPage
         InitializeComponent();
         StudentNotification = new ObservableCollection<StudentNotification>();
         BindingContext = this;
-        DisplayAlert("TestStud", SessionVars.SessionId, "OK");
+        //DisplayAlert("TestStud", SessionVars.SessionId, "OK");
         LoadItems();
 
 
@@ -167,7 +168,7 @@ public partial class StudentDashboard : ContentPage
     }
     private void ClaimsBtn_Clicked(object sender, EventArgs e) 
     {
-
+        Navigation.PushAsync(new ClaimsLogsPage());
     }
     private void ReportsBtn_Clicked(object sender, EventArgs e) 
     {
