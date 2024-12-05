@@ -96,25 +96,34 @@ public partial class AdminLogsPageWindows : ContentPage
     {
         string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
-        string filePath = Path.Combine(downloadsPath, "output.pdf");
-        using (PdfWriter writer = new PdfWriter(filePath))
-        using (PdfDocument pdfDoc = new PdfDocument(writer))
-        using (Document document = new Document(pdfDoc))
-        {
-            document.Add(new Paragraph("Hello, this is a test PDF document created with iText 7."));
+        PdfWriter writer = new PdfWriter(downloadsPath);
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf);
+        Paragraph header = new Paragraph("HEADER")
+           .SetFontSize(20);
 
-            // Optionally, add more content (tables, images, etc.)
-            // For example, you can add a table like this:
-            var table = new Table(3); // 3 columns
-            table.AddCell("Column 1");
-            table.AddCell("Column 2");
-            table.AddCell("Column 3");
-            table.AddCell("Row 1, Cell 1");
-            table.AddCell("Row 1, Cell 2");
-            table.AddCell("Row 1, Cell 3");
+        document.Add(header);
+        document.Close();
 
-            document.Add(table);
-        }
+        //string filePath = Path.Combine(downloadsPath, "output.pdf");
+        //using (PdfWriter writer = new PdfWriter(filePath))
+        //using (PdfDocument pdfDoc = new PdfDocument(writer))
+        //using (Document document = new Document(pdfDoc))
+        //{
+        //    document.Add(new Paragraph("Hello, this is a test PDF document created with iText 7."));
+
+        //    // Optionally, add more content (tables, images, etc.)
+        //    // For example, you can add a table like this:
+        //    var table = new Table(3); // 3 columns
+        //    table.AddCell("Column 1");
+        //    table.AddCell("Column 2");
+        //    table.AddCell("Column 3");
+        //    table.AddCell("Row 1, Cell 1");
+        //    table.AddCell("Row 1, Cell 2");
+        //    table.AddCell("Row 1, Cell 3");
+
+        //    document.Add(table);
     }
+    
 
 }
