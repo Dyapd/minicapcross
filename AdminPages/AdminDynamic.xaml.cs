@@ -4,6 +4,9 @@ using Microsoft.Data.SqlClient;
 using System.Reflection.PortableExecutable;
 using static test.DataHolders.DataholderNotificationLog;
 using System.Windows.Input;
+#if ANDROID
+using Android.App;
+#endif
 
 namespace test;
 
@@ -17,6 +20,7 @@ public partial class AdminDynamic : TabbedPage
     public ICommand StatusClaim { get; set; }
     public ICommand RejectClaim { get; set; }
     public ICommand SaveClaim { get; set; }
+    public ICommand DoneClaim { get; set; }
 
     public byte[] claimImage;
     string reportID, itemID;
@@ -34,15 +38,20 @@ public partial class AdminDynamic : TabbedPage
         StatusClaim = new Command(OnStatusClicked);
         RejectClaim = new Command(OnRejectClicked);
         SaveClaim = new Command(OnSaveClicked);
+        DoneClaim = new Command(OnDoneClicked);
 
 
         BindingContext = this;
         LoadItemsClaims();
+        
 
     }
 
 
+    private void OnDoneClicked(object obj)
+    {
 
+    }
 
     private void OnStatusClicked(object obj)
     {
@@ -141,6 +150,20 @@ public partial class AdminDynamic : TabbedPage
             ClaimCategoryText.Text = DynamicClaims[0].ICategory.ToString();
             ClaimStatusText.Text = DynamicClaims[0].Status.ToString();
             ClaimDescriptionText.Text = DynamicClaims[0].Category.ToString();
+            bool resultbool = DynamicClaims[0].Status;
+            if (resultbool)
+            {
+                var saveButton = new Button
+                {
+                    Text = "Item Claimed?",
+                    BackgroundColor = Color.FromHex("#D32F2F"),
+                    TextColor = Colors.White,
+                    CornerRadius = 8,
+                    HeightRequest = 45,
+                    Command = DoneClaim
+                };
+                DynamicButtons.Children.Insert(1, saveButton);
+            }
 
 
             // picture display
@@ -412,6 +435,10 @@ public partial class AdminDynamic : TabbedPage
         populateDynamicPage();
 
     }
+
+    
+    
+    
 
 }
 

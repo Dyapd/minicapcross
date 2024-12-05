@@ -74,7 +74,8 @@
                        TextColor="#333333" />
 
 
-                <VerticalStackLayout x:Name="DynamicButtons">
+                <VerticalStackLayout x:Name="DynamicButtons"
+                                    Spacing="15">
                     
                 
 
