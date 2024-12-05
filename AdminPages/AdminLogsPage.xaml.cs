@@ -18,16 +18,17 @@ namespace test.Pages
 
             Logs = new ObservableCollection<Logs>();
 
-            ButtonCommand = new Command<string>(OnButtonClicked);
+            ButtonCommand = new Command<string>(OnGenerateClicked);
 
             BindingContext = this;
             LoadItems();
         }
 
-        private void OnButtonClicked(string log)
+        private void OnGenerateClicked(string log)
         {
 
-            DisplayAlert("Button Clicked", $"You clicked on {log}", "OK");
+            
+
         }
 
         private List<Logs> takeFromDatabase()
