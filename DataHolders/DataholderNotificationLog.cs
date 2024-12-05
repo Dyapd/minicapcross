@@ -105,6 +105,9 @@ namespace test.DataHolders
             public string DateIn { get; set; }
             public string StudentName { get; set; }
             public string DateOut { get; set; }
+
+            public string CategoryAndLogID => $"L-{LogID}";
+            public string CategoryAndItemID => $"I-{ItemID}";
         }
     }
 }

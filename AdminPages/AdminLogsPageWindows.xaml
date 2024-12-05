@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test.AdminPages.AdminLogsPageWindows"
+             Title="AdminLogsPageWindows">
+    <ScrollView>
+
+
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+
+            <Frame BackgroundColor="#1565C0"
+               CornerRadius="10"
+               Padding="10"
+               HasShadow="True">
+                <Label Text="Admin Logs"
+                   FontSize="24"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            </Frame>
+
+
+            <CollectionView ItemsSource="{Binding Logs}"
+                        BackgroundColor="Transparent"
+                        SelectionMode="None">
+
+                <CollectionView.Header>
+
+                    <Frame BackgroundColor="#1565C0"
+                   CornerRadius="10"
+                   Padding="10"
+                   HasShadow="True">
+                        <Grid ColumnDefinitions="*,*,*,*,*,*" Padding="5" RowDefinitions="Auto" ColumnSpacing="10">
+                                <Label Text="LogID"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" 
+                       Grid.Column="0" />
+                                <Label Text="ItemID"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" 
+                       Grid.Column="1" />
+                                <Label Text="Category"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" 
+                       Grid.Column="2" />
+                                <Label Text="Date Submitted"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" 
+                       Grid.Column="3" />
+                                <Label Text="Claimed By"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" 
+                        Grid.Column="4" />
+                                <Label Text="Date Taken"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" 
+                        Grid.Column="5" />
+                            </Grid>
+                    </Frame>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                           Padding="10"
+                           BackgroundColor="White"
+                           Margin="5"
+                           HasShadow="True">
+                                <Grid ColumnDefinitions="*,*,*,*,*,*" Padding="5" ColumnSpacing="10">
+                                    <Label Text="{Binding CategoryAndLogID}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           VerticalOptions="Center"
+                           Grid.Column="0"/>
+                                    <Label Text="{Binding CategoryAndItemID}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           VerticalOptions="Center" 
+                           Grid.Column="1"/>
+                                    <Label Text="{Binding ICategory}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           VerticalOptions="Center" 
+                           Grid.Column="2"/>
+                                    <Label Text="{Binding DateIn}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           VerticalOptions="Center"
+                           Grid.Column="3"/>
+                                    <Label Text="{Binding StudentName}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           VerticalOptions="Center" 
+                           Grid.Column="4"/>
+                                    <Label Text="{Binding DateOut}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           VerticalOptions="Center"
+                           Grid.Column="5"/>
+                                </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Button Text="Generate Report (PDF)"
+    BackgroundColor="#1565C0"
+    TextColor="White"
+    CornerRadius="5"
+    HorizontalOptions="Center"
+    Padding="10"
+    Clicked="OnGenerateClicked"/>
+        </VerticalStackLayout>
+
+    </ScrollView>
+</ContentPage>

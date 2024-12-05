@@ -1,5 +1,6 @@
 using test.Pages;
 using Microsoft.Data.SqlClient;
+using test.AdminPages;
 
 namespace test;
 
@@ -25,11 +26,21 @@ public partial class AdminDashboard : ContentPage
     }
     public async void OnClickedClaimsBtn(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AdminClaimsPage());    
+      
+            await Navigation.PushAsync(new AdminClaimsPage());
+        
     }
     public async void OnClickedLogsBtn(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AdminLogsPage());
+        
+        if (DeviceInfo.Platform == DevicePlatform.Android)
+        {
+            await Navigation.PushAsync(new AdminLogsPage());
+        }
+        else if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            await Navigation.PushAsync(new AdminLogsPageWindows());
+        }
     }
 
     private void PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
