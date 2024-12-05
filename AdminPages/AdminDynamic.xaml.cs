@@ -50,7 +50,22 @@ public partial class AdminDynamic : TabbedPage
 
     private void OnDoneClicked(object obj)
     {
+        string connectionString = new IPLocator().ConnectionString();
 
+        try
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            using(connection)
+            {
+                connection.Open();
+
+
+            }
+        }
+        catch (Exception e)
+        {
+            DisplayAlert("Error on closing claim", e.Message, "OK");
+        }
     }
 
     private void OnStatusClicked(object obj)
