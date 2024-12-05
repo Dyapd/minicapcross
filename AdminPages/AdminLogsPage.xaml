@@ -24,9 +24,54 @@
             </Frame>
 
 
-            <CollectionView ItemsSource="{Binding Items}"
+            <CollectionView ItemsSource="{Binding Logs}"
                             BackgroundColor="Transparent"
                             SelectionMode="None">
+                <CollectionView.Header>
+                    <Frame BackgroundColor="#1565C0"
+                       CornerRadius="10"
+                       Padding="10"
+                       HasShadow="True">
+                        <Grid ColumnDefinitions="*,*,*,*,*,*" Padding="5" RowDefinitions="Auto">
+                            <Label Text="LogID"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="0" />
+                            <Label Text="ItemID"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="1" />
+                            <Label Text="Category"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="2" />
+                            <Label Text="Date Submitted"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="3" />
+                            <Label Text="Claimed By"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" 
+                            Grid.Column="4" />
+                            <Label Text="Date Taken"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" 
+                            Grid.Column="5" />
+                        </Grid>
+                    </Frame>
+                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame CornerRadius="10"
@@ -34,24 +79,46 @@
                                BackgroundColor="White"
                                Margin="5"
                                HasShadow="True">
-                            <Grid ColumnDefinitions="*, Auto"
+                            <Grid ColumnDefinitions="*,*,*,*,*,*"
                                   Padding="5">
 
+                                <Label Text="{Binding LogID}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1565C0"
+                                   VerticalOptions="Center"
+                                    Grid.Column="0"/>
+                                <Label Text="{Binding ItemID}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1565C0"
+                                   VerticalOptions="Center" 
+                                       Grid.Column="1"/>
+                                <Label Text="{Binding ICategory}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1565C0"
+                                   VerticalOptions="Center" 
+                                       Grid.Column="2"/>
+                                <Label Text="{Binding DateIn}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1565C0"
+                                   VerticalOptions="Center"
+                                       Grid.Column="3"/>
+                                <Label Text="{Binding StudentName}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1565C0"
+                                   VerticalOptions="Center" 
+                                       Grid.Column="4"/>
+                                <Label Text="{Binding DateOut}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1565C0"
+                                   VerticalOptions="Center"
+                                       Grid.Column="5"/>
 
-                                <Label Text="{Binding .}"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       TextColor="#1565C0"
-                                       VerticalOptions="Center" />
-
-
-                                <Button Text="Details"
-                                        Grid.Column="1"
-                                        BackgroundColor="#E53935"
-                                        TextColor="White"
-                                        CornerRadius="5"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ButtonCommand}"
-                                        CommandParameter="{Binding .}" />
                             </Grid>
                         </Frame>
                     </DataTemplate>

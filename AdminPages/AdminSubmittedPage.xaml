@@ -95,7 +95,8 @@
                    TextColor="#555555" />
             <StackLayout Orientation="Horizontal" Spacing="15">
                 <DatePicker x:Name="DateInput" />
-                <TimePicker x:Name="TimeInput" />
+                <TimePicker x:Name="TimeInput"
+                            Time="12:00:00"/>
             </StackLayout>
 
             

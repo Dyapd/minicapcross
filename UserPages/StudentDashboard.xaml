@@ -27,14 +27,14 @@
 
             <Grid RowSpacing="16" ColumnSpacing="16">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <VerticalStackLayout  Grid.Row="0" Grid.Column="0">
+                <VerticalStackLayout  Grid.Row="0" Grid.Column="0" HorizontalOptions="Center">
                     <Button                     
                         x:Name="ReportBtn"
                         Text="Report"
@@ -43,12 +43,12 @@
                         CornerRadius="20"
                         Clicked="ReportBtn_Clicked" 
                         FontAttributes="Bold"
-                        HeightRequest="100"
-                        WidthRequest="250"
+                        HeightRequest="60"
+                        WidthRequest="200"
                         FontSize="Large"/>
                 </VerticalStackLayout>
 
-                <VerticalStackLayout  Grid.Row="0" Grid.Column="1">
+                <VerticalStackLayout  Grid.Row="0" Grid.Column="1" HorizontalOptions="Center">
                     <Button  
                         x:Name="ClaimBtn"
                         BackgroundColor="#f54e42"
@@ -56,8 +56,8 @@
                         CornerRadius="20"
                         Clicked="ClaimBtn_Clicked"
                         FontAttributes="Bold"
-                        HeightRequest="100"
-                        WidthRequest="250" 
+                        HeightRequest="60"
+                        WidthRequest="200" 
                         Text="Claim"
                         FontSize="Large"/>
                 </VerticalStackLayout>
@@ -69,15 +69,24 @@
 
 
                     <Label 
-                 Text="Miscellaneous" FontFamily="Opensans"
-                 FontSize="Medium" 
-                 FontAttributes="Bold"
-                 HorizontalOptions="Center" 
-                 TextColor="Black"
-                 Margin="1"/>
-                    <Frame>
-                        <VerticalStackLayout>
-                            <Button
+                     Text="Miscellaneous" FontFamily="Opensans"
+                     x:Name="Label"
+                     FontSize="Medium" 
+                     FontAttributes="Bold"
+                     HorizontalOptions="Center" 
+                     TextColor="Black"
+                    Margin="1">
+                        
+                    <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Label_Tapped"/>
+                    </Label.GestureRecognizers>
+                            
+                    </Label>
+
+                    <Frame HorizontalOptions="FillAndExpand">
+                        <Grid x:Name="AnimationGrid" VerticalOptions="Start">
+                            <VerticalStackLayout>
+                                <Button
                         x:Name="ClaimsBtn"
                         Text="Claim Logs"
                         BackgroundColor="#f54e42"
@@ -85,11 +94,11 @@
                         CornerRadius="20"
                         Clicked="ClaimsBtn_Clicked"
                         FontAttributes="Bold"
-                        HeightRequest="50"
+                        HeightRequest="45"
                          WidthRequest="250"
                         Margin="10">
-                            </Button>
-                            <Button
+                                </Button>
+                                <Button
                         x:Name="ReportsBtn"
                         Text="Report Logs"
                         BackgroundColor="#f54e42"
@@ -97,12 +106,12 @@
                         CornerRadius="20"
                         Clicked="ReportsBtn_Clicked"
                         FontAttributes="Bold"
-                        HeightRequest="50"
+                        HeightRequest="45"
                         WidthRequest="250"
                         Margin="10"/>
-                            <Button
+                                <Button
                         Text=" Notification Logs"
-                        HeightRequest="50"
+                        HeightRequest="45"
                         x:Name="NotificationiconBtn"
                         HorizontalOptions="Center"
                         CornerRadius="20"
@@ -110,7 +119,8 @@
                         Clicked="NotificationiconBtn_Clicked"
                         WidthRequest="250"
                         Margin="10"/>
-                        </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </Grid>
                     </Frame>
                     <Grid RowSpacing="15" ColumnSpacing="15">
                         <Grid.RowDefinitions>

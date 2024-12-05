@@ -71,5 +71,37 @@ namespace test
                 }
             }
         }
+
+        public static string TakeStudentInfoAdmin(string studnum)
+        {
+            string studName;
+            IPLocator ip = new IPLocator();
+            string connectionString = ip.ConnectionString();
+            string query = "SELECT Student_Name FROM StudentInfo WHERE Student_ID  = @Student_Number";
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            using (connection)
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Student_Number", studnum);
+
+                        studName = command.ExecuteScalar().ToString();
+                        return studName;
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    return null;
+                }
+            }
+        }
+
     }
 }

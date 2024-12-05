@@ -58,6 +58,7 @@
             <CollectionView ItemsSource="{Binding Items}"
                             BackgroundColor="Transparent"
                             SelectionMode="None">
+                
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame CornerRadius="10"

@@ -58,8 +58,25 @@ public partial class AdminDynamic : TabbedPage
             using(connection)
             {
                 connection.Open();
+                string studentName = SessionVars.TakeStudentInfoAdmin(DynamicReports[0].StudentNumber);
+                SqlCommand command = connection.CreateCommand();
+                
+                
+                
 
+                command.CommandText = "INSERT INTO Logs (Log_Category, Item_Category, Item_ID, Log_ICategory, Submitted_On, Received_By, Taken_Out)" +
+                    " VALUES (@Category, @ItemCategory, @ItemID, @ICategory, @Submitted, @Received, @Taken)";
 
+                command.Parameters.AddWithValue("@Category", "L");
+                command.Parameters.AddWithValue("@ItemCategory", "I");
+                command.Parameters.AddWithValue("@ItemID", DynamicItems[0].ID);
+                command.Parameters.AddWithValue("@ICategory", DynamicItems[0].ICategory);
+                command.Parameters.AddWithValue("@Submitted", DateTime.Parse(DynamicItems[0].Date));
+                command.Parameters.AddWithValue("@Received", studentName);
+                command.Parameters.AddWithValue("@Taken", DateTime.Now);
+
+                command.ExecuteNonQuery();
+                DisplayAlert("Done!", "Succesfully inserted into logs!", "OK");
             }
         }
         catch (Exception e)
@@ -450,7 +467,7 @@ public partial class AdminDynamic : TabbedPage
         populateDynamicPage();
 
     }
-
+    
     
     
     

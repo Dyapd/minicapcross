@@ -21,7 +21,7 @@ namespace test.DataHolders
         { 
             public string Category { get; set; }
 
-
+            public string StatusString { get; set; }
             public string ID {  get; set; }
 
             public string Location { get; set; }
@@ -94,6 +94,16 @@ namespace test.DataHolders
             public string StudentNumber { get; set; }
             public byte[] Image { get; set; }
             public Boolean Status { get; set; }
+        }
+
+        public class Logs
+        {
+            public string LogID { get; set; }
+            public string ItemID { get; set; }
+            public string ICategory { get; set; }
+            public string DateIn { get; set; }
+            public string StudentName { get; set; }
+            public string DateOut { get; set; }
         }
     }
 }

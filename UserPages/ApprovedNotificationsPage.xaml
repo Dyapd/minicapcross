@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test.UserPages.ApprovedNotificationsPage"
+             Title="ApprovedNotificationsPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+
+            <Frame BackgroundColor="#1565C0"
+           CornerRadius="10"
+           Padding="10"
+           HasShadow="True">
+                <Label Text="Approved Notifications"
+               FontSize="24"
+               TextColor="White"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            </Frame>
+
+
+            
+
+
+            <CollectionView ItemsSource="{Binding Items}"
+                    BackgroundColor="Transparent"
+                    SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                       Padding="10"
+                       BackgroundColor="White"
+                       Margin="5"
+                       HasShadow="True">
+                            <Grid ColumnDefinitions="*,*, *"
+                          Padding="5">
+
+                                <Label Text="{Binding CategoryAndID}"
+                               Grid.Column="0"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+                                <Label Text="{Binding Status}"
+                               Grid.Column="1"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+
+                                <Button Text="Status"
+                                Grid.Column="2"
+                                MaximumWidthRequest="100"
+                                BackgroundColor="#E53935"
+                                TextColor="White"
+                                CornerRadius="5"
+                                
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DetailsCommand}"
+                                CommandParameter="{Binding ID}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Label Text="© 2024 Admin Dashboard"
+           FontSize="14"
+           TextColor="#9E9E9E"
+           HorizontalOptions="Center"
+           VerticalOptions="EndAndExpand" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

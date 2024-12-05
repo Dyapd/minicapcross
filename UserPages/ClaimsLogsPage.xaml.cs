@@ -33,6 +33,7 @@ public partial class ClaimsLogsPage : ContentPage
         IPLocator ip = new IPLocator();
         string connectionString = ip.ConnectionString();
         bool status;
+        string statusString;
 
         try
         {
@@ -46,14 +47,24 @@ public partial class ClaimsLogsPage : ContentPage
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
+                   
                     while (reader.Read())
                     {
                         status = reader.GetBoolean(2);
+                        if (status)
+                        {
+                            statusString = "Approved";
+                        }
+                        else
+                        {
+                            statusString = "Not Approved";
+                        }
                         items.Add(new Items
                         {
                             ID = reader.GetInt32(0).ToString(),
                             Category = reader.GetString(1),
-                            Status = status
+                            Status = status,
+                            StatusString = statusString
                         });
 
                     }

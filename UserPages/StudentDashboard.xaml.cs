@@ -12,7 +12,8 @@ namespace test;
 public partial class StudentDashboard : ContentPage
 {
     public ObservableCollection<StudentNotification> StudentNotification { get; set; }
-    
+    bool isCollapsed = false;
+
     public StudentDashboard()
     {
         InitializeComponent();
@@ -177,5 +178,33 @@ public partial class StudentDashboard : ContentPage
     private void SimilarityBtn_Clicked(object sender, EventArgs e) 
     {
     
+    }
+
+    //this is the animation for the sliding of misc buttons!
+    private async void Label_Tapped(object sender, EventArgs args)
+    {
+        isCollapsed = !isCollapsed;
+
+        if (isCollapsed)
+        {
+            //sliding up!
+            await AnimationGrid.TranslateTo(0, -AnimationGrid.Height, 300, Easing.CubicIn); 
+
+            ClaimsBtn.IsVisible = false;
+            ReportsBtn.IsVisible = false;
+            NotificationiconBtn.IsVisible = false;
+        }
+        else
+        {
+         
+            ClaimsBtn.IsVisible = true;
+            ReportsBtn.IsVisible = true;
+            NotificationiconBtn.IsVisible = true;
+
+            // slide down!!
+            await AnimationGrid.TranslateTo(0, 0, 300, Easing.CubicOut);
+        }
+    
+        
     }
 }

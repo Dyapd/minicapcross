@@ -30,8 +30,8 @@
                        FontSize="14"
                        TextColor="#555555" />
                 <Label
-                    Text="Please switch to the other tabs so that you may compare the item form and report form. If approved 
-                    then change status to true, if not then please click the rejected button."/>
+                    Text="Please switch to the other tabs so that you may compare the item form and report form."/>
+                <Label Text=" If approved then change status to true, if not then please click the rejected button."/>
                 <Label Text="None"
                        x:Name="ClaimCategoryText"
                        FontSize="16"

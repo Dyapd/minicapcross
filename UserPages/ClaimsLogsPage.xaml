@@ -20,36 +20,36 @@
             </Frame>
 
 
-            <Frame BackgroundColor="#1565C0"
-               CornerRadius="10"
-               Padding="10"
-               HasShadow="True">
-                <Grid ColumnDefinitions="*,*,*" Padding="5" RowDefinitions="Auto">
-                    <Label Text="ClaimID"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" 
-                       Grid.Column="0" />
-                    <Label Text="Claim Approval Status"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" 
-                       Grid.Column="1" />
-                    <Label Text="Details"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" 
-                       Grid.Column="2" />
-                </Grid>
-            </Frame>
-
-
             <CollectionView ItemsSource="{Binding Items}"
                         BackgroundColor="Transparent"
                         SelectionMode="None">
+                <CollectionView.Header>
+                    <Frame BackgroundColor="#1565C0"
+                        CornerRadius="0"
+                        Padding="10"
+                        HasShadow="True">
+                        <Grid ColumnDefinitions="*,*,*" Padding="5" RowDefinitions="Auto">
+                            <Label Text="ClaimID"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" 
+                            Grid.Column="0" />
+                            <Label Text="Claim Approval Status"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" 
+                            Grid.Column="1" />
+                            <Label Text="Details"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" 
+                            Grid.Column="2" />
+                        </Grid>
+                    </Frame>
+                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame CornerRadius="10"
@@ -68,7 +68,7 @@
                                    VerticalOptions="Center" 
                                    HorizontalOptions="Center"/>
 
-                                <Label Text="{Binding Status}"
+                                <Label Text="{Binding StatusString}"
                                    Grid.Column="1"
                                    FontSize="18"
                                    FontAttributes="Bold"
