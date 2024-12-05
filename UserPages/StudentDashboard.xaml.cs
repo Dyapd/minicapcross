@@ -175,10 +175,7 @@ public partial class StudentDashboard : ContentPage
     {
     
     }
-    private void SimilarityBtn_Clicked(object sender, EventArgs e) 
-    {
-    
-    }
+  
 
     //this is the animation for the sliding of misc buttons!
     private async void Label_Tapped(object sender, EventArgs args)

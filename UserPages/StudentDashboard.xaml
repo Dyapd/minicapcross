@@ -76,11 +76,11 @@
                      HorizontalOptions="Center" 
                      TextColor="Black"
                     Margin="1">
-                        
-                    <Label.GestureRecognizers>
+
+                        <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Label_Tapped"/>
-                    </Label.GestureRecognizers>
-                            
+                        </Label.GestureRecognizers>
+
                     </Label>
 
                     <Frame HorizontalOptions="FillAndExpand">
@@ -122,32 +122,15 @@
                             </VerticalStackLayout>
                         </Grid>
                     </Frame>
-                    <Grid RowSpacing="15" ColumnSpacing="15">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
-                            <Button
-                        Text="Items with similarity"
-                        BackgroundColor="#f54e42"
-                        x:Name="SimilarityBtn"
-                        HorizontalOptions="Start"
-                        CornerRadius="20"
-                        HeightRequest="50"
-                        WidthRequest="250"
-                        Clicked="SimilarityBtn_Clicked"
-                                Margin="15" />
-                        </VerticalStackLayout>
 
 
-                        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                            <Button
+
+
+
+
+
+                    <VerticalStackLayout>
+                        <Button
                         Text="Logout"
                         BackgroundColor ="#f54e42"      
                         x:Name="LogoutBtn"
@@ -157,8 +140,7 @@
                         HeightRequest="50"
                         WidthRequest="250"
                          Margin="15"/>
-                        </VerticalStackLayout>
-                    </Grid>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </ContentView>
             <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
