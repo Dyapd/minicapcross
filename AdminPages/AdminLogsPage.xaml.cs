@@ -20,13 +20,11 @@ namespace test.Pages
 
             Logs = new ObservableCollection<Logs>();
 
-            ButtonCommand = new Command<string>(OnGenerateClicked);
-
             BindingContext = this;
             LoadItems();
         }
 
-        private void OnGenerateClicked(string log)
+        private void OnGenerateClicked(Object obj, EventArgs e)
         {
 
             
