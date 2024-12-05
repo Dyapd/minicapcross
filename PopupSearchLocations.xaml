@@ -10,7 +10,7 @@
             </SearchBar>
         </StackLayout>
         <StackLayout>
-            <ListView  x:Name="ListView"  ItemsSource="{Binding Names}">x
+            <ListView  x:Name="ListView"  ItemsSource="{Binding Names}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
