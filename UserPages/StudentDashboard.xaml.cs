@@ -165,7 +165,7 @@ public partial class StudentDashboard : ContentPage
     }
     private void  NotificationiconBtn_Clicked(object sender, EventArgs e)
     {
-
+        Navigation.PushAsync(new NotificationLogsPage());
     }
     private void ClaimsBtn_Clicked(object sender, EventArgs e) 
     {
@@ -173,7 +173,7 @@ public partial class StudentDashboard : ContentPage
     }
     private void ReportsBtn_Clicked(object sender, EventArgs e) 
     {
-    
+        Navigation.PushAsync(new ReportsLogsPage());
     }
   
 

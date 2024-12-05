@@ -126,12 +126,13 @@
             </CollectionView>
 
 
-            <Label Text="© 2024 Admin Dashboard"
-                   FontSize="14"
-                   TextColor="#9E9E9E"
-                   HorizontalOptions="Center"
-                   VerticalOptions="EndAndExpand" />
-
+            <Button Text="Generate Report (PDF)"
+        BackgroundColor="#1565C0"
+        TextColor="White"
+        CornerRadius="5"
+        HorizontalOptions="Center"
+        Padding="10"
+        Clicked="OnGenerateClicked"/>
         </VerticalStackLayout>
 
     </ScrollView>

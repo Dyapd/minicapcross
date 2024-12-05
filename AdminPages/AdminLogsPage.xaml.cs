@@ -3,6 +3,8 @@ using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Microsoft.Data.SqlClient;
 using static test.DataHolders.DataholderNotificationLog;
+using iText.Kernel.Pdf;
+using iText.Layout;
 
 namespace test.Pages
 {
@@ -18,16 +20,15 @@ namespace test.Pages
 
             Logs = new ObservableCollection<Logs>();
 
-            ButtonCommand = new Command<string>(OnButtonClicked);
-
             BindingContext = this;
             LoadItems();
         }
 
-        private void OnButtonClicked(string log)
+        private void OnGenerateClicked(Object obj, EventArgs e)
         {
 
-            DisplayAlert("Button Clicked", $"You clicked on {log}", "OK");
+            
+
         }
 
         private List<Logs> takeFromDatabase()
@@ -87,6 +88,18 @@ namespace test.Pages
             foreach (Logs log in logs)
             {
                 Logs.Add(log);
+            }
+        }
+
+        //for generating pdf!
+        public void CreatePDF()
+        {
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "output.pdf");
+            using (PdfWriter writer = new PdfWriter(filePath))
+            using (PdfDocument pdfDoc = new PdfDocument(writer))
+            using (Document document = new Document(pdfDoc))
+            {
+
             }
         }
     }

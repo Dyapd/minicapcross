@@ -87,4 +87,55 @@ public partial class ClaimsLogsPage : ContentPage
             Items.Add(item);
         }
     }
+
+    private void ClaimApprovedChecker()
+    {
+        List<Items> items = new List<Items>();
+        IPLocator ip = new IPLocator();
+        string connectionString = ip.ConnectionString();
+        bool status;
+        string statusString;
+
+        try
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            using (connection)
+            {
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT Claims_ID, Claim_Category, Claim_Status FROM Claims";
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        status = reader.GetBoolean(2);
+                        if (status)
+                        {
+                            statusString = "Approved";
+                        }
+                        else
+                        {
+                            statusString = "Not Approved";
+                        }
+                        items.Add(new Items
+                        {
+                            ID = reader.GetInt32(0).ToString(),
+                            Category = reader.GetString(1),
+                            Status = status,
+                            StatusString = statusString
+                        });
+
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            DisplayAlert("Error", e.Message, "Ok");
+        }
+        
+    }
 }

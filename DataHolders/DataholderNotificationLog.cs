@@ -96,6 +96,7 @@ namespace test.DataHolders
             public Boolean Status { get; set; }
         }
 
+        //notifcation logs!!!
         public class Logs
         {
             public string LogID { get; set; }

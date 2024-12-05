@@ -10,8 +10,8 @@ namespace test
 {
     internal class SessionVars
     {
-        public static string SessionId = "12345678";
-        public static string DynamicClaim = "", DynamicReport="", DynamicItem="";
+        public static string SessionId = "";
+        public static string DynamicClaim = "";
 
         public static void SetSessionId(string Email, string Password)
         {
