@@ -201,7 +201,27 @@ public partial class StudentDashboard : ContentPage
             // slide down!!
             await AnimationGrid.TranslateTo(0, 0, 300, Easing.CubicOut);
         }
-    
-        
+    }
+    private async void Label1_Tapped(object sender, EventArgs args) 
+    {
+        isCollapsed = !isCollapsed;
+
+        if (isCollapsed)
+        {
+            //sliding up!
+            await AnimationVertical.TranslateTo(0, -AnimationVertical.Height, 300, Easing.CubicIn);
+            
+            ReportBtn.IsVisible = false;
+            ClaimBtn.IsVisible = false;
+            
+        }
+        else 
+        {   
+            ReportBtn.IsVisible = true;
+             ClaimBtn.IsVisible = true;
+
+            // slide down!!
+            await AnimationVertical.TranslateTo(0, 0, 300, Easing.CubicOut);
+        }
     }
 }

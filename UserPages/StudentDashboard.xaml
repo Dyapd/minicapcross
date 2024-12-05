@@ -25,49 +25,57 @@
                     TextColor="White" />
             </Frame>
 
-            <Grid RowSpacing="16" ColumnSpacing="16">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <VerticalStackLayout  Grid.Row="0" Grid.Column="0" HorizontalOptions="Center">
-                    <Button                     
+            <StackLayout BackgroundColor="Transparent">
+                <VerticalStackLayout>
+                    <Frame>                  
+                    <Label
+                        Text="Form a Submission" FontFamily="Opensans"
+                     x:Name="Label1"
+                     FontSize="Medium" 
+                     FontAttributes="Bold"
+                     HorizontalOptions="Center" 
+                     TextColor="Black"
+                    Margin="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Label1_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    </Frame>
+                    <VerticalStackLayout x:Name="AnimationVertical" VerticalOptions="Start" >
+                        
+                            <Button                     
                         x:Name="ReportBtn"
                         Text="Report"
                         BackgroundColor="#f54e42"
-                        HorizontalOptions="Start"
+                        HorizontalOptions="Center"
                         CornerRadius="20"
                         Clicked="ReportBtn_Clicked" 
                         FontAttributes="Bold"
                         HeightRequest="60"
                         WidthRequest="200"
-                        FontSize="Large"/>
-                </VerticalStackLayout>
-
-                <VerticalStackLayout  Grid.Row="0" Grid.Column="1" HorizontalOptions="Center">
-                    <Button  
+                        FontSize="Large"
+                            Margin="10"/>
+                            <Button  
                         x:Name="ClaimBtn"
                         BackgroundColor="#f54e42"
-                        HorizontalOptions="End"
+                        HorizontalOptions="Center"
                         CornerRadius="20"
                         Clicked="ClaimBtn_Clicked"
                         FontAttributes="Bold"
                         HeightRequest="60"
                         WidthRequest="200" 
                         Text="Claim"
-                        FontSize="Large"/>
+                        FontSize="Large"
+                        Margin="10"/>
+                        
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
-            </Grid>
+            </StackLayout>
 
-            <ContentView BackgroundColor="White"
-                         >
+            
                 <VerticalStackLayout>
 
-
+                <Frame BackgroundColor="White">
                     <Label 
                      Text="Miscellaneous" FontFamily="Opensans"
                      x:Name="Label"
@@ -82,9 +90,9 @@
                         </Label.GestureRecognizers>
 
                     </Label>
-
-                    <Frame HorizontalOptions="FillAndExpand">
-                        <Grid x:Name="AnimationGrid" VerticalOptions="Start">
+                </Frame>
+                <Frame BackgroundColor="Transparent">
+                    <Grid x:Name="AnimationGrid" VerticalOptions="Start">
                             <VerticalStackLayout>
                                 <Button
                         x:Name="ClaimsBtn"
@@ -122,45 +130,17 @@
                             </VerticalStackLayout>
                         </Grid>
                     </Frame>
-
-
-
-
-
-
-
-                    <VerticalStackLayout>
-                        <Button
-                        Text="Logout"
-                        BackgroundColor ="#f54e42"      
-                        x:Name="LogoutBtn"
-                        HorizontalOptions="End"
-                        CornerRadius="20"
-                        Clicked="LogoutBtn_Clicked"
-                        HeightRequest="50"
-                        WidthRequest="250"
-                         Margin="15"/>
-                    </VerticalStackLayout>
-                </VerticalStackLayout>
-            </ContentView>
-            <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
-                    <!--<Button
+                    <Frame HorizontalOptions="FillAndExpand">
+                        <Label Text="Items with Similarity"  FontFamily="Opensans"
+                    FontSize="Medium" 
+                    FontAttributes="Bold"
+                    HorizontalOptions="CenterAndExpand"  
+                    VerticalOptions="CenterAndExpand" >
+                         
+                        </Label>
+                    </Frame>
                     
-                        WidthRequest="80"
-                        HeightRequest="80"
-                        CornerRadius="70"
-                        x:Name="NotificationBtn"
-                        SemanticProperties.Hint="Count the number you clicked"
-                        Margin="15"
-                        HorizontalOptions="Start"
-                        Clicked="NotificationBtn_Clicked" 
-                        />-->
-
-
-                <!-- THIS IS FOR NOTIFICATION LOG!!-->
-                
-             
-
+                    
             <CollectionView ItemsSource="{Binding StudentNotification}"
                 BackgroundColor="Transparent"
                 SelectionMode="None">
@@ -193,7 +173,33 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 </CollectionView>
-
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                      <Button
+                        Text="Logout"
+                        BackgroundColor ="#f54e42"      
+                        x:Name="LogoutBtn"
+                        HorizontalOptions="Center"
+                        CornerRadius="20"
+                        Clicked="LogoutBtn_Clicked"
+                        HeightRequest="50"
+                        WidthRequest="250"
+                         Margin="15"/>
+                    </StackLayout>
+                </VerticalStackLayout>
+            
+            <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
+                    <!--<Button
+                    
+                        WidthRequest="80"
+                        HeightRequest="80"
+                        CornerRadius="70"
+                        x:Name="NotificationBtn"
+                        SemanticProperties.Hint="Count the number you clicked"
+                        Margin="15"
+                        HorizontalOptions="Start"
+                        Clicked="NotificationBtn_Clicked" 
+                        />-->
+                <!-- THIS IS FOR NOTIFICATION LOG!!-->
             </VerticalStackLayout>
 
     </ScrollView>
