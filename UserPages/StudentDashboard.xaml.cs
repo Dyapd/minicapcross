@@ -173,4 +173,8 @@ public partial class StudentDashboard : ContentPage
     {
     
     }
+    private void SimilarityBtn_Clicked(object sender, EventArgs e) 
+    {
+    
+    }
 }
