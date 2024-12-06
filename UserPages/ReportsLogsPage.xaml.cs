@@ -23,6 +23,11 @@ public partial class ReportsLogsPage : ContentPage
         BindingContext = this;
         LoadItems();
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadItems();
+    }
 
     private void OnButtonClicked(string log)
     {

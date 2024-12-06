@@ -9,7 +9,7 @@
         <VerticalStackLayout Spacing="16" Padding="16">
 
             <Frame 
-                BackgroundColor="Indigo" 
+                BackgroundColor="DarkBlue" 
                 CornerRadius="10" 
                 Padding="20"
                 VerticalOptions="CenterAndExpand"

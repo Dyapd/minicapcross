@@ -47,11 +47,13 @@ public partial class AdminDynamic : TabbedPage
 
     }
 
+    
+
 
     private void OnDoneClicked(object obj)
     {
         string connectionString = new IPLocator().ConnectionString();
-
+        
         try
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -77,6 +79,27 @@ public partial class AdminDynamic : TabbedPage
 
                 command.ExecuteNonQuery();
                 DisplayAlert("Done!", "Succesfully inserted into logs!", "OK");
+
+
+                string claimID = DynamicClaims[0].ID.ToString();
+
+                //delete the child row first!
+                command.Parameters.Clear();
+                command.CommandText = "DELETE FROM Claims WHERE Claims_ID = @ClaimIDF";
+                command.Parameters.AddWithValue("@ClaimIDF", claimID);
+                command.ExecuteNonQuery();
+
+                command.Parameters.Clear();
+                command.CommandText = "DELETE FROM Items WHERE Item_ID = @ItemIDD";
+                command.Parameters.AddWithValue("@ItemIDD", itemID);
+                command.ExecuteNonQuery();
+
+                command.Parameters.Clear();
+                command.CommandText = "DELETE FROM Reports WHERE Report_ID = @ReportIDD";
+                command.Parameters.AddWithValue("@ReportIDD", reportID);
+                command.ExecuteNonQuery();
+                DisplayAlert("Done!", "Succesfully deleted corresponding rows!", "OK");
+                Navigation.PopAsync();
             }
         }
         catch (Exception e)
@@ -84,6 +107,8 @@ public partial class AdminDynamic : TabbedPage
             DisplayAlert("Error on closing claim", e.Message, "OK");
         }
     }
+
+
 
     private void OnStatusClicked(object obj)
     {

@@ -57,52 +57,52 @@ namespace test
 
             //temporary hard code for testing!!
 
-            if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-                await Navigation.PushAsync(new AdminDashboard());
-            }
-            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-                await Navigation.PushAsync(new StudentDashboard());
-            }
-            else
-            {
-                this.ShowPopup(new NewPage1());
-            }
+            //if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
+            //{
+            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+            //    await Navigation.PushAsync(new AdminDashboard());
+            //}
+            //else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
+            //{
+            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+            //    await Navigation.PushAsync(new StudentDashboard());
+            //}
+            //else
+            //{
+            //    this.ShowPopup(new NewPage1());
+            //}
 
 
             //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!
             //NOTE NEED TO IMPORT DATABASE FROM THE FILES
             //PROPER CREDENTIALS look in the database adminusers and studusers!!!
 
-        //    if (await CheckAdminAccount(enteredEmail, enteredPassword))
-        //    {
-        //        var toast = Toast.Make("Logging in as admin", ToastDuration.Short);
-        //        toast.Show();
-        //        Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-        //        await Navigation.PushAsync(new AdminDashboard());
-
-                     
-        //    }
-        //    else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
-        //    {
-
-                
+            if (await CheckAdminAccount(enteredEmail, enteredPassword))
+            {
+                var toast = Toast.Make("Logging in as admin", ToastDuration.Short);
+                toast.Show();
+                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+                await Navigation.PushAsync(new AdminDashboard());
 
 
-        //        Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-        //        SessionVars.SetSessionId(enteredEmail, enteredPassword);
-        //        var toast = Toast.Make("Logging in as " + SessionVars.TakeStudentInfo() , ToastDuration.Short);
-        //        toast.Show();
+            }
+            else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
+            {
 
-        //        Navigation.PushAsync(new StudentDashboard());
-        //    }
-        //    else
-        //    {
-        //        this.ShowPopup(new NewPage1());
-        //    }
+
+
+
+                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+                SessionVars.SetSessionId(enteredEmail, enteredPassword);
+                var toast = Toast.Make("Logging in as " + SessionVars.TakeStudentInfo(), ToastDuration.Short);
+                toast.Show();
+
+                Navigation.PushAsync(new StudentDashboard());
+            }
+            else
+            {
+                this.ShowPopup(new NewPage1());
+            }
 
         }
         private async Task<bool> CheckRegisteredAccount(string enteredEmail, string enteredPassword)

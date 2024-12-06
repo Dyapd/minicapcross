@@ -21,6 +21,12 @@ namespace test.Pages
             LoadItems();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LoadItems();
+        }
+
         private void OnButtonClicked(string item)
         {
             DisplayAlert("test", item, "ok");

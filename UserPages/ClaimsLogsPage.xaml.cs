@@ -20,6 +20,12 @@ public partial class ClaimsLogsPage : ContentPage
         LoadItems();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadItems();
+    }
+
 
     private async void OnDetailsClicked(string claim)
     {
