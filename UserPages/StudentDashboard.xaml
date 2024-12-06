@@ -27,7 +27,7 @@
                 <VerticalStackLayout>
                     <Frame>
                         <Label
-                            Text="Form a Submission" FontFamily="Opensans"
+                            Text="Submit a Form" FontFamily="Opensans"
                          x:Name="Label1"
                          FontSize="Medium" 
                          FontAttributes="Bold"

@@ -228,30 +228,6 @@ public partial class StudentDashboardWindows : ContentPage
 
 
     //this is the animation for the sliding of misc buttons!
-    private async void Label_Tapped(object sender, EventArgs args)
-    {
-        isMiscCollapsed = !isMiscCollapsed;
-
-        if (isMiscCollapsed)
-        {
-            //sliding up!
-            await AnimationGrid.TranslateTo(0, -AnimationGrid.Height, 300, Easing.CubicIn);
-
-            ClaimsBtn.IsVisible = false;
-            ReportsBtn.IsVisible = false;
-
-        }
-        else
-        {
-
-            ClaimsBtn.IsVisible = true;
-            ReportsBtn.IsVisible = true;
-
-
-            // slide down!!
-            await AnimationGrid.TranslateTo(0, 0, 300, Easing.CubicOut);
-        }
-    }
     private async void Label1_Tapped(object sender, EventArgs args)
     {
         isFormCollapsed = !isFormCollapsed;
@@ -263,13 +239,15 @@ public partial class StudentDashboardWindows : ContentPage
 
             ReportBtn.IsVisible = false;
             ClaimBtn.IsVisible = false;
-
+            ReportsBtn.IsVisible = false;
+            ClaimsBtn.IsVisible = false;
         }
         else
         {
             ReportBtn.IsVisible = true;
             ClaimBtn.IsVisible = true;
-
+             ClaimsBtn.IsVisible = true;
+            ReportsBtn.IsVisible = true;
             // slide down!!
             await AnimationVertical.TranslateTo(0, 0, 300, Easing.CubicOut);
         }
