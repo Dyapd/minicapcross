@@ -414,7 +414,7 @@ public partial class AdminDynamic : TabbedPage
     private async void LoadItemsReports()
     {
         List<DynamicReports> reports = await takeFromDatabaseReport();
-        DynamicClaims.Clear();
+        DynamicReports.Clear();
         foreach (DynamicReports report in reports)
         {
             DynamicReports.Add(report);

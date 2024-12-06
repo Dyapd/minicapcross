@@ -31,7 +31,7 @@ public partial class ReportsLogsPage : ContentPage
 
     private void OnButtonClicked(string log)
     {
-
+        SessionVars.DynamicReportID = log;
         Navigation.PushAsync(new StudentDynamicView());
     }
 

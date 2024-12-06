@@ -12,6 +12,7 @@ namespace test
     {
         public static string SessionId = "";
         public static string DynamicClaim = "";
+        public static string DynamicReportID = "";
 
         public static void SetSessionId(string Email, string Password)
         {
