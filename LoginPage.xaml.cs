@@ -66,8 +66,16 @@ namespace test
             //}
             //else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
             //{
-            //    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-            //    await Navigation.PushAsync(new StudentDashboard());
+            //    if (DeviceInfo.Platform == DevicePlatform.Android)
+            //    {
+            //        Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+            //        await Navigation.PushAsync(new StudentDashboard());
+            //    }
+            //    else if (DeviceInfo.Platform != DevicePlatform.Android)
+            //    {
+            //        Application.Current.MainPage = new NavigationPage(new StudentDashboardWindows());
+            //        await Navigation.PushAsync(new StudentDashboardWindows());
+            //    }
             //}
             //else
             //{
