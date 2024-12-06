@@ -171,6 +171,7 @@ public partial class AdminDynamic : TabbedPage
 
     }
 
+    //for sending emails possibly
     private async void OnSaveClicked(object obj)
     {
         var emailMessage = new EmailMessage

@@ -176,18 +176,7 @@
                        TextColor="#333333" />
 
                 
-                <Button Text="Change Status"
-                        x:Name="ReportChangeBtn"
-                        BackgroundColor="#FF5722"
-                        TextColor="White"
-                        CornerRadius="8"
-                        HeightRequest="45" />
-                <Button Text="Save"
-                        x:Name="ReportSaveBtn"
-                        BackgroundColor="#4CAF50"
-                        TextColor="White"
-                        CornerRadius="8"
-                        HeightRequest="45" />
+
 
             </VerticalStackLayout>
         </ScrollView>
@@ -258,18 +247,7 @@
                        TextColor="#333333" />
 
 
-                <Button Text="Change Status"
-                        x:Name="ItemChangeBtn"
-                        BackgroundColor="#FF5722"
-                        TextColor="White"
-                        CornerRadius="8"
-                        HeightRequest="45" />
-                <Button Text="Save"
-                        x:Name="ItemSaveBtn"
-                        BackgroundColor="#4CAF50"
-                        TextColor="White"
-                        CornerRadius="8"
-                        HeightRequest="45" />
+
 
             </VerticalStackLayout>
         </ScrollView>

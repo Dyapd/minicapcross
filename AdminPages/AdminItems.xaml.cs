@@ -32,6 +32,7 @@ namespace test.Pages
 
         private void OnButtonClicked(string obj)
         {
+            SessionVars.DynamicItemID = obj;
             Navigation.PushAsync(new AdminItemDynamicPage());
             
         }

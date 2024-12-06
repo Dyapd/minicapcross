@@ -13,19 +13,47 @@ namespace test.UserPages;
 
 public partial class StudentDynamicView : ContentPage
 {
-	List<DynamicReports> dynamicReports;
+	List<DynamicReports> DynamicReports;
 	public StudentDynamicView()
 	{
 		InitializeComponent();
-		dynamicReports = new List<DynamicReports>();
+        DynamicReports = new List<DynamicReports>();
 		BindingContext = this;
         LoadItemsReports();
 
     }
 
-    public void populatePage()
+    public async void OnRescindClick(object sender, EventArgs s){
+
+        string connectionString = new IPLocator().ConnectionString();
+        bool answer = await DisplayAlert("Confirmation", "Are you sure you want to rescind this application?", "Yes", "No");
+        try
+        {
+            if (answer)
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                using (connection)
+                {
+                    connection.Open();
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandText = "DELETE FROM Reports WHERE Report_ID = @reportID";
+                    command.Parameters.AddWithValue("@reportID", SessionVars.DynamicReportID);
+                    command.ExecuteNonQuery();
+                    DisplayAlert("Successful update!", "Rescinded report successfully!", "OK");
+
+                }
+                Navigation.PopAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error in rescinding.", ex.Message, "OK");
+        }
+        
+    }
+    public void populateDynamicPage()
     {
-        if (DynamicClaims[0].Image != null)
+        if (DynamicReports[0].Image != null)
         {
             ReportImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicReports[0].Image));
         }

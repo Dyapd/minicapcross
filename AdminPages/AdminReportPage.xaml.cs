@@ -29,7 +29,7 @@ namespace test.Pages
 
         private void OnButtonClicked(string item)
         {
-            DisplayAlert("test", item, "ok");
+            SessionVars.DynamicReportID = item;
             Navigation.PushAsync(new AdminReportsDynamicPage());
 
         }

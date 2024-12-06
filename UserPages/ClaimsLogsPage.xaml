@@ -93,12 +93,6 @@
             </CollectionView>
 
 
-            <Label Text="© 2024 Admin Dashboard"
-               FontSize="14"
-               TextColor="#9E9E9E"
-               HorizontalOptions="Center"
-               VerticalOptions="EndAndExpand" />
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

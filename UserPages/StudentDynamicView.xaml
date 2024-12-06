@@ -69,6 +69,7 @@
             <Button Text="Rescind Report"
                 x:Name="ReportChangeBtn"
                 BackgroundColor="#FF5722"
+                    Clicked="OnRescindClick"
                 TextColor="White"
                 CornerRadius="8"
                 HeightRequest="45" />
