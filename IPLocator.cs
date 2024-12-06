@@ -16,7 +16,14 @@ namespace test
             //sid phone =192.168.83.144
             //string connectionString = $"Data Source=192.168.45.145,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;";
             string connectionString = $"Data Source=localhost,1433;Initial Catalog=Minicapstone;User ID=recadm;Password=pass;Encrypt=True;TrustServerCertificate=True;Connection Timeout =30;";
+            string testString = "Data Source=localhost,1433;Initial Catalog=Minicapstone;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;Integrated Security=True;";
+
+            //if ikaw si sid, kenshin or charles. change the code bellow to:
+            //return testString;
+            //para matest ung database!
+            //return to original after!!
             return connectionString;
+            
         }
     }
 }
