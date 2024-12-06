@@ -61,7 +61,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\claim.png" />
+	  <None Remove="Resources\Images\clipboard.png" />
+	  <None Remove="Resources\Images\document.png" />
 	  <None Remove="Resources\Images\images.png" />
+	  <None Remove="Resources\Images\logout.png" />
+	  <None Remove="Resources\Images\logs.png" />
 	</ItemGroup>
 
 
@@ -146,6 +151,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UserPages\StudentDashboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UserPages\StudentDashboardWindows.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UserPages\StudentDynamicView.xaml">

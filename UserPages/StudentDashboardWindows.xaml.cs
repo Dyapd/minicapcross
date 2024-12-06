@@ -6,16 +6,15 @@ using System.Runtime.CompilerServices;
 using test.UserPages;
 using static test.DataHolders.DataholderNotificationLog;
 
+namespace test.UserPages;
 
-namespace test;
-
-public partial class StudentDashboard : ContentPage
+public partial class StudentDashboardWindows : ContentPage
 {
     public ObservableCollection<StudentNotification> StudentNotification { get; set; }
     bool isMiscCollapsed = false;
     bool isFormCollapsed = false;
 
-    public StudentDashboard()
+    public StudentDashboardWindows()
     {
         InitializeComponent();
         StudentNotification = new ObservableCollection<StudentNotification>();
@@ -107,7 +106,7 @@ public partial class StudentDashboard : ContentPage
             pointerGestureRecognizer.PointerEntered += (s, e) =>
             {
                 //mageenter 
-                LogoutBtn.BackgroundColor =  Color.FromArgb("#f54e42");
+                LogoutBtn.BackgroundColor = Color.FromArgb("#f54e42");
             };
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
@@ -119,7 +118,7 @@ public partial class StudentDashboard : ContentPage
         }
     }
     //uses the dataholdernotificationlog class from datahold folder!
-    public  List<StudentNotification> ReadDataNotificationLog()
+    public List<StudentNotification> ReadDataNotificationLog()
     {
         List<StudentNotification> items = new List<StudentNotification>();
         IPLocator ip = new IPLocator();
@@ -146,7 +145,7 @@ public partial class StudentDashboard : ContentPage
                         });
                     }
                 }
-               
+
             }
         }
         catch (Exception ex)
@@ -157,10 +156,10 @@ public partial class StudentDashboard : ContentPage
 
     }
 
-    private  void LoadItems()
+    private void LoadItems()
     {
-        List<StudentNotification> notifs =  ReadDataNotificationLog();
-        StudentNotification.Clear(); 
+        List<StudentNotification> notifs = ReadDataNotificationLog();
+        StudentNotification.Clear();
         foreach (StudentNotification notif in notifs)
         {
             StudentNotification.Add(notif);
@@ -170,22 +169,22 @@ public partial class StudentDashboard : ContentPage
 
     public async void ReportBtn_Clicked(object sender, EventArgs e)
     {
-         Navigation.PushAsync(new ReportPage());
+        Navigation.PushAsync(new ReportPage());
     }
     public async void ClaimBtn_Clicked(object sender, EventArgs e)
     {
-         Navigation.PushAsync(new ClaimPage());
+        Navigation.PushAsync(new ClaimPage());
     }
 
-    private  void LogoutBtn_Clicked(object sender, EventArgs e)
+    private void LogoutBtn_Clicked(object sender, EventArgs e)
     {
         Application.Current.MainPage = new NavigationPage(new MainPage());
-         Navigation.PopAsync();
+        Navigation.PopAsync();
     }
 
-    private  void OnDetailsButtonClicked(object sender, EventArgs e)
+    private void OnDetailsButtonClicked(object sender, EventArgs e)
     {
-         Navigation.PushAsync(new ClaimPage());
+        Navigation.PushAsync(new ClaimPage());
     }
 
     private void OnLogoutBtnEntered(object sender, EventArgs e)
@@ -205,28 +204,28 @@ public partial class StudentDashboard : ContentPage
     {
         ReportBtn.BackgroundColor = Colors.Orange;
     }
-   private void OnClaimBtnEntered(object sender, EventArgs e) 
+    private void OnClaimBtnEntered(object sender, EventArgs e)
     {
         ClaimBtn.BackgroundColor = Colors.DarkOrange;
-        
+
     }
-    private void OnClaimBtnExited(object sender, EventArgs e) 
+    private void OnClaimBtnExited(object sender, EventArgs e)
     {
         ClaimBtn.BackgroundColor = Colors.Orange;
     }
-    private void  NotificationiconBtn_Clicked(object sender, EventArgs e)
+    private void NotificationiconBtn_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new NotificationLogsPage());
     }
-    private void ClaimsBtn_Clicked(object sender, EventArgs e) 
+    private void ClaimsBtn_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new ClaimsLogsPage());
     }
-    private void ReportsBtn_Clicked(object sender, EventArgs e) 
+    private void ReportsBtn_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new ReportsLogsPage());
     }
-  
+
 
     //this is the animation for the sliding of misc buttons!
     private async void Label_Tapped(object sender, EventArgs args)
@@ -236,7 +235,7 @@ public partial class StudentDashboard : ContentPage
         if (isMiscCollapsed)
         {
             //sliding up!
-            await AnimationGrid.TranslateTo(0, -AnimationGrid.Height, 300, Easing.CubicIn); 
+            await AnimationGrid.TranslateTo(0, -AnimationGrid.Height, 300, Easing.CubicIn);
 
             ClaimsBtn.IsVisible = false;
             ReportsBtn.IsVisible = false;
@@ -244,7 +243,7 @@ public partial class StudentDashboard : ContentPage
         }
         else
         {
-         
+
             ClaimsBtn.IsVisible = true;
             ReportsBtn.IsVisible = true;
 
@@ -253,7 +252,7 @@ public partial class StudentDashboard : ContentPage
             await AnimationGrid.TranslateTo(0, 0, 300, Easing.CubicOut);
         }
     }
-    private async void Label1_Tapped(object sender, EventArgs args) 
+    private async void Label1_Tapped(object sender, EventArgs args)
     {
         isFormCollapsed = !isFormCollapsed;
 
@@ -261,15 +260,15 @@ public partial class StudentDashboard : ContentPage
         {
             //sliding up!
             await AnimationVertical.TranslateTo(0, -AnimationVertical.Height, 300, Easing.CubicIn);
-            
+
             ReportBtn.IsVisible = false;
             ClaimBtn.IsVisible = false;
-            
+
         }
-        else 
-        {   
+        else
+        {
             ReportBtn.IsVisible = true;
-             ClaimBtn.IsVisible = true;
+            ClaimBtn.IsVisible = true;
 
             // slide down!!
             await AnimationVertical.TranslateTo(0, 0, 300, Easing.CubicOut);

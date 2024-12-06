@@ -88,16 +88,25 @@ namespace test
             }
             else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
             {
-
-
-
-
-                Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+                
                 SessionVars.SetSessionId(enteredEmail, enteredPassword);
                 var toast = Toast.Make("Logging in as " + SessionVars.TakeStudentInfo(), ToastDuration.Short);
                 toast.Show();
+                if (DeviceInfo.Platform == DevicePlatform.Android)
+                {
+                    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+                    await Navigation.PushAsync(new StudentDashboard());
+                }
+                else if (DeviceInfo.Platform != DevicePlatform.Android)
+                {
+                    Application.Current.MainPage = new NavigationPage(new StudentDashboardWindows());
+                    await Navigation.PushAsync(new StudentDashboardWindows());
+                }
 
-                Navigation.PushAsync(new StudentDashboard());
+
+                
+
+                
             }
             else
             {

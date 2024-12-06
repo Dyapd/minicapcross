@@ -96,9 +96,20 @@ public partial class AdminLogsPageWindows : ContentPage
     //for generating pdf!
     private void CreatePDF()
     {
+        int count = 0;
+        //tjhe name for the file of the pdf
+        string file = "Log.pdf";
         string connectionString = new IPLocator().ConnectionString();
+        //this is for just checking if the path is clear orn ot
         string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Log.pdf");
-
+        while (File.Exists(downloadsPath))
+        {
+            file = "Log" + count.ToString() + ".pdf";
+            downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), file);
+            count++;
+        }
+        //this is the final path after all other options has been exhausted
+        string finalPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), file);
         PdfWriter writer = new PdfWriter(downloadsPath);
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
