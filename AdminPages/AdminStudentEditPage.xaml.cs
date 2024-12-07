@@ -4,6 +4,9 @@ using Microsoft.Data.SqlClient;
 using System.Reflection.PortableExecutable;
 using static test.DataHolders.DataholderNotificationLog;
 using System.Windows.Input;
+using Microsoft.Maui.ApplicationModel.Communication;
+using static System.Collections.Specialized.BitVector32;
+using System.Diagnostics;
 #if ANDROID
 using Android.App;
 #endif
@@ -25,28 +28,67 @@ public partial class AdminStudentEditPage : ContentPage
     {
 
         string connectionString = new IPLocator().ConnectionString();
-        bool answer = await DisplayAlert("Confirmation", "Are you sure you want to rescind this application?", "Yes", "No");
+        bool answer = await DisplayAlert("Confirmation", "Are you sure about this edit?", "Yes", "No");
+
+
         try
         {
-            if (answer)
+            string stringConnection = new IPLocator().ConnectionString();
+            SqlConnection connection = new SqlConnection(stringConnection);
+            using (connection)
             {
-                SqlConnection connection = new SqlConnection(connectionString);
-                using (connection)
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand("INSERT INTO StudentUsers (Student_ID, Student_Email, Student_Password) VALUES (@studentId, @email, @password); " +
+                                                                "INSERT INTO StudentInfo (Student_ID, Student_Name, Student_GradeLevel, Student_Section) VALUES (@studentId, @name, @gradeLevel, @section)", connection))
                 {
-                    connection.Open();
-                    SqlCommand command = connection.CreateCommand();
-                    command.CommandText = "DELETE FROM Reports WHERE Report_ID = @reportID";
-                    command.Parameters.AddWithValue("@reportID", SessionVars.DynamicReportID);
-                    command.ExecuteNonQuery();
-                    DisplayAlert("Successful update!", "Rescinded report successfully!", "OK");
+                    //command.Parameters.AddWithValue("@studentId", studentId);
+                    //command.Parameters.AddWithValue("@email", email);
+                    //command.Parameters.AddWithValue("@password", password);
+                    //command.Parameters.AddWithValue("@name", name);
+                    //command.Parameters.AddWithValue("@gradeLevel", gradeLevel);
+                    //command.Parameters.AddWithValue("@section", section);
 
+                    await command.ExecuteNonQueryAsync();
                 }
-                Navigation.PopAsync();
+
+                await DisplayAlert("Success", "Student created successfully.", "OK");
             }
         }
         catch (Exception ex)
         {
-            DisplayAlert("Error in rescinding.", ex.Message, "OK");
+            await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
+        }
+
+    }
+
+    private async void OnDeleteClick(object sender, EventArgs events)
+    {
+        bool answer = await DisplayAlert("Confirmation", "Are you sure you want to delete this student user?", "Yes", "No");
+        if (answer)
+        {
+            try
+            {
+                string connectionString = new IPLocator().ConnectionString();
+                SqlConnection connection = new SqlConnection(connectionString);
+
+                using (connection)
+                {
+                    connection.Open();
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandText = "DELETE FROM StudentInfo WHERE Student_ID = @StudID";
+                    command.Parameters.AddWithValue("@StudID", SessionVars.DynamicStudentID);
+
+                    command.ExecuteNonQuery();
+                    DisplayAlert("Succesful deletion.", "User has been successfuly removed!", "OK");
+                    await Navigation.PopAsync();
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                DisplayAlert("Error in removing item!", ex.Message, "OK");
+            }
         }
 
     }

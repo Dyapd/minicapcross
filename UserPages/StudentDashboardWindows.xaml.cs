@@ -22,7 +22,11 @@ public partial class StudentDashboardWindows : ContentPage
         LoadItems();
         buttonHighlighters();
     }
-
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadItems();
+    }
     public void buttonHighlighters()
     {
         //for report button

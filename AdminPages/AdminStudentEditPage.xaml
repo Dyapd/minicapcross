@@ -7,22 +7,37 @@
         <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
 
-            <Label Text="Student User - Edit"
-           FontSize="20"
+
+
+            <Frame BackgroundColor="DarkBlue"
+        CornerRadius="2"
+        Padding="15">
+                <Label Text="Student User - Edit"
+            FontFamily="Roboto"
+            FontSize="Large"
            FontAttributes="Bold"
-           TextColor="#333333"
-           HorizontalOptions="Center" />
-
-
+           TextColor="White"
+           HorizontalOptions="Start" />
+                
+            </Frame>
             <Label Text="Student Name"
            FontSize="14"
-           TextColor="#555555" />
+           FontAttributes="Bold"/>
+            <Label
+                Text="Old Name"
+                FontSize="10"
+                TextColor="DimGray"/>
             <Label Text="None"
            x:Name="StudentNameText"
-           FontSize="16"
-           TextColor="#333333" />
-
-
+           FontSize="14"
+           TextColor="#333333" 
+                   />
+            <Label
+    Text="New Name"
+    FontSize="10"
+    TextColor="DimGray"/>
+            <Entry
+                />
             <Label Text="Student Number"
            FontSize="14"
            TextColor="#555555" />
@@ -50,14 +65,22 @@
            TextColor="#333333" />
 
             <Button Text="Confirm Edit"
-            x:Name="ReportChangeBtn"
+            x:Name="UserChangeBtn"
             BackgroundColor="#FF5722"
                 Clicked="OnConfirmClick"
             TextColor="White"
             CornerRadius="8"
             HeightRequest="45" />
-            
-            
+
+            <Button Text="Delete User"
+            x:Name="DeleteUserBtn"
+            BackgroundColor="Red"
+                Clicked="OnDeleteClick"
+            TextColor="White"
+            CornerRadius="8"
+            HeightRequest="45" />
+
+
 
         </VerticalStackLayout>
     </ScrollView>

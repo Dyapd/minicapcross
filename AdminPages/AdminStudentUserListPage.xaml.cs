@@ -22,6 +22,13 @@ public partial class AdminStudentUserListPage : ContentPage
         BindingContext = this;
         LoadItems();
     }
+    //refreshes page when popped!
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadItems();
+    }
+
 
 
     private void OnButtonClicked(string obj)
