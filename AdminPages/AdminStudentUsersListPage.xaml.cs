@@ -46,9 +46,7 @@ public partial class AdminStudentUsersListPage : ContentPage
                 connection.Open();
 
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT " +
-                "Item_ID, Item_Status, Item_ICategory, Item_Description" +
-                " FROM Items";
+                command.CommandText = "SELECT s.Student_ID, s2.Student_Name, s.Student_Email, s.Student_Password FROM StudentUsers s INNER JOIN StudentInfo s2 ON s2.Student_ID = s.Student_ID";
 
                 using (SqlDataReader reader = await command.ExecuteReaderAsync())
                 {
@@ -59,7 +57,7 @@ public partial class AdminStudentUsersListPage : ContentPage
                             users.Add(new Users
                             {
 
-                                StudentNumber = reader.GetInt32(0).ToString(),
+                                StudentNumber = reader.GetInt64(0).ToString(),
                                 StudentName = reader.GetString(1),
                                 StudentEmail = reader.GetString(2),
                                 StudentPassword = reader.GetString(3),
