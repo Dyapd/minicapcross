@@ -124,7 +124,7 @@
 	  <MauiXaml Update="AdminPages\AdminStudentEditPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="AdminPages\AdminStudentUsersListPage.xaml">
+	  <MauiXaml Update="AdminPages\AdminStudentUserListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="AdminPages\AdminSubmittedPage.xaml">

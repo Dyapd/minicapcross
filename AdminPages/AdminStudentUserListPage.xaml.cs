@@ -6,30 +6,35 @@ using System.Security.Claims;
 using System.Windows.Input;
 using static test.DataHolders.DataholderNotificationLog;
 
+
 namespace test.AdminPages;
 
-public partial class AdminStudentUsersListPage : ContentPage
+public partial class AdminStudentUserListPage : ContentPage
 {
     public ObservableCollection<Users> Users { get; set; }
     public ICommand ButtonCommand { get; set; }
-    public AdminStudentUsersListPage()
-    {
-        InitializeComponent();
+
+    public AdminStudentUserListPage()
+	{
+		InitializeComponent();
         Users = new ObservableCollection<Users>();
         ButtonCommand = new Command<string>(OnButtonClicked);
         BindingContext = this;
         LoadItems();
     }
 
+
     private void OnButtonClicked(string obj)
     {
         SessionVars.DynamicStudentID = obj;
+        DisplayAlert("testonbutnclick.", SessionVars.DynamicStudentID, "OK");
+
         Navigation.PushAsync(new AdminStudentEditPage());
 
     }
     private void OnAddUserBtnClicked(object sender, EventArgs e)
     {
-
+        Navigation.PushAsync(new AdminUsersPage());
     }
 
     private async Task<List<Users>> takeFromDatabaseUsers()

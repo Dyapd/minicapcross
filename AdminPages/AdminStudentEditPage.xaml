@@ -3,10 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.AdminPages.AdminStudentEditPage"
              Title="AdminStudentEditPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
+
+
+            <Label Text="Student User - Edit"
+           FontSize="20"
+           FontAttributes="Bold"
+           TextColor="#333333"
+           HorizontalOptions="Center" />
+
+
+            <Label Text="Student Name"
+           FontSize="14"
+           TextColor="#555555" />
+            <Label Text="None"
+           x:Name="StudentNameText"
+           FontSize="16"
+           TextColor="#333333" />
+
+
+            <Label Text="Student Number"
+           FontSize="14"
+           TextColor="#555555" />
+            <Label Text="None"
+           x:Name="StudentNumberText"
+           FontSize="16"
+           TextColor="#333333" />
+
+
+            <Label Text="Student Email"
+           FontSize="14"
+           TextColor="#555555" />
+            <Label Text="None"
+           x:Name="StudentEmailText"
+           FontSize="16"
+           TextColor="#333333" />
+
+
+            <Label Text="Student Password"
+           FontSize="14"
+           TextColor="#555555" />
+            <Label Text="None"
+           x:Name="StudentPasswordText"
+           FontSize="16"
+           TextColor="#333333" />
+
+            <Button Text="Confirm Edit"
+            x:Name="ReportChangeBtn"
+            BackgroundColor="#FF5722"
+                Clicked="OnConfirmClick"
+            TextColor="White"
+            CornerRadius="8"
+            HeightRequest="45" />
+            
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

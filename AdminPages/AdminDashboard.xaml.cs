@@ -128,7 +128,7 @@ public partial class AdminDashboard : ContentPage
 
     public async void OnClickedUsersBtn(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AdminStudentUsersListPage());
+        await Navigation.PushAsync(new AdminStudentUserListPage());
     }
     public async void OnClickedLogoutBtn(object sender, EventArgs e)
 	{
