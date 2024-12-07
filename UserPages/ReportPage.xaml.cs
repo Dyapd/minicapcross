@@ -3,6 +3,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
 using System.Security.AccessControl;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 public partial class ReportPage : ContentPage
@@ -205,4 +206,16 @@ public partial class ReportPage : ContentPage
 
     }
 
+    private void OnDateSelected(object sender, DateChangedEventArgs e)
+    {
+        var selectedDate = e.NewDate;
+        DayOfWeek dayOfWeek = selectedDate.DayOfWeek;
+
+        if (dayOfWeek == DayOfWeek.Sunday)
+        {
+            DisplayAlert("Invalid date", "Sundays are unavailable.", "OK");
+            DateTime nextDay = selectedDate.AddDays(1);
+            DateInput.Date = nextDay;
+        }
+    }
 }

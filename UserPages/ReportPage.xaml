@@ -65,8 +65,9 @@
 
             <DatePicker
             x:Name="DateInput"
-            MaximumDate="{x:Static sys:DateTime.Today}" 
- />
+            MaximumDate="{x:Static sys:DateTime.Today}"
+             DateSelected="OnDateSelected">
+            </DatePicker>
 
             <TimePicker
             x:Name="TimeInput" Time="12:00:00"
