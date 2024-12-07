@@ -87,15 +87,15 @@ public partial class AdminStudentEditPage : ContentPage
                         {
                             //await DisplayAlert("Test2", reader.GetString(4), "OK");
                             //ClaimCategoryText.Text = reader.GetString(4);
-                            DateTime reportDate = reader.GetDateTime(1);
-                            string date = reportDate.ToString("yyyy-MM-dd HH:mm");
+ 
+
                             users.Add(new Users
                             {
 
-                                StudentName = reader.GetInt32(0).ToString(),
-                                StudentNumber = date,
+                                StudentNumber = reader.GetInt64(0).ToString(),
+                                StudentName = reader.GetString(1),
                                 StudentEmail = reader.GetString(2),
-                                StudentPassword = reader.GetString(4),
+                                StudentPassword = reader.GetString(3),
                             });
 
                         }
