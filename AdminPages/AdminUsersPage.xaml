@@ -12,12 +12,63 @@
 
         <Label
             Text="Student ID"/>
-
-        <Label
-    Text="Student ID"/>
-
-        <Label
-    Text="Student ID"/>
+        <Entry
+            x:Name="StudentIdInput"/>
         
+        <Label
+    Text="Student Name"/>
+        <Entry
+            x:Name="StudentNameInput"/>
+
+        <Label
+            Text="Student Grade Level"/>
+        
+        <Picker x:Name="StudentGradeLevels"
+        BackgroundColor="#FFFFFF"
+        TextColor="#333333"
+        SelectedIndex="0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Senior Highschool</x:String>
+                    <x:String>Tertiary</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label
+     Text="Student Section"/>
+
+        <Picker x:Name="StudentSections"
+            BackgroundColor="#FFFFFF"
+            TextColor="#333333"
+            SelectedIndex="0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>BT101</x:String>
+                    <x:String>BT102</x:String>
+                    <x:String>BT103</x:String>
+                    <x:String>CS101</x:String>
+                    <x:String>CS102</x:String>
+                    <x:String>CS103</x:String>
+                    <x:String>SH101</x:String>
+                    <x:String>SH102</x:String>
+                    <x:String>SH103</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label
+            Text="Student Email"/>
+
+        <Entry
+            x:Name="StudentEmailInput"/>
+        <Label
+    Text="Student Password"/>
+        <Entry
+            x:Name="StudentPasswordInput"/>
+
+        <Button
+            Clicked="Button_Clicked"/>
+
     </VerticalStackLayout>
 </ContentPage>

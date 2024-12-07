@@ -48,8 +48,8 @@
             <Label
             Text="Image (optional):"/>
             <Image
-                WidthRequest="100"
-                HeightRequest="100"
+                MaximumWidthRequest="300"
+                MaximumHeightRequest="300"
                 Background="Gray"
                 x:Name="uploadedImage"/>
             <Button 

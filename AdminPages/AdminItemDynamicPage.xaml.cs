@@ -72,8 +72,6 @@ public partial class AdminItemDynamicPage : ContentPage
 
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
-
-
             SqlConnection connection = new SqlConnection(connectionString);
 
             using (connection)
@@ -81,7 +79,7 @@ public partial class AdminItemDynamicPage : ContentPage
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
                 command.CommandText = "SELECT " +
-                    "Item_ID, Item_Image.PathName(), Item_ICategory, Item_Date, Item_Description, Item_Location, Item_Status " +
+                    "Item_ID, Item_Image, Item_ICategory, Item_Date, Item_Description, Item_Location, Item_Status " +
                     "FROM Items WHERE Item_ID = @itemID";
                 command.Parameters.AddWithValue("@itemID", SessionVars.DynamicItemID);
 
@@ -93,18 +91,9 @@ public partial class AdminItemDynamicPage : ContentPage
                         //so more than oen row will be read
                         while (reader.Read())
                         {
-                            byte[] imageBytes;
-
+       
                             DateTime itemDate = reader.GetDateTime(3);
                             string date = itemDate.ToString("yyyy-MM-dd HH:mm");
-
-                            string imgPath = reader["PathName"].ToString();
-
-                            using(FileStream fs = new FileStream(imgPath, FileMode.Open, FileAccess.Read ))
-                            {
-                                imageBytes = new byte[fs.Length];
-                                fs.Read(imageBytes, 0, imageBytes.Length);
-                            }
 
                             items.Add(new DynamicItems
                             {
@@ -114,7 +103,7 @@ public partial class AdminItemDynamicPage : ContentPage
                                 ICategory = reader.GetString(2),
                                 Location = reader.GetString(5),
                                 Description = reader.GetString(4),
-                                Image = imageBytes,
+                                Image = reader.IsDBNull(6) ? null : reader["Item_Image"] as byte[],
                                 Status = reader.GetBoolean(6),
                             });
                         }

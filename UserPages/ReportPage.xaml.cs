@@ -72,6 +72,8 @@ public partial class ReportPage : ContentPage
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
 
                     string imagePath = result.FullPath; //file path
+                    var imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
+                    uploadedImage.Source = imageSource;
                 }
             }
             else

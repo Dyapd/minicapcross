@@ -87,8 +87,8 @@ public partial class AdminSubmittedPage : ContentPage
             {
                 await connection.OpenAsync();
                 using (SqlCommand command = new SqlCommand("INSERT INTO Items (Item_Category, Item_ICategory, Item_Date, Item_Description, Item_Location, Item_Status, Item_Image) " +
-                                               "OUTPUT INSERTED.Item_ID " +
-                                               "VALUES (@Category, @ICategory, @Date, @Description, @Location, @Status, DEFAULT)", connection))
+                                               " " +
+                                               "VALUES (@Category, @ICategory, @Date, @Description, @Location, @Status, @Image)", connection))
                 {
                     command.Parameters.AddWithValue("@Category", "I");
                     command.Parameters.AddWithValue("@ICategory", reportCategory);
@@ -96,19 +96,11 @@ public partial class AdminSubmittedPage : ContentPage
                     command.Parameters.AddWithValue("@Description", reportDescription);
                     command.Parameters.AddWithValue("@Location", reportLocation);
                     command.Parameters.AddWithValue("@Status", false);
+                    command.Parameters.AddWithValue("@Image", imageData);
 
-                    int insertedItemID = (int) command.ExecuteScalar();
-                    string filePath = Path.Combine("D:\\DatabaseMinicapstone\\filestream1", insertedItemID.ToString());
-                    File.WriteAllBytes(filePath, File.ReadAllBytes(imagePath));
-                    //this checks if rows have been inserted
-                    //if so, then it goes to if for succesful
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
 
-
-                    
-                    //int rowsAffected = await command.ExecuteNonQueryAsync();
-
-                    
-                    if (insertedItemID > 0)
+                    if (rowsAffected > 0)
                     {
                         await DisplayAlert("Success", "Item has been recorded successfully.", "OK");
                     }
@@ -116,6 +108,28 @@ public partial class AdminSubmittedPage : ContentPage
                     {
                         await DisplayAlert("Failure", "Item recorded failed.", "OK");
                     }
+
+                    //using (FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+                    //{
+                    //    SqlParameter imageParameter = new SqlParameter("@Image", SqlDbType.VarBinary)
+                    //    {
+                    //        Value = fs
+                    //    };
+                    //    command.Parameters.Add(imageParameter);
+
+
+                    //    int insertedItemID = (int)await command.ExecuteScalarAsync();
+
+                    //    if (insertedItemID > 0)
+                    //    {
+                    //        await DisplayAlert("Success", "Item has been recorded successfully.", "OK");
+                    //    }
+                    //    else
+                    //    {
+                    //        await DisplayAlert("Failure", "Item recording failed.", "OK");
+                    //    }
+                    //}
+
                 }
             }
 
