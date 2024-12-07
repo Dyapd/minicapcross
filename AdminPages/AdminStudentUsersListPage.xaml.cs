@@ -13,7 +13,8 @@ public partial class AdminStudentUsersListPage : ContentPage
     public ObservableCollection<Users> Users { get; set; }
     public ICommand ButtonCommand { get; set; }
     public AdminStudentUsersListPage()
-	{
+    {
+        InitializeComponent();
         Users = new ObservableCollection<Users>();
         ButtonCommand = new Command<string>(OnButtonClicked);
         BindingContext = this;
