@@ -33,36 +33,92 @@
            TextColor="#333333" 
                    />
             <Label
-    Text="New Name"
-    FontSize="10"
-    TextColor="DimGray"/>
+            Text="New Name"
+            FontSize="10"
+            TextColor="DimGray"/>
             <Entry
+                BackgroundColor="#EEEEEE"
+                x:Name="NameInput"
                 />
-            <Label Text="Student Number"
-           FontSize="14"
-           TextColor="#555555" />
+            <BoxView HeightRequest="1"
+         BackgroundColor="Gray"
+         HorizontalOptions="FillAndExpand"
+         Margin="0,10" />
+            
+            
+            <Label 
+             Text="Student Number"
+                FontAttributes="Bold"
+               FontSize="14" />
+              <Label
+            Text="Old Student Number"
+            FontSize="10"
+            TextColor="DimGray"/>
             <Label Text="None"
            x:Name="StudentNumberText"
            FontSize="16"
            TextColor="#333333" />
+            <Label
+           Text="New Student Number"
+           FontSize="10"
+           TextColor="DimGray"/>
+            <Entry
+            BackgroundColor="#EEEEEE"
+                x:Name="NumberInput"
+            />
+            <BoxView HeightRequest="1"
+         BackgroundColor="Gray"
+         HorizontalOptions="FillAndExpand"
+         Margin="0,10" />
 
 
             <Label Text="Student Email"
-           FontSize="14"
-           TextColor="#555555" />
+                   FontAttributes="Bold"
+           FontSize="14"/>
+            <Label
+           Text="Old Email"
+           FontSize="10"
+           TextColor="DimGray"/>
             <Label Text="None"
            x:Name="StudentEmailText"
            FontSize="16"
            TextColor="#333333" />
+            <Label
+            Text="New Email"
+            FontSize="10"
+            TextColor="DimGray"/>
+            <Entry
+                BackgroundColor="#EEEEEE"/>
+            <BoxView HeightRequest="1"
+         BackgroundColor="Gray"
+         HorizontalOptions="FillAndExpand"
+         Margin="0,10" />
 
 
             <Label Text="Student Password"
-           FontSize="14"
-           TextColor="#555555" />
+                   FontAttributes="Bold"
+           FontSize="14" />
+            <Label
+            Text="Old Passowrd"
+            FontSize="10"
+            TextColor="DimGray"/>
             <Label Text="None"
-           x:Name="StudentPasswordText"
-           FontSize="16"
-           TextColor="#333333" />
+            x:Name="StudentEmailText"
+            FontSize="16"
+            TextColor="#333333" />
+            <Label
+             Text="New Password"
+             FontSize="10"
+             TextColor="DimGray"/>
+            <Entry
+            BackgroundColor="#EEEEEE"
+                x:Name="PasswordInput"/>
+            <BoxView HeightRequest="1"
+         BackgroundColor="Gray"
+         HorizontalOptions="FillAndExpand"
+         Margin="0,10" />
+
+
 
             <Button Text="Confirm Edit"
             x:Name="UserChangeBtn"

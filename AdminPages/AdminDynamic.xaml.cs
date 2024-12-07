@@ -256,7 +256,7 @@ public partial class AdminDynamic : TabbedPage
         }
         catch (Exception e)
         {
-            //DisplayAlert("PopulateTest", e.Message, "OK");
+           DisplayAlert("Error in populating page!", e.Message, "OK");
         }
 
 

@@ -34,7 +34,7 @@ public partial class AdminStudentUserListPage : ContentPage
     private void OnButtonClicked(string obj)
     {
         SessionVars.DynamicStudentID = obj;
-        DisplayAlert("testonbutnclick.", SessionVars.DynamicStudentID, "OK");
+        //DisplayAlert("testonbutnclick.", SessionVars.DynamicStudentID, "OK");
 
         Navigation.PushAsync(new AdminStudentEditPage());
 
