@@ -109,5 +109,13 @@ namespace test.DataHolders
             public string CategoryAndLogID => $"L-{LogID}";
             public string CategoryAndItemID => $"I-{ItemID}";
         }
+
+        public class Users
+        {
+            public string StudentNumber { get; set; }
+            public string StudentName { get; set; }
+            public string StudentEmail { get; set; }
+            public string StudentPassword { get; set; }
+        }
     }
 }

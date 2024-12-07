@@ -30,6 +30,8 @@
 
                     <Button Text="Reports"
                             x:Name="ReportsBtn"
+                            ImageSource="document.png"
+                            ContentLayout="Left, 5"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -40,6 +42,8 @@
 
                     <Button Text="Approve Claims"
                             x:Name="ClaimsBtn"
+                            ImageSource="approve.png"
+                            ContentLayout="Left, 10"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -50,6 +54,8 @@
 
                     <Button Text="Items"
                             x:Name="ItemsBtn"
+                            ImageSource="items.png"
+                            ContentLayout="Left,5"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -60,6 +66,8 @@
 
                     <Button Text="Users"
                             x:Name="UsersBtn"
+                            ImageSource="adduser.png"
+                            ContentLayout="Left, 5"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -70,6 +78,7 @@
 
                     <Button Text="Logs"
                             x:Name="LogsBtn"
+                            ImageSource="notebook.png"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -83,6 +92,8 @@
 
             <Button Text="Logout"
                     x:Name="LogoutBtn"
+                    ImageSource="logout.png"
+                    ContentLayout="Left, 5"
                     BackgroundColor="#E53935"
                     TextColor="White"
                     CornerRadius="25"

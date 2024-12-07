@@ -14,6 +14,7 @@ namespace test
         public static string DynamicClaim = "";
         public static string DynamicReportID = "";
         public static string DynamicItemID = "";
+        public static string DynamicStudentID = "";
 
 
         public static void SetSessionId(string Email, string Password)

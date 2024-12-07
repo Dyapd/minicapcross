@@ -61,12 +61,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\adduser.png" />
+	  <None Remove="Resources\Images\approve.png" />
 	  <None Remove="Resources\Images\claim.png" />
 	  <None Remove="Resources\Images\clipboard.png" />
 	  <None Remove="Resources\Images\document.png" />
 	  <None Remove="Resources\Images\images.png" />
+	  <None Remove="Resources\Images\items.png" />
 	  <None Remove="Resources\Images\logout.png" />
 	  <None Remove="Resources\Images\logs.png" />
+	  <None Remove="Resources\Images\notebook.png" />
 	</ItemGroup>
 
 
@@ -115,6 +119,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="AdminPages\AdminReportsDynamicPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AdminPages\AdminStudentEditPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AdminPages\AdminStudentUsersListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="AdminPages\AdminSubmittedPage.xaml">

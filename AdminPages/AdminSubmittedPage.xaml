@@ -49,7 +49,7 @@
             </Frame>
 
             
-            <Label Text="Image (optional):"
+            <Label Text="Image:"
                    FontSize="14"
                    TextColor="#555555" />
             <Button Text="Upload Image"

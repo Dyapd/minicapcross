@@ -63,15 +63,18 @@
             <Label
             Text="Date and Time Lost:"/>
 
-            <DatePicker
-            x:Name="DateInput"
-            MaximumDate="{x:Static sys:DateTime.Today}"
-             DateSelected="OnDateSelected">
-            </DatePicker>
-
-            <TimePicker
-            x:Name="TimeInput" Time="12:00:00"
-                Margin="10"/>
+         
+            <StackLayout Orientation="Horizontal" Spacing="15">
+                <DatePicker
+                    BackgroundColor="#EEEEEE"
+                x:Name="DateInput"
+                MaximumDate="{x:Static sys:DateTime.Today}"
+                 DateSelected="OnDateSelected">
+                </DatePicker>
+                <TimePicker x:Name="TimeInput"
+                            Background="#EEEEEE"
+                Time="12:00:00"/>
+            </StackLayout>
 
             <Label
             Text="Location Lost:"/>
