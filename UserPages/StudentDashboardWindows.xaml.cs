@@ -37,7 +37,7 @@ public partial class StudentDashboardWindows : ContentPage
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
                 //mageexit
-                ReportBtn.BackgroundColor = Colors.DarkBlue;
+                ReportBtn.BackgroundColor = Color.FromArgb("#1565C0");
             };
 
             ReportBtn.GestureRecognizers.Add(pointerGestureRecognizer);
@@ -57,7 +57,7 @@ public partial class StudentDashboardWindows : ContentPage
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
                 //mageexit
-                ClaimBtn.BackgroundColor = Colors.DarkBlue;
+                ClaimBtn.BackgroundColor = Color.FromArgb("#1565C0");
             };
 
             ClaimBtn.GestureRecognizers.Add(pointerGestureRecognizer);
@@ -75,7 +75,7 @@ public partial class StudentDashboardWindows : ContentPage
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
                 //mageexit
-                ReportsBtn.BackgroundColor = Colors.DarkBlue;
+                ReportsBtn.BackgroundColor = Color.FromArgb("#1565C0");
             };
 
             ReportsBtn.GestureRecognizers.Add(pointerGestureRecognizer);
@@ -93,7 +93,7 @@ public partial class StudentDashboardWindows : ContentPage
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
                 //mageexit
-                ClaimsBtn.BackgroundColor = Colors.DarkBlue;
+                ClaimsBtn.BackgroundColor = Color.FromArgb("#1565C0");
             };
 
             ClaimsBtn.GestureRecognizers.Add(pointerGestureRecognizer);

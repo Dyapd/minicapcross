@@ -29,6 +29,7 @@
                 <VerticalStackLayout Spacing="15" HorizontalOptions="Center">
 
                     <Button Text="Reports"
+                            x:Name="ReportsBtn"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -38,6 +39,7 @@
                             Clicked="OnClickedReportsBtn" />
 
                     <Button Text="Approve Claims"
+                            x:Name="ClaimsBtn"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -47,6 +49,7 @@
                             Clicked="OnClickedClaimsBtn" />
 
                     <Button Text="Items"
+                            x:Name="ItemsBtn"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -55,7 +58,18 @@
                             HeightRequest="60"
                             Clicked="OnClickedItemsBtn" />
 
+                    <Button Text="Users"
+                            x:Name="UsersBtn"
+                            BackgroundColor="#1565C0"
+                            TextColor="White"
+                            CornerRadius="25"
+                            FontSize="18"
+                            WidthRequest="280"
+                            HeightRequest="60"
+                            Clicked="OnClickedUsersBtn" />
+
                     <Button Text="Logs"
+                            x:Name="LogsBtn"
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
@@ -68,6 +82,7 @@
 
 
             <Button Text="Logout"
+                    x:Name="LogoutBtn"
                     BackgroundColor="#E53935"
                     TextColor="White"
                     CornerRadius="25"

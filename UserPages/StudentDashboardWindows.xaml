@@ -45,7 +45,7 @@
                                 <Button                     
                                 x:Name="ReportBtn"
                                 Text="Report"
-                                BackgroundColor="DarkBlue"
+                                BackgroundColor="#1565C0"
                                 HorizontalOptions="Center"
                             
                                 ImageSource="document.png"
@@ -63,7 +63,7 @@
                                 ContentLayout="Left, 5"
                                 x:Name="ReportsBtn"
                                 Text="Report Logs"
-                                BackgroundColor="DarkBlue"
+                                BackgroundColor="#1565C0"
                                 HorizontalOptions="Center"
                                 CornerRadius="20"
                                 Clicked="ReportsBtn_Clicked"
@@ -80,7 +80,7 @@
                             
                             <Button  
                                 x:Name="ClaimBtn"
-                                BackgroundColor="DarkBlue"
+                                BackgroundColor="#1565C0"
                                 HorizontalOptions="Center"
                                 CornerRadius="20"
                                 ImageSource="claim.png"
@@ -97,7 +97,7 @@
                                 ContentLayout="Left, 5"
                                 x:Name="ClaimsBtn"
                                 Text="Claim Logs"
-                                BackgroundColor="DarkBlue"
+                                BackgroundColor="#1565C0"
                                 HorizontalOptions="CenterAndExpand"
                                 CornerRadius="20"
                                 Clicked="ClaimsBtn_Clicked"

@@ -123,6 +123,9 @@
 	  <MauiXaml Update="AdminPages\AdminDynamic.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="AdminPages\AdminUsersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PopupSearchLocations.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

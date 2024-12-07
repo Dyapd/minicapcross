@@ -1,4 +1,7 @@
 namespace test;
+using Microsoft.Maui.Media;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Storage;
 
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
@@ -16,10 +19,13 @@ public partial class AdminSubmittedPage : ContentPage
     {
         InitializeComponent();
     }
+
     
     public byte[] imageData; //byte array for image
 
     //this selects and stores the image in above byte array
+
+
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
         try
@@ -33,10 +39,12 @@ public partial class AdminSubmittedPage : ContentPage
             {
                 using (var stream = await result.OpenReadAsync())
                 {
+
                     imageData = new byte[stream.Length];
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
-
+                    
                     string imagePath = result.FullPath; //file path
+                    
                 }
             }
             else

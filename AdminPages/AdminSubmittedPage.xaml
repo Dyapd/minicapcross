@@ -10,7 +10,7 @@
         <VerticalStackLayout VerticalOptions="CenterAndExpand" Spacing="20">
 
             
-            <Label Text="Submitted Lost Item"
+            <Label Text="Submit a Lost Item"
                    FontSize="24"
                    FontAttributes="Bold"
                    TextColor="#333333"

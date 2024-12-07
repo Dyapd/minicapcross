@@ -43,7 +43,7 @@
                        TextColor="White"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
-                       VerticalOptions="Center" 
+                       VerticalOptions="Center"
                        Grid.Column="1" />
                                 <Label Text="Category"
                        TextColor="White"

@@ -60,14 +60,17 @@ public partial class ReportPage : ContentPage
             {
                 using (var stream = await result.OpenReadAsync())
                 {
-                    //picture display
+                    // Check image size before reading data
+                    if (stream.Length > 10485760) // 10 MB in bytes
+                    {
+                        await DisplayAlert("File too big", "Image size exceeds 10MB limit.", "OK");
+                        return;
+                    }
+
                     imageData = new byte[stream.Length];
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
 
-                    //uploadedImage.Source = ImageSource.FromStream(() => stream);
-
-                    var imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
-                    uploadedImage.Source = imageSource;
+                    string imagePath = result.FullPath; //file path
                 }
             }
             else
@@ -80,7 +83,6 @@ public partial class ReportPage : ContentPage
             await DisplayAlert("Error", $"Something went wrong: {ex.Message}", "OK");
         }
     }
-
     //inserts the data inserted by user
     private async void OnClickedReportBtn(object sender, EventArgs e)
     {

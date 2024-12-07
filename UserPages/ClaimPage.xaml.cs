@@ -19,7 +19,7 @@ public partial class ClaimPage : ContentPage
     {
         
         InitializeComponent();
-        DisplayAlert("Test", SessionVars.SessionId, "OK");
+        //DisplayAlert("Test", SessionVars.SessionId, "OK");
         Items = new ObservableCollection<Items>();
         Items2 = new ObservableCollection<Items2>();
         BindingContext = this;
