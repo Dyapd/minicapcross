@@ -8,11 +8,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using static test.DataHolders.DataholderNotificationLog;
 using CommunityToolkit.Maui.Views;
-
+using System.Data;
 
 public partial class AdminSubmittedPage : ContentPage
 {
-
+    //so that it can be used for filestream!!
+    string imagePath;
     //this page is for displaying the submission of lost item form
     // templateis the same as from the report item page, albeit with modifications
     public AdminSubmittedPage()
@@ -43,7 +44,7 @@ public partial class AdminSubmittedPage : ContentPage
                     imageData = new byte[stream.Length];
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
                     
-                    string imagePath = result.FullPath; //file path
+                    imagePath = result.FullPath; //file path
                     
                 }
             }
@@ -85,27 +86,29 @@ public partial class AdminSubmittedPage : ContentPage
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Items (Item_Category, Item_ICategory, Item_Date, Item_Image, Item_Description, Item_Location, Item_Status) " +
-                                                                    "VALUES (@Category, @ICategory, @Date, @Image, @Description, @Location, @Status)", connection))
-
+                using (SqlCommand command = new SqlCommand("INSERT INTO Items (Item_Category, Item_ICategory, Item_Date, Item_Description, Item_Location, Item_Status, Item_Image) " +
+                                               "OUTPUT INSERTED.Item_ID " +
+                                               "VALUES (@Category, @ICategory, @Date, @Description, @Location, @Status, DEFAULT)", connection))
                 {
                     command.Parameters.AddWithValue("@Category", "I");
                     command.Parameters.AddWithValue("@ICategory", reportCategory);
                     command.Parameters.AddWithValue("@Date", reportDateTime);
-                    command.Parameters.AddWithValue("@Image", imageData);
                     command.Parameters.AddWithValue("@Description", reportDescription);
                     command.Parameters.AddWithValue("@Location", reportLocation);
                     command.Parameters.AddWithValue("@Status", false);
 
-
-
+                    int insertedItemID = (int) command.ExecuteScalar();
+                    string filePath = Path.Combine("D:\\DatabaseMinicapstone\\filestream1", insertedItemID.ToString());
+                    File.WriteAllBytes(filePath, File.ReadAllBytes(imagePath));
                     //this checks if rows have been inserted
                     //if so, then it goes to if for succesful
-                    
-                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
 
                     
-                    if (rowsAffected > 0)
+                    //int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    
+                    if (insertedItemID > 0)
                     {
                         await DisplayAlert("Success", "Item has been recorded successfully.", "OK");
                     }

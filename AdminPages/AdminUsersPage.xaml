@@ -8,5 +8,16 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+
+        <Label
+            Text="Student ID"/>
+
+        <Label
+    Text="Student ID"/>
+
+        <Label
+    Text="Student ID"/>
+        
     </VerticalStackLayout>
 </ContentPage>
