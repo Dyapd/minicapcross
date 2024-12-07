@@ -103,7 +103,7 @@
             FontSize="10"
             TextColor="DimGray"/>
             <Label Text="None"
-            x:Name="StudentEmailText"
+            x:Name="StudentPasswordText"
             FontSize="16"
             TextColor="#333333" />
             <Label

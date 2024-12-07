@@ -40,12 +40,17 @@ public partial class AdminUsersPage : ContentPage
                 return;
             }
 
-            if (!email.EndsWith("@email.com"))
+            //if (!email.EndsWith("@email.com"))
+            //{
+            //    await DisplayAlert("Error", "Invalid email format. Email must end with '@email.com'.", "OK");
+            //    return;
+            //}
+
+            if (!email.Contains("@") || !email.Substring(email.IndexOf("@") + 1).Contains("."))
             {
-                await DisplayAlert("Error", "Invalid email format. Email must end with '@email.com'.", "OK");
+                await DisplayAlert("Error", "Invalid email format.", "OK");
                 return;
             }
-
 
             string connectionString = new IPLocator().ConnectionString();
             SqlConnection connection = new SqlConnection(connectionString);
