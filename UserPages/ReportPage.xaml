@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.ReportPage"
              Title="Report Page">
@@ -63,7 +64,9 @@
             Text="Date and Time Lost:"/>
 
             <DatePicker
-            x:Name="DateInput"/>
+            x:Name="DateInput"
+            MaximumDate="{x:Static sys:DateTime.Today}" 
+ />
 
             <TimePicker
             x:Name="TimeInput" Time="12:00:00"
