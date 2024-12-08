@@ -7,7 +7,7 @@
 
     <ScrollView Padding="20">
 
-        <VerticalStackLayout VerticalOptions="CenterAndExpand" Spacing="20">
+        <VerticalStackLayout VerticalOptions="CenterAndExpand" Spacing="20" x:Name="ItemLayout">
 
             
             <Label Text="Submit a Lost Item"
@@ -24,7 +24,8 @@
             <Picker x:Name="CategoryInput"
                     BackgroundColor="#FFFFFF"
                     TextColor="#333333"
-                    SelectedIndex="0">
+                    SelectedIndex="0"
+                    SelectedIndexChanged="OnPickerSelectedIndexChanged">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Mobile Device</x:String>
@@ -77,7 +78,8 @@
                    TextColor="#555555" />
             <Picker x:Name="LocationInput"
                     BackgroundColor="#FFFFFF"
-                    TextColor="#333333">
+                    TextColor="#333333"
+                    >
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Parking Lot</x:String>

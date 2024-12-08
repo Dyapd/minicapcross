@@ -26,6 +26,29 @@ public partial class AdminSubmittedPage : ContentPage
 
     //this selects and stores the image in above byte array
 
+    //
+    private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+    {
+        var picker = (Picker)sender;
+        int selectedIndex = picker.SelectedIndex;
+
+        if (selectedIndex != -1)
+        {
+            
+            if (selectedIndex == 0 )
+            {
+                var helpLabel = LabelMaker("Included are phones and tablets");
+                ItemLayout.Children.Insert(3, helpLabel);
+            }
+            else if (selectedIndex == 1 ) 
+            {
+                var helpLabel = LabelMaker("Included are anything electronic such as laptop and remotes");
+                ItemLayout.Children.Insert(3, helpLabel);
+            }
+
+        }
+    }
+
 
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
@@ -162,5 +185,15 @@ public partial class AdminSubmittedPage : ContentPage
     private void TapGestureRecognizer_Tapped(object events, EventArgs e)
     {
         this.ShowPopup(new PopupSearchLocations());
+    }
+
+    private Label LabelMaker(string text)
+    {
+        var helpLabel = new Label
+        {
+            Text = text,
+            TextColor = Colors.Black,
+        };
+        return helpLabel;
     }
 }
