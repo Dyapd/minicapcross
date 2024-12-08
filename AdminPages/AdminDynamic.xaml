@@ -86,6 +86,7 @@
                         HeightRequest="45"
                         Command="{Binding StatusClaim}"
                         />
+                    
                 <!--This is where the dynamic button will end up on index 1-->
                 
                 <Button Text="Reject"

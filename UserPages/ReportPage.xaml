@@ -23,21 +23,36 @@
                 TextColor="White" />
             </Frame>
 
+            <VerticalStackLayout x:Name="Categories">
+                
+            
             <Label 
             Text="Category:"
             FontSize="Body"
             />
             <Picker
             x:Name="CategoryInput"
-            Background="#EEEEEE">
-                <Picker.ItemsSource>
+            Background="#EEEEEE"
+                VerticalOptions="Start">
+                <Picker.ItemsSource
+                    >
                     <x:Array Type="{x:Type x:String}">
+                        <x:String>Mobile Device</x:String>
+                        <x:String>Electronics</x:String>
                         <x:String>Personal Item</x:String>
+                        <x:String>Fabric Item</x:String>
                         <x:String>Valuable Item</x:String>
-                        <x:String>Electronic Item</x:String>
-                    </x:Array>
+                        <x:String>Educational Item</x:String>
+                        <x:String>Utility Item</x:String>
+                        <x:String>Medicine Item</x:String>
+                         <x:String>Others</x:String>
+                         
+                        </x:Array>
                 </Picker.ItemsSource>
             </Picker>
+            
+            </VerticalStackLayout>
+            <!--this is where to put the category help!-->
 
             <Label
             Text="Description:"/>

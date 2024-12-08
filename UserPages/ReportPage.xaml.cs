@@ -22,7 +22,7 @@ public partial class ReportPage : ContentPage
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
                 //mageexit
-                ReportItemBtn.BackgroundColor = Colors.SlateBlue;
+                ReportItemBtn.BackgroundColor = Color.FromArgb("#f54e42");
             };
 
             ReportItemBtn.GestureRecognizers.Add(pointerGestureRecognizer);
@@ -38,7 +38,7 @@ public partial class ReportPage : ContentPage
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
                 //mageexit
-                ImageInput.BackgroundColor = Colors.SlateBlue;
+                ImageInput.BackgroundColor = Color.FromArgb("#f54e42");
             };
 
             ImageInput.GestureRecognizers.Add(pointerGestureRecognizer);

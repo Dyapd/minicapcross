@@ -27,9 +27,15 @@
                     SelectedIndex="0">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
+                        <x:String>Mobile Device</x:String>
+                        <x:String>Electronics</x:String>
                         <x:String>Personal Item</x:String>
+                        <x:String>Fabric Item</x:String>
                         <x:String>Valuable Item</x:String>
-                        <x:String>Electronic Item</x:String>
+                        <x:String>Educational Item</x:String>
+                        <x:String>Utility Item</x:String>
+                        <x:String>Medicine Item</x:String>
+                        <x:String>Others</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
@@ -74,9 +80,14 @@
                     TextColor="#333333">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
+                        <x:String>Parking Lot</x:String>
                         <x:String>Ground Floor</x:String>
+                        <x:String>Mezzanine</x:String>
                         <x:String>1st Floor</x:String>
                         <x:String>2nd Floor</x:String>
+                        <x:String>3rd Floor</x:String>
+                        <x:String>4th Floor</x:String>
+                        <x:String>Penthouse</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
@@ -88,6 +99,8 @@
                 <DatePicker x:Name="DateInput" 
                             BackgroundColor="#EEEEEE"/>
                 <TimePicker x:Name="TimeInput"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
                             BackgroundColor="#EEEEEE"
                             Time="12:00:00"/>
             </StackLayout>
