@@ -68,55 +68,55 @@ public partial class ReportPage : ContentPage
             if (selectedIndex == 0)
             {
                 helpLabel = LabelMaker("Included are phones and tablets.");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 1)
             {
                 helpLabel = LabelMaker("Included are anything electronic such as laptop and remotes.");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 2)
             {
                 helpLabel = LabelMaker("Included are necklace, watches, pins, bookmarks and items with sentimental value.");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 3)
             {
                 helpLabel = LabelMaker("Included are handkerchiefs and any clothing.");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 4)
             {
                 helpLabel = LabelMaker("Included are documents, IDs, Wallets, cash and etc...");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 5)
             {
                 helpLabel = LabelMaker("Included are educational related items such as notebooks, books and pencil cases");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 6)
             {
                 helpLabel = LabelMaker("Included are tumblers, food containers.");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 7)
             {
                 helpLabel = LabelMaker("Included are medicine that are allowed inside the campus.");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 8)
             {
                 helpLabel = LabelMaker("Only pick this option if item lost does not fit any of the above categories!");
-                Categories.Children.Insert(3, helpLabel);
+                Categories.Children.Insert(2, helpLabel);
                 currentHelpLabel = helpLabel;
             }
 
@@ -178,6 +178,15 @@ public partial class ReportPage : ContentPage
         {
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
+
+            if (string.IsNullOrEmpty(CategoryInput.SelectedItem?.ToString()) ||
+                string.IsNullOrEmpty(DescriptionInput.Text) ||
+                string.IsNullOrEmpty(LocationInput.SelectedItem?.ToString()))
+            {
+                await DisplayAlert("Error", "Please fill in all required fields.", "OK");
+                return;
+            }
+
             string reportICategory = CategoryInput.SelectedItem.ToString();
             string reportDescription = DescriptionInput.Text;
             string reportLocation = LocationInput.SelectedItem.ToString();
@@ -191,10 +200,10 @@ public partial class ReportPage : ContentPage
             {
                 insertWithImage(connectionString, reportICategory, reportDescription, reportLocation, reportDateTime);
             }
-            Navigation.PopAsync();
         }
         catch (Exception ec)
         {
+
             await DisplayAlert("ERROR", ec.Message, "OK");
         }
     }

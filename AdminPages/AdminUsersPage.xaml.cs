@@ -12,49 +12,42 @@ public partial class AdminUsersPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        int studentId = int.Parse(StudentIdInput.Text);
+        string studentIdStr = StudentIdInput.Text;
 
-        if (studentId.ToString().Length != 8)
+        if (string.IsNullOrWhiteSpace(studentIdStr))
+        {
+            await DisplayAlert("Error", "Student ID cannot be empty.", "OK");
+            return;
+        }
+
+        if (studentIdStr.Length != 8)
         {
             await DisplayAlert("Error", "Student ID must be 8 digits.", "OK");
             return;
         }
 
-        string name = StudentNameInput.Text;
-        string gradeLevel = StudentGradeLevels.SelectedItem.ToString();
-        string section = StudentSections.SelectedItem.ToString();
-        string email = StudentEmailInput.Text;
-        string password = StudentPasswordInput.Text;
-
-
-
         try
         {
-            //validators!
+            int studentId = int.Parse(studentIdStr);
+
+            string name = StudentNameInput.Text;
+            string gradeLevel = StudentGradeLevels.SelectedItem?.ToString();
+            string section = StudentSections.SelectedItem?.ToString();
+            string email = StudentEmailInput.Text;
+            string password = StudentPasswordInput.Text;
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gradeLevel) || string.IsNullOrEmpty(section) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-            { 
+            {
                 await DisplayAlert("Error", "Please fill in all required fields.", "OK");
                 return;
             }
 
-            //if (!email.Contains("@") || !email.Substring(email.IndexOf("@") + 1).Contains("."))
-            //{
-            //    await DisplayAlert("Error", "Invalid email format.", "OK");
-            //    return;
-            //}
-
             if (!validateEmail(email))
-            {
-                await DisplayAlert("Error", "Invalid email format. (example@example.example", "OK");
-                return;
-            }
-
-            if (!email.Contains("@email.com"))
             {
                 await DisplayAlert("Error", "Invalid email format.", "OK");
                 return;
             }
+
 
             string connectionString = new IPLocator().ConnectionString();
             SqlConnection connection = new SqlConnection(connectionString);
@@ -75,8 +68,6 @@ public partial class AdminUsersPage : ContentPage
                 }
 
                 await DisplayAlert("Success", "Student created successfully.", "OK");
-                //pops page to go to previous
-                await Navigation.PopAsync();
             }
         }
         catch (FormatException)

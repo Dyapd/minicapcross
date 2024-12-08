@@ -2,19 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.AdminDashboard"
-             Title="Admin Dashboard"
              BackgroundColor="#F5F5F5">
 
     <ScrollView>
         <VerticalStackLayout Margin="20" Spacing="20">
 
 
-            <Frame BackgroundColor="#1565C0"
-                   CornerRadius="15"
+            <Frame BackgroundColor="DarkBlue"
+                   CornerRadius="0"
                    Padding="20"
                    HasShadow="True">
                 <Label Text="Admin Dashboard"
-                       FontSize="32"
+                       FontSize="30"
                        FontAttributes="Bold"
                        TextColor="White"
                        HorizontalOptions="Center"
@@ -35,9 +34,8 @@
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
-                            FontSize="18"
                             WidthRequest="280"
-                            HeightRequest="60"
+                            HeightRequest="40"
                             Clicked="OnClickedReportsBtn" />
 
                     <Button Text="Approve Claims"
@@ -47,9 +45,8 @@
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
-                            FontSize="18"
                             WidthRequest="280"
-                            HeightRequest="60"
+                            HeightRequest="40"
                             Clicked="OnClickedClaimsBtn" />
 
                     <Button Text="Items"
@@ -59,9 +56,8 @@
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
-                            FontSize="18"
                             WidthRequest="280"
-                            HeightRequest="60"
+                            HeightRequest="40"
                             Clicked="OnClickedItemsBtn" />
 
                     <Button Text="Users"
@@ -71,9 +67,8 @@
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
-                            FontSize="18"
                             WidthRequest="280"
-                            HeightRequest="60"
+                            HeightRequest="40"
                             Clicked="OnClickedUsersBtn" />
 
                     <Button Text="Logs"
@@ -82,9 +77,8 @@
                             BackgroundColor="#1565C0"
                             TextColor="White"
                             CornerRadius="25"
-                            FontSize="18"
                             WidthRequest="280"
-                            HeightRequest="60"
+                            HeightRequest="40"
                             Clicked="OnClickedLogsBtn" />
                 </VerticalStackLayout>
             </Frame>
@@ -97,9 +91,8 @@
                     BackgroundColor="#E53935"
                     TextColor="White"
                     CornerRadius="25"
-                    FontSize="18"
                     WidthRequest="280"
-                    HeightRequest="60"
+                    HeightRequest="40"
                     Margin="0,30,0,0"
                     HorizontalOptions="Center"
                     Clicked="OnClickedLogoutBtn" />

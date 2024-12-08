@@ -33,6 +33,7 @@
             <Picker
             x:Name="CategoryInput"
             Background="#EEEEEE"
+             SelectedIndexChanged="OnPickerSelectedIndexChanged"
                 VerticalOptions="Start">
                 <Picker.ItemsSource
                     >
@@ -99,9 +100,14 @@
             Background="#EEEEEE">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
+                        <x:String>Parking Lot</x:String>
                         <x:String>Ground Floor</x:String>
+                        <x:String>Mezzanine</x:String>
                         <x:String>1st Floor</x:String>
                         <x:String>2nd Floor</x:String>
+                        <x:String>3rd Floor</x:String>
+                        <x:String>4th Floor</x:String>
+                        <x:String>Penthouse</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>

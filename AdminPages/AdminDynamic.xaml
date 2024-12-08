@@ -120,9 +120,10 @@ HasShadow="True">
                        x:Name="ReportImage"/>
 
                 
-                <Label Text="Category"
-                       FontSize="14"
-                       TextColor="#555555" />
+                <Label Text="Category:"
+                       FontAttributes="Bold"
+                       FontSize="20"
+ />
                 <Label Text="None"
                        x:Name="ReportCategoryText"
                        FontSize="16"
@@ -130,8 +131,8 @@ HasShadow="True">
 
                 
                 <Label Text="Location:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ReportLocationText"
                        FontSize="16"
@@ -139,8 +140,8 @@ HasShadow="True">
 
                 
                 <Label Text="Date and Time:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ReportDateAndTimeText"
                        FontSize="16"
@@ -148,8 +149,8 @@ HasShadow="True">
 
                 
                 <Label Text="Description:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ReportDescriptionText"
                        FontSize="16"
@@ -157,8 +158,8 @@ HasShadow="True">
 
                 
                 <Label Text="Status:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ReportStatusText"
                        FontSize="16"
@@ -197,9 +198,9 @@ HasShadow="True">
                        x:Name="ItemImage"/>
 
 
-                <Label Text="Category"
-                       FontSize="14"
-                       TextColor="#555555" />
+                <Label Text="Category:"
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ItemCategoryText"
                        FontSize="16"
@@ -207,8 +208,8 @@ HasShadow="True">
 
 
                 <Label Text="Location:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ItemLocationText"
                        FontSize="16"
@@ -216,8 +217,8 @@ HasShadow="True">
 
 
                 <Label Text="Date and Time:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ItemDateAndTimeText"
                        FontSize="16"
@@ -225,8 +226,8 @@ HasShadow="True">
 
 
                 <Label Text="Description:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ItemDescriptionText"
                        FontSize="16"
@@ -234,8 +235,8 @@ HasShadow="True">
 
 
                 <Label Text="Status:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontAttributes="Bold"
+FontSize="20" />
                 <Label Text="None"
                        x:Name="ItemStatusText"
                        FontSize="16"

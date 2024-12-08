@@ -10,6 +10,7 @@
             <Frame BackgroundColor="DarkBlue"
         CornerRadius="2"
         Padding="15">
+                
                 <Label Text="Student User - Add User"
             FontFamily="Roboto"
             FontSize="Large"
@@ -18,23 +19,34 @@
            HorizontalOptions="Start" />
 
             </Frame>
+            <BoxView HeightRequest="1"
+BackgroundColor="Gray"
+HorizontalOptions="FillAndExpand"
+Margin="0,10" />
 
-
+            <VerticalStackLayout Padding="20,0">
+                
+            
             <Label
-            Text="Student ID"/>
+            Text="Student ID"
+                FontAttributes="Bold"/>
         <Entry
-            x:Name="StudentIdInput"/>
+            x:Name="StudentIdInput"
+            Background="#EEEEEE"/>
         
         <Label
-    Text="Student Name"/>
+    Text="Student Name"
+            FontAttributes="Bold"/>
         <Entry
-            x:Name="StudentNameInput"/>
+            x:Name="StudentNameInput"
+            Background="#EEEEEE"/>
 
         <Label
-            Text="Student Grade Level"/>
+            Text="Student Grade Level"
+            FontAttributes="Bold"/>
         
         <Picker x:Name="StudentGradeLevels"
-        BackgroundColor="#FFFFFF"
+        Background="#EEEEEE"
         TextColor="#333333"
         SelectedIndex="0">
             <Picker.ItemsSource>
@@ -46,10 +58,11 @@
         </Picker>
 
         <Label
-     Text="Student Section"/>
+     Text="Student Section"
+            FontAttributes="Bold"/>
 
         <Picker x:Name="StudentSections"
-            BackgroundColor="#FFFFFF"
+             Background="#EEEEEE"
             TextColor="#333333"
             SelectedIndex="0">
             <Picker.ItemsSource>
@@ -68,19 +81,27 @@
         </Picker>
 
         <Label
-            Text="Student Email"/>
+            Text="Student Email"
+            FontAttributes="Bold"/>
 
         <Entry
-            x:Name="StudentEmailInput"/>
+            x:Name="StudentEmailInput"
+            Background="#EEEEEE"/>
         <Label
-    Text="Student Password"/>
+    Text="Student Password"
+            FontAttributes="Bold"/>
         <Entry
-            x:Name="StudentPasswordInput"/>
+            x:Name="StudentPasswordInput"
+            Background="#EEEEEE"/>
+                <BoxView HeightRequest="1"
+BackgroundColor="Gray"
+HorizontalOptions="FillAndExpand"
+Margin="0,10" />
 
-        <Button
+                <Button
             Text="Add User"
             Clicked="Button_Clicked"/>
-
-    </VerticalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

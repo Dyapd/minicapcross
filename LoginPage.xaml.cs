@@ -4,6 +4,7 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using test.UserPages;
+using Microsoft.IdentityModel.Tokens;
 
 
 
@@ -59,6 +60,16 @@ namespace test
             string adacorrecttemp = "adcred";
             string stcorrecttemp = "stcred";
 
+            if (string.IsNullOrWhiteSpace(enteredEmail) || string.IsNullOrWhiteSpace(enteredPassword))
+            {
+                DisplayAlert("Error", "Fields must not be empty!", "OK");
+                LoginBtn.IsEnabled = true;
+                userEntry.IsEnabled = true;
+                userPass.IsEnabled = true;
+                userEntry.Text = "";
+                userPass.Text = "";
+                return;
+            }
 
 
             //temporary hard code for testing!!
@@ -130,6 +141,7 @@ namespace test
                 userPass.IsEnabled = true;
                 userEntry.Text = "";
                 userPass.Text = "";
+                return;
             }
 
         }
@@ -147,7 +159,7 @@ namespace test
                         command.Parameters.AddWithValue("@Email", enteredEmail);
                         command.Parameters.AddWithValue("@Password", enteredPassword);
 
-                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
                             
                             return reader.HasRows;
@@ -177,7 +189,7 @@ namespace test
                         command.Parameters.AddWithValue("@Email", enteredEmail);
                         command.Parameters.AddWithValue("@Password", enteredPassword);
 
-                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
                             return reader.HasRows;
                         }

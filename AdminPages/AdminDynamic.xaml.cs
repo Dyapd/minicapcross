@@ -285,7 +285,7 @@ public partial class AdminDynamic : TabbedPage
 
 
         }
-        catch (Exception e)
+        catch (ArgumentOutOfRangeException e)
         {
            DisplayAlert("Error in populating report page!", e.Message, "OK");
         }

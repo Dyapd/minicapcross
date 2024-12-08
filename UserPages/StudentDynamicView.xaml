@@ -7,11 +7,17 @@
         <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
 
-            <Label Text="Report Form"
-               FontSize="20"
-               FontAttributes="Bold"
-               TextColor="#333333"
-               HorizontalOptions="Center" />
+            <Frame BackgroundColor="DarkBlue"
+                    CornerRadius="2"
+                    Padding="15">
+                <Label 
+                    Text="Report Form" 
+                    FontFamily="Roboto"
+                    FontSize="Large" 
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"
+                    TextColor="White" />
+            </Frame>
 
 
             <Image Source="placeholder.png"

@@ -18,8 +18,13 @@ namespace test.Pages
             BindingContext = this;
             LoadItems();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LoadItems();
+        }
 
-        
+
         private async void OnDetailsClicked(string claim)
         {
             SessionVars.DynamicClaim = claim;
