@@ -116,6 +116,9 @@ namespace test.DataHolders
             public string StudentName { get; set; }
             public string StudentEmail { get; set; }
             public string StudentPassword { get; set; }
+
+            public string StudentGrade { get; set; }
+            public string StudentSection { get; set; }
         }
     }
 }

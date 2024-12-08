@@ -66,7 +66,7 @@
                     x:Name="uploadedImage"/>
             <Button Text="Upload Image"
                     x:Name="UploadImageBtn"
-                    BackgroundColor="#1565C0"
+                    BackgroundColor="#E53935"
                     TextColor="White"
                     CornerRadius="8"
                     Padding="10"

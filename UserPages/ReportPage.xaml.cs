@@ -135,6 +135,7 @@ public partial class ReportPage : ContentPage
 
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
+        
         try
         {
             var result = await FilePicker.PickAsync(new PickOptions
@@ -174,6 +175,7 @@ public partial class ReportPage : ContentPage
     //inserts the data inserted by user
     private async void OnClickedReportBtn(object sender, EventArgs e)
     {
+        ReportItemBtn.IsEnabled = false;
         try
         {
             IPLocator ip = new IPLocator();
@@ -184,6 +186,7 @@ public partial class ReportPage : ContentPage
                 string.IsNullOrEmpty(LocationInput.SelectedItem?.ToString()))
             {
                 await DisplayAlert("Error", "Please fill in all required fields.", "OK");
+                ReportItemBtn.IsEnabled = true;
                 return;
             }
 
@@ -200,6 +203,8 @@ public partial class ReportPage : ContentPage
             {
                 insertWithImage(connectionString, reportICategory, reportDescription, reportLocation, reportDateTime);
             }
+            ReportItemBtn.IsEnabled = true;
+            Navigation.PopAsync();
         }
         catch (Exception ec)
         {

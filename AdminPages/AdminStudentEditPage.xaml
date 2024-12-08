@@ -99,7 +99,7 @@
                    FontAttributes="Bold"
            FontSize="14" />
             <Label
-            Text="Old Passowrd"
+            Text="Old Password"
             FontSize="10"
             TextColor="DimGray"/>
             <Label Text="None"
@@ -117,6 +117,75 @@
          BackgroundColor="Gray"
          HorizontalOptions="FillAndExpand"
          Margin="0,10" />
+
+            <Label Text="Student Section"
+          FontAttributes="Bold"
+  FontSize="14" />
+            <Label
+   Text="Old Section"
+   FontSize="10"
+   TextColor="DimGray"/>
+            <Label Text="None"
+   x:Name="SectionText"
+   FontSize="16"
+   TextColor="#333333" />
+            <Label
+    Text="New Section"
+    FontSize="10"
+    TextColor="DimGray"/>
+            <Picker x:Name="StudentSections"
+     Background="#EEEEEE"
+    TextColor="#333333"
+    SelectedIndex="0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>BT101</x:String>
+                        <x:String>BT102</x:String>
+                        <x:String>BT103</x:String>
+                        <x:String>CS101</x:String>
+                        <x:String>CS102</x:String>
+                        <x:String>CS103</x:String>
+                        <x:String>SH101</x:String>
+                        <x:String>SH102</x:String>
+                        <x:String>SH103</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <BoxView HeightRequest="1"
+BackgroundColor="Gray"
+HorizontalOptions="FillAndExpand"
+Margin="0,10" />
+
+            <Label Text="School Level"
+          FontAttributes="Bold"
+  FontSize="14" />
+            <Label
+   Text="Old School Level"
+   FontSize="10"
+   TextColor="DimGray"/>
+            <Label Text="None"
+   x:Name="LevelText"
+   FontSize="16"
+   TextColor="#333333" />
+            <Label
+    Text="New School Level"
+    FontSize="10"
+    TextColor="DimGray"/>
+            <Picker x:Name="StudentGradeLevels"
+Background="#EEEEEE"
+TextColor="#333333"
+SelectedIndex="0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Senior Highschool</x:String>
+                        <x:String>Tertiary</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <BoxView HeightRequest="1"
+BackgroundColor="Gray"
+HorizontalOptions="FillAndExpand"
+Margin="0,10" />
 
 
 

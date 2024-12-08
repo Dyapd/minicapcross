@@ -27,37 +27,57 @@ public partial class AdminStudentEditPage : ContentPage
     public async void OnConfirmClick(object sender, EventArgs s)
     {
 
-        string connectionString = new IPLocator().ConnectionString();
+        
         bool answer = await DisplayAlert("Confirmation", "Are you sure about this edit?", "Yes", "No");
+        string email = StudentEmailText.Text;
+        string password = PasswordInput.Text;
+        string oldid = StudentNumberText.Text;
+        string studid = NumberInput.Text;
+        string studname = NameInput.Text;
+        string gradeLevel = StudentGradeLevels.SelectedItem?.ToString();
+        string section = StudentSections.SelectedItem?.ToString();
 
 
-        try
+
+        if (answer)
         {
-            string stringConnection = new IPLocator().ConnectionString();
-            SqlConnection connection = new SqlConnection(stringConnection);
-            using (connection)
+            try
             {
-                await connection.OpenAsync();
-                using (SqlCommand command = new SqlCommand("INSERT INTO StudentUsers (Student_ID, Student_Email, Student_Password) VALUES (@studentId, @email, @password); " +
-                                                                "INSERT INTO StudentInfo (Student_ID, Student_Name, Student_GradeLevel, Student_Section) VALUES (@studentId, @name, @gradeLevel, @section)", connection))
+                string connectionString = new IPLocator().ConnectionString();
+                SqlConnection connection = new SqlConnection(connectionString);
+                using (connection)
                 {
-                    //command.Parameters.AddWithValue("@studentId", studentId);
-                    //command.Parameters.AddWithValue("@email", email);
-                    //command.Parameters.AddWithValue("@password", password);
-                    //command.Parameters.AddWithValue("@name", name);
-                    //command.Parameters.AddWithValue("@gradeLevel", gradeLevel);
-                    //command.Parameters.AddWithValue("@section", section);
+                    await connection.OpenAsync();
+                    using (SqlCommand command = new SqlCommand(
+                    "UPDATE StudentUsers SET Student_Email = @email, Student_Password = @password, Student_ID = @studid WHERE Student_ID = @oldid; " +
+                    "UPDATE StudentInfo SET Student_Name = @name, Student_GradeLevel = @gradeLevel, Student_Section = @section, Student_ID = @studid WHERE Student_ID = @oldid",
+                    connection))
+                    {
+                        command.Parameters.AddWithValue("@oldid", oldid);
+                        command.Parameters.AddWithValue("@studentId", studid);
+                        command.Parameters.AddWithValue("@email", email);
+                        command.Parameters.AddWithValue("@password", password);
+                        command.Parameters.AddWithValue("@name", studname);
+                        command.Parameters.AddWithValue("@gradeLevel", gradeLevel);
+                        command.Parameters.AddWithValue("@section", section);
+                        await command.ExecuteNonQueryAsync();
+                    }
 
-                    await command.ExecuteNonQueryAsync();
+
+
+
+
+                    await DisplayAlert("Success", "Student created successfully.", "OK");
+                    Navigation.PopAsync();
                 }
-
-                await DisplayAlert("Success", "Student created successfully.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
             }
         }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
-        }
+
+        
 
     }
 
@@ -98,7 +118,9 @@ public partial class AdminStudentEditPage : ContentPage
         StudentNumberText.Text = Users[0].StudentNumber.ToString();
         StudentEmailText.Text = Users[0].StudentEmail.ToString();
         StudentPasswordText.Text = Users[0].StudentPassword.ToString();
-      
+        SectionText.Text = Users[0].StudentSection.ToString();
+        LevelText.Text = Users[0].StudentGrade.ToString();
+
     }
 
     private async Task<List<Users>> takeFromDatabaseUsers()
@@ -116,7 +138,7 @@ public partial class AdminStudentEditPage : ContentPage
 
 
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT s.Student_ID, s2.Student_Name, s.Student_Email, s.Student_Password FROM StudentUsers s INNER JOIN StudentInfo s2 ON s2.Student_ID = s.Student_ID WHERE s.Student_ID = @studnum";
+                command.CommandText = "SELECT s.Student_ID, s2.Student_Name, s.Student_Email, s.Student_Password, s2.Student_GradeLevel, s2.Student_Section FROM StudentUsers s INNER JOIN StudentInfo s2 ON s2.Student_ID = s.Student_ID WHERE s.Student_ID = @studnum";
 
                 command.Parameters.AddWithValue("@studnum", SessionVars.DynamicStudentID);
 
@@ -138,6 +160,8 @@ public partial class AdminStudentEditPage : ContentPage
                                 StudentName = reader.GetString(1),
                                 StudentEmail = reader.GetString(2),
                                 StudentPassword = reader.GetString(3),
+                                StudentGrade = reader.GetString(4),
+                                StudentSection = reader.GetString(5)
                             });
 
                         }

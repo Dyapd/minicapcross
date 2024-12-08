@@ -184,7 +184,7 @@ public partial class AdminSubmittedPage : ContentPage
     {
         try
         {
-        
+            ReportBtn.IsEnabled = false;
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
 
@@ -215,7 +215,7 @@ public partial class AdminSubmittedPage : ContentPage
                     command.Parameters.AddWithValue("@Status", false);
                     command.Parameters.AddWithValue("@Image", imageData);
 
-                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
@@ -226,37 +226,19 @@ public partial class AdminSubmittedPage : ContentPage
                         await DisplayAlert("Failure", "Item recorded failed.", "OK");
                     }
 
-                    //using (FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
-                    //{
-                    //    SqlParameter imageParameter = new SqlParameter("@Image", SqlDbType.VarBinary)
-                    //    {
-                    //        Value = fs
-                    //    };
-                    //    command.Parameters.Add(imageParameter);
-
-
-                    //    int insertedItemID = (int)await command.ExecuteScalarAsync();
-
-                    //    if (insertedItemID > 0)
-                    //    {
-                    //        await DisplayAlert("Success", "Item has been recorded successfully.", "OK");
-                    //    }
-                    //    else
-                    //    {
-                    //        await DisplayAlert("Failure", "Item recording failed.", "OK");
-                    //    }
-                    //}
+                    
 
                 }
             }
 
 
 
-
+            ReportBtn.IsEnabled = true;
         }
         catch (Exception ec)
         {
             await DisplayAlert("ERROR", ec.Message, "OK");
+            ReportBtn.IsEnabled = true;
         }
 
         await Navigation.PopAsync();

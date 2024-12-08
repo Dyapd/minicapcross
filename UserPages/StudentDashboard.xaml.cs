@@ -24,6 +24,13 @@ public partial class StudentDashboard : ContentPage
         buttonHighlighters();
     }
 
+    //this one refreshes data once page is popped!!
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadItems();
+    }
+
     public void buttonHighlighters()
     {
         //for report button
