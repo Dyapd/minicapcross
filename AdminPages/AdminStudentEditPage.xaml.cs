@@ -48,13 +48,14 @@ public partial class AdminStudentEditPage : ContentPage
                 using (connection)
                 {
                     await connection.OpenAsync();
+
                     using (SqlCommand command = new SqlCommand(
                     "UPDATE StudentUsers SET Student_Email = @email, Student_Password = @password, Student_ID = @studid WHERE Student_ID = @oldid; " +
                     "UPDATE StudentInfo SET Student_Name = @name, Student_GradeLevel = @gradeLevel, Student_Section = @section, Student_ID = @studid WHERE Student_ID = @oldid",
                     connection))
                     {
                         command.Parameters.AddWithValue("@oldid", oldid);
-                        command.Parameters.AddWithValue("@studentId", studid);
+                        command.Parameters.AddWithValue("@studid", studid);
                         command.Parameters.AddWithValue("@email", email);
                         command.Parameters.AddWithValue("@password", password);
                         command.Parameters.AddWithValue("@name", studname);
@@ -67,7 +68,7 @@ public partial class AdminStudentEditPage : ContentPage
 
 
 
-                    await DisplayAlert("Success", "Student created successfully.", "OK");
+                    await DisplayAlert("Success", "Student edited successfully.", "OK");
                     Navigation.PopAsync();
                 }
             }
