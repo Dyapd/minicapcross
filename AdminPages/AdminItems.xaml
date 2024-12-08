@@ -45,7 +45,7 @@
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="1" />
-                    <Label Text="Status"
+                    <Label Text="Details"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
@@ -65,40 +65,31 @@
                                BackgroundColor="White"
                                Margin="5"
                                HasShadow="True">
-                            <Grid ColumnDefinitions="*, Auto"
+                            <Grid ColumnDefinitions="*,*,*"
                                   Padding="5">
-                                
+
                                 <Label Text="{Binding CategoryAndID}"
                                        FontSize="18"
+                                       Grid.Column="0"
+                                       HorizontalOptions="Center"
                                        FontAttributes="Bold"
                                        TextColor="#1565C0"
                                        VerticalOptions="Center" />
 
 
-                                <!--<Image Source="{Binding Image, Converter= {StaticResource ByteArrayToImageSourceConverter}}"
-                                       Grid.Column="1"
-                                       Aspect="AspectFill"
-                                       HeightRequest="50"
-                                       WidthRequest="50"
-                                       VerticalOptions="Center" />-->
-
-                                
                                 <Label Text="{Binding ICategory}"
-                                       Grid.Column="2"
+                                       Grid.Column="1"
                                        FontSize="18"
                                        TextColor="Black"
+                                       HorizontalOptions="Center"
                                        VerticalOptions="Center" />
 
-                                
-                                <Label Text="{Binding Status}"
-                                       Grid.Column="3"
-                                       FontSize="18"
-                                       TextColor="Black"
-                                       VerticalOptions="Center" />
+                               
 
                                 
                                 <Button Text="Details"
-                                        Grid.Column="1"
+                                        Grid.Column="2"
+                                        HorizontalOptions="Center"
                                         BackgroundColor="#E53935"
                                         TextColor="White"
                                         CornerRadius="5"

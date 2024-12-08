@@ -62,7 +62,7 @@
                     
                 
 
-                <Button Text="Change Status"
+                <Button Text="Change Approval Status"
                         x:Name="ClaimChangeBtn"
                         BackgroundColor="#E53935"
                         TextColor="White"
@@ -81,7 +81,7 @@
                         HeightRequest="45"
                         Command="{Binding RejectClaim}"
                         />
-                <Button Text="Save"
+                <!--<Button Text="Save"
                         x:Name="ClaimSaveBtn"
                         BackgroundColor="#4CAF50"
                         TextColor="White"
@@ -89,7 +89,7 @@
                         HeightRequest="45" 
                         
                         Command="{Binding SaveClaim}"
-                        />
+                        />-->
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
@@ -100,14 +100,19 @@
         <ScrollView>
             <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
-                
-                <Label Text="Report Form"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       TextColor="#333333"
-                       HorizontalOptions="Center" />
 
-                
+                <Frame BackgroundColor="#1565C0"
+CornerRadius="10"
+Padding="10"
+HasShadow="True">
+                    <Label Text="Report Form"
+    FontSize="24"
+    TextColor="White"
+    FontAttributes="Bold"
+    HorizontalOptions="Center"
+    VerticalOptions="Center" />
+                </Frame>
+
                 <Image Source="placeholder.png"
                        HeightRequest="150"
                        Aspect="AspectFit"
@@ -172,11 +177,17 @@
             <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
 
-                <Label Text="Item Form"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       TextColor="#333333"
-                       HorizontalOptions="Center" />
+                <Frame BackgroundColor="#1565C0"
+CornerRadius="10"
+Padding="10"
+HasShadow="True">
+                    <Label Text="Item Form"
+    FontSize="24"
+    TextColor="White"
+    FontAttributes="Bold"
+    HorizontalOptions="Center"
+    VerticalOptions="Center" />
+                </Frame>
 
 
                 <Image Source="placeholder.png"

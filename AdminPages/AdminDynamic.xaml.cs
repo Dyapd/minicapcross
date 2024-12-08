@@ -12,7 +12,7 @@ namespace test;
 
 public partial class AdminDynamic : TabbedPage
 {
- 
+    Button currentButton; 
     public ObservableCollection<DynamicClaims> DynamicClaims { get; set; }
     public ObservableCollection<DynamicReports> DynamicReports { get; set; }
     public ObservableCollection<DynamicItems> DynamicItems { get; set; }
@@ -120,11 +120,25 @@ public partial class AdminDynamic : TabbedPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "UPDATE Claims SET Claim_Status = 1 WHERE Claims_ID = @ClaimID";
-                command.Parameters.AddWithValue("@ClaimID", DynamicClaims[0].ID.ToString());
-                command.ExecuteNonQuery();
-                DisplayAlert("Error status clicked", "Changed status of claim to true!", "OK");
-                LoadItemsClaims();
+                if (DynamicClaims[0].Status)
+                {
+                    
+                    command.CommandText = "UPDATE Claims SET Claim_Status = 0 WHERE Claims_ID = @ClaimID";
+                    command.Parameters.AddWithValue("@ClaimID", DynamicClaims[0].ID.ToString());
+                    command.ExecuteNonQuery();
+                    DisplayAlert("Error status clicked", "Changed approval status of claim to false!", "OK");
+                    LoadItemsClaims();
+                }
+                else
+                {
+                    command.CommandText = "UPDATE Claims SET Claim_Status = 1 WHERE Claims_ID = @ClaimID";
+                    command.Parameters.AddWithValue("@ClaimID", DynamicClaims[0].ID.ToString());
+                    command.ExecuteNonQuery();
+                    DisplayAlert("Error status clicked", "Changed approval status of claim to true!", "OK");
+                    LoadItemsClaims();
+
+                }
+
 
 
 
@@ -212,7 +226,14 @@ public partial class AdminDynamic : TabbedPage
             bool resultbool = DynamicClaims[0].Status;
             if (resultbool)
             {
+                if (currentButton != null)
+                {
+                    DynamicButtons.Remove(currentButton);
+                }
+
                 var saveButton = new Button
+
+                
                 {
                     Text = "Item Claimed?",
                     BackgroundColor = Color.FromHex("#D32F2F"),
@@ -222,6 +243,15 @@ public partial class AdminDynamic : TabbedPage
                     Command = DoneClaim
                 };
                 DynamicButtons.Children.Insert(1, saveButton);
+
+                currentButton = saveButton;
+            }
+            else
+            {
+                if (currentButton != null)
+                {
+                    DynamicButtons.Remove(currentButton);
+                }
             }
 
 
@@ -257,7 +287,7 @@ public partial class AdminDynamic : TabbedPage
         }
         catch (Exception e)
         {
-           DisplayAlert("Error in populating page!", e.Message, "OK");
+           DisplayAlert("Error in populating report page!", e.Message, "OK");
         }
 
 

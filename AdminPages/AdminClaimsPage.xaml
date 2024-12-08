@@ -26,25 +26,19 @@
                    CornerRadius="10"
                    Padding="10"
                    HasShadow="True">
-                <Grid ColumnDefinitions="*,*,*" Padding="5" RowDefinitions="Auto">
+                <Grid ColumnDefinitions="*,*" Padding="5" RowDefinitions="Auto">
                     <Label Text="ClaimID"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="0" />
-                    <Label Text="Category"
+                    <Label Text="Details"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="1" />
-                    <Label Text="Status"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="2" />
                 </Grid>
             </Frame>
 
@@ -60,7 +54,7 @@
                                BackgroundColor="White"
                                Margin="5"
                                HasShadow="True">
-                            <Grid ColumnDefinitions="*,*,*"
+                            <Grid ColumnDefinitions="*,*"
                                   Padding="5">
 
                                 <Label Text="{Binding CategoryAndID}"
@@ -70,8 +64,9 @@
                                        TextColor="#1565C0"
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Center"/>
-
                                 
+
+
                                 <Button Text="Details"
                                         Grid.Column="2"
                                         MaximumWidthRequest="100"
