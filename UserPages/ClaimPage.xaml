@@ -57,7 +57,7 @@
                     <!--LEFT IMAGE PICTURE-->
                     <Image 
                     x:Name="leftImage"
-                    Source="dotnet_bot.png" 
+                     
                     MaximumHeightRequest="200"
                     MaximumWidthRequest="200"
                     Grid.Row="1" 
@@ -66,7 +66,7 @@
                     <!--RIGHT IMAGE PICTURE-->
                     <Image 
                     x:Name="rightImage"
-                    Source="dotnet_bot.png" 
+                     
                     MaximumHeightRequest="200"
                     MaximumWidthRequest="200"
                     Grid.Row="1" 
@@ -74,7 +74,7 @@
                     Aspect="AspectFit" />
                 </Grid>
 
-                <Label Text="Type of Item:" FontSize="Medium" />
+                <!--<Label Text="Type of Item:" FontSize="Medium" />
                 <Picker 
                 x:Name="CategoryInput"
                 BackgroundColor="#EEEEEE"
@@ -87,10 +87,10 @@
                             <x:String>Electronic Item</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
-                </Picker>
+                </Picker>-->
                 <!--abv-->
 
-                <Label Text="Description:" FontSize="Medium" />
+                <Label Text="Extra Information:" FontSize="Medium" />
                 <Entry x:Name="DescriptionInput" BackgroundColor="#EEEEEE" TextColor="Black" />
                 <Button 
                 Text="Claim"

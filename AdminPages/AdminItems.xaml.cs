@@ -21,6 +21,28 @@ namespace test.Pages
             ButtonCommand = new Command<string>(OnButtonClicked);
             BindingContext = this;
             LoadItems();
+            ButtonHighlighters();
+        }
+
+        public void ButtonHighlighters()
+        {
+            if (DeviceInfo.Platform != DevicePlatform.Android)
+            {
+                PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+                pointerGestureRecognizer.PointerEntered += (s, e) =>
+                {
+                    //mageenter 
+                    AddBtn.BackgroundColor = Colors.SteelBlue;
+                };
+                pointerGestureRecognizer.PointerExited += (s, e) =>
+                {
+                    //mageexit
+                    AddBtn.BackgroundColor = Color.FromArgb("#1565C0");
+                };
+
+                AddBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+            }
+            
         }
 
         //this one refreshes data once page is popped!!

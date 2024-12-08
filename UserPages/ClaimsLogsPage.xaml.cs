@@ -30,7 +30,7 @@ public partial class ClaimsLogsPage : ContentPage
     private async void OnDetailsClicked(string claim)
     {
         SessionVars.DynamicClaim = claim;
-        await Navigation.PushAsync(new AdminDynamic());
+        await Navigation.PushAsync(new StudentDynamicClaimsView());
     }
 
     private async Task<List<Items>> ReadDataNotificationLog()

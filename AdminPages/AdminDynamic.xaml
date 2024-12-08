@@ -10,14 +10,20 @@
         <ScrollView>
             <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
-                
-                <Label Text="Approve a Claim"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       TextColor="#333333"
-                       HorizontalOptions="Center" />
 
-                
+                <Frame BackgroundColor="#1565C0"
+       CornerRadius="10"
+       Padding="10"
+       HasShadow="True">
+                    <Label Text="Approve a Claim"
+           FontSize="24"
+           TextColor="White"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+                </Frame>
+
+
                 <Image Source="placeholder.png"
                        x:Name="ClaimImage"
                        HeightRequest="150"
@@ -26,47 +32,25 @@
 
                 
                 <Label Text="Instructions:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       />
                 <Label
                     Text="Please switch to the other tabs so that you may compare the item form and report form."/>
                 <Label Text=" If approved then change status to true, if not then please click the rejected button."/>
-                <Label Text="None"
-                       x:Name="ClaimCategoryText"
-                       FontSize="16"
-                       TextColor="#333333" />
-
                 
-                <Label Text="Location:"
-                       FontSize="14"
-                       TextColor="#555555" />
-                <Label Text="None"
-                       x:Name="ClaimLocationText"
-                       FontSize="16"
-                       TextColor="#333333" />
-
-                
-                <Label Text="Date and Time:"
-                       FontSize="14"
-                       TextColor="#555555" />
-                <Label Text="None"
-                       x:Name="ClaimDateAndTimeText"
-                       FontSize="16"
-                       TextColor="#333333" />
-
-                
-                <Label Text="Description:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                <Label Text="Extra Information:"
+                       FontSize="20"
+                       FontAttributes="Bold" />
                 <Label Text="None"
                        x:Name="ClaimDescriptionText"
                        FontSize="16"
                        TextColor="#333333" />
 
                 
-                <Label Text="Status:"
-                       FontSize="14"
-                       TextColor="#555555" />
+                <Label Text="Approval Status:"
+                       FontSize="20"
+                       FontAttributes="Bold" />
                 <Label Text="None"
                        x:Name="ClaimStatusText"
                        FontSize="16"
@@ -117,7 +101,7 @@
             <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
                 
-                <Label Text="Dynamic Page Report Form viewing"
+                <Label Text="Report Form"
                        FontSize="20"
                        FontAttributes="Bold"
                        TextColor="#333333"
@@ -188,7 +172,7 @@
             <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
 
-                <Label Text="Dynamic Page Item Form viewing"
+                <Label Text="Item Form"
                        FontSize="20"
                        FontAttributes="Bold"
                        TextColor="#333333"

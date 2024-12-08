@@ -12,13 +12,16 @@ using System.Data;
 
 public partial class AdminSubmittedPage : ContentPage
 {
-    //so that it can be used for filestream!!
+    //this is for checking if there is current helplabel 
+    private Label currentHelpLabel;
+
     string imagePath;
     //this page is for displaying the submission of lost item form
     // templateis the same as from the report item page, albeit with modifications
     public AdminSubmittedPage()
     {
         InitializeComponent();
+        ButtonHighlighters();
     }
 
     
@@ -27,23 +30,109 @@ public partial class AdminSubmittedPage : ContentPage
     //this selects and stores the image in above byte array
 
     //
+
+    public void ButtonHighlighters()
+    {
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                ReportBtn.BackgroundColor = Colors.Red;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                ReportBtn.BackgroundColor = Color.FromArgb("#f54e42");
+            };
+
+            ReportBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+        if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
+            pointerGestureRecognizer.PointerEntered += (s, e) =>
+            {
+                //mageenter 
+                UploadImageBtn.BackgroundColor = Colors.Red;
+            };
+            pointerGestureRecognizer.PointerExited += (s, e) =>
+            {
+                //mageexit
+                UploadImageBtn.BackgroundColor = Color.FromArgb("#E53935");
+            };
+
+            UploadImageBtn.GestureRecognizers.Add(pointerGestureRecognizer);
+        }
+    }
     private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
     {
         var picker = (Picker)sender;
         int selectedIndex = picker.SelectedIndex;
 
+        if(currentHelpLabel != null)
+        {
+            ItemLayout.Remove(currentHelpLabel);
+        }
+
         if (selectedIndex != -1)
         {
-            
+            Label helpLabel;
+
             if (selectedIndex == 0 )
             {
-                var helpLabel = LabelMaker("Included are phones and tablets");
+                helpLabel = LabelMaker("Included are phones and tablets.");
                 ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
             }
             else if (selectedIndex == 1 ) 
             {
-                var helpLabel = LabelMaker("Included are anything electronic such as laptop and remotes");
+                helpLabel = LabelMaker("Included are anything electronic such as laptop and remotes.");
                 ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 2)
+            {
+                helpLabel = LabelMaker("Included are necklace, watches, pins, bookmarks and items with sentimental value.");
+                ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 3)
+            {
+                helpLabel = LabelMaker("Included are handkerchiefs and any clothing.");
+                ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 4)
+            {
+                helpLabel = LabelMaker("Included are documents, IDs, Wallets, cash and etc...");
+                ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 5)
+            {
+                helpLabel = LabelMaker("Included are educational related items such as notebooks, books and pencil cases");
+                ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 6)
+            {
+                helpLabel = LabelMaker("Included are tumblers, food containers.");
+                ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 7)
+            {
+                helpLabel = LabelMaker("Included are medicine that are allowed inside the campus.");
+                ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 8)
+            {
+                helpLabel = LabelMaker("Only pick this option if item lost does not fit any of the above categories!");
+                ItemLayout.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
             }
 
         }

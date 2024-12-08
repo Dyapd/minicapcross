@@ -170,6 +170,9 @@
 	  <MauiXaml Update="UserPages\StudentDashboardWindows.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="UserPages\StudentDynamicClaimsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="UserPages\StudentDynamicView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

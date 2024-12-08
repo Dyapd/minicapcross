@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test.Pages.AdminClaimsPage"
              Title="Admin Claims"
-             BackgroundColor="#E3F2FD">
+             BackgroundColor="#F5F5F5">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
@@ -26,31 +26,25 @@
                    CornerRadius="10"
                    Padding="10"
                    HasShadow="True">
-                <Grid ColumnDefinitions="*,*,*,*" Padding="5" RowDefinitions="Auto">
+                <Grid ColumnDefinitions="*,*,*" Padding="5" RowDefinitions="Auto">
                     <Label Text="ClaimID"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="0" />
-                    <Label Text="Claim Image"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="1" />
                     <Label Text="Category"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
-                           Grid.Column="2" />
+                           Grid.Column="1" />
                     <Label Text="Status"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
-                           Grid.Column="3" />
+                           Grid.Column="2" />
                 </Grid>
             </Frame>
 
@@ -66,7 +60,7 @@
                                BackgroundColor="White"
                                Margin="5"
                                HasShadow="True">
-                            <Grid ColumnDefinitions="*,*,*, *"
+                            <Grid ColumnDefinitions="*,*,*"
                                   Padding="5">
 
                                 <Label Text="{Binding CategoryAndID}"
@@ -79,7 +73,7 @@
 
                                 
                                 <Button Text="Details"
-                                        Grid.Column="3"
+                                        Grid.Column="2"
                                         MaximumWidthRequest="100"
                                         BackgroundColor="#E53935"
                                         TextColor="White"
@@ -94,11 +88,6 @@
             </CollectionView>
 
             
-            <Label Text="© 2024 Admin Dashboard"
-                   FontSize="14"
-                   TextColor="#9E9E9E"
-                   HorizontalOptions="Center"
-                   VerticalOptions="EndAndExpand" />
 
         </VerticalStackLayout>
     </ScrollView>

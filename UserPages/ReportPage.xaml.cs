@@ -8,16 +8,19 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public partial class ReportPage : ContentPage
 {
+    public byte[] imageData; //byte array for image
+    Label currentHelpLabel;
     public ReportPage()
     {
         InitializeComponent();
+
         if (DeviceInfo.Platform != DevicePlatform.Android)
         {
             PointerGestureRecognizer pointerGestureRecognizer = new PointerGestureRecognizer();
             pointerGestureRecognizer.PointerEntered += (s, e) =>
             {
                 //mageenter 
-                ReportItemBtn.BackgroundColor = Colors.SteelBlue;
+                ReportItemBtn.BackgroundColor = Colors.Red;
             };
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
@@ -33,7 +36,7 @@ public partial class ReportPage : ContentPage
             pointerGestureRecognizer.PointerEntered += (s, e) =>
             {
                 //mageenter 
-                ImageInput.BackgroundColor = Colors.SteelBlue;
+                ImageInput.BackgroundColor = Colors.Red;
             };
             pointerGestureRecognizer.PointerExited += (s, e) =>
             {
@@ -46,7 +49,89 @@ public partial class ReportPage : ContentPage
     }
 
 
-    public byte[] imageData; //byte array for image
+    
+
+    private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+    {
+        var picker = (Picker)sender;
+        int selectedIndex = picker.SelectedIndex;
+
+        if (currentHelpLabel != null)
+        {
+            Categories.Remove(currentHelpLabel);
+        }
+
+        if (selectedIndex != -1)
+        {
+            Label helpLabel;
+
+            if (selectedIndex == 0)
+            {
+                helpLabel = LabelMaker("Included are phones and tablets.");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 1)
+            {
+                helpLabel = LabelMaker("Included are anything electronic such as laptop and remotes.");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 2)
+            {
+                helpLabel = LabelMaker("Included are necklace, watches, pins, bookmarks and items with sentimental value.");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 3)
+            {
+                helpLabel = LabelMaker("Included are handkerchiefs and any clothing.");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 4)
+            {
+                helpLabel = LabelMaker("Included are documents, IDs, Wallets, cash and etc...");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 5)
+            {
+                helpLabel = LabelMaker("Included are educational related items such as notebooks, books and pencil cases");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 6)
+            {
+                helpLabel = LabelMaker("Included are tumblers, food containers.");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 7)
+            {
+                helpLabel = LabelMaker("Included are medicine that are allowed inside the campus.");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+            else if (selectedIndex == 8)
+            {
+                helpLabel = LabelMaker("Only pick this option if item lost does not fit any of the above categories!");
+                Categories.Children.Insert(3, helpLabel);
+                currentHelpLabel = helpLabel;
+            }
+
+        }
+    }
+
+    private Label LabelMaker(string text)
+    {
+        var helpLabel = new Label
+        {
+            Text = text,
+            TextColor = Colors.Black,
+        };
+        return helpLabel;
+    }
 
     private async void OnClickedImageBtn(object sender, EventArgs e)
     {
@@ -106,6 +191,7 @@ public partial class ReportPage : ContentPage
             {
                 insertWithImage(connectionString, reportICategory, reportDescription, reportLocation, reportDateTime);
             }
+            Navigation.PopAsync();
         }
         catch (Exception ec)
         {

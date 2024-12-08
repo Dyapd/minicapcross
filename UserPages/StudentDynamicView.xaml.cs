@@ -26,7 +26,7 @@ public partial class StudentDynamicView : ContentPage
     public async void OnRescindClick(object sender, EventArgs s){
 
         string connectionString = new IPLocator().ConnectionString();
-        bool answer = await DisplayAlert("Confirmation", "Are you sure you want to rescind this application?", "Yes", "No");
+        bool answer = await DisplayAlert("Confirmation", "Are you sure you want to rescind this report form? This will also delete the claims associated with it!", "Yes", "No");
         try
         {
             if (answer)

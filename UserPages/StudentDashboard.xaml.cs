@@ -132,7 +132,7 @@ public partial class StudentDashboard : ContentPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT i.Item_ID, i.Item_Category FROM Items i JOIN Reports r ON i.Item_ICategory = r.Report_ICategory AND i.Item_Location = r.Report_Location WHERE r.Student_Number = @SessionVars";
+                command.CommandText = "SELECT i.Item_ID, i.Item_Category FROM Items i JOIN Reports r ON i.Item_ICategory = r.Report_ICategory AND i.Item_Location = r.Report_Location WHERE r.Student_Number = @SessionVars AND r.Report_Status = 0";
                 command.Parameters.AddWithValue("@SessionVars", SessionVars.SessionId);
 
                 using (SqlDataReader reader = command.ExecuteReader())

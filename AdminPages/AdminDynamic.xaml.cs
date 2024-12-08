@@ -205,9 +205,8 @@ public partial class AdminDynamic : TabbedPage
         try
         {
             //for claim page
-            ClaimCategoryText.Text = DynamicClaims[0].ICategory.ToString();
             ClaimStatusText.Text = DynamicClaims[0].Status.ToString();
-            ClaimDescriptionText.Text = DynamicClaims[0].Category.ToString();
+            ClaimDescriptionText.Text = DynamicClaims[0].Description.ToString();
             
             //put in done claiming if here
             bool resultbool = DynamicClaims[0].Status;

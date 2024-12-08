@@ -4,7 +4,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="test.Pages.AdminItems"
              Title="Admin Items"
-             BackgroundColor="#E3F2FD">
+             BackgroundColor="#F5F5F5">
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
@@ -32,31 +32,25 @@
                    CornerRadius="10"
                    Padding="10"
                    HasShadow="True">
-                <Grid ColumnDefinitions="*,*,*,*" Padding="5" RowDefinitions="Auto">
+                <Grid ColumnDefinitions="*,*,*" Padding="5" RowDefinitions="Auto">
                     <Label Text="ItemID"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="0" />
-                    <Label Text="Item Image"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="1" />
                     <Label Text="Category"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
-                           Grid.Column="2" />
+                           Grid.Column="1" />
                     <Label Text="Status"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
-                           Grid.Column="3" />
+                           Grid.Column="2" />
                 </Grid>
             </Frame>
 
@@ -118,6 +112,7 @@
 
             
             <Button Text="Add Lost Item"
+                    x:Name="AddBtn"
                     BackgroundColor="#1565C0"
                     TextColor="White"
                     CornerRadius="5"

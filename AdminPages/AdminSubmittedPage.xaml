@@ -65,7 +65,7 @@
                     Background="Gray"
                     x:Name="uploadedImage"/>
             <Button Text="Upload Image"
-
+                    x:Name="UploadImageBtn"
                     BackgroundColor="#1565C0"
                     TextColor="White"
                     CornerRadius="8"
@@ -109,6 +109,7 @@
 
             
             <Button Text="Report Item"
+                    x:Name="ReportBtn"
                     BackgroundColor="#E53935"
                     TextColor="White"
                     CornerRadius="8"

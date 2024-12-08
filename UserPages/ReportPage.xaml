@@ -9,13 +9,13 @@
         <VerticalStackLayout
         Spacing="20"
         Padding="20"
-
+        
         >
             <Frame BackgroundColor="DarkBlue"
                     CornerRadius="2"
                     Padding="15">
                 <Label 
-                Text="Report a lost item" 
+                Text="Report a Lost Item" 
                 FontFamily="Roboto"
                 FontSize="Large" 
                 FontAttributes="Bold"

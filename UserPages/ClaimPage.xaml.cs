@@ -29,6 +29,7 @@ public partial class ClaimPage : ContentPage
     private void OnSaveButtonClicked(object sender, EventArgs e)
     {
         SaveToDatabase();
+        Navigation.PopAsync();
     }
 
     //this changes the picture on the left depending on the selection
@@ -156,7 +157,8 @@ public partial class ClaimPage : ContentPage
             var selectedReport = comboBoxLeft.SelectedItem as Items;
             var selectedImage = comboBox.SelectedItem as Items2;
 
-            var category = CategoryInput.SelectedItem.ToString();
+            //this is way easier than editing a lot of code late-production :(
+            var category = "defunct";
             var description = DescriptionInput.Text;
             var studentNumber = SessionVars.SessionId;
             var ReportID = selectedReport.ID;
@@ -176,43 +178,6 @@ public partial class ClaimPage : ContentPage
             {
                 insertWithImage(category, description, ReportID, ClaimID);
             }
-
-
-
-
-            //using (SqlConnection connection = new SqlConnection(connectionString))
-            //{
-            //    string query = @"INSERT INTO Claims (Claim_Category, Claim_Status, Claim_ICategory, Claim_Description, Student_Number, Claim_Image, Report_Category, Report_ID, Item_Category, Item_ID)
-            //                    VALUES (@Category, @Status, @ICategory, @Description, @Student, @Image, @RCategory, @RID, @ITCategory, @IID)";
-            //    SqlCommand command = new SqlCommand(query, connection);
-            //    command.Parameters.AddWithValue("@Category", "C");
-            //    command.Parameters.AddWithValue("@Status", false);
-            //    command.Parameters.AddWithValue("@ICategory", category);
-            //    command.Parameters.AddWithValue("@Description", description);
-            //    command.Parameters.AddWithValue("@Student", SessionVars.SessionId);
-            //    command.Parameters.AddWithValue("@Image", leftImageBytes); //add here later sample image of empty pic!
-            //    command.Parameters.AddWithValue("@RCategory", "R");
-            //    command.Parameters.AddWithValue("@RID", ReportID);
-            //    command.Parameters.AddWithValue("@ITCategory", "I");
-            //    command.Parameters.AddWithValue("@IID", ClaimID);
-
-            //    connection.Open();
-                
-
-
-            //    int rowsAffected = await command.ExecuteNonQueryAsync();
-
-            //    if (rowsAffected > 0)
-            //    {
-            //        await DisplayAlert("Success", "Claim has been recorded successfully.", "OK");
-            //    }
-            //    else
-            //    {
-            //        await DisplayAlert("Failure", "Claim failed to insert.", "OK");
-            //    }
-
-            //}
-
         }
         catch (Exception e)
         {
@@ -227,7 +192,8 @@ public partial class ClaimPage : ContentPage
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO Claims (Claim_Category, Claim_Status, Claim_ICategory, Claim_Description, Student_Number, Report_Category, Report_ID, Item_Category, Item_ID)
-                                VALUES (@Category, @Status, @ICategory, @Description, @Student, @RCategory, @RID, @ITCategory, @IID)";
+                                VALUES (@Category, @Status, @ICategory, @Description, @Student, @RCategory, @RID, @ITCategory, @IID)" +
+                                "UPDATE Reports SET Report_Status = true WHERE Report_ID = @reportID;";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Category", "C");
                 command.Parameters.AddWithValue("@Status", false);
@@ -239,9 +205,9 @@ public partial class ClaimPage : ContentPage
                 command.Parameters.AddWithValue("@ITCategory", "I");
                 command.Parameters.AddWithValue("@IID", claimID);
 
+                command.Parameters.AddWithValue("@reportID", reportID);
+
                 connection.Open();
-
-
 
                 int rowsAffected = command.ExecuteNonQuery();
 
@@ -269,7 +235,8 @@ public partial class ClaimPage : ContentPage
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO Claims (Claim_Category, Claim_Status, Claim_ICategory, Claim_Description, Student_Number, Claim_Image, Report_Category, Report_ID, Item_Category, Item_ID)
-                                VALUES (@Category, @Status, @ICategory, @Description, @Student, @Image, @RCategory, @RID, @ITCategory, @IID)";
+                                VALUES (@Category, @Status, @ICategory, @Description, @Student, @Image, @RCategory, @RID, @ITCategory, @IID);" +
+                                "UPDATE Reports SET Report_Status = 1 WHERE Report_ID = @reportID;";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Category", "C");
                 command.Parameters.AddWithValue("@Status", false);
@@ -281,6 +248,8 @@ public partial class ClaimPage : ContentPage
                 command.Parameters.AddWithValue("@RID", reportID);
                 command.Parameters.AddWithValue("@ITCategory", "I");
                 command.Parameters.AddWithValue("@IID", claimID);
+
+                command.Parameters.AddWithValue("@reportID", reportID);
 
                 connection.Open();
 
@@ -319,7 +288,7 @@ public partial class ClaimPage : ContentPage
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT Report_ID, Report_Category, Report_Location, Report_ICategory FROM Reports WHERE Student_Number = @SessionVars";
+                command.CommandText = "SELECT Report_ID, Report_Category, Report_Location, Report_ICategory FROM Reports WHERE Student_Number = @SessionVars AND Report_Status = 0";
                 command.Parameters.AddWithValue("@SessionVars", SessionVars.SessionId);
 
                 using (SqlDataReader reader = command.ExecuteReader())

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="test.UserPages.StudentDynamicView"
-             Title="StudentDynamicView">
+             x:Class="test.UserPages.StudentDynamicClaimsView"
+             Title="StudentDynamicClaimsView">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
 
-            <Label Text="Report Form"
+            <Label Text="Approve a Claim"
                FontSize="20"
                FontAttributes="Bold"
                TextColor="#333333"
@@ -15,17 +15,20 @@
 
 
             <Image Source="placeholder.png"
+               x:Name="ClaimImage"
                HeightRequest="150"
                Aspect="AspectFit"
-               Margin="0,10" 
-               x:Name="ReportImage"/>
+               Margin="0,10" />
 
 
-            <Label Text="Category"
+            <Label Text="Instructions:"
                FontSize="14"
                TextColor="#555555" />
+            <Label
+            Text="Please switch to the other tabs so that you may compare the item form and report form."/>
+            <Label Text=" If approved then change status to true, if not then please click the rejected button."/>
             <Label Text="None"
-               x:Name="ReportCategoryText"
+               x:Name="ClaimCategoryText"
                FontSize="16"
                TextColor="#333333" />
 
@@ -34,7 +37,7 @@
                FontSize="14"
                TextColor="#555555" />
             <Label Text="None"
-               x:Name="ReportLocationText"
+               x:Name="ClaimLocationText"
                FontSize="16"
                TextColor="#333333" />
 
@@ -43,7 +46,7 @@
                FontSize="14"
                TextColor="#555555" />
             <Label Text="None"
-               x:Name="ReportDateAndTimeText"
+               x:Name="ClaimDateAndTimeText"
                FontSize="16"
                TextColor="#333333" />
 
@@ -52,7 +55,7 @@
                FontSize="14"
                TextColor="#555555" />
             <Label Text="None"
-               x:Name="ReportDescriptionText"
+               x:Name="ClaimDescriptionText"
                FontSize="16"
                TextColor="#333333" />
 
@@ -61,19 +64,26 @@
                FontSize="14"
                TextColor="#555555" />
             <Label Text="None"
-               x:Name="ReportStatusText"
+               x:Name="ClaimStatusText"
                FontSize="16"
                TextColor="#333333" />
 
 
-            <Button Text="Rescind Report"
-                x:Name="ReportChangeBtn"
-                BackgroundColor="#FF5722"
-                    Clicked="OnRescindClick"
+            <VerticalStackLayout x:Name="DynamicButtons"
+                            Spacing="15">
+
+
+
+                <Button Text="Rescind Claim"
+                x:Name="ClaimChangeBtn"
+                BackgroundColor="#E53935"
                 TextColor="White"
                 CornerRadius="8"
-                HeightRequest="45" />
+                HeightRequest="45"
+                Clicked="OnRescindClick"
+                />
 
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
