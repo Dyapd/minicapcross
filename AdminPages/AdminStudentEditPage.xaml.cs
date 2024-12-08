@@ -111,8 +111,8 @@ public partial class AdminStudentEditPage : ContentPage
                 DisplayAlert("Error in removing item!", ex.Message, "OK");
             }
         }
-
     }
+
     public void populateDynamicPage()
     {
         StudentNameText.Text = Users[0].StudentName.ToString();
@@ -121,7 +121,6 @@ public partial class AdminStudentEditPage : ContentPage
         StudentPasswordText.Text = Users[0].StudentPassword.ToString();
         SectionText.Text = Users[0].StudentSection.ToString();
         LevelText.Text = Users[0].StudentGrade.ToString();
-
     }
 
     private async Task<List<Users>> takeFromDatabaseUsers()

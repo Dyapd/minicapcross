@@ -89,9 +89,11 @@ Margin="0,10" />
             Background="#EEEEEE"/>
         <Label
     Text="Student Password"
-            FontAttributes="Bold"/>
+            FontAttributes="Bold"
+            />
         <Entry
             x:Name="StudentPasswordInput"
+            
             Background="#EEEEEE"/>
                 <BoxView HeightRequest="1"
 BackgroundColor="Gray"
@@ -100,6 +102,7 @@ Margin="0,10" />
 
                 <Button
             Text="Add User"
+                    x:Name="AddBtn"
             Clicked="Button_Clicked"/>
             </VerticalStackLayout>
         </VerticalStackLayout>

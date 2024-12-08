@@ -12,6 +12,7 @@ public partial class AdminUsersPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
+        AddBtn.IsEnabled = false;
         string studentIdStr = StudentIdInput.Text;
 
         if (string.IsNullOrWhiteSpace(studentIdStr))
@@ -42,7 +43,7 @@ public partial class AdminUsersPage : ContentPage
                 return;
             }
 
-            if (!validateEmail(email))
+            if (validateEmail(email))
             {
                 await DisplayAlert("Error", "Invalid email format.", "OK");
                 return;
@@ -68,26 +69,31 @@ public partial class AdminUsersPage : ContentPage
                 }
 
                 await DisplayAlert("Success", "Student created successfully.", "OK");
+                AddBtn.IsEnabled = true;
             }
         }
         catch (FormatException)
         {
             await DisplayAlert("Error", "Student ID must be numeric.", "OK");
+            AddBtn.IsEnabled = true;
         }
         catch (SqlException ex)
         {
             if (ex.Number == 2627) // Duplicate key violation error code
             {
                 await DisplayAlert("Error", "Student ID already exists. Please try again with a different ID.", "OK");
+                AddBtn.IsEnabled = true;
             }
             else
             {
                 await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
+                AddBtn.IsEnabled = true;
             }
         }
         catch (Exception ex)
         {
             await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
+            AddBtn.IsEnabled = true;
         }
     }
 
