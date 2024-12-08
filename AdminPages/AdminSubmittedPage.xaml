@@ -52,7 +52,13 @@
             <Label Text="Image:"
                    FontSize="14"
                    TextColor="#555555" />
+            <Image
+                    MaximumWidthRequest="300"
+                    MaximumHeightRequest="300"
+                    Background="Gray"
+                    x:Name="uploadedImage"/>
             <Button Text="Upload Image"
+
                     BackgroundColor="#1565C0"
                     TextColor="White"
                     CornerRadius="8"
@@ -75,27 +81,14 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            
-            <Frame BackgroundColor="#E0E0E0"
-                   BorderColor="#BDBDBD"
-                   CornerRadius="8"
-                   Padding="5">
-                <Entry IsReadOnly="True" 
-                       TextColor="#333333"
-                       Placeholder="sheesh">
-                    <Entry.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                    </Entry.GestureRecognizers>
-                </Entry>
-            </Frame>
-
-            
             <Label Text="Date and Time Lost:"
                    FontSize="14"
                    TextColor="#555555" />
             <StackLayout Orientation="Horizontal" Spacing="15">
-                <DatePicker x:Name="DateInput" />
+                <DatePicker x:Name="DateInput" 
+                            BackgroundColor="#EEEEEE"/>
                 <TimePicker x:Name="TimeInput"
+                            BackgroundColor="#EEEEEE"
                             Time="12:00:00"/>
             </StackLayout>
 

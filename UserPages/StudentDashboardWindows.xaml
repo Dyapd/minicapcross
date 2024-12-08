@@ -61,7 +61,7 @@
                                 Margin="10"/>
 
                                 <Button
-                                ImageSource="logs.png"
+                                ImageSource="manuscript.png"
                                 ContentLayout="Left, 5"
                                 x:Name="ReportsBtn"
                                 Text="Report Logs"
@@ -95,7 +95,7 @@
                                 Margin="10"/>
                                 
                                 <Button
-                                ImageSource="logs.png"
+                                ImageSource="manuscript.png"
                                 ContentLayout="Left, 5"
                                 x:Name="ClaimsBtn"
                                 Text="Claim Logs"

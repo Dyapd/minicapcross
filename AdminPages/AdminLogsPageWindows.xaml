@@ -85,12 +85,14 @@
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#1565C0"
+                                           HorizontalOptions="Center"
                            VerticalOptions="Center"
                            Grid.Column="0"/>
                                     <Label Text="{Binding CategoryAndItemID}"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#1565C0"
+                                           HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="1"/>
                                     <Label Text="{Binding ICategory}"
@@ -98,24 +100,28 @@
                            FontAttributes="Bold"
                            TextColor="#1565C0"
                            VerticalOptions="Center" 
+                                           HorizontalOptions="Center"
                            Grid.Column="2"/>
                                     <Label Text="{Binding DateIn}"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#1565C0"
                            VerticalOptions="Center"
+                                           HorizontalOptions="Center"
                            Grid.Column="3"/>
                                     <Label Text="{Binding StudentName}"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#1565C0"
                            VerticalOptions="Center" 
+                                           HorizontalOptions="Center"
                            Grid.Column="4"/>
                                     <Label Text="{Binding DateOut}"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#1565C0"
                            VerticalOptions="Center"
+                                           HorizontalOptions="Center"
                            Grid.Column="5"/>
                                 </Grid>
                         </Frame>

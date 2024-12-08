@@ -43,6 +43,7 @@ namespace test
         }
         private async void OnLoginClicked(object sender, EventArgs e)
         {
+            LoginBtn.IsEnabled = false;
             IPLocator ip = new IPLocator();
             connectionString = ip.ConnectionString();
 
@@ -121,6 +122,9 @@ namespace test
             else
             {
                 this.ShowPopup(new NewPage1());
+                LoginBtn.IsEnabled = true;
+                userEntry.Text = "";
+                userPass.Text = "";
             }
 
         }

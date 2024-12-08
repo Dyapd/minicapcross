@@ -7,13 +7,20 @@
         
     
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            <Frame BackgroundColor="DarkBlue"
+        CornerRadius="2"
+        Padding="15">
+                <Label Text="Student User - Add User"
+            FontFamily="Roboto"
+            FontSize="Large"
+           FontAttributes="Bold"
+           TextColor="White"
+           HorizontalOptions="Start" />
+
+            </Frame>
 
 
-        <Label
+            <Label
             Text="Student ID"/>
         <Entry
             x:Name="StudentIdInput"/>
@@ -71,6 +78,7 @@
             x:Name="StudentPasswordInput"/>
 
         <Button
+            Text="Add User"
             Clicked="Button_Clicked"/>
 
     </VerticalStackLayout>

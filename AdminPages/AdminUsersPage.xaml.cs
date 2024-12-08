@@ -1,4 +1,5 @@
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace test.AdminPages;
 
@@ -25,28 +26,31 @@ public partial class AdminUsersPage : ContentPage
         string email = StudentEmailInput.Text;
         string password = StudentPasswordInput.Text;
 
-        if (!email.Contains("@email.com"))
-        {
-            await DisplayAlert("Error", "Invalid email format.", "OK");
-            return;
-        }
+
 
         try
         {
+            //validators!
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gradeLevel) || string.IsNullOrEmpty(section) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-            {
+            { 
                 await DisplayAlert("Error", "Please fill in all required fields.", "OK");
                 return;
             }
 
-            //if (!email.EndsWith("@email.com"))
+            //if (!email.Contains("@") || !email.Substring(email.IndexOf("@") + 1).Contains("."))
             //{
-            //    await DisplayAlert("Error", "Invalid email format. Email must end with '@email.com'.", "OK");
+            //    await DisplayAlert("Error", "Invalid email format.", "OK");
             //    return;
             //}
 
-            if (!email.Contains("@") || !email.Substring(email.IndexOf("@") + 1).Contains("."))
+            if (!validateEmail(email))
+            {
+                await DisplayAlert("Error", "Invalid email format. (example@example.example", "OK");
+                return;
+            }
+
+            if (!email.Contains("@email.com"))
             {
                 await DisplayAlert("Error", "Invalid email format.", "OK");
                 return;
@@ -94,5 +98,20 @@ public partial class AdminUsersPage : ContentPage
         {
             await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
         }
+    }
+
+    public bool validateEmail(string email)
+    {
+        //@ means start
+        //^@ means all string except @
+        // \s means no whitespace
+        // \. means a dot
+        // $ means end of string
+        
+        var pattern = @"^[^@\s] + @[^@\s] + \.[^@\s]+$";
+        var regex = new Regex(pattern);
+        bool match = regex.IsMatch(email);
+
+        return match;
     }
 }

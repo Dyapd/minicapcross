@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Images\items.png" />
 	  <None Remove="Resources\Images\logout.png" />
 	  <None Remove="Resources\Images\logs.png" />
+	  <None Remove="Resources\Images\manuscript.png" />
 	  <None Remove="Resources\Images\notebook.png" />
 	</ItemGroup>
 

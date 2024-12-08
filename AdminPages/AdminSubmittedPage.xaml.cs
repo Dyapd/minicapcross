@@ -33,6 +33,7 @@ public partial class AdminSubmittedPage : ContentPage
         {
             var result = await FilePicker.PickAsync(new PickOptions
             {
+                PickerTitle = "Image only not exceeding 10MB",
                 FileTypes = FilePickerFileType.Images
             });
 
@@ -40,12 +41,19 @@ public partial class AdminSubmittedPage : ContentPage
             {
                 using (var stream = await result.OpenReadAsync())
                 {
+                    if (stream.Length > 10485760) // 10 MB in bytes, validator
+                    {
+                        await DisplayAlert("File too big", "Image size exceeds 10MB limit.", "OK");
+                        return;
+                    }
 
                     imageData = new byte[stream.Length];
                     await stream.ReadAsync(imageData, 0, (int)stream.Length);
                     
                     imagePath = result.FullPath; //file path
-                    
+                    var imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
+                    uploadedImage.Source = imageSource;
+
                 }
             }
             else
@@ -64,10 +72,7 @@ public partial class AdminSubmittedPage : ContentPage
     {
         try
         {
-            //
-
-            //takes the ip from the iplocator class
-            
+        
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
 

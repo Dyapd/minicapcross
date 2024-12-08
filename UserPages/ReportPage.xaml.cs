@@ -83,7 +83,7 @@ public partial class ReportPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Something went wrong: {ex.Message}", "OK");
+            await DisplayAlert("Error", $"Error: {ex.Message}", "OK");
         }
     }
     //inserts the data inserted by user
