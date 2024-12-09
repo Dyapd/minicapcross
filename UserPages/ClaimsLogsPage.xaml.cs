@@ -23,6 +23,7 @@ public partial class ClaimsLogsPage : ContentPage
         BindingContext = this;
         LoadItems();
         displayTheNotification();
+        displayTheRejection();
     }
 
     protected override void OnAppearing()
@@ -36,6 +37,37 @@ public partial class ClaimsLogsPage : ContentPage
         if (checkNotificationApprove())
         {
             DisplayAlert("Approved!", "One or more claims have been approved. Please proceed to the student affairs room to claim your item!", "OK");
+        }
+    }
+
+    private void displayTheRejection()
+    {
+        if (checkNotificationReject())
+        {
+            DisplayAlert("Rejected!", "One or more claims have been rejected!", "OK");
+
+            string stringConnection = new IPLocator().ConnectionString();
+
+
+            try
+            {
+                SqlConnection connection = new SqlConnection(stringConnection);
+                using (connection)
+                {
+                    connection.Open();
+
+
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandText = "UPDATE StudentUsers SET Student_Reject = 0 WHERE Student_ID = @SessionVar";
+                    command.Parameters.AddWithValue("@SessionVar", SessionVars.SessionId);
+
+                    //DisplayAlert("success","p","ok");
+                }
+            }
+            catch (Exception e)
+            {
+                DisplayAlert("Error in displaying rejection", e.Message, "OK");
+            }
         }
     }
 
@@ -53,7 +85,7 @@ public partial class ClaimsLogsPage : ContentPage
 
 
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT 1 FROM StudentUsers WHERE Student_Reject = 1 AND Student_Number = @SessionVar";
+                command.CommandText = "SELECT 1 FROM StudentUsers WHERE Student_Reject = 1 AND Student_ID = @SessionVar";
                 command.Parameters.AddWithValue("@SessionVar", SessionVars.SessionId);
 
                 using (SqlDataReader reader = command.ExecuteReader())

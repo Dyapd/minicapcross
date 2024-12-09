@@ -25,7 +25,7 @@ namespace test.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            FilterItems();
+            LoadItems();
         }
 
 

@@ -460,7 +460,7 @@ public partial class AdminDynamic : TabbedPage
             DynamicReports.Add(report);
         }
 
-        await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
+       // await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
         populateDynamicPage();
 
     }
@@ -528,7 +528,7 @@ public partial class AdminDynamic : TabbedPage
             DynamicItems.Add(item);
         }
 
-        await DisplayAlert("Items Added Items", $"{DynamicReports.Count} items have been added.", "OK");
+       // await DisplayAlert("Items Added Items", $"{DynamicReports.Count} items have been added.", "OK");
         populateDynamicPage();
 
     }
