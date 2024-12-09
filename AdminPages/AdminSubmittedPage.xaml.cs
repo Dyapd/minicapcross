@@ -235,7 +235,7 @@ public partial class AdminSubmittedPage : ContentPage
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync();
+                connection.Open();
                 using (SqlCommand command = new SqlCommand("INSERT INTO Items (Item_Category, Item_ICategory, Item_Date, Item_Description, Item_Location, Item_Status, Item_Image) " +
                                                " " +
                                                "VALUES (@Category, @ICategory, @Date, @Description, @Location, @Status, @Image)", connection))

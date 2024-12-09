@@ -40,6 +40,7 @@ public partial class AdminUsersPage : ContentPage
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gradeLevel) || string.IsNullOrEmpty(section) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 await DisplayAlert("Error", "Please fill in all required fields.", "OK");
+
                 return;
             }
 

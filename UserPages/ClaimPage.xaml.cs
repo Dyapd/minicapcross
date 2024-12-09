@@ -47,7 +47,7 @@ public partial class ClaimPage : ContentPage
             rightImage.Source = null;
             comboBox.SelectedItem = null;
             leftImage.Source = null;
-            
+        
             IPLocator ip = new IPLocator();
             connectionString = ip.ConnectionString();
             

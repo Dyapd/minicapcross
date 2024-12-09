@@ -62,9 +62,8 @@ public partial class StudentDynamicClaimsView : ContentPage
         try
         {
             //for claim page
-            ClaimCategoryText.Text = DynamicClaims[0].ICategory.ToString();
             ClaimStatusText.Text = DynamicClaims[0].Status.ToString();
-            ClaimDescriptionText.Text = DynamicClaims[0].Category.ToString();
+            ClaimDescriptionText.Text = DynamicClaims[0].Description.ToString();
 
             // picture display
             if (DynamicClaims[0].Image != null)

@@ -26,6 +26,31 @@ public partial class ClaimsLogsPage : ContentPage
         LoadItems();
     }
 
+    private void checkNotificationApprove()
+    {
+        string stringConnection = new IPLocator().ConnectionString();
+
+
+        try
+        {
+            SqlConnection connection = new SqlConnection(stringConnection);
+            using (connection)
+            {
+                connection.Open();
+
+                
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT 1 FROM Claims WHERE Claims_Status = 1 AND Student_Number = @SessionVar";
+                command.Parameters.AddWithValue("@SessionVar", SessionVars.SessionId);
+
+                
+            }
+        }
+        catch
+        {
+
+        }
+    }
 
     private async void OnDetailsClicked(string claim)
     {

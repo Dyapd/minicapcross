@@ -13,11 +13,14 @@ namespace test.Pages
     {
         
         public ObservableCollection<DynamicItems> DynamicItems { get; set; }
+        public ObservableCollection<DynamicItems> FilteredItems { get; set; }
+        public string SearchQuery { get; set; }
         public ICommand ButtonCommand { get; set; }
         public AdminItems()
         {
             InitializeComponent();
             DynamicItems = new ObservableCollection<DynamicItems>();
+            FilteredItems = new ObservableCollection<DynamicItems>();
             ButtonCommand = new Command<string>(OnButtonClicked);
             BindingContext = this;
             LoadItems();
@@ -117,8 +120,53 @@ namespace test.Pages
             {
                 DynamicItems.Add(item);
             }
-            
+
+            FilteredItems.Clear();
+            foreach (var item in DynamicItems)
+            {
+                FilteredItems.Add(item);
+            }
         }
+
+
+
+
+        private void FilterItems()
+        {
+            FilteredItems.Clear();
+            if (string.IsNullOrEmpty(SearchQuery))
+            {
+                // No filter applied, show all items
+                foreach (var item in DynamicItems)
+                {
+                    FilteredItems.Add(item);
+                }
+            }
+            else
+            {
+                // Filter based on description, ID, or category
+                var filtered = DynamicItems
+                    .Where(item =>
+                        item.ID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                        item.ICategory.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                foreach (var item in filtered)
+                {
+                    FilteredItems.Add(item);
+                }
+            }
+        }
+
+
+        private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchQuery = e.NewTextValue;
+            //DisplayAlert("Test", SearchQuery, "OK");
+            FilterItems(); // Re-apply the filter when the search query changes
+        }
+
+       
     }
 
 }

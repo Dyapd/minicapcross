@@ -51,7 +51,7 @@ namespace test.Pages
 
                     SqlCommand command = connection.CreateCommand();
                     command.CommandText = "SELECT " +
-                    "Report_ID, Report_Status, Report_ICategory, Report_Description" +
+                    "Report_ID, Report_Status, Report_ICategory, Report_Description, Student_Number" +
                     " FROM Reports";
 
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -65,6 +65,7 @@ namespace test.Pages
                                     Status = reader.GetBoolean(1),
                                     ICategory = reader.GetString(2),
                                     Description = reader.GetString(3),
+                                    StudentNumber = reader.GetString(4)
                                 });
                             }
                         }
