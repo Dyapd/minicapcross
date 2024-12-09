@@ -102,47 +102,47 @@ namespace test
             //NOTE NEED TO IMPORT DATABASE FROM THE FILES
             //PROPER CREDENTIALS look in the database adminusers and studusers!!!
 
-        //    if (await CheckAdminAccount(enteredEmail, enteredPassword))
-        //    {
-        //        var toast = Toast.Make("Logging in as admin", ToastDuration.Short);
-        //        toast.Show();
-        //        Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-        //        await Navigation.PushAsync(new AdminDashboard());
+            if (await CheckAdminAccount(enteredEmail, enteredPassword))
+            {
+                var toast = Toast.Make("Logging in as admin", ToastDuration.Short);
+                toast.Show();
+                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+                await Navigation.PushAsync(new AdminDashboard());
 
 
-        //    }
-        //    else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
-        //    {
-                
-        //        SessionVars.SetSessionId(enteredEmail, enteredPassword);
-        //        var toast = Toast.Make("Logging in as " + SessionVars.TakeStudentInfo(), ToastDuration.Short);
-        //        toast.Show();
-        //        if (DeviceInfo.Platform == DevicePlatform.Android)
-        //        {
-        //            Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-        //            await Navigation.PushAsync(new StudentDashboard());
-        //        }
-        //        else if (DeviceInfo.Platform != DevicePlatform.Android)
-        //        {
-        //            Application.Current.MainPage = new NavigationPage(new StudentDashboardWindows());
-        //            await Navigation.PushAsync(new StudentDashboardWindows());
-        //        }
+            }
+            else if (await CheckRegisteredAccount(enteredEmail, enteredPassword))
+            {
+
+                SessionVars.SetSessionId(enteredEmail, enteredPassword);
+                var toast = Toast.Make("Logging in as " + SessionVars.TakeStudentInfo(), ToastDuration.Short);
+                toast.Show();
+                if (DeviceInfo.Platform == DevicePlatform.Android)
+                {
+                    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+                    await Navigation.PushAsync(new StudentDashboard());
+                }
+                else if (DeviceInfo.Platform != DevicePlatform.Android)
+                {
+                    Application.Current.MainPage = new NavigationPage(new StudentDashboardWindows());
+                    await Navigation.PushAsync(new StudentDashboardWindows());
+                }
 
 
-                
 
-                
-        //    }
-        //    else
-        //    {
-        //        this.ShowPopup(new NewPage1());
-        //        LoginBtn.IsEnabled = true;
-        //        userEntry.IsEnabled = true;
-        //        userPass.IsEnabled = true;
-        //        userEntry.Text = "";
-        //        userPass.Text = "";
-        //        return;
-        //    }
+
+
+            }
+            else
+            {
+                this.ShowPopup(new NewPage1());
+                LoginBtn.IsEnabled = true;
+                userEntry.IsEnabled = true;
+                userPass.IsEnabled = true;
+                userEntry.Text = "";
+                userPass.Text = "";
+                return;
+            }
 
         }
         private async Task<bool> CheckRegisteredAccount(string enteredEmail, string enteredPassword)

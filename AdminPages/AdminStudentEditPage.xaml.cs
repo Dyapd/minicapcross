@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Microsoft.Maui.ApplicationModel.Communication;
 using static System.Collections.Specialized.BitVector32;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 #if ANDROID
 using Android.App;
 #endif
@@ -37,6 +38,29 @@ public partial class AdminStudentEditPage : ContentPage
         string gradeLevel = StudentGradeLevels.SelectedItem?.ToString();
         string section = StudentSections.SelectedItem?.ToString();
 
+        if (validateEmail(email))
+        {
+            await DisplayAlert("Error", "Invalid email format.", "OK");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(oldid) || string.IsNullOrEmpty(studid) || string.IsNullOrEmpty(studname) || string.IsNullOrEmpty(gradeLevel) || string.IsNullOrEmpty(section))
+        {
+            await DisplayAlert("Error", "Please fill in all required fields.", "OK");
+            return;
+        }
+
+        if (studid.Length != 8 || !studid.All(char.IsDigit))
+        {
+            await DisplayAlert("Error", "New Student number must be 8 digits and contain only numbers.", "OK");
+            return;
+        }
+
+        if (oldid.Length != 8 || !oldid.All(char.IsDigit))
+        {
+            await DisplayAlert("Error", "Old Student number must be 8 digits and contain only numbers.", "OK");
+            return;
+        }
 
 
         if (answer)
@@ -197,5 +221,20 @@ public partial class AdminStudentEditPage : ContentPage
         //await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
         populateDynamicPage();
 
+    }
+
+    public bool validateEmail(string email)
+    {
+        //@ means start
+        //^@ means all string except @
+        // \s means no whitespace
+        // \. means a dot
+        // $ means end of string
+
+        var pattern = @"^[^@\s] + @[^@\s] + \.[^@\s]+$";
+        var regex = new Regex(pattern);
+        bool match = regex.IsMatch(email);
+
+        return match;
     }
 }

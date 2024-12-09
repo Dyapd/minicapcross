@@ -44,7 +44,7 @@ public partial class AdminUsersPage : ContentPage
                 return;
             }
 
-            if (validateEmail(email))
+            if (!validateEmail(email))
             {
                 await DisplayAlert("Error", "Invalid email format.", "OK");
                 return;
