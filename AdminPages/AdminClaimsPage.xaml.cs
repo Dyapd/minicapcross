@@ -2,13 +2,16 @@ using System.Collections.ObjectModel;
 using Microsoft.Data.SqlClient;
 using System.Windows.Input;
 using static test.DataHolders.DataholderNotificationLog;
+using Microsoft.IdentityModel.Tokens;
 
 namespace test.Pages
 {
     public partial class AdminClaimsPage : ContentPage
     {
+        public ObservableCollection<Items> FilteredClaims { get; set; }
         public ObservableCollection<Items> Items { get; set; }
         public ICommand DetailsCommand { get; }
+        public string searchQuery { get; set; }
 
         public AdminClaimsPage()
         {
@@ -21,7 +24,7 @@ namespace test.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            LoadItems();
+            FilterItems();
         }
 
 
@@ -77,6 +80,50 @@ namespace test.Pages
             {
                 Items.Add(item);
             }
+
+            FilteredClaims.Clear();
+            foreach(var item in items)
+            {
+                FilteredClaims.Add(item);
+            }
+        }
+
+        private void FilterItems()
+        {
+            if (FilteredClaims.Any() || FilteredClaims == null)
+            {
+                FilteredClaims.Clear();
+            }
+           
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                foreach (var item in Items)
+                {
+                    FilteredClaims.Add(item);
+                }
+            }
+            else
+            {
+                //add more item.var to filter more!
+                var filtered = Items
+                    .Where(item =>
+                        item.ID.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                        item.ICategory.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                foreach (var item in filtered)
+                {
+                    FilteredClaims.Add(item);
+                }
+            }
+        }
+
+
+        private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            searchQuery = e.NewTextValue;
+            //DisplayAlert("Test", SearchQuery, "OK");
+            FilterItems();
         }
     }
 }

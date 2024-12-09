@@ -136,7 +136,6 @@ namespace test.Pages
             FilteredItems.Clear();
             if (string.IsNullOrEmpty(SearchQuery))
             {
-                // No filter applied, show all items
                 foreach (var item in DynamicItems)
                 {
                     FilteredItems.Add(item);
@@ -144,7 +143,7 @@ namespace test.Pages
             }
             else
             {
-                // Filter based on description, ID, or category
+                //add more item.var to filter more!
                 var filtered = DynamicItems
                     .Where(item =>
                         item.ID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
@@ -163,7 +162,7 @@ namespace test.Pages
         {
             SearchQuery = e.NewTextValue;
             //DisplayAlert("Test", SearchQuery, "OK");
-            FilterItems(); // Re-apply the filter when the search query changes
+            FilterItems(); 
         }
 
        

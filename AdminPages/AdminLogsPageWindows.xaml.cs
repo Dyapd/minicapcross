@@ -11,14 +11,19 @@ namespace test.AdminPages;
 
 public partial class AdminLogsPageWindows : ContentPage
 {
+    public ObservableCollection<Logs> FilteredLogs { get; set; }
+
     public ObservableCollection<Logs> Logs { get; set; }
     public ICommand ButtonCommand { get; set; }
+    public string SearchQuery { get; set; }
+
     string logId;
 
     public AdminLogsPageWindows()
     {
         InitializeComponent();
 
+        FilteredLogs = new ObservableCollection<Logs>();
 
         Logs = new ObservableCollection<Logs>();
 
@@ -30,6 +35,12 @@ public partial class AdminLogsPageWindows : ContentPage
     {
         CreatePDF();
 
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadItems();
     }
 
     private List<Logs> takeFromDatabase()
@@ -91,6 +102,12 @@ public partial class AdminLogsPageWindows : ContentPage
         {
             Logs.Add(log);
         }
+        FilteredLogs.Clear();
+        foreach (var item in Logs)
+        {
+            FilteredLogs.Add(item);
+        }
+
     }
 
     //for generating pdf!
@@ -186,6 +203,46 @@ public partial class AdminLogsPageWindows : ContentPage
             //    document.Add(table);
         }
 
+        
 
+
+    }
+
+    private void FilterItems()
+    {
+        FilteredLogs.Clear();
+        if (string.IsNullOrEmpty(SearchQuery))
+        {
+            foreach (var item in Logs)
+            {
+                FilteredLogs.Add(item);
+            }
+        }
+        else
+        {
+            //add more item.var to filter more!
+            var filtered = Logs
+                .Where(item =>
+                    item.CategoryAndLogID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.CategoryAndItemID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.ICategory.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.DateIn.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.StudentName.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.DateOut.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            foreach (var item in filtered)
+            {
+                FilteredLogs.Add(item);
+            }
+        }
+    }
+
+
+    private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        SearchQuery = e.NewTextValue;
+        //DisplayAlert("Test", SearchQuery, "OK");
+        FilterItems();
     }
 }

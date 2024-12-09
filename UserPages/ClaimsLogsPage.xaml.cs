@@ -8,12 +8,16 @@ namespace test.UserPages;
 public partial class ClaimsLogsPage : ContentPage
 {
 
+    public ObservableCollection<Items> FilteredItems { get; set; }
+
     public ObservableCollection<Items> Items { get; set; }
     public ICommand DetailsCommand { get; }
+    public string SearchQuery { get; set; }
 
     public ClaimsLogsPage()
     {
         InitializeComponent();
+        FilteredItems = new ObservableCollection<Items>();
         Items = new ObservableCollection<Items>();
         DetailsCommand = new Command<string>(OnDetailsClicked);
         BindingContext = this;
@@ -23,7 +27,7 @@ public partial class ClaimsLogsPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LoadItems();
+       LoadItems();
     }
 
     private void checkNotificationApprove()
@@ -117,6 +121,13 @@ public partial class ClaimsLogsPage : ContentPage
         {
             Items.Add(item);
         }
+
+        FilteredItems.Clear();
+
+        foreach (var item in items)
+        {
+            FilteredItems.Add(item);
+        }
     }
 
     private void ClaimApprovedChecker()
@@ -168,5 +179,43 @@ public partial class ClaimsLogsPage : ContentPage
             DisplayAlert("Error", e.Message, "Ok");
         }
         
+    }
+
+    private void FilterItems()
+    {
+        if (FilteredItems.Any() || FilteredItems == null)
+        {
+            FilteredItems.Clear();
+        }
+
+        if (string.IsNullOrEmpty(SearchQuery))
+        {
+            foreach (var item in Items)
+            {
+                FilteredItems.Add(item);
+            }
+        }
+        else
+        {
+            //add more item.var to filter more!
+            var filtered = Items
+                .Where(item =>
+                    item.CategoryAndID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.StatusString.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            foreach (var item in filtered)
+            {
+                FilteredItems.Add(item);
+            }
+        }
+    }
+
+
+    private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        SearchQuery = e.NewTextValue;
+        //DisplayAlert("Test", SearchQuery, "OK");
+        FilterItems();
     }
 }

@@ -23,49 +23,59 @@
                        VerticalOptions="Center" />
             </Frame>
 
-        
-            <Frame BackgroundColor="#1565C0"
-                   CornerRadius="10"
-                   Padding="10"
-                   HasShadow="True">
-                <Grid ColumnDefinitions="*,*,*,*" Padding="5" RowDefinitions="Auto">
-
-                    <Label Text="Student Number"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="0" />
-
-                    <Label Text="Report ID"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="1" />
-
-                
-                    <Label Text="Category"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="2" />
-                    
-                    <Label Text="Status"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="3" />
-                </Grid>
-            </Frame>
+            <SearchBar x:Name="searchBar"
+Placeholder="Search..."
+ Background="LightGray"
+TextChanged="searchBar_TextChanged"
+HorizontalOptions="FillAndExpand"
+Margin="10"/>
 
 
-            <CollectionView ItemsSource="{Binding DynamicReports}"
+
+            <CollectionView ItemsSource="{Binding FilteredReports}"
                             BackgroundColor="Transparent"
                             SelectionMode="None">
+
+                <CollectionView.Header>
+                    <Frame BackgroundColor="#1565C0"
+                           CornerRadius="10"
+                           Padding="10"
+                           HasShadow="True">
+                        <Grid ColumnDefinitions="*,*,*,*" Padding="5" RowDefinitions="Auto">
+
+                            <Label Text="Student Number"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" 
+                                   Grid.Column="0" />
+
+                            <Label Text="Report ID"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" 
+                                   Grid.Column="1" />
+
+
+                            <Label Text="Category"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" 
+                                   Grid.Column="2" />
+
+                            <Label Text="Status"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" 
+                                   Grid.Column="3" />
+                        </Grid>
+                    </Frame>
+                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
+
                     <DataTemplate>
                         <Frame CornerRadius="10"
                                Padding="10"

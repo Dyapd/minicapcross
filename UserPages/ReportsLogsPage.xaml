@@ -22,10 +22,15 @@
             </Frame>
 
 
-            
 
+            <SearchBar x:Name="searchBar"
+Placeholder="Search..."
+ Background="LightGray"
+TextChanged="searchBar_TextChanged"
+HorizontalOptions="FillAndExpand"
+Margin="10"/>
 
-            <CollectionView ItemsSource="{Binding DynamicReports}"
+            <CollectionView ItemsSource="{Binding FilteredReports}"
                         BackgroundColor="Transparent"
                         SelectionMode="None">
 

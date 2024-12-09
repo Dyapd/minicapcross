@@ -9,12 +9,17 @@ namespace test.Pages
 {
     public partial class AdminReportPage : ContentPage
     {
+        public ObservableCollection<DynamicReports> FilteredReports { get; set; }
         public ObservableCollection<DynamicReports> DynamicReports { get; set; }
+
+        public string SearchQuery { get; set; }
+
         public ICommand ButtonCommand { get; set; }
 
         public AdminReportPage()
         {
             InitializeComponent();
+            FilteredReports = new ObservableCollection<DynamicReports>();
             DynamicReports = new ObservableCollection<DynamicReports>();
             ButtonCommand = new Command<string>(OnButtonClicked);
             BindingContext = this;
@@ -88,6 +93,48 @@ namespace test.Pages
             {
                 DynamicReports.Add(report);
             }
+
+            FilteredReports.Clear();
+            foreach (var report in reports)
+            {
+                FilteredReports.Add(report);
+            }
+        }
+
+        private void FilterItems()
+        {
+            FilteredReports.Clear();
+            if (string.IsNullOrEmpty(SearchQuery))
+            {
+                foreach (var item in DynamicReports)
+                {
+                    FilteredReports.Add(item);
+                }
+            }
+            else
+            {
+                //add more item.var to filter more!
+                //filters the list containing ALL items
+                var filtered = DynamicReports
+                    .Where(item =>
+                        item.StudentNumber.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                        item.CategoryAndID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                        item.ICategory.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                foreach (var item in filtered)
+                {
+                    FilteredReports.Add(item);
+                }
+            }
+        }
+
+
+        private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchQuery = e.NewTextValue;
+            //DisplayAlert("Test", SearchQuery, "OK");
+            FilterItems();
         }
     }
 }

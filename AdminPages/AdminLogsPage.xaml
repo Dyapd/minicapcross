@@ -24,7 +24,14 @@
             </Frame>
 
 
-            <CollectionView ItemsSource="{Binding Logs}"
+            <SearchBar x:Name="searchBar"
+   Placeholder="Search..."
+    Background="LightGray"
+   TextChanged="searchBar_TextChanged"
+   HorizontalOptions="FillAndExpand"
+   Margin="10"/>
+
+            <CollectionView ItemsSource="{Binding FilteredLogs}"
                             BackgroundColor="Transparent"
                             SelectionMode="None">
 

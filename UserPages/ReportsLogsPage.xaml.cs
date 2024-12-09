@@ -8,14 +8,17 @@ namespace test.UserPages;
 
 public partial class ReportsLogsPage : ContentPage
 {
+    public ObservableCollection<DynamicReports> FilteredReports { get; set; }
+
     public ObservableCollection<DynamicReports> DynamicReports { get; set; }
     public ICommand ButtonCommand { get; set; }
+    public string SearchQuery { get; set; }
 
     public ReportsLogsPage()
     {
         InitializeComponent();
 
-
+        FilteredReports = new ObservableCollection<DynamicReports>();
         DynamicReports = new ObservableCollection<DynamicReports>();
 
         ButtonCommand = new Command<string>(OnButtonClicked);
@@ -88,5 +91,52 @@ public partial class ReportsLogsPage : ContentPage
         {
             DynamicReports.Add(report);
         }
+
+        FilteredReports.Clear();
+            foreach (var report in reports)
+            {
+                FilteredReports.Add(report);
+            }
+        
+        
+
+    }
+
+    private void FilterItems()
+    {
+        if (FilteredReports.Any() || FilteredReports == null)
+        {
+            FilteredReports.Clear();
+        }
+
+        if (string.IsNullOrEmpty(SearchQuery))
+        {
+            foreach (var item in DynamicReports)
+            {
+                FilteredReports.Add(item);
+            }
+        }
+        else
+        {
+            //add more item.var to filter more!
+            var filtered = DynamicReports
+                .Where(item =>
+                    item.CategoryAndID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.ICategory.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            foreach (var item in filtered)
+            {
+                FilteredReports.Add(item);
+            }
+        }
+    }
+
+
+    private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        SearchQuery = e.NewTextValue;
+        //DisplayAlert("Test", SearchQuery, "OK");
+        FilterItems();
     }
 }

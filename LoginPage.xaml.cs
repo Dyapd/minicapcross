@@ -74,28 +74,28 @@ namespace test
 
             //temporary hard code for testing!!
 
-            if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
-            {
-                Application.Current.MainPage = new NavigationPage(new AdminDashboard());
-                await Navigation.PushAsync(new AdminDashboard());
-            }
-            else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
-            {
-                if (DeviceInfo.Platform == DevicePlatform.Android)
-                {
-                    Application.Current.MainPage = new NavigationPage(new StudentDashboard());
-                    await Navigation.PushAsync(new StudentDashboard());
-                }
-                else if (DeviceInfo.Platform != DevicePlatform.Android)
-                {
-                    Application.Current.MainPage = new NavigationPage(new StudentDashboardWindows());
-                    await Navigation.PushAsync(new StudentDashboardWindows());
-                }
-            }
-            else
-            {
-                this.ShowPopup(new NewPage1());
-            }
+            //if (enteredEmail == adacorrecttemp && enteredPassword == adacorrecttemp)
+            //{
+            //    Application.Current.MainPage = new NavigationPage(new AdminDashboard());
+            //    await Navigation.PushAsync(new AdminDashboard());
+            //}
+            //else if (enteredEmail == stcorrecttemp && enteredPassword == stcorrecttemp)
+            //{
+            //    if (DeviceInfo.Platform == DevicePlatform.Android)
+            //    {
+            //        Application.Current.MainPage = new NavigationPage(new StudentDashboard());
+            //        await Navigation.PushAsync(new StudentDashboard());
+            //    }
+            //    else if (DeviceInfo.Platform != DevicePlatform.Android)
+            //    {
+            //        Application.Current.MainPage = new NavigationPage(new StudentDashboardWindows());
+            //        await Navigation.PushAsync(new StudentDashboardWindows());
+            //    }
+            //}
+            //else
+            //{
+            //    this.ShowPopup(new NewPage1());
+            //}
 
 
             //ADD THIS IF WANT TO TEST REAL FUNCTIONALTIY!

@@ -21,32 +21,41 @@
                        VerticalOptions="Center" />
             </Frame>
 
-            
-            <Frame BackgroundColor="#1565C0"
-                   CornerRadius="10"
-                   Padding="10"
-                   HasShadow="True">
-                <Grid ColumnDefinitions="*,*" Padding="5" RowDefinitions="Auto">
-                    <Label Text="ClaimID"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="0" />
-                    <Label Text="Details"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           Grid.Column="1" />
-                </Grid>
-            </Frame>
+            <SearchBar x:Name="searchBar"
+Placeholder="Search..."
+ Background="LightGray"
+TextChanged="searchBar_TextChanged"
+HorizontalOptions="FillAndExpand"
+Margin="10"/>
 
-            
-            <CollectionView ItemsSource="{Binding Items}"
+
+
+
+
+            <CollectionView ItemsSource="{Binding FilteredClaims}"
                             BackgroundColor="Transparent"
                             SelectionMode="None">
-                
+                <CollectionView.Header>
+                    <Frame BackgroundColor="#1565C0"
+                           CornerRadius="10"
+                           Padding="10"
+                           HasShadow="True">
+                        <Grid ColumnDefinitions="*,*" Padding="5" RowDefinitions="Auto">
+                            <Label Text="ClaimID"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" 
+                                   Grid.Column="0" />
+                            <Label Text="Details"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" 
+                                   Grid.Column="1" />
+                        </Grid>
+                    </Frame>
+                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame CornerRadius="10"

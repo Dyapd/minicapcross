@@ -11,12 +11,16 @@ namespace test.AdminPages;
 
 public partial class AdminStudentUserListPage : ContentPage
 {
+    public ObservableCollection<Users> FilteredUsers { get; set; }
     public ObservableCollection<Users> Users { get; set; }
     public ICommand ButtonCommand { get; set; }
+    public string SearchQuery { get; set; }
+
 
     public AdminStudentUserListPage()
 	{
 		InitializeComponent();
+        FilteredUsers = new ObservableCollection<Users>();
         Users = new ObservableCollection<Users>();
         ButtonCommand = new Command<string>(OnButtonClicked);
         BindingContext = this;
@@ -96,5 +100,48 @@ public partial class AdminStudentUserListPage : ContentPage
             Users.Add(user);
         }
 
+        FilteredUsers.Clear();
+        foreach(var user in users)
+        {
+            FilteredUsers.Add(user);
+        }
+    }
+
+
+    private void FilterItems()
+    {
+        FilteredUsers.Clear();
+        if (string.IsNullOrEmpty(SearchQuery))
+        {
+            foreach (var user in Users)
+            {
+                FilteredUsers.Add(user);
+            }
+        }
+        else
+        {
+            //add more item.var to filter more!
+            //filters the list containing ALL items
+            var filtered = Users
+                .Where(item =>
+                    item.StudentNumber.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.StudentName.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.StudentEmail.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    item.StudentPassword.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            foreach (var item in filtered)
+            {
+                FilteredUsers.Add(item);
+            }
+        }
+    }
+
+
+    private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        SearchQuery = e.NewTextValue;
+        //DisplayAlert("Test", SearchQuery, "OK");
+        FilterItems();
     }
 }

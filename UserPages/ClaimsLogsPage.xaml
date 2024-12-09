@@ -19,8 +19,17 @@
                    VerticalOptions="Center" />
             </Frame>
 
+            <SearchBar x:Name="searchBar"
+Placeholder="Search..."
+ Background="LightGray"
+TextChanged="searchBar_TextChanged"
+HorizontalOptions="FillAndExpand"
+Margin="10"/>
 
-            <CollectionView ItemsSource="{Binding Items}"
+
+
+
+            <CollectionView ItemsSource="{Binding FilteredItems}"
                         BackgroundColor="Transparent"
                         SelectionMode="None">
                 <CollectionView.Header>
