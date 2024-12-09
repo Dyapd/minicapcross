@@ -172,7 +172,7 @@ public partial class AdminDynamic : TabbedPage
                     command.Parameters.AddWithValue("@studid", DynamicClaims[0].StudentNumber.ToString());
 
                     command.ExecuteNonQuery();
-                    DisplayAlert("Error status clicked", "Sucessfully deleted! Redirecting to claims page.", "OK");
+                    DisplayAlert("Succesful!", "Sucessfully deleted! Redirecting to claims page.", "OK");
                     Navigation.PopAsync();
 
                 }
@@ -294,7 +294,7 @@ public partial class AdminDynamic : TabbedPage
         }
         catch (ArgumentOutOfRangeException e)
         {
-           DisplayAlert("Error in populating report page!", e.Message, "OK");
+           //DisplayAlert("Error in populating report page!", e.Message, "OK");
         }
 
 
@@ -363,7 +363,7 @@ public partial class AdminDynamic : TabbedPage
         }
         catch (Exception e)
         {
-            await DisplayAlert("ERROR CLaim", e.Message, "OK");
+            //await DisplayAlert("ERROR CLaim", e.Message, "OK");
         }
         LoadItemsReports();
         LoadItemsItems();
@@ -446,7 +446,7 @@ public partial class AdminDynamic : TabbedPage
         }
         catch (Exception e)
         {
-            await DisplayAlert("ERROR Reports", e.Message, "OK");
+            //await DisplayAlert("ERROR Reports", e.Message, "OK");
         }
         return reports;
 

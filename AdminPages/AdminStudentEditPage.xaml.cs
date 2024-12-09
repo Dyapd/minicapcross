@@ -27,7 +27,7 @@ public partial class AdminStudentEditPage : ContentPage
 
     public async void OnConfirmClick(object sender, EventArgs s)
     {
-
+        UserChangeBtn.IsEnabled = false;
         
         bool answer = await DisplayAlert("Confirmation", "Are you sure about this edit?", "Yes", "No");
         string email = EmailInput.Text;
@@ -41,24 +41,30 @@ public partial class AdminStudentEditPage : ContentPage
         if (validateEmail(email))
         {
             await DisplayAlert("Error", "Invalid email format.", "OK");
+            UserChangeBtn.IsEnabled = true;
             return;
         }
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(oldid) || string.IsNullOrEmpty(studid) || string.IsNullOrEmpty(studname) || string.IsNullOrEmpty(gradeLevel) || string.IsNullOrEmpty(section))
         {
             await DisplayAlert("Error", "Please fill in all required fields.", "OK");
+            UserChangeBtn.IsEnabled = true;
             return;
         }
 
         if (studid.Length != 8 || !studid.All(char.IsDigit))
         {
             await DisplayAlert("Error", "New Student number must be 8 digits and contain only numbers.", "OK");
+            UserChangeBtn.IsEnabled = true;
+
             return;
         }
 
         if (oldid.Length != 8 || !oldid.All(char.IsDigit))
         {
             await DisplayAlert("Error", "Old Student number must be 8 digits and contain only numbers.", "OK");
+            UserChangeBtn.IsEnabled = true;
+
             return;
         }
 
@@ -93,12 +99,17 @@ public partial class AdminStudentEditPage : ContentPage
 
 
                     await DisplayAlert("Success", "Student edited successfully.", "OK");
+                    UserChangeBtn.IsEnabled = true;
+
                     Navigation.PopAsync();
                 }
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
+                UserChangeBtn.IsEnabled = true;
+                return;
+
             }
         }
 

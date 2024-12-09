@@ -40,13 +40,14 @@ public partial class AdminUsersPage : ContentPage
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(gradeLevel) || string.IsNullOrEmpty(section) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 await DisplayAlert("Error", "Please fill in all required fields.", "OK");
-
+                AddBtn.IsEnabled = true;
                 return;
             }
 
-            if (!validateEmail(email))
+            if (validateEmail(email))
             {
                 await DisplayAlert("Error", "Invalid email format.", "OK");
+                AddBtn.IsEnabled = true;
                 return;
             }
 
@@ -84,17 +85,20 @@ public partial class AdminUsersPage : ContentPage
             {
                 await DisplayAlert("Error", "Student ID already exists. Please try again with a different ID.", "OK");
                 AddBtn.IsEnabled = true;
+                return;
             }
             else
             {
                 await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
                 AddBtn.IsEnabled = true;
+                return;
             }
         }
         catch (Exception ex)
         {
             await DisplayAlert("Error", "An error occurred: " + ex.Message, "OK");
             AddBtn.IsEnabled = true;
+            return;
         }
     }
 
