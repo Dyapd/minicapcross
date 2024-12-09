@@ -39,6 +39,37 @@ public partial class ClaimsLogsPage : ContentPage
         }
     }
 
+    private bool checkNotificationReject()
+    {
+        string stringConnection = new IPLocator().ConnectionString();
+
+
+        try
+        {
+            SqlConnection connection = new SqlConnection(stringConnection);
+            using (connection)
+            {
+                connection.Open();
+
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT 1 FROM StudentUsers WHERE Student_Reject = 1 AND Student_Number = @SessionVar";
+                command.Parameters.AddWithValue("@SessionVar", SessionVars.SessionId);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    return reader.HasRows;
+                }
+
+            }
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     private bool checkNotificationApprove()
     {
         string stringConnection = new IPLocator().ConnectionString();
@@ -53,7 +84,7 @@ public partial class ClaimsLogsPage : ContentPage
 
                 
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT 1 FROM Claims WHERE Claims_Status = 1 AND Student_Number = @SessionVar";
+                command.CommandText = "SELECT 1 FROM Claims WHERE Claim_Status = 1 AND Student_Number = @SessionVar";
                 command.Parameters.AddWithValue("@SessionVar", SessionVars.SessionId);
 
                 using (SqlDataReader reader = command.ExecuteReader())

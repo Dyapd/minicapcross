@@ -166,8 +166,10 @@ public partial class AdminDynamic : TabbedPage
                     connection.Open();
 
                     SqlCommand command = connection.CreateCommand();
-                    command.CommandText = "DELETE FROM Claims WHERE Claims_ID = @ClaimID";
+                    command.CommandText = "DELETE FROM Claims WHERE Claims_ID = @ClaimID;" +
+                        "UPDATE StudentUsers SET Student_Reject = 1 WHERE Student_ID = @studid;";
                     command.Parameters.AddWithValue("@ClaimID", DynamicClaims[0].ID.ToString());
+                    command.Parameters.AddWithValue("@studid", DynamicClaims[0].StudentNumber.ToString());
 
                     command.ExecuteNonQuery();
                     DisplayAlert("Error status clicked", "Sucessfully deleted! Redirecting to claims page.", "OK");
