@@ -10,7 +10,6 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <RefreshView>
         <ScrollView>
 
             <VerticalStackLayout Spacing="16" Padding="16">
@@ -162,5 +161,4 @@
             </VerticalStackLayout>
 
         </ScrollView>
-    </RefreshView>
 </ContentPage>

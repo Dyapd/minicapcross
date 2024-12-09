@@ -12,7 +12,10 @@ public partial class ClaimsLogsPage : ContentPage
 
     public ObservableCollection<Items> Items { get; set; }
     public ICommand DetailsCommand { get; }
+   // public ICommand RefreshCommand { get; }
+   // public bool IsRefreshing { get; set; }
     public string SearchQuery { get; set; }
+    
 
     public ClaimsLogsPage()
     {
@@ -20,11 +23,24 @@ public partial class ClaimsLogsPage : ContentPage
         FilteredItems = new ObservableCollection<Items>();
         Items = new ObservableCollection<Items>();
         DetailsCommand = new Command<string>(OnDetailsClicked);
+      //  RefreshCommand = new Command(RefreshItems);
         BindingContext = this;
         LoadItems();
         displayTheNotification();
         displayTheRejection();
+        //IsRefreshing = false;
     }
+    //public async void RefreshItems()
+    //{
+    //    IsRefreshing = true;
+    //    LoadItems();
+    //    displayTheNotification();
+    //    displayTheRejection();
+    //    IsRefreshing = false;
+    //    DisplayAlert("hmm", "a", "a");
+    //    await Task.Delay(200);  
+    //    scrollview.ScrollToAsync(0, 0, true);
+    //}
 
     protected override void OnAppearing()
     {
@@ -60,6 +76,8 @@ public partial class ClaimsLogsPage : ContentPage
                     SqlCommand command = connection.CreateCommand();
                     command.CommandText = "UPDATE StudentUsers SET Student_Reject = 0 WHERE Student_ID = @SessionVar";
                     command.Parameters.AddWithValue("@SessionVar", SessionVars.SessionId);
+
+                    command.ExecuteNonQuery();
 
                     //DisplayAlert("success","p","ok");
                 }
