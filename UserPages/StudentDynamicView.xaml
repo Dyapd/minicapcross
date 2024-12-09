@@ -11,7 +11,7 @@
                     CornerRadius="2"
                     Padding="15">
                 <Label 
-                    Text="Report Form" 
+                    Text="View Report Form" 
                     FontFamily="Roboto"
                     FontSize="Large" 
                     FontAttributes="Bold"
@@ -27,9 +27,9 @@
                x:Name="ReportImage"/>
 
 
-            <Label Text="Category"
-               FontSize="14"
-               TextColor="#555555" />
+            <Label Text="Category:"
+                  FontSize="20"
+FontAttributes="Bold" />
             <Label Text="None"
                x:Name="ReportCategoryText"
                FontSize="16"
@@ -37,8 +37,8 @@
 
 
             <Label Text="Location:"
-               FontSize="14"
-               TextColor="#555555" />
+                  FontSize="20"
+FontAttributes="Bold" />
             <Label Text="None"
                x:Name="ReportLocationText"
                FontSize="16"
@@ -46,8 +46,8 @@
 
 
             <Label Text="Date and Time:"
-               FontSize="14"
-               TextColor="#555555" />
+                  FontSize="20"
+FontAttributes="Bold" />
             <Label Text="None"
                x:Name="ReportDateAndTimeText"
                FontSize="16"
@@ -55,8 +55,8 @@
 
 
             <Label Text="Description:"
-               FontSize="14"
-               TextColor="#555555" />
+                  FontSize="20"
+FontAttributes="Bold" />
             <Label Text="None"
                x:Name="ReportDescriptionText"
                FontSize="16"
@@ -64,8 +64,8 @@
 
 
             <Label Text="Status:"
-               FontSize="14"
-               TextColor="#555555" />
+                  FontSize="20"
+FontAttributes="Bold"  />
             <Label Text="None"
                x:Name="ReportStatusText"
                FontSize="16"

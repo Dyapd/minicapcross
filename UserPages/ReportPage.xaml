@@ -109,6 +109,10 @@ Text="Date and Time Lost*:"/>
                         <x:String>2nd Floor</x:String>
                         <x:String>3rd Floor</x:String>
                         <x:String>4th Floor</x:String>
+                        <x:String>5th Floor</x:String>
+                        <x:String>6th Floor</x:String>
+                        <x:String>7th Floor</x:String>
+                        <x:String>8th Floor</x:String>
                         <x:String>Penthouse</x:String>
                     </x:Array>
                 </Picker.ItemsSource>

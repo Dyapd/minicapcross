@@ -11,7 +11,7 @@
                CornerRadius="10"
                Padding="10"
                HasShadow="True">
-                <Label Text="Claims Log"
+                <Label Text="Claims Approval Log"
                    FontSize="24"
                    TextColor="White"
                    FontAttributes="Bold"

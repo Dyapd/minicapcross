@@ -30,7 +30,7 @@ public partial class AdminItemDynamicPage : ContentPage
         ItemLocationText.Text = DynamicItems[0].Location.ToString();
         ItemDateAndTimeText.Text = DynamicItems[0].Date.ToString();
         ItemDescriptionText.Text = DynamicItems[0].Description.ToString();
-        ItemStatusText.Text = DynamicItems[0].Status.ToString();
+       // ItemStatusText.Text = DynamicItems[0].Status.ToString();
     }
 
     //removing the selected item

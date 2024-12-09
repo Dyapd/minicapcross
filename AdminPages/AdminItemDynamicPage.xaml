@@ -7,11 +7,18 @@
         <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
 
-            <Label Text="Item Form"
-               FontSize="20"
-               FontAttributes="Bold"
-               TextColor="#333333"
-               HorizontalOptions="Center" />
+
+            <Frame BackgroundColor="#1565C0"
+       CornerRadius="10"
+       Padding="10"
+       HasShadow="True">
+                <Label Text="Item Form"
+           FontSize="24"
+           TextColor="White"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            </Frame>
 
 
             <Image Source="placeholder.png"
@@ -21,9 +28,9 @@
                x:Name="ItemImage"/>
 
 
-            <Label Text="Category"
-               FontSize="14"
-               TextColor="#555555" />
+            <Label Text="Category:"
+                  FontSize="20"
+FontAttributes="Bold"  />
             <Label Text="None"
                x:Name="ItemCategoryText"
                FontSize="16"
@@ -31,8 +38,8 @@
 
 
             <Label Text="Location:"
-               FontSize="14"
-               TextColor="#555555" />
+                  FontSize="20"
+FontAttributes="Bold" />
             <Label Text="None"
                x:Name="ItemLocationText"
                FontSize="16"
@@ -40,8 +47,8 @@
 
 
             <Label Text="Date and Time:"
-               FontSize="14"
-               TextColor="#555555" />
+                  FontSize="20"
+FontAttributes="Bold" />
             <Label Text="None"
                x:Name="ItemDateAndTimeText"
                FontSize="16"
@@ -49,21 +56,21 @@
 
 
             <Label Text="Description:"
-               FontSize="14"
-               TextColor="#555555" />
+                  FontSize="20"
+FontAttributes="Bold"  />
             <Label Text="None"
                x:Name="ItemDescriptionText"
                FontSize="16"
                TextColor="#333333" />
 
 
-            <Label Text="Status:"
-               FontSize="14"
-               TextColor="#555555" />
+            <!--<Label Text="Status:"
+                  FontSize="20"
+FontAttributes="Bold"  />
             <Label Text="None"
                x:Name="ItemStatusText"
                FontSize="16"
-               TextColor="#333333" />
+               TextColor="#333333" />-->
 
             <Button Text="Remove Item"
                     x:Name="ReportChangeBtn"

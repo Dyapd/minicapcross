@@ -17,6 +17,7 @@ namespace test.Pages
         {
             InitializeComponent();
             Items = new ObservableCollection<Items>();
+            FilteredClaims = new ObservableCollection<Items>();
             DetailsCommand = new Command<string>(OnDetailsClicked);
             BindingContext = this;
             LoadItems();
@@ -74,18 +75,26 @@ namespace test.Pages
 
         private async void LoadItems()
         {
-            List<Items> items = await ReadDataNotificationLog();
-            Items.Clear();
-            foreach (Items item in items)
+            try
             {
-                Items.Add(item);
-            }
+                List<Items> items = await ReadDataNotificationLog();
+                Items.Clear();
+                foreach (Items item in items)
+                {
+                    Items.Add(item);
+                }
 
-            FilteredClaims.Clear();
-            foreach(var item in items)
-            {
-                FilteredClaims.Add(item);
+                FilteredClaims.Clear();
+                foreach (var item in items)
+                {
+                    FilteredClaims.Add(item);
+                }
             }
+            catch(NullReferenceException e)
+            {
+                DisplayAlert("No Claims", "There are no claims present yet.", "OK");
+            }
+            
         }
 
         private void FilterItems()

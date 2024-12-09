@@ -63,7 +63,7 @@ public partial class AdminReportsDynamicPage : ContentPage
         ReportLocationText.Text = DynamicReports[0].Location.ToString();
         ReportDateAndTimeText.Text = DynamicReports[0].Date.ToString();
         ReportDescriptionText.Text = DynamicReports[0].Description.ToString();
-        ReportStatusText.Text = DynamicReports[0].Status.ToString();
+        //ReportStatusText.Text = DynamicReports[0].Status.ToString();
     }
 
     private async Task<List<DynamicReports>> takeFromDatabaseReport()

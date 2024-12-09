@@ -7,11 +7,19 @@
         <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="StartAndExpand">
 
 
-            <Label Text="Dynamic Page Report Form viewing"
-           FontSize="20"
+
+            <Frame BackgroundColor="#1565C0"
+       CornerRadius="10"
+       Padding="10"
+       HasShadow="True">
+                <Label Text="Report Form"
+           FontSize="24"
+           TextColor="White"
+
            FontAttributes="Bold"
-           TextColor="#333333"
-           HorizontalOptions="Center" />
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            </Frame>
 
 
             <Image Source="placeholder.png"
@@ -21,9 +29,10 @@
            x:Name="ReportImage"/>
 
 
-            <Label Text="Category"
-           FontSize="14"
-           TextColor="#555555" />
+            <Label Text="Category:"
+           FontSize="20"
+                   FontAttributes="Bold"
+            />
             <Label Text="None"
            x:Name="ReportCategoryText"
            FontSize="16"
@@ -31,8 +40,8 @@
 
 
             <Label Text="Location:"
-           FontSize="14"
-           TextColor="#555555" />
+          FontSize="20"
+        FontAttributes="Bold" />
             <Label Text="None"
            x:Name="ReportLocationText"
            FontSize="16"
@@ -40,8 +49,8 @@
 
 
             <Label Text="Date and Time:"
-           FontSize="14"
-           TextColor="#555555" />
+           FontSize="20"
+        FontAttributes="Bold" />
             <Label Text="None"
            x:Name="ReportDateAndTimeText"
            FontSize="16"
@@ -49,21 +58,21 @@
 
 
             <Label Text="Description:"
-           FontSize="14"
-           TextColor="#555555" />
+           FontSize="20"
+        FontAttributes="Bold" />
             <Label Text="None"
            x:Name="ReportDescriptionText"
            FontSize="16"
            TextColor="#333333" />
 
 
-            <Label Text="Status:"
+            <!--<Label Text="Status:"
            FontSize="14"
            TextColor="#555555" />
             <Label Text="None"
            x:Name="ReportStatusText"
            FontSize="16"
-           TextColor="#333333" />
+           TextColor="#333333" />-->
 
 
         </VerticalStackLayout>
