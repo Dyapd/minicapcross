@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test.AdminPages.AdminStudentUserListAndroid"
+             Title="Student User List">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+
+            <Frame BackgroundColor="#1565C0"
+       CornerRadius="10"
+       Padding="10"
+       HasShadow="True">
+                <Label Text="Student Users"
+           FontSize="24"
+           TextColor="White"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            </Frame>
+
+
+            <SearchBar x:Name="searchBar"
+Placeholder="Search..."
+ Background="LightGray"
+TextChanged="searchBar_TextChanged"
+HorizontalOptions="FillAndExpand"
+Margin="10"/>
+
+
+
+            <CollectionView ItemsSource="{Binding FilteredUsers}"
+                BackgroundColor="Transparent"
+                SelectionMode="None">
+                <CollectionView.Header>
+                    <Frame BackgroundColor="#1565C0"
+                            CornerRadius="10"
+                            Padding="10"
+                            HasShadow="True">
+                        <Grid ColumnDefinitions="*,2*,*,*" Padding="5" RowDefinitions="Auto">
+                            <Label Text="Student Number"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" 
+                                   FontSize="12"
+                                Grid.Column="0" />
+                            <Label Text="Email"
+                                    TextColor="White"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                   FontSize="12"
+                                    VerticalOptions="Center" 
+                                    Grid.Column="1" />
+                            <Label Text="Pass"
+                                    TextColor="White"
+                                   FontSize="12"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" 
+                                    Grid.Column="2" />
+                        </Grid>
+                    </Frame>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                   Padding="10"
+                   BackgroundColor="White"
+                   Margin="5"
+                   HasShadow="True">
+                            <Grid ColumnDefinitions="*, Auto,*,*"
+                      Padding="5">
+
+                                <Label Text="{Binding StudentNumber}"
+                           FontSize="10"
+                               Grid.Column="0"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                                       HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+
+
+                                <Label Text="{Binding StudentEmail}"
+                           Grid.Column="1"
+                           FontSize="12"
+                           TextColor="Black"
+                                       HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+
+                                <Label Text="{Binding StudentPassword}"
+                           Grid.Column="2"
+                           FontSize="12"
+                           TextColor="Black"
+                                       HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+
+                                <Button Text="Edit"
+                            Grid.Column="3"
+                            BackgroundColor="#E53935"
+                            TextColor="White"
+                                        FontSize="12"
+                            CornerRadius="5"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ButtonCommand}"
+                            CommandParameter="{Binding StudentNumber}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Button Text="Add Student Account"
+        BackgroundColor="#1565C0"
+        TextColor="White"
+        CornerRadius="5"
+        HorizontalOptions="Center"
+        Padding="10"
+        Clicked="OnAddUserBtnClicked"/>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

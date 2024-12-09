@@ -72,6 +72,7 @@ Text="Date and Time Lost*:"/>
      DateSelected="OnDateSelected">
                 </DatePicker>
                 <TimePicker x:Name="TimeInput"
+                            
                 Background="#EEEEEE"
     Time="12:00:00"/>
             </StackLayout>

@@ -126,7 +126,7 @@ public partial class AdminDynamic : TabbedPage
                     command.CommandText = "UPDATE Claims SET Claim_Status = 0 WHERE Claims_ID = @ClaimID";
                     command.Parameters.AddWithValue("@ClaimID", DynamicClaims[0].ID.ToString());
                     command.ExecuteNonQuery();
-                    DisplayAlert("Error status clicked", "Changed approval status of claim to false!", "OK");
+                    DisplayAlert("Change successful!", "Changed approval status of claim to false!", "OK");
                     LoadItemsClaims();
                 }
                 else
@@ -134,7 +134,7 @@ public partial class AdminDynamic : TabbedPage
                     command.CommandText = "UPDATE Claims SET Claim_Status = 1 WHERE Claims_ID = @ClaimID";
                     command.Parameters.AddWithValue("@ClaimID", DynamicClaims[0].ID.ToString());
                     command.ExecuteNonQuery();
-                    DisplayAlert("Error status clicked", "Changed approval status of claim to true!", "OK");
+                    DisplayAlert("Change successful!", "Changed approval status of claim to true!", "OK");
                     LoadItemsClaims();
 
                 }
@@ -260,15 +260,20 @@ public partial class AdminDynamic : TabbedPage
             {
                 ClaimImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicClaims[0].Image));
             }
-            
+
 
             //for item page
-            ItemImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicItems[0].Image));
+
+            if (DynamicItems[0].Image != null)
+            {
+                ItemImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicItems[0].Image));
+            }
+            
             ItemCategoryText.Text = DynamicItems[0].ICategory.ToString();
             ItemLocationText.Text = DynamicItems[0].Location.ToString();
             ItemDateAndTimeText.Text = DynamicItems[0].Date.ToString();
             ItemDescriptionText.Text = DynamicItems[0].Description.ToString();
-            ItemStatusText.Text = DynamicItems[0].Status.ToString();
+            //ItemStatusText.Text = DynamicItems[0].Status.ToString();
 
             //for report page
             if (DynamicClaims[0].Image != null)
@@ -281,7 +286,7 @@ public partial class AdminDynamic : TabbedPage
             ReportLocationText.Text = DynamicReports[0].Location.ToString();
             ReportDateAndTimeText.Text = DynamicReports[0].Date.ToString();
             ReportDescriptionText.Text = DynamicReports[0].Description.ToString();
-            ReportStatusText.Text = DynamicReports[0].Status.ToString();
+            //ReportStatusText.Text = DynamicReports[0].Status.ToString();
 
 
         }
@@ -293,7 +298,7 @@ public partial class AdminDynamic : TabbedPage
 
     }
 
-    //claim report only
+    //claim form only
     private async Task<List<DynamicClaims>> takeFromDatabaseClaim()
     {
         IPLocator ip = new IPLocator();
@@ -377,6 +382,7 @@ public partial class AdminDynamic : TabbedPage
 
     }
 
+    //for report forms
     private async Task<List<DynamicReports>> takeFromDatabaseReport()
     {
         IPLocator ip = new IPLocator();
@@ -452,7 +458,7 @@ public partial class AdminDynamic : TabbedPage
             DynamicReports.Add(report);
         }
 
-        //await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
+        await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
         populateDynamicPage();
 
     }
@@ -520,7 +526,7 @@ public partial class AdminDynamic : TabbedPage
             DynamicItems.Add(item);
         }
 
-        //await DisplayAlert("Items Added Reports", $"{DynamicReports.Count} items have been added.", "OK");
+        await DisplayAlert("Items Added Items", $"{DynamicReports.Count} items have been added.", "OK");
         populateDynamicPage();
 
     }

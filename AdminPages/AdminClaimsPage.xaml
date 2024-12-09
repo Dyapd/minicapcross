@@ -43,11 +43,13 @@ Margin="10"/>
                         <Grid ColumnDefinitions="*,*" Padding="5" RowDefinitions="Auto">
                             <Label Text="ClaimID"
                                    TextColor="White"
+                                   FontSize="13"
                                    FontAttributes="Bold"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center" 
                                    Grid.Column="0" />
                             <Label Text="Details"
+                                   FontSize="13"
                                    TextColor="White"
                                    FontAttributes="Bold"
                                    HorizontalOptions="Center"
@@ -68,7 +70,7 @@ Margin="10"/>
 
                                 <Label Text="{Binding CategoryAndID}"
                                        Grid.Column="0"
-                                       FontSize="18"
+                                       FontSize="13"
                                        FontAttributes="Bold"
                                        TextColor="#1565C0"
                                        VerticalOptions="Center" 
@@ -77,7 +79,8 @@ Margin="10"/>
 
 
                                 <Button Text="Details"
-                                        Grid.Column="2"
+                                        FontSize="13"
+                                        Grid.Column="1"
                                         MaximumWidthRequest="100"
                                         BackgroundColor="#E53935"
                                         TextColor="White"

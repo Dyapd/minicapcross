@@ -157,13 +157,7 @@ FontSize="20" />
                        TextColor="#333333" />
 
                 
-                <Label Text="Status:"
-                       FontAttributes="Bold"
-FontSize="20" />
-                <Label Text="None"
-                       x:Name="ReportStatusText"
-                       FontSize="16"
-                       TextColor="#333333" />
+
 
                 
 
@@ -234,13 +228,7 @@ FontSize="20" />
                        TextColor="#333333" />
 
 
-                <Label Text="Status:"
-                       FontAttributes="Bold"
-FontSize="20" />
-                <Label Text="None"
-                       x:Name="ItemStatusText"
-                       FontSize="16"
-                       TextColor="#333333" />
+
 
 
 

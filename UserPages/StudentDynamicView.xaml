@@ -63,13 +63,13 @@ FontAttributes="Bold" />
                TextColor="#333333" />
 
 
-            <Label Text="Status:"
+            <!--<Label Text="Status:"
                   FontSize="20"
 FontAttributes="Bold"  />
             <Label Text="None"
                x:Name="ReportStatusText"
                FontSize="16"
-               TextColor="#333333" />
+               TextColor="#333333" />-->
 
 
             <Button Text="Rescind Report"

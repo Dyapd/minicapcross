@@ -22,6 +22,7 @@ public partial class ClaimsLogsPage : ContentPage
         DetailsCommand = new Command<string>(OnDetailsClicked);
         BindingContext = this;
         LoadItems();
+        displayTheNotification();
     }
 
     protected override void OnAppearing()
@@ -30,7 +31,15 @@ public partial class ClaimsLogsPage : ContentPage
        LoadItems();
     }
 
-    private void checkNotificationApprove()
+    private void displayTheNotification()
+    {
+        if (checkNotificationApprove())
+        {
+            DisplayAlert("Approved!", "One or more claims have been approved. Please proceed to the student affairs room to claim your item!", "OK");
+        }
+    }
+
+    private bool checkNotificationApprove()
     {
         string stringConnection = new IPLocator().ConnectionString();
 
@@ -47,12 +56,17 @@ public partial class ClaimsLogsPage : ContentPage
                 command.CommandText = "SELECT 1 FROM Claims WHERE Claims_Status = 1 AND Student_Number = @SessionVar";
                 command.Parameters.AddWithValue("@SessionVar", SessionVars.SessionId);
 
-                
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    return reader.HasRows;
+                }
+
             }
         }
         catch
         {
-
+            return false;
         }
     }
 
@@ -92,7 +106,7 @@ public partial class ClaimsLogsPage : ContentPage
                         }
                         else
                         {
-                            statusString = "Not Approved";
+                            statusString = "Waiting for approval";
                         }
                         items.Add(new Items
                         {

@@ -24,8 +24,13 @@ namespace test.Pages
             ButtonCommand = new Command<string>(OnButtonClicked);
             BindingContext = this;
             LoadItems();
+            androidCheck();
         }
 
+        private void androidCheck()
+        {
+            
+        }
         protected override void OnAppearing()
         {
             base.OnAppearing();

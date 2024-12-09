@@ -45,35 +45,41 @@
                             <Grid ColumnDefinitions="*,*,*,*,*,*" Padding="5" RowDefinitions="Auto" ColumnSpacing="10">
                                 <Label Text="LogID"
                            TextColor="White"
+                                       FontSize="12"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="0" />
                                 <Label Text="ItemID"
+                                       FontSize="12"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="1" />
                                 <Label Text="Category"
+                                       FontSize="12"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="2" />
                                 <Label Text="Date Submitted"
+                                       FontSize="12"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="3" />
                                 <Label Text="Claimed By"
+                                       FontSize="12"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
                             VerticalOptions="Center" 
                             Grid.Column="4" />
                                 <Label Text="Date Taken"
+                                       FontSize="12"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
@@ -94,37 +100,37 @@
                             <ScrollView Orientation="Horizontal">
                                 <Grid ColumnDefinitions="*,*,*,*,*,*" Padding="5" ColumnSpacing="10">
                                     <Label Text="{Binding CategoryAndLogID}"
-                               FontSize="18"
+                               FontSize="12"
                                FontAttributes="Bold"
                                TextColor="#1565C0"
                                VerticalOptions="Center"
                                Grid.Column="0"/>
                                     <Label Text="{Binding CategoryAndItemID}"
-                               FontSize="18"
+                               FontSize="12"
                                FontAttributes="Bold"
                                TextColor="#1565C0"
                                VerticalOptions="Center" 
                                Grid.Column="1"/>
                                     <Label Text="{Binding ICategory}"
-                               FontSize="18"
+                               FontSize="12"
                                FontAttributes="Bold"
                                TextColor="#1565C0"
                                VerticalOptions="Center" 
                                Grid.Column="2"/>
                                     <Label Text="{Binding DateIn}"
-                               FontSize="18"
+                               FontSize="12"
                                FontAttributes="Bold"
                                TextColor="#1565C0"
                                VerticalOptions="Center"
                                Grid.Column="3"/>
                                     <Label Text="{Binding StudentName}"
-                               FontSize="18"
+                               FontSize="12"
                                FontAttributes="Bold"
                                TextColor="#1565C0"
                                VerticalOptions="Center" 
                                Grid.Column="4"/>
                                     <Label Text="{Binding DateOut}"
-                               FontSize="18"
+                               FontSize="12"
                                FontAttributes="Bold"
                                TextColor="#1565C0"
                                VerticalOptions="Center"
@@ -137,13 +143,13 @@
             </CollectionView>
 
 
-            <Button Text="Generate Report (PDF)"
+            <!--<Button Text="Generate Report (PDF)"
         BackgroundColor="#1565C0"
         TextColor="White"
         CornerRadius="5"
         HorizontalOptions="Center"
         Padding="10"
-        Clicked="OnGenerateClicked"/>
+        Clicked="OnGenerateClicked"/>-->
         </VerticalStackLayout>
 
     </ScrollView>

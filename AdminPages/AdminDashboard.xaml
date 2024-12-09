@@ -105,7 +105,7 @@
                     x:Name="LogoutBtn"
                     ImageSource="logout.png"
                     ContentLayout="Left, 10"
-                    BackgroundColor="#E57373"
+                    BackgroundColor="Red"
                     TextColor="White"
                     FontAttributes="Bold"
                     CornerRadius="30"

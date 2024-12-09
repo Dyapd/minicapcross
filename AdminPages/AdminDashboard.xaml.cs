@@ -128,7 +128,16 @@ public partial class AdminDashboard : ContentPage
 
     public async void OnClickedUsersBtn(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AdminStudentUserListPage());
+        
+
+        if (DeviceInfo.Platform == DevicePlatform.Android)
+        {
+            await Navigation.PushAsync(new AdminStudentUserListAndroid());
+        }
+        else if (DeviceInfo.Platform != DevicePlatform.Android)
+        {
+            await Navigation.PushAsync(new AdminStudentUserListPage());
+        }
     }
     public async void OnClickedLogoutBtn(object sender, EventArgs e)
 	{

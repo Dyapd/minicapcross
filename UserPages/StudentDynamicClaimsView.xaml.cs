@@ -62,7 +62,15 @@ public partial class StudentDynamicClaimsView : ContentPage
         try
         {
             //for claim page
-            ClaimStatusText.Text = DynamicClaims[0].Status.ToString();
+            //ClaimStatusText.Text = DynamicClaims[0].Status.ToString();
+            if (DynamicClaims[0].Status)
+            {
+                ClaimStatusText.Text = "Approved!";
+            } else if (!DynamicClaims[0].Status)
+            {
+                ClaimStatusText.Text = "Not yet approved.";
+            }
+
             ClaimDescriptionText.Text = DynamicClaims[0].Description.ToString();
 
             // picture display

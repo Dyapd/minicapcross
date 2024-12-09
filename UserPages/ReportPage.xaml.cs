@@ -178,6 +178,7 @@ public partial class ReportPage : ContentPage
         ReportItemBtn.IsEnabled = false;
         try
         {
+
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
 
@@ -187,6 +188,16 @@ public partial class ReportPage : ContentPage
             {
                 await DisplayAlert("Validation Error!", "Please fill in all required fields.", "OK");
                 ReportItemBtn.IsEnabled = true;
+                return;
+            }
+            //check time
+            DateTime reportDate = SetDateTime();
+            DateTime currentDateTime = DateTime.Now;
+
+            if (reportDate > currentDateTime)
+            {
+                DisplayAlert("Error", "Future date and time is not allowed.", "OK");
+                TimeInput.Time = DateTime.Now.TimeOfDay;
                 return;
             }
 
@@ -312,6 +323,9 @@ public partial class ReportPage : ContentPage
     {
         var selectedDate = e.NewDate;
         DayOfWeek dayOfWeek = selectedDate.DayOfWeek;
+
+        
+
 
         if (dayOfWeek == DayOfWeek.Sunday)
         {

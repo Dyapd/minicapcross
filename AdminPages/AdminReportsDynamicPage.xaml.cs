@@ -58,12 +58,15 @@ public partial class AdminReportsDynamicPage : ContentPage
             ReportImage.Source = ImageSource.FromStream(() => new MemoryStream(DynamicReports[0].Image));
         }
 
+        string studname = SessionVars.TakeStudentInfoAdmin(DynamicReports[0].StudentNumber.ToString());
+
 
         ReportCategoryText.Text = DynamicReports[0].ICategory.ToString();
         ReportLocationText.Text = DynamicReports[0].Location.ToString();
         ReportDateAndTimeText.Text = DynamicReports[0].Date.ToString();
         ReportDescriptionText.Text = DynamicReports[0].Description.ToString();
-        //ReportStatusText.Text = DynamicReports[0].Status.ToString();
+        StudentNumberText.Text = DynamicReports[0].StudentNumber.ToString();
+        StudentNameText.Text = studname;
     }
 
     private async Task<List<DynamicReports>> takeFromDatabaseReport()
@@ -145,4 +148,6 @@ public partial class AdminReportsDynamicPage : ContentPage
         populateDynamicPage();
 
     }
+
+    
 }

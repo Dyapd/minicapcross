@@ -48,7 +48,7 @@ namespace test.DataHolders
         {
             public string Category { get; set; }
             public string ID { get; set; }
-            public Boolean Status { get; set; }
+            public bool Status { get; set; }
             public string ICategory { get; set; }
             public string Description { get;  set; }
             public string StudentNumber { get; set; }

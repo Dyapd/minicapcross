@@ -209,7 +209,6 @@ public partial class ClaimPage : ContentPage
                 command.Parameters.AddWithValue("@RID", reportID);
                 command.Parameters.AddWithValue("@ITCategory", "I");
                 command.Parameters.AddWithValue("@IID", claimID);
-
                 command.Parameters.AddWithValue("@reportID", reportID);
 
                 connection.Open();

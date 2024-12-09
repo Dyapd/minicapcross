@@ -90,7 +90,7 @@
                                     <Button ImageSource="manuscript.png"
                                             ContentLayout="Left, 5"
                                             x:Name="ClaimsBtn"
-                                            Text="Claim Logs"
+                                            Text="Claim Form Approval"
                                             BackgroundColor="#1565C0"
                                             HorizontalOptions="CenterAndExpand"
                                             CornerRadius="20"

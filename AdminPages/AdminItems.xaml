@@ -52,12 +52,14 @@
                         <Grid ColumnDefinitions="*,*,*" Padding="5" RowDefinitions="Auto">
                             <Label Text="ItemID"
                                    TextColor="White"
+                                   FontSize="13"
                                    FontAttributes="Bold"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center" 
                                    Grid.Column="0" />
                             <Label Text="Category"
                                    TextColor="White"
+                                   FontSize="13"
                                    FontAttributes="Bold"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center" 
@@ -65,6 +67,7 @@
                             <Label Text="Details"
                                    TextColor="White"
                                    FontAttributes="Bold"
+                                   FontSize="13"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center" 
                                    Grid.Column="2" />
@@ -82,7 +85,7 @@
                                   Padding="5">
 
                                 <Label Text="{Binding CategoryAndID}"
-                                       FontSize="18"
+                                       FontSize="13"
                                        Grid.Column="0"
                                        HorizontalOptions="Center"
                                        FontAttributes="Bold"
@@ -92,7 +95,7 @@
 
                                 <Label Text="{Binding ICategory}"
                                        Grid.Column="1"
-                                       FontSize="18"
+                                       FontSize="13"
                                        TextColor="Black"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
@@ -102,6 +105,7 @@
                                 
                                 <Button Text="Details"
                                         Grid.Column="2"
+                                        FontSize="13"
                                         HorizontalOptions="Center"
                                         BackgroundColor="#E53935"
                                         TextColor="White"

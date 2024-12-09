@@ -56,6 +56,21 @@
            FontSize="16"
            TextColor="#333333" />
 
+            <Label Text="Student Number:"
+   FontSize="20"
+FontAttributes="Bold" />
+            <Label Text="None"
+   x:Name="StudentNumberText"
+   FontSize="16"
+   TextColor="#333333" />
+
+            <Label Text="Student Name:"
+   FontSize="20"
+FontAttributes="Bold" />
+            <Label Text="None"
+   x:Name="StudentNameText"
+   FontSize="16"
+   TextColor="#333333" />
 
             <Label Text="Description:"
            FontSize="20"

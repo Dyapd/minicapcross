@@ -146,8 +146,9 @@ namespace test.Pages
                 //add more item.var to filter more!
                 var filtered = DynamicItems
                     .Where(item =>
+                        item.CategoryAndID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
                         item.ID.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
-                        item.ICategory.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
+                        item.ICategory.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase ))
                     .ToList();
 
                 foreach (var item in filtered)
