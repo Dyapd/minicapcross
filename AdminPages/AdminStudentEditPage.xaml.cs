@@ -47,7 +47,7 @@ public partial class AdminStudentEditPage : ContentPage
                 SqlConnection connection = new SqlConnection(connectionString);
                 using (connection)
                 {
-                    await connection.OpenAsync();
+                    connection.Open();
 
                     using (SqlCommand command = new SqlCommand(
                     "UPDATE StudentUsers SET Student_Email = @email, Student_Password = @password, Student_ID = @studid WHERE Student_ID = @oldid; " +

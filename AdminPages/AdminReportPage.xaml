@@ -28,16 +28,16 @@
                    CornerRadius="10"
                    Padding="10"
                    HasShadow="True">
-                <Grid ColumnDefinitions="*,*,*" Padding="5" RowDefinitions="Auto">
+                <Grid ColumnDefinitions="*,*,*,*" Padding="5" RowDefinitions="Auto">
 
-                    <Label Text="ReportID"
+                    <Label Text="Student Number"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="0" />
 
-                    <Label Text="Category"
+                    <Label Text="Report ID"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
@@ -45,12 +45,19 @@
                            Grid.Column="1" />
 
                 
-                    <Label Text="Status"
+                    <Label Text="Category"
                            TextColor="White"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" 
                            Grid.Column="2" />
+                    
+                    <Label Text="Status"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           Grid.Column="3" />
                 </Grid>
             </Frame>
 
@@ -65,10 +72,10 @@
                                BackgroundColor="White"
                                Margin="5"
                                HasShadow="True">
-                            <Grid ColumnDefinitions="*, *, *"
+                            <Grid ColumnDefinitions="*,*,*,*"
                                   Padding="5">
-                            
-                                <Label Text="{Binding CategoryAndID}"
+
+                                <Label Text="{Binding StudentNumber}"
                                        Grid.Column="0"
                                        FontSize="18"
                                        FontAttributes="Bold"
@@ -76,8 +83,16 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
 
-                                <Label Text="{Binding ICategory}"
+                                <Label Text="{Binding CategoryAndID}"
                                        Grid.Column="1"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#1565C0"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+
+                                <Label Text="{Binding ICategory}"
+                                       Grid.Column="2"
                                        FontSize="18"
                                        FontAttributes="Bold"
                                        TextColor="#1565C0"
@@ -86,7 +101,7 @@
 
 
                                 <Button Text="Details"
-                                        Grid.Column="2"
+                                        Grid.Column="3"
                                         BackgroundColor="#E53935"
                                         HorizontalOptions="Center"
                                         VerticalOptions="Center"

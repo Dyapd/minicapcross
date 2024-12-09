@@ -204,7 +204,7 @@ public partial class ReportPage : ContentPage
                 insertWithImage(connectionString, reportICategory, reportDescription, reportLocation, reportDateTime);
             }
             ReportItemBtn.IsEnabled = true;
-            Navigation.PushAsync(new ReportsLogsPage());
+            Navigation.PopAsync();
         }
         catch (Exception ec)
         {

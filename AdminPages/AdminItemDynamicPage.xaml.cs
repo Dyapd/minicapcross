@@ -49,11 +49,12 @@ public partial class AdminItemDynamicPage : ContentPage
                     connection.Open();
                     SqlCommand command = connection.CreateCommand();
                     command.CommandText = "DELETE FROM Items WHERE Item_ID = @itemID";
-                    command.Parameters.AddWithValue("@itemID", SessionVars.DynamicReportID);
+                    command.Parameters.AddWithValue("@itemID", SessionVars.DynamicItemID);
 
                     command.ExecuteNonQuery();
                     DisplayAlert("Succesful deletion.", "The item has been successfuly removed!", "OK");
                 }
+                Navigation.PopAsync();
             }
 
             catch (Exception ex)
