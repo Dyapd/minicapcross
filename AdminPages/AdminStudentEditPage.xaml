@@ -88,7 +88,8 @@
             FontSize="10"
             TextColor="DimGray"/>
             <Entry
-                BackgroundColor="#EEEEEE"/>
+                BackgroundColor="#EEEEEE"
+                x:Name="EmailInput"/>
             <BoxView HeightRequest="1"
          BackgroundColor="Gray"
          HorizontalOptions="FillAndExpand"

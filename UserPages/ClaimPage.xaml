@@ -90,10 +90,11 @@
                 </Picker>-->
                 <!--abv-->
 
-                <Label Text="Extra Information:" FontSize="Medium" />
+                <Label Text="Extra Information*:" FontSize="Medium" />
                 <Entry x:Name="DescriptionInput" BackgroundColor="#EEEEEE" TextColor="Black" />
                 <Button 
                 Text="Claim"
+                    x:Name="ClaimBtn"
                 BackgroundColor="Red"
                 TextColor="White"
                 CornerRadius="8"

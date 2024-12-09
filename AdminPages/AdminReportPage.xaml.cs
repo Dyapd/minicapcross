@@ -54,7 +54,7 @@ namespace test.Pages
                     "Report_ID, Report_Status, Report_ICategory, Report_Description" +
                     " FROM Reports";
 
-                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {

@@ -17,17 +17,22 @@ public partial class ClaimPage : ContentPage
 
     public ClaimPage()
     {
-        
         InitializeComponent();
         //DisplayAlert("Test", SessionVars.SessionId, "OK");
         Items = new ObservableCollection<Items>();
         Items2 = new ObservableCollection<Items2>();
         BindingContext = this;
         LoadItems();
-        
     }
     private void OnSaveButtonClicked(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(DescriptionInput.Text))
+        {
+            DisplayAlert("Validation Error!", "Please fill in all required fields.", "OK");
+            ClaimBtn.IsEnabled = true;
+            return;
+        }
+
         SaveToDatabase();
         Navigation.PopAsync();
     }
@@ -193,7 +198,7 @@ public partial class ClaimPage : ContentPage
             {
                 string query = @"INSERT INTO Claims (Claim_Category, Claim_Status, Claim_ICategory, Claim_Description, Student_Number, Report_Category, Report_ID, Item_Category, Item_ID)
                                 VALUES (@Category, @Status, @ICategory, @Description, @Student, @RCategory, @RID, @ITCategory, @IID)" +
-                                "UPDATE Reports SET Report_Status = true WHERE Report_ID = @reportID;";
+                                "UPDATE Reports SET Report_Status = 1 WHERE Report_ID = @reportID;";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Category", "C");
                 command.Parameters.AddWithValue("@Status", false);

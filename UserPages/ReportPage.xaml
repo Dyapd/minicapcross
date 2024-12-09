@@ -27,7 +27,7 @@
                 
             
             <Label 
-            Text="Category:"
+            Text="Category*:"
             FontSize="Body"
             />
             <Picker
@@ -56,16 +56,32 @@
             <!--this is where to put the category help!-->
 
             <Label
-            Text="Description:"/>
+            Text="Description*:"/>
             <Entry
             x:Name="DescriptionInput"
              Background="#EEEEEE"/>
+            <Label
+Text="Date and Time Lost*:"/>
+
+
+            <StackLayout Orientation="Horizontal" Spacing="15">
+                <DatePicker
+        BackgroundColor="#EEEEEE"
+    x:Name="DateInput"
+    MaximumDate="{x:Static sys:DateTime.Today}"
+     DateSelected="OnDateSelected">
+                </DatePicker>
+                <TimePicker x:Name="TimeInput"
+                Background="#EEEEEE"
+    Time="12:00:00"/>
+            </StackLayout>
+
 
             <Label
             Text="Image (optional):"/>
             <Image
-                MaximumWidthRequest="300"
-                MaximumHeightRequest="300"
+                MaximumWidthRequest="100"
+                MaximumHeightRequest="100"
                 Background="Gray"
                 x:Name="uploadedImage"/>
             <Button 
@@ -76,24 +92,10 @@
             >
             </Button>
 
-            <Label
-            Text="Date and Time Lost:"/>
-
-         
-            <StackLayout Orientation="Horizontal" Spacing="15">
-                <DatePicker
-                    BackgroundColor="#EEEEEE"
-                x:Name="DateInput"
-                MaximumDate="{x:Static sys:DateTime.Today}"
-                 DateSelected="OnDateSelected">
-                </DatePicker>
-                <TimePicker x:Name="TimeInput"
-                            Background="#EEEEEE"
-                Time="12:00:00"/>
-            </StackLayout>
+            
 
             <Label
-            Text="Location Lost:"/>
+            Text="Location Lost*:"/>
             
             <Picker
             x:Name="LocationInput"

@@ -232,7 +232,7 @@ public partial class AdminSubmittedPage : ContentPage
             }
 
 
-
+            await Navigation.PopAsync();
             ReportBtn.IsEnabled = true;
         }
         catch (Exception ec)
@@ -241,7 +241,7 @@ public partial class AdminSubmittedPage : ContentPage
             ReportBtn.IsEnabled = true;
         }
 
-        await Navigation.PopAsync();
+        
 
     }
 
@@ -253,10 +253,24 @@ public partial class AdminSubmittedPage : ContentPage
         return combinedDateTime;
     }
 
+    private void OnDateSelected(object sender, DateChangedEventArgs e)
+    {
+        var selectedDate = e.NewDate;
+        DayOfWeek dayOfWeek = selectedDate.DayOfWeek;
+
+        if (dayOfWeek == DayOfWeek.Sunday)
+        {
+            DisplayAlert("Invalid date", "Sundays are unavailable.", "OK");
+            DateTime nextDay = selectedDate.AddDays(1);
+            DateInput.Date = nextDay;
+        }
+    }
+
     private void TapGestureRecognizer_Tapped(object events, EventArgs e)
     {
         this.ShowPopup(new PopupSearchLocations());
     }
+
 
     private Label LabelMaker(string text)
     {

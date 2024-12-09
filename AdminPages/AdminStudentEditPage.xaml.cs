@@ -29,7 +29,7 @@ public partial class AdminStudentEditPage : ContentPage
 
         
         bool answer = await DisplayAlert("Confirmation", "Are you sure about this edit?", "Yes", "No");
-        string email = StudentEmailText.Text;
+        string email = EmailInput.Text;
         string password = PasswordInput.Text;
         string oldid = StudentNumberText.Text;
         string studid = NumberInput.Text;

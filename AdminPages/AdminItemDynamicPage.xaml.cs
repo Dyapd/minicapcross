@@ -127,7 +127,7 @@ public partial class AdminItemDynamicPage : ContentPage
             DynamicItems.Add(item);
         }
 
-        DisplayAlert("Items Added Reports", $"{DynamicItems.Count} items have been added.", "OK");
+        //DisplayAlert("Items Added Reports", $"{DynamicItems.Count} items have been added.", "OK");
         
 
     }

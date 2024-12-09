@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 using CommunityToolkit.Maui.Views;
 using System.Security.AccessControl;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-
+using test.UserPages;
 
 public partial class ReportPage : ContentPage
 {
@@ -185,7 +185,7 @@ public partial class ReportPage : ContentPage
                 string.IsNullOrEmpty(DescriptionInput.Text) ||
                 string.IsNullOrEmpty(LocationInput.SelectedItem?.ToString()))
             {
-                await DisplayAlert("Error", "Please fill in all required fields.", "OK");
+                await DisplayAlert("Validation Error!", "Please fill in all required fields.", "OK");
                 ReportItemBtn.IsEnabled = true;
                 return;
             }
@@ -204,7 +204,7 @@ public partial class ReportPage : ContentPage
                 insertWithImage(connectionString, reportICategory, reportDescription, reportLocation, reportDateTime);
             }
             ReportItemBtn.IsEnabled = true;
-            Navigation.PopAsync();
+            Navigation.PushAsync(new ReportsLogsPage());
         }
         catch (Exception ec)
         {
@@ -240,7 +240,7 @@ public partial class ReportPage : ContentPage
                 command.Parameters.AddWithValue("@StudentNumber", SessionVars.SessionId);
 
 
-                int rowsAffected = await command.ExecuteNonQueryAsync();
+                int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
                     await DisplayAlert("Success", "Report has been submitted successfully without image.", "OK");
@@ -275,7 +275,7 @@ public partial class ReportPage : ContentPage
                 command.Parameters.AddWithValue("@StudentNumber", SessionVars.SessionId);
 
 
-                int rowsAffected = await command.ExecuteNonQueryAsync();
+                int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
                     await DisplayAlert("Success", "Report has been submitted successfully.", "OK");
