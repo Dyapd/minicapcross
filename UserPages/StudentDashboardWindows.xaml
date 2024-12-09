@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="test.UserPages.StudentDashboardWindows"
-             BackgroundColor="WhiteSmoke">
+             x:Class="test.UserPages.StudentDashboardWindows">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#4A90E2" Offset="0.0" />
+            <GradientStop Color="#c5c9db" Offset="0.7" />
+            <GradientStop Color="#FFFFFF" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
     <RefreshView>
-    <ScrollView>
+        <ScrollView>
 
-        <VerticalStackLayout Spacing="16" Padding="16">
+            <VerticalStackLayout Spacing="16" Padding="16">
 
-            <Frame 
-            BackgroundColor="DarkBlue" 
-            CornerRadius="0" 
-            Padding="20"
-            >
-                <Label 
-                Text="ReClaimIt!"  FontFamily="Opensans"
-                FontSize="Large" 
-                FontAttributes="Bold"
-                HorizontalOptions="Center"  
-                TextColor="White" />
-            </Frame>
+                <Frame BackgroundColor="DarkBlue" 
+                       CornerRadius="0" 
+                       Padding="20">
+                    <Label Text="ReClaimIt!"  
+                           FontFamily="Opensans"
+                           FontSize="Large" 
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"  
+                           TextColor="White" />
+                </Frame>
 
                 <VerticalStackLayout>
                     <Frame>
-                        <Label
-                        Text="Menu" FontFamily="Opensans"
-                     x:Name="Label1"
-                     FontSize="Medium" 
-                     FontAttributes="Bold"
-                     HorizontalOptions="Center" 
-                     TextColor="Black"
-                    Margin="1">
+                        <Label Text="Menu" FontFamily="Opensans"
+                               x:Name="Label1"
+                               FontSize="Medium" 
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center" 
+                               TextColor="Black"
+                               Margin="1">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Label1_Tapped"/>
                             </Label.GestureRecognizers>
@@ -39,160 +42,125 @@
                     </Frame>
 
                     <Frame BackgroundColor="Transparent">
-                        <!--animation for the submit form buttons-->
-                        <Grid x:Name="AnimationVertical" VerticalOptions="Start" >
+                        <Grid x:Name="AnimationVertical" VerticalOptions="Start">
                             <VerticalStackLayout>
 
-                            <HorizontalStackLayout HorizontalOptions="Center">
-                                <Button                     
-                                x:Name="ReportBtn"
-                                Text="Report"
-                                BackgroundColor="#1565C0"
-                                HorizontalOptions="Center"
-                            
-                                ImageSource="document.png"
-                                ContentLayout="Left, 5"
-                                CornerRadius="20"
-                                Clicked="ReportBtn_Clicked" 
-                                HeightRequest="45"
-                            
-                                FontAttributes="Bold"
-                                WidthRequest="250"
-                                Margin="10"/>
+                                <HorizontalStackLayout HorizontalOptions="Center">
+                                    <Button x:Name="ReportBtn"
+                                            Text="Report"
+                                            BackgroundColor="#1565C0"
+                                            HorizontalOptions="Center"
+                                            ImageSource="document.png"
+                                            ContentLayout="Left, 5"
+                                            CornerRadius="20"
+                                            Clicked="ReportBtn_Clicked" 
+                                            HeightRequest="45"
+                                            FontAttributes="Bold"
+                                            WidthRequest="250"
+                                            Margin="10"/>
 
-                                <Button
-                                ImageSource="manuscript.png"
-                                ContentLayout="Left, 5"
-                                x:Name="ReportsBtn"
-                                Text="Report Logs"
-                                BackgroundColor="#1565C0"
-                                HorizontalOptions="Center"
-                                CornerRadius="20"
-                                Clicked="ReportsBtn_Clicked"
-                                FontAttributes="Bold"
-                                HeightRequest="45"
-                                WidthRequest="250"
-                                Margin="10"/>
+                                    <Button ImageSource="manuscript.png"
+                                            ContentLayout="Left, 5"
+                                            x:Name="ReportsBtn"
+                                            Text="Report Logs"
+                                            BackgroundColor="#1565C0"
+                                            HorizontalOptions="Center"
+                                            CornerRadius="20"
+                                            Clicked="ReportsBtn_Clicked"
+                                            FontAttributes="Bold"
+                                            HeightRequest="45"
+                                            WidthRequest="250"
+                                            Margin="10"/>
+                                </HorizontalStackLayout>
 
+                                <HorizontalStackLayout HorizontalOptions="Center">
+                                    <Button x:Name="ClaimBtn"
+                                            BackgroundColor="#1565C0"
+                                            HorizontalOptions="Center"
+                                            CornerRadius="20"
+                                            ImageSource="claim.png"
+                                            ContentLayout="Left, 5"
+                                            Clicked="ClaimBtn_Clicked"
+                                            HeightRequest="45"
+                                            WidthRequest="250" 
+                                            Text="Claim"
+                                            FontAttributes="Bold"
+                                            Margin="10"/>
 
-                            </HorizontalStackLayout>
-
-                            <HorizontalStackLayout HorizontalOptions="Center">
-                                
-                            
-                            <Button  
-                                x:Name="ClaimBtn"
-                                BackgroundColor="#1565C0"
-                                HorizontalOptions="Center"
-                                CornerRadius="20"
-                                ImageSource="claim.png"
-                                ContentLayout="Left, 5"
-                                Clicked="ClaimBtn_Clicked"
-                                HeightRequest="45"
-                                WidthRequest="250" 
-                                Text="Claim"
-                                FontAttributes="Bold"
-                                Margin="10"/>
-                                
-                                <Button
-                                ImageSource="manuscript.png"
-                                ContentLayout="Left, 5"
-                                x:Name="ClaimsBtn"
-                                Text="Claim Logs"
-                                BackgroundColor="#1565C0"
-                                HorizontalOptions="CenterAndExpand"
-                                CornerRadius="20"
-                                Clicked="ClaimsBtn_Clicked"
-                                FontAttributes="Bold"
-                                HeightRequest="45"
-                                WidthRequest="250"
-                                Margin="10">
-                                </Button>
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
+                                    <Button ImageSource="manuscript.png"
+                                            ContentLayout="Left, 5"
+                                            x:Name="ClaimsBtn"
+                                            Text="Claim Logs"
+                                            BackgroundColor="#1565C0"
+                                            HorizontalOptions="CenterAndExpand"
+                                            CornerRadius="20"
+                                            Clicked="ClaimsBtn_Clicked"
+                                            FontAttributes="Bold"
+                                            HeightRequest="45"
+                                            WidthRequest="250"
+                                            Margin="10"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
                         </Grid>
                     </Frame>
                 </VerticalStackLayout>
 
-            <VerticalStackLayout>
-                
-                <Frame HorizontalOptions="FillAndExpand">
-                    <Label 
-                        Text="Items with Similarity"  
-                        FontFamily="Opensans"
-                        FontSize="Medium" 
-                        FontAttributes="Bold"
-                        HorizontalOptions="CenterAndExpand"  
-                        VerticalOptions="CenterAndExpand" >
+                <VerticalStackLayout>
+                    <Frame HorizontalOptions="FillAndExpand">
+                        <Label Text="Items with Similarity"  
+                               FontFamily="Opensans"
+                               FontSize="Medium" 
+                               FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand"  
+                               VerticalOptions="CenterAndExpand"/>
+                    </Frame>
 
-                    </Label>
-                </Frame>
+                    <CollectionView ItemsSource="{Binding StudentNotification}"
+                                    BackgroundColor="Transparent"
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="10"
+                                       Padding="10"
+                                       BackgroundColor="White"
+                                       Margin="5"
+                                       HasShadow="True">
+                                    <Grid ColumnDefinitions="*, Auto" Padding="5">
+                                        <Label Text="{Binding CategoryAndID}"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               TextColor="#1565C0"
+                                               VerticalOptions="Center" />
 
+                                        <Button Text="Details"
+                                                Grid.Column="1"
+                                                BackgroundColor="Red"
+                                                TextColor="White"
+                                                CornerRadius="5"
+                                                Clicked="OnDetailsButtonClicked" />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-                <CollectionView ItemsSource="{Binding StudentNotification}"
-            BackgroundColor="Transparent"
-            SelectionMode="None">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame CornerRadius="10"
-                               Padding="10"
-                               BackgroundColor="White"
-                               Margin="5"
-                               HasShadow="True">
-                                <Grid ColumnDefinitions="*, Auto"
-                                  Padding="5">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Button ImageSource="logout.png"
+                                ContentLayout="Left, 5"
+                                Text="Logout"
+                                BackgroundColor="#f54e42"      
+                                x:Name="LogoutBtn"
+                                HorizontalOptions="Center"
+                                CornerRadius="20"
+                                Clicked="LogoutBtn_Clicked"
+                                HeightRequest="50"
+                                WidthRequest="250"
+                                Margin="15"/>
+                    </StackLayout>
+                </VerticalStackLayout>
 
-
-                                    <Label Text="{Binding CategoryAndID}"
-                       FontSize="18"
-                       FontAttributes="Bold"
-                       TextColor="#1565C0"
-                       VerticalOptions="Center" />
-
-
-                                    <Button Text="Details"
-                        Grid.Column="1"
-                        BackgroundColor="Red"
-                        TextColor="White"
-                        CornerRadius="5"
-                        Clicked="OnDetailsButtonClicked" />
-                                </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                <StackLayout HorizontalOptions="FillAndExpand">
-                    <Button
-                    ImageSource="logout.png"
-                    ContentLayout="Left, 5"
-                    Text="Logout"
-                    BackgroundColor ="#f54e42"      
-                    x:Name="LogoutBtn"
-                    HorizontalOptions="Center"
-                    CornerRadius="20"
-                    Clicked="LogoutBtn_Clicked"
-                    HeightRequest="50"
-                    WidthRequest="250"
-                     Margin="15"/>
-                </StackLayout>
             </VerticalStackLayout>
 
-            <!--CRTRL K + CTRL C TO COMMENT, CTRL K + CTL U TO UNCOMMENT-->
-            <!--<Button
-                
-                    WidthRequest="80"
-                    HeightRequest="80"
-                    CornerRadius="70"
-                    x:Name="NotificationBtn"
-                    SemanticProperties.Hint="Count the number you clicked"
-                    Margin="15"
-                    HorizontalOptions="Start"
-                    Clicked="NotificationBtn_Clicked" 
-                    />-->
-            <!-- THIS IS FOR NOTIFICATION LOG!!-->
-        </VerticalStackLayout>
-
-    </ScrollView>
+        </ScrollView>
     </RefreshView>
-
 </ContentPage>
