@@ -184,6 +184,39 @@ public partial class AdminSubmittedPage : ContentPage
     {
         try
         {
+            DateTime reportDateTime = SetDateTime();
+            DateTime currentDateTime = DateTime.Now;
+
+            if (reportDateTime > currentDateTime)
+            {
+                await DisplayAlert("Error", "Future date and time is not allowed.", "OK");
+                return;
+            }
+
+            if (CategoryInput.SelectedItem == null)
+            {
+                await DisplayAlert("Error", "Please select a category for the report.", "OK");
+                return;
+            }
+
+            if (LocationInput.SelectedItem == null)
+            {
+                await DisplayAlert("Error", "Please select a location for the report.", "OK");
+                return;
+            }
+
+            if (imageData == null || imageData.Length == 0)
+            {
+                await DisplayAlert("Error", "An image is required for the report.", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(DescriptionInput.Text))
+            {
+                await DisplayAlert("Error", "Please enter a description for the report.", "OK");
+                return;
+            }
+
             ReportBtn.IsEnabled = false;
             IPLocator ip = new IPLocator();
             string connectionString = ip.ConnectionString();
@@ -192,9 +225,9 @@ public partial class AdminSubmittedPage : ContentPage
             string reportCategory = CategoryInput.SelectedItem.ToString();
             string reportDescription = DescriptionInput.Text;
             string reportLocation = LocationInput.SelectedItem.ToString();
-            DateTime reportDateTime = SetDateTime();
+            
 
-
+            
             //image data is global instance
 
             //if image data is null then dont insert with image!
