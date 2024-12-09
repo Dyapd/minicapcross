@@ -80,7 +80,7 @@ namespace test.DataHolders
             public string Location { get; set; }
             public string StudentNumber { get; set; }
             public byte[] Image { get; set; }
-            public Boolean Status { get; set; }
+            public bool Status { get; set; }
             public string CategoryAndID => $"I-{ID}";
         }
 

@@ -55,7 +55,17 @@
             </Frame>
 
 
-            <CollectionView ItemsSource="{Binding DynamicItems}"
+
+
+            <SearchBar x:Name="searchBar"
+               Placeholder="Search..."
+                Background="Gray"
+               TextChanged="searchBar_TextChanged"
+               HorizontalOptions="FillAndExpand"
+               Margin="10"/>
+
+            <CollectionView ItemsSource="{Binding FilteredItems}"
+                            
                             BackgroundColor="Transparent"
                             SelectionMode="None">
                 <CollectionView.ItemTemplate>
