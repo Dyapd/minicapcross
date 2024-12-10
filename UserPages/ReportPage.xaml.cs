@@ -198,6 +198,8 @@ public partial class ReportPage : ContentPage
             {
                 DisplayAlert("Error", "Future date and time is not allowed.", "OK");
                 TimeInput.Time = DateTime.Now.TimeOfDay;
+                ReportItemBtn.IsEnabled = true;
+
                 return;
             }
 
@@ -216,11 +218,14 @@ public partial class ReportPage : ContentPage
             }
             ReportItemBtn.IsEnabled = true;
             Navigation.PopAsync();
+
         }
         catch (Exception ec)
         {
 
             await DisplayAlert("ERROR", ec.Message, "OK");
+            ReportItemBtn.IsEnabled = true;
+            return;
         }
     }
 

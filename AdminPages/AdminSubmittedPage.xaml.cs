@@ -156,6 +156,7 @@ public partial class AdminSubmittedPage : ContentPage
                     if (stream.Length > 10485760) // 10 MB in bytes, validator
                     {
                         await DisplayAlert("File too big", "Image size exceeds 10MB limit.", "OK");
+
                         return;
                     }
 
@@ -190,30 +191,35 @@ public partial class AdminSubmittedPage : ContentPage
             if (reportDateTime > currentDateTime)
             {
                 await DisplayAlert("Error", "Future date and time is not allowed.", "OK");
+                ReportBtn.IsEnabled = true;
                 return;
             }
 
             if (CategoryInput.SelectedItem == null)
             {
                 await DisplayAlert("Error", "Please select a category for the report.", "OK");
+                ReportBtn.IsEnabled = true;
                 return;
             }
 
             if (LocationInput.SelectedItem == null)
             {
                 await DisplayAlert("Error", "Please select a location for the report.", "OK");
+                ReportBtn.IsEnabled = true;
                 return;
             }
 
             if (imageData == null || imageData.Length == 0)
             {
                 await DisplayAlert("Error", "An image is required for the report.", "OK");
+                ReportBtn.IsEnabled = true;
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(DescriptionInput.Text))
             {
                 await DisplayAlert("Error", "Please enter a description for the report.", "OK");
+                ReportBtn.IsEnabled = true;
                 return;
             }
 
